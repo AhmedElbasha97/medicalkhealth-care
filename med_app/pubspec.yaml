@@ -36,7 +36,6 @@ dependencies:
   animations: ^2.0.0
   smooth_star_rating: ^1.1.1
   call_with_skype: ^0.0.1
-  animated_onboarding: ^0.0.2
   flutter_inner_drawer: ^1.0.0+1
   connectivity: ^3.0.3
   data_connection_checker: ^0.3.4
@@ -44,6 +43,9 @@ dependencies:
   http: ^0.13.1
   provider: ^4.3.3
   cached_network_image: any
+  animated_onboarding:
+    git:
+      url: https://github.com/Eng-Mohamed-Osama/animated_onboarding
 
 
 

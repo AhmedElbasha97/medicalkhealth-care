@@ -4,9 +4,11 @@ packages:
   animated_onboarding:
     dependency: "direct main"
     description:
-      name: animated_onboarding
-      url: "https://pub.dartlang.org"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: "5421695b58e67fe59ef5caba140710a90c4860b3"
+      url: "https://github.com/Eng-Mohamed-Osama/animated_onboarding"
+    source: git
     version: "0.0.2"
   animations:
     dependency: "direct main"
