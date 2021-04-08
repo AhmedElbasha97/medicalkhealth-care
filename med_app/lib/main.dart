@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/UI/Login.dart';
+import 'package:med_app/UI/Signup.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,7 +24,13 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: Login(),
+      initialRoute: '/SignUP',
+      routes: {
+        // When navigating to the "/" route, build the FirstScreen widget.
+        '/SignUP': (context) => SignUp(),
+        // When navigating to the "/second" route, build the SecondScreen widget.
+        '/Login': (context) => Login(),
+      },
     );
   }
 }
