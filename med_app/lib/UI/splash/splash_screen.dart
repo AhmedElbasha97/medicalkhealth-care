@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:animated_onboarding/animated_onboarding.dart';
 import 'package:med_app/Styles/colors.dart';
-import 'package:med_app/register/register_screen.dart';
-import 'package:med_app/splash/splash_widget.dart';
+import 'package:med_app/UI/register/register_screen.dart';
+import 'package:med_app/UI/splash/splash_widget.dart';
 
 class Splash extends StatelessWidget {
   final _pages = [

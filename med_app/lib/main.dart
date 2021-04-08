@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:med_app/splash/splash_screen.dart';
+import 'package:med_app/UI/splash/splash_screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -18,11 +18,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-
-// class MyHomePage extends StatelessWidget {
-//   MyHomePage({Key key, this.title}) : super(key: key);
-
-//   final String title;
-// }
-
-// }

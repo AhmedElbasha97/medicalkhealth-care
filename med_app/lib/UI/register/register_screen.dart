@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:med_app/register/register_button.dart';
+import 'package:med_app/UI/register/register_button.dart';
 
 class ResgisterScreen extends StatelessWidget {
   const ResgisterScreen({Key key}) : super(key: key);
