@@ -22,7 +22,7 @@ class SplashScreenWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: <Widget>[
         Padding(
-          padding: const EdgeInsets.only(top: 50),
+          padding: const EdgeInsets.only(top: 150),
           child: Image(
             image: AssetImage(image),
             height: totalheight * .33,

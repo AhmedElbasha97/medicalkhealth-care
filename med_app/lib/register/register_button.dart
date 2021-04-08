@@ -18,13 +18,13 @@ class ResgisterButtonWidget extends StatelessWidget {
         // ignore: deprecated_member_use
         FlatButton(
       color: buttonBG ? ColorsCollection.mainColor : Colors.white,
-      minWidth: MediaQuery.of(context).size.width * .45,
+      minWidth: MediaQuery.of(context).size.width * .8,
       shape: RoundedRectangleBorder(
           side: BorderSide(
               color: ColorsCollection.mainColor,
               width: 1,
               style: BorderStyle.solid),
-          borderRadius: BorderRadius.circular(5)),
+          borderRadius: BorderRadius.circular(25)),
       child: Padding(
         padding: const EdgeInsets.only(top: 15, bottom: 15),
         child: Text(
