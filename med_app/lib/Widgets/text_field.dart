@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:med_app/Styles/colors.dart';
 
 class TextFieldComp extends StatefulWidget {
   final String label;
@@ -43,7 +44,8 @@ class _TextFieldCompState extends State<TextFieldComp> {
                     ),
                     labelText: widget.label,
                     labelStyle: TextStyle(
-                        color: focused ? Color(0xFF00A1A7) : Colors.grey,
+                        color:
+                            focused ? ColorsCollection.mainColor : Colors.grey,
                         fontSize: 20,
                         fontFamily: 'Proxima',
                         fontWeight: FontWeight.bold),

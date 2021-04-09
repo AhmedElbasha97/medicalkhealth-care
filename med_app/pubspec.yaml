@@ -44,12 +44,12 @@ dependencies:
   provider: ^4.3.3
   cached_network_image: any
 
+  font_awesome_flutter: ^8.8.1
+
   animated_onboarding:
     git:
       url: https://github.com/Eng-Mohamed-Osama/animated_onboarding
 
-
-  font_awesome_flutter: ^8.8.1
 
 
 
@@ -78,7 +78,7 @@ flutter:
    - assets/splash2.png
    - assets/splash3.png
    - assets/Logo.png
-    - lib/assets/gbimage.png
+   - assets/gbimage.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

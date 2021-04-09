@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-
+import 'package:med_app/UI/auth/login/Login.dart';
+import 'package:med_app/UI/auth/signup/Signup.dart';
 import 'package:med_app/UI/splash/splash_screen.dart';
-import 'package:med_app/UI/Login.dart';
-import 'package:med_app/UI/Signup.dart';
 
 void main() {
   runApp(MyApp());
@@ -17,8 +16,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-
       home: Splash(),
-
+    );
   }
 }
