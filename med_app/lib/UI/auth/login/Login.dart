@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:med_app/Styles/colors.dart';
+import 'package:med_app/UI/auth/RestPassword/ResetPassswordScreen.dart';
 import 'package:med_app/UI/auth/signup/Signup.dart';
 import 'package:med_app/Widgets/directed_link.dart';
 import 'package:med_app/Widgets/rounderd_small_button.dart';
@@ -53,7 +54,8 @@ class Login extends StatelessWidget {
                         alignment: Alignment.centerRight,
                         child: InkWell(
                           onTap: () {
-                            //Navigate to Forgetpassword
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => ResetScreen()));
                           },
                           child: Text(
                             'Forgot Password ?',
