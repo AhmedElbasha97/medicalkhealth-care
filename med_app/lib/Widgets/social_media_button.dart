@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:med_app/Styles/colors.dart';
 
 class SocialMediaButton extends StatelessWidget {
   final icon;
@@ -12,7 +13,7 @@ class SocialMediaButton extends StatelessWidget {
         child: Material(
           elevation: 16,
           shadowColor: Colors.black,
-          color: Color(0xFF00A1A7),
+          color: ColorsCollection.mainColor,
           child: InkWell(
             splashColor: Colors.white12,
             onTap: () {},

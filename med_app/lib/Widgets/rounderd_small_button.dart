@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:med_app/Styles/colors.dart';
 
 class RoundedSmallButton extends StatelessWidget {
   final String text;
-  final String navigation;
+  final navigation;
   RoundedSmallButton({this.text, this.navigation});
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,9 @@ class RoundedSmallButton extends StatelessWidget {
           child: RaisedButton(
             onPressed: () {
               // Navigate to the second screen using a named route.
-              Navigator.pushNamed(context, '/${this.navigation}');
+              // Navigator.pushNamed(context, '/${this.navigation}');
+              Navigator.of(context).push(
+                  MaterialPageRoute(builder: (context) => this.navigation));
             },
             child: Text(
               text,
@@ -23,7 +26,7 @@ class RoundedSmallButton extends StatelessWidget {
                 fontSize: 18,
               ),
             ),
-            color: Color(0xFF00A1A7),
+            color: ColorsCollection.mainColor,
             textColor: Colors.white,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(30.0),
