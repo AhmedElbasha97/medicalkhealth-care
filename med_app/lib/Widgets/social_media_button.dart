@@ -16,7 +16,9 @@ class SocialMediaButton extends StatelessWidget {
           color: ColorsCollection.mainColor,
           child: InkWell(
             splashColor: Colors.white12,
-            onTap: () {},
+            onTap: () {
+            
+            },
             child: Center(
               child: Icon(
                 icon,
