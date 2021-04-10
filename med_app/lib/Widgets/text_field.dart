@@ -4,8 +4,8 @@ import 'package:med_app/Styles/colors.dart';
 class TextFieldComp extends StatefulWidget {
   final String label;
   final String hint;
-
-  TextFieldComp({this.label, this.hint});
+  final controller;
+  TextFieldComp({this.label, this.hint,this.controller});
 
   @override
   _TextFieldCompState createState() => _TextFieldCompState();
@@ -27,8 +27,10 @@ class _TextFieldCompState extends State<TextFieldComp> {
                   focused = focus;
                 });
               },
+              
               child: TextFormField(
-                keyboardType: TextInputType.number,
+                controller: widget.controller,
+                keyboardType: TextInputType.text,
                 decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
                         borderSide:
@@ -53,7 +55,7 @@ class _TextFieldCompState extends State<TextFieldComp> {
                     hintStyle: TextStyle(
                       fontFamily: 'Proxima',
                     ),
-                    floatingLabelBehavior: FloatingLabelBehavior.always),
+                    floatingLabelBehavior: FloatingLabelBehavior.auto),
               ),
             ),
           ),

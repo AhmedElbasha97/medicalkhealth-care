@@ -43,7 +43,7 @@ dependencies:
   http: ^0.13.1
   provider: ^4.3.3
   cached_network_image: any
-
+  flutter_facebook_auth: ^3.3.2+2
   font_awesome_flutter: ^8.8.1
 
   animated_onboarding:

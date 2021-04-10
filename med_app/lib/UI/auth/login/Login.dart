@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:med_app/Styles/colors.dart';
+import 'package:med_app/UI/auth/RestPassword/ResetPassswordScreen.dart';
 import 'package:med_app/UI/auth/signup/Signup.dart';
 import 'package:med_app/Widgets/directed_link.dart';
 import 'package:med_app/Widgets/rounderd_small_button.dart';
@@ -9,6 +10,8 @@ import 'package:med_app/Widgets/text_field.dart';
 import 'package:med_app/Widgets/top_hader.dart';
 
 class Login extends StatelessWidget {
+  final myEmailController = TextEditingController();
+  final myPasswordController=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,10 +26,11 @@ class Login extends StatelessWidget {
                   text: 'Login\nTo Your\nAccount', image: "assets/gbimage.png"),
             )),
         DraggableScrollableSheet(
-            initialChildSize: 0.4,
-            minChildSize: 0.2,
-            maxChildSize: 0.6,
+            initialChildSize: 0.7,
+            minChildSize: 0.7,
+            maxChildSize: 0.7,
             builder: (context, scrollController) {
+
               return Container(
                 width: double.infinity,
                 margin: EdgeInsets.only(top: 32),
@@ -44,16 +48,17 @@ class Login extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       SizedBox(height: 40),
-                      TextFieldComp(label: "Email", hint: "example@email.com"),
+                      TextFieldComp(controller:myEmailController,label: "Email", hint: "example@email.com"),
                       SizedBox(height: 16),
-                      TextFieldComp(
+                      TextFieldComp(controller:myPasswordController,
                           label: "Password", hint: "enter Your Password"),
                       SizedBox(height: 12),
                       Align(
                         alignment: Alignment.centerRight,
                         child: InkWell(
                           onTap: () {
-                            //Navigate to Forgetpassword
+                            Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => ResetScreen()));
                           },
                           child: Text(
                             'Forgot Password ?',
@@ -64,7 +69,7 @@ class Login extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 20),
-                      RoundedSmallButton(text: "Login", navigation: "Home"),
+                      RoundedSmallButton(text: "Login",email: myEmailController.text ,password: myPasswordController.text,type: 'login'),
                       SizedBox(height: 12),
                       Align(
                         alignment: Alignment.center,
