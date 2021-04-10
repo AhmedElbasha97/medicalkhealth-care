@@ -9,13 +9,17 @@ import 'package:med_app/Widgets/top_hader.dart';
 import 'package:med_app/Styles/colors.dart';
 
 class SignUp extends StatelessWidget {
+  final myEmailController = TextEditingController();
+  final myPasswordController = TextEditingController();
+  final myConfirmPasswordController = TextEditingController();
+  final myUsernameController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: ColorsCollection.mainColor,
       body: Stack(children: [
         Positioned(
-            top: 80,
+            top: 40,
             left: 0,
             right: 0,
             child: Container(
@@ -24,9 +28,9 @@ class SignUp extends StatelessWidget {
                   image: "assets/gbimage.png"),
             )),
         DraggableScrollableSheet(
-            initialChildSize: 0.5,
-            minChildSize: 0.4,
-            maxChildSize: 0.8,
+            initialChildSize: 0.78,
+            minChildSize: 0.78,
+            maxChildSize: 1,
             builder: (context, scrollController) {
               return Container(
                 width: double.infinity,
@@ -47,18 +51,40 @@ class SignUp extends StatelessWidget {
                     children: [
                       SizedBox(height: 40),
                       TextFieldComp(
-                          label: "UserName", hint: "enter Your UserName"),
-                      SizedBox(height: 16),
-                      TextFieldComp(label: "Email", hint: "example@email.com'"),
-                      SizedBox(height: 16),
-                      TextFieldComp(
-                          label: "Password", hint: "enter Your Password"),
+                          controller: myUsernameController,
+                          label: "UserName",
+                          hint: "enter Your UserName"),
                       SizedBox(height: 16),
                       TextFieldComp(
+                          controller: myEmailController,
+                          label: "Email",
+                          hint: "example@email.com"),
+                      SizedBox(height: 16),
+                      TextFieldComp(
+                          controller: myPasswordController,
+                          label: "Password",
+                          hint: "enter Your Password"),
+                      SizedBox(height: 12),
+                      TextFieldComp(
+                          controller: myConfirmPasswordController,
                           label: "Confirm Password",
                           hint: "re-enter Your Password"),
                       SizedBox(height: 12),
-                      RoundedSmallButton(text: "SignUp", navigation: "Home"),
+                      RoundedSmallButton(
+                          text: "SignUp As A Doctor",
+                          email: myEmailController.text,
+                          username: myUsernameController.text,
+                          password: myPasswordController.text,
+                          confirm_password: myPasswordController.text,
+                          type: "doctor"),
+                      SizedBox(height: 12),
+                      RoundedSmallButton(
+                          text: "SignUp As A Patient",
+                          email: myEmailController.text,
+                          username: myUsernameController.text,
+                          password: myPasswordController.text,
+                          confirm_password: myPasswordController.text,
+                          type: "user"),
                       SizedBox(height: 12),
                       Align(
                         alignment: Alignment.center,
