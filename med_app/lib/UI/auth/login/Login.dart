@@ -8,7 +8,6 @@ import 'package:med_app/Widgets/rounderd_small_button.dart';
 import 'package:med_app/Widgets/social_media_button.dart';
 import 'package:med_app/Widgets/text_field.dart';
 import 'package:med_app/Widgets/top_hader.dart';
-import 'package:med_app/services/auth.dart';
 
 class Login extends StatelessWidget {
   final myEmailController = TextEditingController();
