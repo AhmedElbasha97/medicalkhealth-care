@@ -55,7 +55,7 @@ class _TextFieldCompState extends State<TextFieldComp> {
                     hintStyle: TextStyle(
                       fontFamily: 'Proxima',
                     ),
-                    floatingLabelBehavior: FloatingLabelBehavior.always),
+                    floatingLabelBehavior: FloatingLabelBehavior.auto),
               ),
             ),
           ),

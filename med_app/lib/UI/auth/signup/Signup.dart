@@ -54,12 +54,12 @@ class SignUp extends StatelessWidget {
                           controller: myUsernameController,
                           label: "UserName",
                           hint: "enter Your UserName"),
-                      SizedBox(height: 16),
+                      SizedBox(height: 12),
                       TextFieldComp(
                           controller: myEmailController,
                           label: "Email",
                           hint: "example@email.com"),
-                      SizedBox(height: 16),
+                      SizedBox(height: 12),
                       TextFieldComp(
                           controller: myPasswordController,
                           label: "Password",

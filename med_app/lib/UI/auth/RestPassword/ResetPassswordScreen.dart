@@ -8,7 +8,7 @@ class ResetScreen extends StatefulWidget {
 }
 
 class _ResetScreenState extends State<ResetScreen> {
-  String _email;
+    final _email = TextEditingController();
   final auth = FirebaseAuth.instance;
   bool _hasFocus = false;
 
@@ -64,7 +64,7 @@ class _ResetScreenState extends State<ResetScreen> {
               child: Container(
                   height: MediaQuery.of(context).size.height * 0.1,
                   width: MediaQuery.of(context).size.width * 0.9,
-                  child: TextFieldComp(
+                  child: TextFieldComp(controller: _email,
                       label: "Email-Address", hint: "Example@gmail.com"))),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.9,
@@ -81,7 +81,7 @@ class _ResetScreenState extends State<ResetScreen> {
                       borderRadius: BorderRadius.circular(20)),
                   color: Color.fromRGBO(21, 104, 102, 1),
                   onPressed: () {
-                    auth.sendPasswordResetEmail(email: _email);
+                    auth.sendPasswordResetEmail(email: _email.text);
                     showDialog<void>(
                       context: context,
                       // false = user must tap button, true = tap outside dialog

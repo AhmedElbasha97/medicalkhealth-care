@@ -70,7 +70,7 @@ class Login extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 20),
-                      RoundedSmallButton(text: "Login",email: myEmailController.text ,password: myPasswordController.text),
+                      RoundedSmallButton(text: "Login",email: myEmailController.text ,password: myPasswordController.text,type: 'login'),
                       SizedBox(height: 12),
                       Align(
                         alignment: Alignment.center,
