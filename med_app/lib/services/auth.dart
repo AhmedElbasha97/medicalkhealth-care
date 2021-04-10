@@ -1,28 +1,37 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:med_app/UI/auth/login/Login.dart';
-import 'package:med_app/UI/auth/signup/Signup.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
+import'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 class AuthService {
   final FirebaseAuth _auth;
   AuthService(this._auth);
   //
   Stream<User> get authStateChanges => _auth.authStateChanges();
-  // String authState() {
-  //   FirebaseAuth.instance.authStateChanges().listen((User user) {
-  //     if (user == null) {
-  //       return "signed out";
-  //     } else {
-  //       return 'signed in';
-  //     }
-  //   });
-  // }
+
   addStringToSF(id) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-
     prefs.setString('userid', id);
+  }
+
+  bool validateEmail(String value) {
+    Pattern pattern =
+        r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
+    RegExp regex = new RegExp(pattern);
+    return (!regex.hasMatch(value)) ? false : true;
+  }
+
+  bool validatePassword(String value) {
+    String pattern =
+        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,10}$';
+    RegExp regExp = new RegExp(pattern);
+    return regExp.hasMatch(value);
+  }
+
+  bool validateUsername(String value) {
+    String pattern = r'^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$';
+    RegExp regExp = new RegExp(pattern);
+    return regExp.hasMatch(value);
   }
 
   void showAlert(context, lable, message) {
@@ -44,76 +53,103 @@ class AuthService {
       },
     );
   }
-  //signin annonmasly
-  // Future signInAnon(context) async {
-  //   try {
-  //     UserCredential userCredential = await _auth.signInAnonymously();
-  //     //  Navigator.of(context).push(
-  //     //      MaterialPageRoute(builder: (context) => Home();
-
-  //     return userCredential;
-  //   } catch (e) {
-  //     print(e.toString());
-  //     return null;
-  //   }
-  // }
 
   //signin email
   Future<String> signInEmail(context, email, password) async {
-    try {
-      UserCredential userCredential = await _auth.signInWithEmailAndPassword(
-          email: email, password: password);
+    if (validateEmail(email)) {
+      if (validatePassword(password)) {
+        try {
+          UserCredential userCredential = await _auth
+              .signInWithEmailAndPassword(email: email, password: password);
+            final userid = userCredential.user.uid;
+              addStringToSF(userid);
+          // Navigator.of(context)
+          //     .push(MaterialPageRoute(builder: (context) => Home()));
+          return "Signd in";
+        } on FirebaseAuthException catch (e) {
+          if (e.code == 'user-not-found') {
+            showAlert(context, 'No user found for that email',
+                "Please Check Your Email");
 
-      Navigator.of(context)
-          .push(MaterialPageRoute(builder: (context) => SignUp()));
-      return "Signd in";
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        showAlert(
-            context, 'No user found for that email', "Please Check Your Email");
+            return 'No user found for that email.';
+          } else if (e.code == 'wrong-password') {
+            showAlert(context, 'wrong-password', "Please Reenter Your Email");
 
-        return 'No user found for that email.';
-      } else if (e.code == 'wrong-password') {
-        showAlert(context, 'wrong-password', "Please Reenter Your Email");
-
-        return 'Wrong password.';
+            return 'Wrong password.';
+          }
+        }
+      } else {
+        showAlert(context, "Your Password is Weak",
+            "strong Password Must Contain this Criteria Minimum 8 and Maximum 10 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character");
       }
+    } else {
+      showAlert(context, "The E-mail You entered isn't valid",
+          "Please Enter A Valid E-Mail");
     }
   }
 
   //register email & password
   Future<String> signUpEmail(
       {context, email, username, confirmpassword, password, type}) async {
-   if(confirmpassword ==password){
-      try {
-      UserCredential userCredential = await _auth
-          .createUserWithEmailAndPassword(email: email, password: password);
-      final userid = userCredential.user.uid;
-      addStringToSF(userid);
-      //  Navigator.of(context).push(
-      //            MaterialPageRoute(builder: (context) => (type!='doctor')?PatientNextScreen(email,username,userid):DoctorNextScreen(email,username,userid)));
+    if (validateUsername(username)) {
+      if (validateEmail(email)) {
+        if (validatePassword(password)) {
+          if (confirmpassword == password) {
+            try {
+              UserCredential userCredential =
+                  await _auth.createUserWithEmailAndPassword(
+                      email: email, password: password);
+              final userid = userCredential.user.uid;
+              addStringToSF(userid);
+              //  Navigator.of(context).push(
+              //            MaterialPageRoute(builder: (context) => (type!='doctor')?PatientNextScreen(email,username,userid):DoctorNextScreen(email,username,userid)));
 
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        showAlert(context, 'weak-password', "Please Type Stronger Password");
-      } else if (e.code == 'email-already-i n-use') {
-        showAlert(
-            context, 'email-already-in-use', "Please Enter Another Email");
+            } on FirebaseAuthException catch (e) {
+              if (e.code == 'weak-password') {
+                showAlert(
+                    context, 'weak-password', "Please Type Stronger Password");
+              } else if (e.code == 'email-already-i n-use') {
+                showAlert(context, 'email-already-in-use',
+                    "Please Enter Another Email");
+              }
+            } catch (e) {
+              showAlert(context, 'opps', e);
+            }
+          } else {
+            print("$confirmpassword,$password");
+            showAlert(context, "The Confirm Password didn't Match",
+                "Please re-type  matched password and confirm password");
+          }
+        } else {
+          showAlert(context, "Your Password is Weak",
+              "strong Password Must Contain this Criteria Minimum 8 and Maximum 10 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character");
+        }
+      } else {
+        showAlert(context, "The E-mail You entered isn't valid",
+            "Please Enter A Valid E-Mail");
       }
-    } catch (e) {
-      showAlert(
-            context, 'opps', e);
-      }
+    } else {
+      showAlert(context, "The user name isn't valid",
+          "Please re-enter valid username");
     }
-    else{
-      print("$confirmpassword,$password");
-       showAlert(
-            context, "The Confirm Password didn't Match", "Please re-type  matched password and confirm password");
+  }
+
+//resetpassword
+  Future<String> resetPassword({email, context}) {
+    if (validateEmail(email)) {
+      _auth.sendPasswordResetEmail(email: email);
+      showAlert(context, "Your Password Has Been Reset",
+          "Please Go And Check Your E-Mail");
+    } else {
+      showAlert(context, "The E-mail You entered isn't valid",
+          "Please Enter A Valid E-Mail");
     }
   }
 
   //signout
   void SignOut() async {
-    await FirebaseAuth.instance.signOut();
+    await _auth.signOut();
   }
+
+
 }
