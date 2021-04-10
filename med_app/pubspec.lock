@@ -6,7 +6,7 @@ packages:
     description:
       path: "."
       ref: HEAD
-      resolved-ref: "5421695b58e67fe59ef5caba140710a90c4860b3"
+      resolved-ref: c59d4744bd525f98c2623552e675850c61368311
       url: "https://github.com/Eng-Mohamed-Osama/animated_onboarding"
     source: git
     version: "0.0.2"
@@ -164,6 +164,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.1.0"
+  file_picker:
+    dependency: "direct main"
+    description:
+      name: file_picker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.1"
   firebase_auth:
     dependency: "direct main"
     description:
@@ -253,27 +260,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.2"
-  flutter_facebook_auth:
+  flutter_dropdown:
     dependency: "direct main"
     description:
-      name: flutter_facebook_auth
+      name: flutter_dropdown
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "3.3.2+2"
-  flutter_facebook_auth_platform_interface:
-    dependency: transitive
-    description:
-      name: flutter_facebook_auth_platform_interface
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.4.1"
-  flutter_facebook_auth_web:
-    dependency: transitive
-    description:
-      name: flutter_facebook_auth_web
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.4.1+1"
+    version: "0.0.8"
   flutter_inner_drawer:
     dependency: "direct main"
     description:
@@ -540,7 +533,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.1"
+    version: "1.8.0"
   sqflite:
     dependency: "direct main"
     description:
@@ -683,4 +676,4 @@ packages:
     version: "5.1.0"
 sdks:
   dart: ">=2.12.0 <3.0.0"
-  flutter: ">=2.0.0"
+  flutter: ">=1.22.2"

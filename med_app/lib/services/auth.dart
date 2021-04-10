@@ -1,8 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:med_app/UI/DoctorNextScreen/doctor_next_screen.dart';
+import 'package:med_app/UI/PatientNextScreen/patient_next_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+
 class AuthService {
   final FirebaseAuth _auth;
   AuthService(this._auth);
@@ -61,8 +63,8 @@ class AuthService {
         try {
           UserCredential userCredential = await _auth
               .signInWithEmailAndPassword(email: email, password: password);
-            final userid = userCredential.user.uid;
-              addStringToSF(userid);
+          final userid = userCredential.user.uid;
+          addStringToSF(userid);
           // Navigator.of(context)
           //     .push(MaterialPageRoute(builder: (context) => Home()));
           return "Signd in";
@@ -101,9 +103,12 @@ class AuthService {
                       email: email, password: password);
               final userid = userCredential.user.uid;
               addStringToSF(userid);
-              //  Navigator.of(context).push(
-              //            MaterialPageRoute(builder: (context) => (type!='doctor')?PatientNextScreen(email,username,userid):DoctorNextScreen(email,username,userid)));
-
+              Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => (type != 'doctor')
+                      ? PatientNextScreen(
+                          email: email, username: username, userId: userid)
+                      : DoctorNextScreen(
+                          email: email, username: username, userId: userid)));
             } on FirebaseAuthException catch (e) {
               if (e.code == 'weak-password') {
                 showAlert(
@@ -150,6 +155,4 @@ class AuthService {
   void SignOut() async {
     await _auth.signOut();
   }
-
-
 }

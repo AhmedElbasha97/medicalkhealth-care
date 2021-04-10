@@ -71,7 +71,7 @@ class SignUp extends StatelessWidget {
                           hint: "re-enter Your Password"),
                       SizedBox(height: 12),
                       RoundedSmallButton(
-                          text: "SignUp As A Doctor",
+                          text: "Signup as a Doctor",
                           email: myEmailController.text,
                           username: myUsernameController.text,
                           password: myPasswordController.text,
@@ -79,7 +79,7 @@ class SignUp extends StatelessWidget {
                           type: "doctor"),
                       SizedBox(height: 12),
                       RoundedSmallButton(
-                          text: "SignUp As A Patient",
+                          text: "Signup as a Patient",
                           email: myEmailController.text,
                           username: myUsernameController.text,
                           password: myPasswordController.text,
