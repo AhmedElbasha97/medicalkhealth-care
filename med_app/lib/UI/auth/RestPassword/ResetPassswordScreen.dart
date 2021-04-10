@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:med_app/Widgets/text_field.dart';
+import 'package:med_app/services/auth.dart';
+import 'package:provider/provider.dart';
 
 class ResetScreen extends StatefulWidget {
   @override
@@ -81,25 +83,9 @@ class _ResetScreenState extends State<ResetScreen> {
                       borderRadius: BorderRadius.circular(20)),
                   color: Color.fromRGBO(21, 104, 102, 1),
                   onPressed: () {
-                    auth.sendPasswordResetEmail(email: _email.text);
-                    showDialog<void>(
-                      context: context,
-                      // false = user must tap button, true = tap outside dialog
-                      builder: (BuildContext dialogContext) {
-                        return AlertDialog(
-                          title: Text('Your Password Has Been Reset'),
-                          content: Text("Please Go And Check Your E-Mail"),
-                          actions: <Widget>[
-                            FlatButton(
-                              child: Text('OK'),
-                              onPressed: () {
-                                Navigator.of(dialogContext).pop();
-                              },
-                            ),
-                          ],
-                        );
-                      },
-                    );
+                    context.read<AuthService>().resetPassword(context:context,email:_email.text);
+                  
+             
                   },
                   child: Text(
                     "Reset Your Password",
