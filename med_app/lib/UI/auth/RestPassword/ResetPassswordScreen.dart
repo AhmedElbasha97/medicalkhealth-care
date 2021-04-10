@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-// import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:med_app/Widgets/text_field.dart';
 
 class ResetScreen extends StatefulWidget {
@@ -9,7 +9,7 @@ class ResetScreen extends StatefulWidget {
 
 class _ResetScreenState extends State<ResetScreen> {
   String _email;
-  // final auth = FirebaseAuth.instance;
+  final auth = FirebaseAuth.instance;
   bool _hasFocus = false;
 
   @override
@@ -81,7 +81,7 @@ class _ResetScreenState extends State<ResetScreen> {
                       borderRadius: BorderRadius.circular(20)),
                   color: Color.fromRGBO(21, 104, 102, 1),
                   onPressed: () {
-                    // auth.sendPasswordResetEmail(email: _email);
+                    auth.sendPasswordResetEmail(email: _email);
                     showDialog<void>(
                       context: context,
                       // false = user must tap button, true = tap outside dialog
