@@ -10,7 +10,7 @@ class ResetScreen extends StatefulWidget {
 }
 
 class _ResetScreenState extends State<ResetScreen> {
-    final _email = TextEditingController();
+  final _email = TextEditingController();
   final auth = FirebaseAuth.instance;
   bool _hasFocus = false;
 
@@ -25,7 +25,7 @@ class _ResetScreenState extends State<ResetScreen> {
           onPressed: () => Navigator.pop(context),
         ),
         title: Text(''),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.transparent,
         elevation: 0.0,
       ),
       body: Column(
@@ -66,8 +66,10 @@ class _ResetScreenState extends State<ResetScreen> {
               child: Container(
                   height: MediaQuery.of(context).size.height * 0.1,
                   width: MediaQuery.of(context).size.width * 0.9,
-                  child: TextFieldComp(controller: _email,
-                      label: "Email-Address", hint: "Example@gmail.com"))),
+                  child: TextFieldComp(
+                      controller: _email,
+                      label: "Email-Address",
+                      hint: "Example@gmail.com"))),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.9,
             height: MediaQuery.of(context).size.height * 0.05,
@@ -83,9 +85,9 @@ class _ResetScreenState extends State<ResetScreen> {
                       borderRadius: BorderRadius.circular(20)),
                   color: Color.fromRGBO(21, 104, 102, 1),
                   onPressed: () {
-                    context.read<AuthService>().resetPassword(context:context,email:_email.text);
-                  
-             
+                    context
+                        .read<AuthService>()
+                        .resetPassword(context: context, email: _email.text);
                   },
                   child: Text(
                     "Reset Your Password",

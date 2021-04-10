@@ -5,7 +5,7 @@ class TextFieldComp extends StatefulWidget {
   final String label;
   final String hint;
   final controller;
-  TextFieldComp({this.label, this.hint,this.controller});
+  TextFieldComp({this.label, this.hint, this.controller});
 
   @override
   _TextFieldCompState createState() => _TextFieldCompState();
@@ -27,7 +27,6 @@ class _TextFieldCompState extends State<TextFieldComp> {
                   focused = focus;
                 });
               },
-              
               child: TextFormField(
                 controller: widget.controller,
                 keyboardType: TextInputType.text,
