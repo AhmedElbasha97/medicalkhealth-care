@@ -5,7 +5,12 @@ class TextFieldComp extends StatefulWidget {
   final String label;
   final String hint;
   final controller;
-  TextFieldComp({this.label, this.hint, this.controller});
+  final keyboardTypeNumber;
+  TextFieldComp(
+      {this.label,
+        this.hint,
+        this.controller,
+        this.keyboardTypeNumber = false});
 
   @override
   _TextFieldCompState createState() => _TextFieldCompState();
@@ -29,11 +34,13 @@ class _TextFieldCompState extends State<TextFieldComp> {
               },
               child: TextFormField(
                 controller: widget.controller,
-                keyboardType: TextInputType.text,
+                keyboardType: widget.keyboardTypeNumber
+                    ? TextInputType.number
+                    : TextInputType.text,
                 decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
                         borderSide:
-                            BorderSide(width: 2, color: Color(0xFF02B4BB)),
+                        BorderSide(width: 2, color: Color(0xFF02B4BB)),
                         borderRadius: const BorderRadius.all(
                           const Radius.circular(40.0),
                         )),
@@ -46,7 +53,7 @@ class _TextFieldCompState extends State<TextFieldComp> {
                     labelText: widget.label,
                     labelStyle: TextStyle(
                         color:
-                            focused ? ColorsCollection.mainColor : Colors.grey,
+                        focused ? ColorsCollection.mainColor : Colors.grey,
                         fontSize: 20,
                         fontFamily: 'Proxima',
                         fontWeight: FontWeight.bold),

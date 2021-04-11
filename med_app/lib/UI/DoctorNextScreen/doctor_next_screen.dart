@@ -50,7 +50,7 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
   addDoctor(profession, speciality, certificate, id, candidate) async {
     var user = userRef.child('Uesrs/Doctors/${widget.userId}');
     final TransactionResult transactionResult =
-        await counterRef.runTransaction((MutableData mutableData) async {
+    await counterRef.runTransaction((MutableData mutableData) async {
       mutableData.value = (mutableData.value ?? 0) + 1;
       return mutableData;
     });
@@ -86,11 +86,6 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
     return Scaffold(
         appBar: AppBar(
           shadowColor: Colors.black,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios_sharp),
-            color: Colors.black,
-            onPressed: () => Navigator.pop(context),
-          ),
           title: Text(''),
           backgroundColor: Colors.transparent,
           elevation: 0.0,
@@ -139,17 +134,17 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
                 ),
                 (_selectedProfession == 'Doctor')
                     ? Padding(
-                        padding: const EdgeInsets.only(left: 20.0),
-                        child: DropDown(
-                          hint: Text('choose Speciality'),
-                          items: specialities,
-                          onChanged: (val) {
-                            setState(() {
-                              speciality = val;
-                            });
-                          },
-                        ),
-                      )
+                  padding: const EdgeInsets.only(left: 20.0),
+                  child: DropDown(
+                    hint: Text('choose Speciality'),
+                    items: specialities,
+                    onChanged: (val) {
+                      setState(() {
+                        speciality = val;
+                      });
+                    },
+                  ),
+                )
                     : SizedBox(height: 1),
                 Padding(
                   padding: const EdgeInsets.only(bottom: 10.0, left: 5.0),
@@ -198,13 +193,13 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
                 child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       primary: Color(0xFF00A1A7) // foreground
-                      ),
+                  ),
                   onPressed: () {
                     addDoctor(_selectedProfession, speciality, certificate, id,
                         candidate);
                   },
                   child: Text(
-                    'Next',
+                    'Finish',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
