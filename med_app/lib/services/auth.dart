@@ -161,6 +161,12 @@ class AuthService {
     }
   }
 
+//Get current User
+
+  Future getCurrentUser() async {
+    return await _auth.currentUser;
+  }
+
   //signout
   void SignOut() async {
     await _auth.signOut();
