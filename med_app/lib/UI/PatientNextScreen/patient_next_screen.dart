@@ -51,6 +51,8 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
         "Email": widget.email,
         "Height": height,
         "To-Do": '',
+        "User-Avatar": '1120',
+        "Balance": '',
         "User-Id": widget.userId,
         "Wieght": weight,
         "name-user": widget.username,
