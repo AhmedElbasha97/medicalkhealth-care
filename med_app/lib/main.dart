@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:med_app/UI/Home/HomeScreen.dart';
 import 'package:med_app/ui/PatientNextScreen/patient_next_screen.dart';
 import 'package:med_app/ui/DoctorNextScreen/doctor_next_screen.dart';
 
@@ -27,7 +28,8 @@ void main() async {
   runApp(MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatelessWidget  {
+
   @override
   Widget build(BuildContext context) {
     return MultiProvider(
@@ -35,14 +37,18 @@ class MyApp extends StatelessWidget {
           Provider<AuthService>(
             create: (_) => AuthService(FirebaseAuth.instance),
           ),
+
           StreamProvider(
             create: (context) => context.read<AuthService>().authStateChanges,
+
           )
         ],
         child: MaterialApp(
-          home: Splash(),
+          home: Home()
         ));
+
   }
+
 }
 
 //     return MaterialApp(
