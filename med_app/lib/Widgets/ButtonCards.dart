@@ -65,14 +65,14 @@ class _ButtonCardState extends State<ButtonCard> {
                           widget.title,
                           style: TextStyle(
 
-                                shadows: <Shadow>[
-                                  Shadow(
-                                    offset: Offset(1.0, 1.0),
-                                    blurRadius: 3.0,
-                                    color: Color(0xfff2f2f2).withOpacity(0.5),
-                                  ),
-                                ],
-                              color: Color(0xfff2f2f2).withOpacity(0.7),
+                                // shadows: <Shadow>[
+                                //   Shadow(
+                                //     offset: Offset(1.0, 1.0),
+                                //     blurRadius: 3.0,
+                                //     color: Color(0xfff2f2f2).withOpacity(0.5),
+                                //   ),
+                                // ],
+                              color: Color(0xfff2f2f2),
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Proxima',
                               fontSize: 18),
@@ -80,14 +80,14 @@ class _ButtonCardState extends State<ButtonCard> {
                         subtitle:Text(
                           widget.subtitle,
                           style: TextStyle(
-                              shadows: <Shadow>[
-                                Shadow(
-                                  offset: Offset(1.0, 1.0),
-                                  blurRadius: 3.0,
-                                  color: Color(0xfff2f2f2).withOpacity(0.5),
-                                ),
-                              ],
-                              color: Color(0xfff2f2f2).withOpacity(0.7),
+                              // shadows: <Shadow>[
+                              //   Shadow(
+                              //     offset: Offset(1.0, 1.0),
+                              //     blurRadius: 3.0,
+                              //     color: Color(0xfff2f2f2).withOpacity(0.5),
+                              //   ),
+                              // ],
+                              color: Color(0xfff2f2f2),
                               fontFamily: 'Proxima',
                               fontSize: 14),
                         ),
@@ -99,17 +99,8 @@ class _ButtonCardState extends State<ButtonCard> {
                       padding: EdgeInsets.fromLTRB(16.0, 0.0, 0.0,0.0),
                       child: Text(
                         "For \nMore \ndetails",
-                        textAlign: TextAlign.left,
                         style: TextStyle(
-
-                            shadows: <Shadow>[
-                              Shadow(
-                                offset: Offset(1.0, 1.0),
-                                blurRadius: 3.0,
-                                color: Color(0xfff2f2f2).withOpacity(0.5),
-                              ),
-                            ],
-                            color: Color(0xfff2f2f2).withOpacity(0.7),
+                            color: Color(0xfff2f2f2),
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Proxima',
                             fontSize: 18),

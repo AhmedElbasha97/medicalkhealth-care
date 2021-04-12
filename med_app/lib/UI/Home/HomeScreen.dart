@@ -33,16 +33,54 @@ class Home extends StatelessWidget {
 
         body: Stack(children: [
           Positioned(
-              top: 40,
+              top: 30,
               left: 0,
               right: 0,
-              child: Container(
-                child: TopHaderCustom(
-                    text: 'Welcome\n   akram \n    To TeleMed',image: "assets/Doctors-pana.png"),
+
+              child:Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Padding(
+                padding: EdgeInsets.all(1.0),
+                child: IconButton(
+                  icon: const Icon(Icons.menu),
+                  color: Colors.white,
+                  iconSize: 30.0,
+                  tooltip: 'Increase volume by 10',
+                  onPressed: () {
+                    print("hiii");
+                  },
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(1.0),
+                child: IconButton(
+                  icon: const Icon(Icons.account_circle_sharp),
+                  color: Colors.white,
+                  iconSize: 30.0,
+                  tooltip: 'Increase volume by 10',
+                  onPressed: () {
+                    print("hiii");
+                  },
+                ),
+              ),
+
+            ],
+          )),
+          Positioned(
+              top: 30,
+              left: 0,
+              right: 0,
+              child: Padding(
+                padding: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
+                child: Container(
+                  child: TopHaderCustom(
+                      text: 'Welcome\n   akram \n    To TeleMed',image: "assets/Doctors-pana.png"),
+                ),
               )),
           DraggableScrollableSheet(
-              initialChildSize: 0.7,
-              minChildSize: 0.7,
+              initialChildSize: 0.65,
+              minChildSize: 0.65,
               maxChildSize: 1,
               builder: (context, scrollController) {
 
@@ -62,16 +100,16 @@ class Home extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
-                        SizedBox(height: 40),
+                        SizedBox(height: 10),
                        Padding(
                          padding: EdgeInsets.all(10),
                            child: ButtonCard(title: "Doctor Speciality",subtitle: "you can find doctors with it speciality there",)),
-                        SizedBox(height: 40),
+                        SizedBox(height: 10),
                         Padding(
                             padding: EdgeInsets.all(10),
                             child: ButtonCard(title: "Appointment", subtitle: 'you can follow yor appointments here',)),
 
-                        SizedBox(height: 70),
+                        SizedBox(height: 20),
                      Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: <Widget>[
@@ -105,10 +143,10 @@ class Home extends StatelessWidget {
                                 ),
                               ),
                      Padding(
-                       padding: EdgeInsets.all(10.0),
+                       padding: EdgeInsets.all(1.0),
                        child: Container(
                           width: MediaQuery.of(context).size.width*1,
-                          height: MediaQuery.of(context).size.height * 0.3,
+                          height: MediaQuery.of(context).size.height * 0.25,
 
 
                     child: ListView.builder(
@@ -122,7 +160,7 @@ class Home extends StatelessWidget {
                             ],
 
                           ),
-                        SizedBox(height: 70),
+                        SizedBox(height: 20),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -159,7 +197,7 @@ class Home extends StatelessWidget {
                               padding: EdgeInsets.all(10.0),
                               child: Container(
                                   width: MediaQuery.of(context).size.width*1,
-                                  height: MediaQuery.of(context).size.height * 0.3,
+                                  height: MediaQuery.of(context).size.height * 0.25,
 
 
                                   child: ListView.builder(

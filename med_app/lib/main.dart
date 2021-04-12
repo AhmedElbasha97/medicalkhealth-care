@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/UI/Home/HomeScreen.dart';
+import 'package:med_app/Widgets/NavBar.dart';
 import 'package:med_app/ui/PatientNextScreen/patient_next_screen.dart';
 import 'package:med_app/ui/DoctorNextScreen/doctor_next_screen.dart';
 
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget  {
           )
         ],
         child: MaterialApp(
-          home: Home()
+          home: Nav()
         ));
 
   }

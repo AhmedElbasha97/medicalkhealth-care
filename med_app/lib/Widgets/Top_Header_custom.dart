@@ -24,7 +24,7 @@ class TopHaderCustom extends StatelessWidget {
           ),
           Image.asset(
             image,
-            height: 236,
+            height: 220,
             fit: BoxFit.fitHeight,
           )
         ],
