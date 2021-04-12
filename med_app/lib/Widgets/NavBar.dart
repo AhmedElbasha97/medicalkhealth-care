@@ -1,5 +1,6 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:med_app/UI/Home/HomeScreen.dart';
 
 // import 'UI/movie_list/movie_screen.dart';
@@ -33,13 +34,13 @@ class _NavbarState extends State<Nav> {
         backgroundColor: Color(0xFF00A1A7),
         items: <Widget>[
           Icon(
-            Icons.account_circle,
+            FontAwesomeIcons.blog,
             size: 25,
             color: Color(0xFF00A1A7),
           ),
 
           Icon(
-            Icons.supervisor_account_sharp,
+            FontAwesomeIcons.tablets,
             size: 25,
             color: Color(0xFF00A1A7),
           ),Icon(
