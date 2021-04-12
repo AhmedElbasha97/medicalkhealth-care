@@ -217,7 +217,7 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
                         color: Colors.white,
                         fontSize: 20,
                         fontFamily: 'Proxima',
-                        fontWeight: FontWeight.bold),
+                        fontWeight: FontWeight.w800),
                   ),
                 ),
               )

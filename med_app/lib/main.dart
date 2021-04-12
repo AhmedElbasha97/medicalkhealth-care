@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:med_app/ui/PatientNextScreen/patient_next_screen.dart';
-import 'package:med_app/ui/DoctorNextScreen/doctor_next_screen.dart';
+import 'package:med_app/UI/doctors/doctor_booking_screen/doctor_booking_screen.dart';
 
 // import 'package:firebase_core/firebase_core.dart' as firebase_core;
 
@@ -40,7 +39,7 @@ class MyApp extends StatelessWidget {
           )
         ],
         child: MaterialApp(
-          home: Splash(),
+          home: DoctorBookingScreen(),
         ));
   }
 }
