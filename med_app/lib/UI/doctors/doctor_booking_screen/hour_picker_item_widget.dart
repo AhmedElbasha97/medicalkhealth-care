@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:med_app/Styles/colors.dart';
 
 class HourItem extends StatefulWidget {
   final height;
@@ -30,9 +31,10 @@ class _HourItemState extends State<HourItem> {
         margin: EdgeInsets.all(3.0),
         decoration: BoxDecoration(
             borderRadius: BorderRadius.all(Radius.circular(8.0)),
-            color: widget.tc ? Colors.transparent : Color(0xFF00A7C3),
+            color: widget.tc ? Colors.transparent : ColorsCollection.mainColor,
             border: Border.all(
-                color: widget.tc ? Colors.black : Color(0xFF00A7C3), width: 2)),
+                color: widget.tc ? Colors.black : ColorsCollection.mainColor,
+                width: 2)),
         child: Align(
           alignment: Alignment.center,
           child: Padding(

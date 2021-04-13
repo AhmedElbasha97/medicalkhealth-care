@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:med_app/UI/doctors/doctor_booking_screen/hour_item.dart';
+import 'package:med_app/UI/doctors/doctor_booking_screen/hour_picker_item_widget.dart';
 
 class HourPicker extends StatefulWidget {
   final height;

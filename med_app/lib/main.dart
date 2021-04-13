@@ -1,11 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:med_app/UI/doctors/doctor_booking_next_screen/doctor_booking_next_screen.dart';
 import 'package:med_app/UI/doctors/doctor_booking_screen/doctor_booking_screen.dart';
 
 // import 'package:firebase_core/firebase_core.dart' as firebase_core;
 
-// void main() {
-//   runApp(MyApp());
-// }
 // Future<void> main() async {
 //   WidgetsFlutterBinding.ensureInitialized();
 //   await firebase_core.Firebase.initializeApp();
@@ -25,6 +23,10 @@ void main() async {
   await Firebase.initializeApp();
   runApp(MyApp());
 }
+
+// void main() {
+//   runApp(MyApp());
+// }
 
 class MyApp extends StatelessWidget {
   @override

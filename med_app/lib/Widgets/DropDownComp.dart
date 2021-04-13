@@ -27,10 +27,6 @@ class _DropDownCompState extends State<DropDownComp> {
             value: 1,
             child: Text(widget.val1),
           ),
-          DropdownMenuItem(
-            value: 2,
-            child: Text(widget.val2),
-          )
         ],
         onChanged: (value) {
           setState(() {
