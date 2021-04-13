@@ -38,19 +38,25 @@ class _SpecialityCardState extends State<SpecialityCard> {
               .push(MaterialPageRoute(builder: (context) => SpecialityPage(speciality:widget.item.speciality)));
         },
         child: Card(
-          child: Column(
-            children: [
-              Expanded(
-                child: Image.asset(widget.item.image),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 8),
-                child: Text(
-                  widget.item.speciality,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
-                ),
-              )
-            ],
+          child: Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Column(
+    
+              children: [
+              
+                   Container(child: Image.asset(widget.item.image ,fit:BoxFit.contain ,),
+                   width: MediaQuery.of(context).size.width/4,height: MediaQuery.of(context).size.width/5.2,)
+                   
+                   ,
+                
+                Center(
+                  child: Text(
+                    widget.item.speciality,
+                    style: TextStyle(fontWeight: FontWeight.w800, fontSize: 14 ),
+                  ),
+                )
+              ],
+            ),
           ),
         ));
 
