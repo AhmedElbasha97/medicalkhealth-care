@@ -86,11 +86,6 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
     return Scaffold(
         appBar: AppBar(
           shadowColor: Colors.black,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios_sharp),
-            color: Colors.black,
-            onPressed: () => Navigator.pop(context),
-          ),
           title: Text(''),
           backgroundColor: Colors.transparent,
           elevation: 0.0,
@@ -204,7 +199,7 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
                         candidate);
                   },
                   child: Text(
-                    'Next',
+                    'Finish',
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 20,
