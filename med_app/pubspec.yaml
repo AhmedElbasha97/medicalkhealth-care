@@ -50,7 +50,7 @@ dependencies:
   animated_onboarding:
     git:
       url: https://github.com/Eng-Mohamed-Osama/animated_onboarding
-
+   
 
 
 
@@ -83,6 +83,7 @@ flutter:
    - assets/splash3.png
    - assets/Logo.png
    - assets/gbimage.png
+   - assets/Dermatology.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
