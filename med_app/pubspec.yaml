@@ -49,12 +49,12 @@ dependencies:
   font_awesome_flutter: ^8.8.1
   date_picker_timeline: ^1.2.3
   show_dialog: ^1.0.3
-#  timeline_tile: ^2.0.0
   progress_timeline: ^0.0.5
+  intl: ^0.17.0
   animated_onboarding:
     git:
       url: https://github.com/Eng-Mohamed-Osama/animated_onboarding
-
+   
 
 
 
@@ -91,6 +91,7 @@ flutter:
    - assets/credit.png
    - assets/paypal.png
    - assets/fawry.jpg
+   - assets/Dermatology.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

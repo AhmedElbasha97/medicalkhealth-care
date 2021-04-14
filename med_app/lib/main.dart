@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:med_app/UI/PatientNextScreen/patient_next_screen.dart';
+
 import 'package:med_app/UI/doctors/doctor_booking_next_screen/doctor_booking_next_screen.dart';
 import 'package:med_app/UI/doctors/doctor_booking_screen/doctor_booking_screen.dart';
 
@@ -13,10 +15,13 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:med_app/UI/auth/login/Login.dart';
 import 'package:med_app/UI/auth/register/register_screen.dart';
 import 'package:med_app/UI/auth/signup/Signup.dart';
+import 'package:med_app/UI/specialitylist/specialty_list.dart';
 import 'package:med_app/UI/splash/splash_screen.dart';
 import 'package:med_app/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+import 'providedrs/database_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -33,15 +38,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
+          // ChangeNotifierProvider(
+          //   create: (context) => DatabaseProvider(
+          //       speciality: 'Dermatology', id: '32FqmbJsHCTEMn8pgTXBnPLoAr82'),
+          //   child: DoctorBookingScreen(),
+          // ),
           Provider<AuthService>(
             create: (_) => AuthService(FirebaseAuth.instance),
           ),
           StreamProvider(
             create: (context) => context.read<AuthService>().authStateChanges,
-          )
+          ),
         ],
         child: MaterialApp(
-          home: DoctorBookingScreen(),
+          home: SignUp(),
         ));
   }
 }

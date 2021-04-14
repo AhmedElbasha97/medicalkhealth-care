@@ -1,0 +1,571 @@
+{
+  "users": {
+    "doctors": {
+      "Hw7Q8FgT3TaUdzwrLkNrSF2auHj1": {
+        "appointment": [
+          {
+            "date": "13/04/2021",
+            "hour": "10:00 AM",
+            "patientAvatar": "/data/user/0/com.example.med_app/cache/file_picker/5LeLCr9t69A2r10GRaXsRIm71fw.jpg",
+            "patientId": "jWg8VDotubNZUz2OpAeN5tE5ull2",
+            "patientName": "Ahmed Aboud"
+          }
+        ],
+        "availableAppointment": [
+          {
+            "availableDay": "13/04/2021",
+            "availableHours": ["9:00 AM","11:00 AM","1:00 PM","3:00 PM"]
+          },
+          {
+            "availableDay": "15/04/2021",
+            "availableHours": ["8:00 AM","10:00 AM","12:00 PM","2:00 PM"]
+          },
+          {
+            "availableDay": "17/04/2021",
+            "availableHours": ["3:00 PM","5:00 PM","7:00 PM","9:00 PM"]
+          }
+        ],
+        "balance": "1500",
+        "bio": "im the doctors who is very good in my job and i wanna be like ahmed el basha",
+        "experience": "10",
+        "languages": ["Arabic","English","French"],
+        "fees": "200",
+        "rating": "4.0",
+        "reviews": [
+          {"rating": "3.0", "date": "13/04/2021", "review": "he was very awesome, he could help me"},
+          {"rating": "2.0", "date": "15/04/2021", "review": "very bad doctor"},
+          {"rating": "5.0", "date": "17/04/2021", "review": "im abdo"},
+          {"rating": "1.0", "date": "19/04/2021", "review": "no no no that's so bad"}
+        ],
+        "userAvatar": "/data/user/0/com.example.med_app/cache/file_picker/5LeLCr9t69A2r10GRaXsRIm71fw.jpg",
+        "documents": {
+          "certificate": "/data/user/0/com.example.med_app/cache/file_picker/hhVun8bMT8VCbMannBSbWiQcNgI.jpg",
+          "id": "/data/user/0/com.example.med_app/cache/file_picker/ekaX4du53NcOeEmce7nsk564cBZ.jpg",
+          "candidate": "/data/user/0/com.example.med_app/cache/file_picker/fDSwNMte8meSCyvYxW6RUmHlHfA.jpg"
+        },
+        "callMethods": {
+          "chat": true,
+          "voice": true,
+          "video": true
+        },
+        "email": "qwefqwef@asdfsad.asdf",
+        "profession": "Doctor",
+        "speciality": "Dermatology",
+        "userId": "Hw7Q8FgT3TaUdzwrLkNrSF2auHj1",
+        "username": "ahmedsamy",
+        "name": "Ahmed Samy"
+      }
+    },
+    "patients": {
+      "jWg8VDotubNZUz2OpAeN5tE5ull2":{
+        "appointment": [
+        {
+          "date": "13/04/2021",
+          "hour": "10:00 AM",
+          "doctorAvatar": "/data/user/0/com.example.med_app/cache/file_picker/5LeLCr9t69A2r10GRaXsRIm71fw.jpg",
+          "doctorId": "Hw7Q8FgT3TaUdzwrLkNrSF2auHj1",
+          "doctorName": "Ahmed Samy"
+        }
+      ],
+        "bloodSugar": "100",
+        "bloodHighPressure": "120",
+        "bloodLowPressure": "80",
+        "email": "abdo@gmail.com",
+        "height": "175",
+        "age": "25",
+        "gender": "male",
+        "medicalNotes": ["this patient is idiot","this patient need help in neurology"],
+        "userAvatar": "/data/user/0/com.example.med_app/cache/file_picker/5LeLCr9t69A2r10GRaXsRIm71fw.jpg",
+        "balance": "250",
+        "userId": "jWg8VDotubNZUz2OpAeN5tE5ull2",
+        "weight": "75",
+        "username": "ahmedaboud",
+        "name": "Ahmed Aboud"
+      }
+    }
+  },
+  "articles" : {
+    "count" : 20,
+    "page" : 1,
+    "pages" : 4702,
+    "results" : [ {
+      "authors" : [ {
+        "isAgency" : false,
+        "name" : "Anita DeCecco",
+        "type" : "author",
+        "uri" : "anita_dececco@monstersandcritics.com"
+      } ],
+      "body" : "Vanderpump Rules alums Jax Taylor and Brittany Cartwright have officially started their new journey of parenthood as the couple announced they've welcomed their first child together.\n\nThe pair, who first announced they were expecting a child during the Vanderpump Rules baby boom, have been anxiously awaiting the arrival of their little boy, and he has finally made his grand entrance.\n\nThe pair took to Instagram to introduce their son to their fans and followers and reveal the little one's name.\n\nPosted to Brittany's Instagram page, the couple shared a picture of them both cradling their son, who they've named Cruz Michael Cauchi, while still in the hospital. Both parents appear incredibly peaceful and happy.\n\nBrittany captioned the post, \"Yesterday, April 12th at 1:51pm, our lives changed forever in the absolute best way possible. Our beautiful son Cruz Michael Cauchi was born and we have never been more in love.\"\n\n\"He is the most precious gift and I am so blessed to be his Mommy. [blue heart emoji] We are soooooo so happy, he is a dream come true!! [crying face, heart face, and blue heart emoji] - Both Mommy & Baby are doing great! [blue heart emoji],\" the caption concluded.\n\nFans and Bravo stars flooded the comments with their congratulations for the couple.\n\nFormer Vanderpump Rules star Kristen Doute commented with a string of star and blue heart emojis and exclaimed, \"love you guys!!\"\n\nReal Housewives of Atlanta alum Kim Zociak Biermann also stopped by and commented, \"Omg CONGRATS!! I couldn't be happier for you 2!! The days seem long but the years are short!! Love you guys!\"\n\nSince announcing they were expecting their first child together, both Jax and Brittany have been transparent about the journey.\n\nThe pair announced their exit from Vanderpump Rules shortly after sharing their pregnancy news and have been planning the transition from reality television stars to parents ever since.\n\nBrittany experienced plenty of body-shaming during her pregnancy and was honest with her fans and followers that despite all the hate, she was determined to enjoy her pregnancy to the best of her ability.\n\n\"I am so proud of my body for creating my son. I have had days where I let negative comments from strangers get me down, but WHY!? I am growing a perfect and healthy human being who i have only dreamed of my entire life,\" she shared in an encouraging Instagram post.\n\nAnd in a recent podcast interview, Jax gushed that he was moving his focus away from the drama of Vanderpump Rules in order to focus on growing his family with Brittany.\n\n\"I'm 40. I'm gonna be a father. My focus is on that. It's just not fair to the show either to be like, 'Okay, I'm going to sign up for this but I'm only going to be able to do these, this, and this.' So, you know, I was okay with the decision, you know, to hang it up,\" Jax shared.\n\nNow that baby Cruz has arrived, fans wait on pins and needles for the Vanderpump Rules babies to be able to meet one another.",
+      "dataType" : "news",
+      "date" : "2021-04-14",
+      "dateTime" : "2021-04-14T01:10:00Z",
+      "dateTimePub" : "2021-04-14T00:43:00Z",
+      "eventUri" : "eng-6706381",
+      "image" : "https://i2.wp.com/www.monstersandcritics.com/wp-content/uploads/2021/04/jax-brittany-vanderpump-rules.jpg?fit=1200%2C675&ssl=1",
+      "isDuplicate" : false,
+      "lang" : "eng",
+      "relevance" : 4,
+      "sentiment" : 0.5450980392156863,
+      "sim" : 0.7803921699523926,
+      "source" : {
+        "dataType" : "news",
+        "title" : "Monsters and Critics",
+        "uri" : "monstersandcritics.com"
+      },
+      "time" : "01:10:00",
+      "title" : "Vanderpump Rules: Brittany Cartwright and Jax Taylor welcome son Cruz",
+      "uri" : "6518957142",
+      "url" : "https://www.monstersandcritics.com/tv/reality-tv/vanderpump-rules-brittany-cartwright-and-jax-taylor-welcome-son-cruz/",
+      "wgt" : 356058600
+    }, {
+      "body" : "As COVID-19 has taken a deadly toll on millions of people and crippled many who have suffered devastating damage to their hearts and lungs, some lucky ones have been able to secure life-changing transplants. Only a handful of hospitals were willing to take the chance on operating on these people at the beginning of the pandemic, but now, over the course of a year, the profile of organ transplants has changed.\n\nAccording to Kaiser Health News (KHN), 53-year-old Mark Buchanan received a double-lung transplant last October after being turned down by several hospitals. Buchanan had spent months on a ventilator and was told his lungs were ruined.\n\nLuckily, the University of Florida Health Shands Hospital agreed to do the procedure. Now, hospitals across the country are seeing a surge in COVID-19 related transplants. They are mostly lungs and hearts that have been destroyed by the virus, said Dr. Jonathan Orens, chief of pulmonary and critical care at Johns Hopkins University School of Medicine in Baltimore and a world-renowned expert in lung transplants.\n\nThe United Network for Organ Sharing (UNOS) said that nearly 60 transplants were performed through March 31 for patients with COVID-19-related organ disease, according to KHN. This figure includes 54 lung and four heart transplant patients and one who received a double heart-lung transplant. UNOS data reveals that 26 more individuals are eligible for lung transplants and another for a heart transplant.\n\nThe surgeries have taken place in over two dozen hospitals across America and more sites are being added as time goes on.\n\n\"You're seeing it move around the country, and it's moving around pretty quick,\" said Dr. David Weill, a consultant who was the former director of Stanford University's heart-lung transplant program, saying that the uptick of COVID-19 related transplants is spreading \"like wildfire.\"\n\nCOVID-19 has caused more than 560,000 deaths and left thousands of patients with life-threatening damage to their organs.\n\n\"I think this is just the beginning,\" said Dr. Tae H. Song, surgical director of the lung transplant program at the University of Chicago Medical Center and an expert in the treatment of cardiac and thoracic conditions. \"I expect this to be a completely new category for transplant patients.\"\n\nWeill said that because COVID-19 is still new, it is hard to tell how many patients will eventually require transplants, per KHN. Fortunately, the COVID-19 related cases have not affected the waiting list for organs since the kidneys are the organs most in demand and have not been as widely affected as heart and lungs by the disease.\n\nExperts say that in general, patients who need new organs most get priority. If COVID-19 patients get sick enough, this could bump them to the top of the line. For example, COVID-19 can cause irreversible damage to the lungs in a very short time. A condition called pulmonary fibrosis, or scarring of the lungs, usually takes place over months. In COVID-19 patients, \"it's more on the order of weeks,\" said Song.\n\nThese patients are put on mechanical ventilators or extracorporeal membrane oxygenation (ECMO), in which a machine takes control of the heart and lungs. Transplantation may be their only hope to take back their lives.\n\nUnfortunately, many very ill patients suffer from multiple organ damage or have preexisting conditions, such as diabetes or obesity, that prohibit them from becoming a transplant candidate. According to NBC News, successful transplant candidates are most likely to be under the age of 65 who are healthy but whose lungs will not heal on their own.\n\n\"This is a very different profile of patients,\" said Dr. Tiago Machuca, chief of thoracic surgery at UF Shands Hospital who helped create the guidelines for COVID-19-related transplants. \"These patients had normal lung function. They're young, and now they find themselves on ventilation or ECMO, fighting for their lives.\"\n\nMachuca said that before the pandemic, \"transplanting patients with acute respiratory failure was a 'no'. I think this is expanding the limits of what we felt was possible,\" he added, according to NBC News,",
+      "dataType" : "news",
+      "date" : "2021-04-14",
+      "dateTime" : "2021-04-14T01:09:00Z",
+      "dateTimePub" : "2021-04-14T01:09:00Z",
+      "isDuplicate" : true,
+      "lang" : "eng",
+      "relevance" : 6,
+      "sentiment" : -0.0117647058823529,
+      "sim" : 0,
+      "source" : {
+        "dataType" : "news",
+        "title" : "i93",
+        "uri" : "wgowam.com"
+      },
+      "time" : "01:09:00",
+      "title" : "Pandemic Creates New Category of Organ Transplants",
+      "uri" : "6518956596",
+      "url" : "https://www.wgowam.com/news/pandemic-creates-new-category-of-organ-transplants/",
+      "wgt" : 356058540
+    }, {
+      "body" : "(Restaurant News Release)\n\nWHAT:\n\nOn Tuesday, April 20, Chronic Tacos is offering the solution to chronic munchies. Guests can take advantage of the $4.20 deal on all small burritos. There is no need to rearrange 4/20 plans because this special will go on all day. No code or coupon is necessary, making it the perfect easy deal to end any April 20 celebrations.\n\nThis special excludes fish, shrimp, steak and beyond beef. Guests can take advantage of this offer in store, on the Chronic Tacos app (https://apps.apple.com/us/app/chronic-tacos-mexican-grill/id1251640835), and through online ordering on the Chronic Tacos website (www.chronictacos.com).\n\nWHEN:\n\nApril 20, 2021, All Day\n\nWHERE:\n\nAvailable at participating locations.\n\n(EXCLUDING: HB Bella Terra, Costa Mesa, Corona Del Mar, Newport Beach PCH, Orange Beach Alabama, Lakewood, CA, and Lakewood, WA)\n\nAbout Chronic Tacos\n\nChronic Tacos is a California-inspired Taco Shop that celebrates authenticity and the individuality of guests through the #TacoLife. They respect tradition and keep it real. Founded in 2002, the Southern California-based brand has over 60 locations operating across the United States, Canada and Japan. The #Tacolife consists of undeniable tacos and the most authentic recipes, a laid back So Cal vibe with an irresistible edge, and only the most personal, friendly service.\n\nChronic Tacos prides itself on serving the highest quality ingredients, with bold flavor profiles, made from authentic Mexican recipes. On the menu, you'll find a wide variety of traditional Mexican items including tacos, burritos, and bowl-ritos, along with some non-traditional items such as California burrito and Chronic Fries. For more information, or to find the nearest Chronic Tacos, visit www.chronictacos.com.\n\nMedia Contact:\n\nMatt Kovacs\n\nBlaze PR\n\n310-395-5050\n\nmkovacs@blazepr.com",
+      "dataType" : "news",
+      "date" : "2021-04-14",
+      "dateTime" : "2021-04-14T01:08:00Z",
+      "dateTimePub" : "2021-04-14T00:40:00Z",
+      "isDuplicate" : true,
+      "lang" : "eng",
+      "relevance" : 7,
+      "sentiment" : 0.3568627450980393,
+      "sim" : 0,
+      "source" : {
+        "dataType" : "news",
+        "title" : "restaurantnewsrelease.com",
+        "uri" : "restaurantnewsrelease.com"
+      },
+      "time" : "01:08:00",
+      "title" : "$4.20 on 4.20 Special At Chronic Tacos | RestaurantNewsRelease.com",
+      "uri" : "6518956002",
+      "url" : "http://www.restaurantnewsrelease.com/4-20-on-4-20-special-at-chronic-tacos/",
+      "wgt" : 356058480
+    }, {
+      "body" : "Thailand's Public Health Minister has defended the governments purchase of Sinovac Covid-19 vaccine following reports by China that it doesn't have very high protection rate.\n\nAnutin Charnvirakul said on Facebook that the issues surrounding Covid-19 vaccines from China had caused much confusion in the last few days and some politicians were exploiting it.\n\nPoliticians with no vaccine knowledge have exaggerated foreign news and claimed the AstraZeneca and Sinovac vaccines that the government has purchased are not effective.\n\n\"Both vaccines were approved by the World Health Organization for use and many countries have already used them,\" he said.\n\nHis defensive comments come after China's top disease control official told a press conference that the efficacy of China's Covid vaccines is low, in a rare admission of weakness.\n\nGeorge Fu Gao, head of the Chinese Center for Disease Prevention and Control, told a forum that something needed to be done to address the low protection levels of Chinese vaccines.\n\nMr Anutin knew 3 months ago that the coronavirus vaccine developed in partnership with Sinovac Biotech Ltd was 50.4% effective. While reports that the AstraZeneca vaccine has caused blood clots in patients surfaced late last month.\n\nMr Anutin said on Tuesday said that the misleading information about the Sinovac vaccine might derail the country's vaccination drive. Thailand's vaccine program is expected to be completed by the end of this year.\n\nPeople were free to choose to believe experts or politicians who know nothing, he said.\n\nThe ministry on Tuesday declared the Sinovac vaccine was 100% effective in preventing severe cases of Covid-19.\n\nIt will administer the vaccine to MPs and senators on a voluntary basis when parliament reconvenes in May.\n\nMeanwhile, National Vaccine Institute director Nakorn Premsri said scientists were monitoring the efficacy of all vaccines. In the case of Sinovac, its 50.7% efficacy rate was the result of its Phase III trials with medical workers in Brazil where the pandemic was on the rise.\n\nIt met WHO standards, Dr Nakorn said -- its efficacy stood at 83.7% among Covid-19 patients with medium to severe symptoms and 100% among those with mild symptoms, he said.\n\nYong Poovorawan, head of the Center of Excellence in Clinical Virology at Chulalongkorn University, said Covid-19 vaccines were approved for emergency use since their benefits outweighed risks.",
+      "dataType" : "news",
+      "date" : "2021-04-14",
+      "dateTime" : "2021-04-14T01:06:00Z",
+      "dateTimePub" : "2021-04-14T00:51:00Z",
+      "eventUri" : "eng-6699300",
+      "image" : "https://www.chiangraitimes.com/wp-content/uploads/2021/04/Thai-Health-Minister-Defends-Sinovac-Vaccine-Despite-its-Ineffectiveness.jpg",
+      "isDuplicate" : false,
+      "lang" : "eng",
+      "relevance" : 4,
+      "sentiment" : -0.2156862745098039,
+      "sim" : 0.4745098054409027,
+      "source" : {
+        "dataType" : "news",
+        "title" : "Chiangrai Times",
+        "uri" : "chiangraitimes.com"
+      },
+      "time" : "01:06:00",
+      "title" : "Thai Health Minister Defends Sinovac Vaccine Despite its Ineffectiveness",
+      "uri" : "6518954239",
+      "url" : "https://www.chiangraitimes.com/thailand-national-news/thailand-politics-thailand-national-news/thai-health-minister-defends-sinovac-vaccine-despite-its-ineffectiveness/",
+      "wgt" : 356058360
+    }, {
+      "body" : "The most striking increase was in syphilis cases among newborns, known as congenital syphilis, which nearly quadrupled over the past five years\n\nThe number of sexually transmitted diseases reached an all-time high in the U.S. for the sixth consecutive year, a new report finds.\n\nIn 2019, there were 2.5 million cases of chlamydia, gonorrhea, and syphilis, the three most commonly reported STDs, according to new data published by the Centers for Disease Control and Prevention (CDC) on Tuesday.\n\nThis marks a nearly 30 percent increase in STDs reported to the federal health agency between 2015 and 2019.\n\nWhat's more, the most striking increase was in syphilis cases among newborns, known as congenital syphilis, which nearly quadrupled over the past five years.\n\nIn 2019, there were 2.5 million cases of chlamydia, gonorrhea, and syphilis, the three most commonly reported STDs, marking the sixth consecutive year STDs have reached an all-time high, according to the CDC\n\n'Less than 20 years ago, gonorrhea rates in the U.S. were at historic lows, syphilis was close to elimination, and advances in chlamydia diagnostics made it easier to detect infections,' said DR Raul Romaguera,, acting director for the CDC's Division of STD Prevention.\n\n'That progress has since unraveled, and our STD defenses are down. We must prioritize and focUs our efforts to regain this lost ground and control the spread of STDs.'\n\nAn STD is an infection that is passed from one person to another through sexual contact either vaginally, orally or anally.\n\nSome are bacterial infections that are curable with a single-dose regimen of antibiotics while others are viral infections that cannot be cured but can be modulated with antivirals.\n\nSTDs do not always have symptoms and, if left diagnosed and untreated, can have serious health consequences.\n\nSome infections can increase the risk of HIV or cause chronic pelvic pain, pelvic inflammatory disease and even infertility.\n\nCurrently, STDs cause about 2.7 deaths per 100,000 people, primarily due to HIV and HPV (human papillomavirus) infections.\n\nFor the report, the CDC looked at common of STDs in 2019, which did not include cases of genital herpes, HPV or HIV.\n\nData showed 1.8 million cases of chlamydia, 616,000 cases gonorrhea and 129,000 cases of syphilis.\n\nComparatively, in 2000, there were 709,000 cases of chlamydia, 363,000 cases gonorrhea and 31,000 cases of syphilis.\n\nYoung people between ages 15 and 24 accounted for 61% of chlamydia cases (above) and 42% of gonorrhea cases\n\nGay and bisexual made up nearly half of all syphilis cases (above) compared to heterosexual men and women with various partners\n\nThe report found that there are disparities in STDs, which continue to hit racial groups, gay and bisexual men, and young adults the hardest.\n\nHispanic people were up to twice as likely to have an STD compared to white people and African Americans were up to eight times more likely.\n\nGay and bisexual made up nearly half of all syphilis cases and had rates of gonorrhea that were 42-fold higher than rates of heterosexual men in some areas.\n\nAdditionally, young people between ages 15 and 24 accounted 61 percent of chlamydia cases and 42 percent of gonorrhea cases.\n\n'Focusing on hard-hit populations is critical to reducing disparities,' said Jo Valentine, associate director of the Office of Health Equity in CDC's Division of STD Prevention, in a statement.\n\n'To effectively reduce these disparities, the social, cultural, and economic conditions that make it more difficult for some populations to stay healthy must be addressed. These include poverty, unstable housing, drug use, lack of medical insurance or regular medical provider, and high burden of STDs in some communities.'\n\nThe most striking increase was in syphilis cases among newborns, known as congenital syphilis, which nearly quadrupled over the past five years (above)\n\nThe report also found that the rate of congenital syphilis was 48.5 cases per 100,000 live births in 2019, which has been rising every year since 2013.\n\nThe rate represents a 41.4 percent increase from o 2018 and 291.1 percent increase from 2015.\n\nThis increase also led to a rise in syphilitic stillbirths increased, from 79 in 2018 to 94 in and 2019 syphilis-related infant deaths from 15 to 34 deaths.\n\nThe CDC notes that key to decreasing congenital syphilis rates is an increase in prenatal care in underserved communities as well as timely testing.\n\nEven before the COVID-19 pandemic, officials had seen declines in in STD screening, treatment, prevention, and partner services.\n\nTo reduce STD numbers, the CDC recommends STD express clinics with walk-in testing and treatment, telemedicine appointments for hard-to-reach groups and partnerships with pharmacies to provide both testing and medication.\n\n'STDs will not wait for the pandemic to end, so we must rise to the challenge now,' Romaguera said.\n\n'These new data should create a sense of urgency and mobilize the resources needed, so that future reports can tell a different story.'",
+      "dataType" : "news",
+      "date" : "2021-04-14",
+      "dateTime" : "2021-04-14T01:05:00Z",
+      "dateTimePub" : "2021-04-14T01:00:00Z",
+      "eventUri" : "eng-6706063",
+      "image" : "https://i.dailymail.co.uk/1s/2021/04/13/22/41718002-0-image-a-2_1618349909609.jpg",
+      "isDuplicate" : false,
+      "lang" : "eng",
+      "relevance" : 3,
+      "sentiment" : 0.2156862745098038,
+      "sim" : 0.8274509906768799,
+      "source" : {
+        "dataType" : "news",
+        "title" : "Daily Mail Online",
+        "uri" : "dailymail.co.uk"
+      },
+      "time" : "01:05:00",
+      "title" : "STDs reach all-time in US for sixth consecutive year",
+      "uri" : "6518950456",
+      "url" : "https://www.dailymail.co.uk/health/article-9467445/STDs-reach-time-sixth-consecutive-year.html",
+      "wgt" : 356058300
+    }, {
+      "body" : "(RestaurantNews.com)\n\nWHAT:\n\nOn Tuesday, April 20, Chronic Tacos is offering the solution to chronic munchies. Guests can take advantage of the $4.20 deal on all small burritos. There is no need to rearrange 4/20 plans because this special will go on all day. No code or coupon is necessary, making it the perfect easy deal to end any April 20 celebrations.\n\nThis special excludes fish, shrimp, steak and beyond beef. Guests can take advantage of this offer in store, on the Chronic Tacos app (https://apps.apple.com/us/app/chronic-tacos-mexican-grill/id1251640835), and through online ordering on the Chronic Tacos website (www.chronictacos.com).\n\nWHEN:\n\nApril 20, 2021, All Day\n\nWHERE:\n\nAvailable at participating locations.\n\n(EXCLUDING: HB Bella Terra, Costa Mesa, Corona Del Mar, Newport Beach PCH, Orange Beach Alabama, Lakewood, CA, and Lakewood, WA)\n\nAbout Chronic Tacos\n\nChronic Tacos is a California-inspired Taco Shop that celebrates authenticity and the individuality of guests through the #TacoLife. They respect tradition and keep it real. Founded in 2002, the Southern California-based brand has over 60 locations operating across the United States, Canada and Japan. The #Tacolife consists of undeniable tacos and the most authentic recipes, a laid back So Cal vibe with an irresistible edge, and only the most personal, friendly service.\n\nChronic Tacos prides itself on serving the highest quality ingredients, with bold flavor profiles, made from authentic Mexican recipes. On the menu, you'll find a wide variety of traditional Mexican items including tacos, burritos, and bowl-ritos, along with some non-traditional items such as California burrito and Chronic Fries. For more information, or to find the nearest Chronic Tacos, visit www.chronictacos.com.\n\nMedia Contact:\n\nMatt Kovacs\n\nBlaze PR\n\n310-395-5050\n\nmkovacs@blazepr.com",
+      "dataType" : "news",
+      "date" : "2021-04-14",
+      "dateTime" : "2021-04-14T01:05:00Z",
+      "dateTimePub" : "2021-04-14T00:11:00Z",
+      "image" : "http://www.restaurantnews.com/wp-content/uploads/2021/04/4-20-on-4-20-Special-At-Chronic-Tacos-feature.jpg",
+      "isDuplicate" : false,
+      "lang" : "eng",
+      "relevance" : 7,
+      "sentiment" : 0.3568627450980393,
+      "sim" : 0,
+      "source" : {
+        "dataType" : "news",
+        "title" : "Restaurant News",
+        "uri" : "restaurantnews.com"
+      },
+      "time" : "01:05:00",
+      "title" : "$4.20 on 4.20 Special At Chronic Tacos | RestaurantNews.com",
+      "uri" : "6518953759",
+      "url" : "http://www.restaurantnews.com/4-20-on-4-20-special-at-chronic-tacos-041321/",
+      "wgt" : 356058300
+    }, {
+      "authors" : [ {
+        "isAgency" : false,
+        "name" : "Ron Cook",
+        "type" : "author",
+        "uri" : "ron_cook@gazette.com"
+      } ],
+      "body" : "I won't remember his good times in Pittsburgh so much, not that there weren't plenty.\n\nHis 2014 season at Pitt when, as a sophomore, he rushed for 1,765 yards, scored 26 touchdowns and was ACC Player of the Year, finishing ahead of Florida State quarterback Jameis Winston. His 2018 season with the Steelers when he made the Pro Bowl after rushing for 973 yards and 12 touchdowns. His nine career 100-yard games in the NFL.\n\nI won't remember his bad times, either. He also had a number of those. His knee injury at Pitt in the opening game of the 2015 season. His killer fumbles with the Steelers at Cleveland and Denver in 2018 and at San Francisco in 2019. All of his injuries -- one after another -- that kept him from reaching his full potential.\n\nNo, I'll remember this story about James Conner from Pat Narduzzi, his coach at Pitt:\n\n\"My mother-in-law, she was fighting cancer and sat right in that chair where you're sitting and talked to James about it,\" Narduzzi said in his South Side office in November 2016. \"They talked chemo together. How many people can do that? He inspired her. No question. On her bad days, she would put on her James Conner Pitt baseball cap. It would make her feel better. ...\n\n\"Everyone wants to be like James. He's a special guy.\"\n\nSandra Silva didn't win her battle with cancer. She died in October 2016. But that doesn't mean she wasn't lifted by Conner and his will to beat the deadly disease. Who will forget his reaction when he was diagnosed with stage 2 Hodgkin's lymphoma on Thanksgiving 2015?\n\n\"Fear is a choice,\" Conner said a few days after his illness became public. \"I choose to fight it, and I will win.\"\n\nConner shared that message with countless cancer patients, telling each and every one, \"If I can beat it, so can you.\"\n\n\"It wasn't just about saving his own life,\" Narduzzi said in that same 2016 interview. \"It's never been about just that.\"\n\nConner came back from not just the cancer, but also his torn medial collateral ligament in his right knee to have a big season for Pitt in 2016. He played a significant role in the unforgettable wins against Penn State and Clemson. He set the ACC career record for touchdowns. He was a third-round draft choice by the Steelers in 2017 and more than lived up to the expectations despite his fumbles and injuries.\n\nNow, it's on to the Valley of the Sun for Conner. Yes, he said, he's looking forward to that beautiful sun after signing a one-year deal with the Arizona Cardinals. How could a kid from cold, snowy Erie not love the warm weather?\n\n\"The right place at the right time,\" Conner said at his introductory news conference Tuesday.\n\n\"This is God's plan for me.\"\n\nClearly, the deal with the Cardinals gives Conner peace of mind. There had been weeks of speculation about where he might land, about what the market might be for him.\n\nIf there was a market at all.\n\n\"I've got a home. I feel accepted. They believe in me,\" Conner told the Arizona media.\n\nConner is expected to share time with Chase Edmonds in the Cardinals' backfield.\n\n\"I feel brand new,\" Conner said. \"Pittsburgh, my time there was great. I'm looking forward to a change. I look at this as an opportunity for me to grow.\"\n\nHere's wishing Conner well.\n\nI know Narduzzi is rooting for him. So is Mike Tomlin.\n\nHow can anyone here not root for Conner, not so much because of what he did for Pitt and the Steelers, but for what he has stood for as a man?\n\nAll of Pittsburgh should be pulling for him.\n\nRon Cook is a columnist for the Pittsburgh Post-Gazette.\n\n©2021 Pittsburgh Post-Gazette. Visit at post-gazette.com. Distributed by Tribune Content Agency, LLC.",
+      "dataType" : "news",
+      "date" : "2021-04-14",
+      "dateTime" : "2021-04-14T01:05:00Z",
+      "dateTimePub" : "2021-04-14T00:20:00Z",
+      "eventUri" : "eng-6702497",
+      "image" : "https://bloximages.newyork1.vip.townnews.com/gazette.com/content/tncms/custom/image/3f755dae-418c-11e8-a244-53852639d709.png?resize=600%2C592",
+      "isDuplicate" : false,
+      "lang" : "eng",
+      "relevance" : 3,
+      "sentiment" : -0.1529411764705882,
+      "sim" : 0.772549033164978,
+      "source" : {
+        "dataType" : "news",
+        "title" : "The Gazette",
+        "uri" : "gazette.com"
+      },
+      "time" : "01:05:00",
+      "title" : "Ron Cook: James Conner leaves an indelible legacy of toughness",
+      "uri" : "6518952638",
+      "url" : "https://gazette.com/ap/sports/ron-cook-james-conner-leaves-an-indelible-legacy-of-toughness/article_aeeaa2d2-38c3-5a98-8035-27ac0bda6724.html",
+      "wgt" : 356058300
+    }, {
+      "authors" : [ {
+        "isAgency" : false,
+        "name" : "Joe Tenebruso",
+        "type" : "author",
+        "uri" : "joe_tenebruso@fool.com"
+      } ],
+      "body" : "Shares of Moderna (NASDAQ:MRNA) leapt 7.4% on Tuesday after the Centers for Disease Control and Prevention (CDC) and the Food and Drug Administration (FDA) recommended a temporary halt to Johnson & Johnson's (NYSE:JNJ) COVID-19 vaccine rollout.\n\nThe CDC and FDA are asking states to pause immunizations with J&J's drug while they investigate six reported U.S. cases of blood clots in people who received the vaccine. The regulatory agencies noted that these incidents were \"extremely rare,\" as more than 6.8 million doses of J&J's vaccine have been administered.\n\nAdditionally, J&J said that it decided to \"proactively delay the rollout\" of its vaccine in Europe. \"We have been working closely with medical experts and health authorities, and we strongly support the open communication of this information to healthcare professionals and the public,\" the company said in a statement.\n\nModerna and fellow COVID-19 drugmaker Pfizer are expected to help make up for a potential shortfall in J&J's vaccine supply if the pause in its rollout is extended, though it will likely take some time for them to ramp up production.\n\nModerna said after the market close that it remains on track to deliver a total of 300 million doses to the U.S. government by end of July 2021.",
+      "dataType" : "news",
+      "date" : "2021-04-14",
+      "dateTime" : "2021-04-14T01:03:00Z",
+      "dateTimePub" : "2021-04-14T00:10:00Z",
+      "image" : "https://g.foolcdn.com/editorial/images/621466/market-up-gettyimages-1094465844.jpg",
+      "isDuplicate" : false,
+      "lang" : "eng",
+      "relevance" : 3,
+      "sentiment" : 0.1607843137254903,
+      "sim" : 0,
+      "source" : {
+        "dataType" : "news",
+        "title" : "The Motley Fool",
+        "uri" : "fool.com"
+      },
+      "time" : "01:03:00",
+      "title" : "Why Moderna Stock Surged Today | The Motley Fool",
+      "uri" : "6518952061",
+      "url" : "https://www.fool.com/investing/2021/04/13/why-moderna-stock-surged-today/",
+      "wgt" : 356058180
+    }, {
+      "body" : "Ishtiaq Ali Saaem became interested in acquiring ricin and convallatoxin, a poison found in lily of the valley plants, after watching \"Breaking Bad,\" prosecutors said\n\nThe former head of advanced research at a Boston-area biotechnology company told investigators he was inspired by the television show \"Breaking Bad\" when he tried to obtain the powerful poison ricin, federal prosecutors said Tuesday.\n\nIshtiaq Ali Saaem, 37, who currently lives in Allentown, Pennsylvania, pleaded guilty Monday in federal court in Boston to obstruction of justice for lying to federal authorities about his reason for purchasing castor beans, the source of ricin.\n\nSaaem, who has a doctorate in biomedical engineering and lived in Massachusetts at the time, in 2015 ordered 100 packets, each containing eight seeds, of castor beans online, according to the U.S. attorney's office in Boston.\n\nHe became interested in acquiring ricin and convallatoxin, a poison found in lily of the valley plants, after watching \"Breaking Bad,\" prosecutors said.\n\nHe told investigators he purchased castor beans because he was interested in planting them in his apartment as decoration and had only intended to purchase one packet, not 100. But after he spoke to agents, Saaem researched poisons that could be made at home, prosecutors said.\n\nAuthorities did not say if he intended to use any poisons.\n\nHe faces up to 20 years in prison at sentencing scheduled for Aug. 18.",
+      "dataType" : "news",
+      "date" : "2021-04-14",
+      "dateTime" : "2021-04-14T01:03:00Z",
+      "dateTimePub" : "2021-04-14T01:03:00Z",
+      "image" : "https://i0.wp.com/media.nbclosangeles.com/2019/09/GettyImages-107639074.jpg?fit=1024%2C576&quality=85&resize=1200%2C675&strip=all&ssl=1",
+      "isDuplicate" : true,
+      "lang" : "eng",
+      "relevance" : 4,
+      "sentiment" : -0.2705882352941177,
+      "sim" : 0,
+      "source" : {
+        "dataType" : "news",
+        "title" : "NBC Southern California",
+        "uri" : "nbclosangeles.com"
+      },
+      "time" : "01:03:00",
+      "title" : "Feds: 'Breaking Bad' Inspired Researcher to Seek Poisons",
+      "uri" : "6518952358",
+      "url" : "https://www.nbclosangeles.com/news/local/feds-breaking-bad-inspired-researcher-to-seek-poisons/2572613/",
+      "wgt" : 356058180
+    }, {
+      "body" : "\"This is particularly pertinent during the stressors caused by a pandemic,\" a study author said.\n\nSocial stress combined with job strain may significantly raise a woman's risk of developing coronary heart disease, a new study suggests. According to research published this week in the Journal of the American Heart Association, experiencing job strain -- which occurs when a woman has inadequate power in the workplace to respond to the job's demands and expectations -- along with social strain is associated with a 21% higher risk of developing coronary heart disease (CHD). Read on -- and to ensure your health and the health of others, don't miss these Signs Your Illness is Actually Coronavirus in Disguise.\n\nFor the new study, researchers at Drexel University evaluated the effect of psychosocial stress on 80,825 postmenopausal women who were tracked by the Women's Health Initiative Observational Study from 1991 to 2015. The participants reported their stress levels and sources on questionnaires.\n\nThe scientists found that 4.8% of the women developed coronary heart disease during the 14-year study. After adjusting for age, other stressors, job tenure, and socioeconomic factors, they determined that women who reported high-stress life events had a 12% higher risk of CHD, and high social strain was associated with a 9% increased risk.\n\nRELATED: The Easiest Way to Avoid a Heart Attack, Say Doctors\n\nTo measure social strain, defined as the \"negative aspect of social relations,\" study participants were asked about \"the number of people who get on their nerves, who ask too much of them, who exclude them, and who try to coerce them in their current life.\"\n\nJob strain was not by itself associated with CHD risk, but the researchers found a \"significant association\" between job strain and social strain, determining that women who reported both had a 21% higher risk of CHD.\n\n\"Psychosocial stress typically occurs when people have difficulty in coping with challenging environmental conditions and can lead to dysregulation of homeostasis that may result in illness,\" the researchers wrote. \"Recently, several large research studies identified that psychosocial stress from different domains of life (eg, finance, work, and relationships) may play a role in the development of coronary heart disease (CHD).\"\n\nRELATED: Signs You're Getting One of the \"Most Deadly\" Cancers\n\n\"The COVID-19 pandemic has highlighted ongoing stresses for women in balancing paid work and social stressors,\" said study senior author Yvonne Michael, ScD, SM, an associate professor in the Dornsife School of Public Health. \"We know from other studies that work strain may play a role in developing CHD, but now we can better pinpoint the combined impact of stress at work and at home on these poor health outcomes.\"\n\nShe added: \"My hope is that these findings are a call for better methods of monitoring stress in the workplace and remind us of the dual-burden working women face as a result of their unpaid work as caregivers at home.\"\n\n\"Our findings are a critical reminder to women, and those who care about them, that the threat of stress to human health should not go ignored,\" said the study's lead author, Conglong Wang, Ph.D. \"This is particularly pertinent during the stressors caused by a pandemic.\" And to get through this pandemic at your healthiest, don't miss these 35 Places You're Most Likely to Catch COVID.",
+      "dataType" : "news",
+      "date" : "2021-04-14",
+      "dateTime" : "2021-04-14T01:02:00Z",
+      "dateTimePub" : "2021-04-14T01:00:00Z",
+      "image" : "https://i0.wp.com/www.eatthis.com/wp-content/uploads/2020/09/woman-chest-pain-heart-attack-problem.jpg?fit=1200%2C690&ssl=1",
+      "isDuplicate" : false,
+      "lang" : "eng",
+      "relevance" : 6,
+      "sentiment" : -0.4431372549019608,
+      "sim" : 0,
+      "source" : {
+        "dataType" : "news",
+        "title" : "Eat This Not That",
+        "uri" : "eatthis.com"
+      },
+      "time" : "01:02:00",
+      "title" : "These 2 Things May Dramatically Raise Your Risk of Heart Disease | Eat This Not That",
+      "uri" : "6518950482",
+      "url" : "https://www.eatthis.com/news-heart-disease-stressor-women-study/",
+      "wgt" : 356058120
+    }, {
+      "body" : "The Massachusetts Department of Public Health on Tuesday directed all providers to pause administration of Johnson & Johnson COVID-19 vaccines, responding to a federal recommendation that those particular shots not be given while the Food and Drug Administration and Center for Disease Control review six cases of a rare and severe blood clot reported in women who had received the vaccine.\n\nWith more than 6.8 million J&J doses administered in the U.S. as of Monday, the CDC and FDA said they were making the move out of an abundance of caution. State data show that 181,034 people in Massachusetts had received the J&J vaccine as of Monday.\n\n\"Right now, these adverse events appear to be extremely rare. COVID-19 vaccine safety is a top priority for the federal government, and we take all reports of health problems following COVID-19 vaccination very seriously,\" the CDC's Dr. Anne Schuchat and FDA's Dr. Peter Marks said in a joint statement. \"People who have received the J&J vaccine who develop severe headache, abdominal pain, leg pain, or shortness of breath within three weeks after vaccination should contact their health care provider.\"\n\nA spokesperson for the state's COVID-19 command center said none of the six cases are known to be linked to Massachusetts, and that individuals who have received a J&J shot should contact their physicians if they have any concerns.\n\nPeople who are scheduled to receive a J&J vaccine are encouraged to contact the provider with whom they booked the shot with any questions about their upcoming appointments.\n\n\"In response to today's recommendation from the FDA and CDC to pause J&J vaccines due to an extremely rare condition reported in 6 individuals nationwide, the Department of Public Health directed all providers to immediately pause administration of the J&J vaccine until federal health experts investigate this matter,\" command center communications director Kate Reilly said in a statement.\n\nThe FDA plans a 10 a.m. press conference, and the CDC on Wednesday plans to convene its Advisory Committee on Immunization Practices on Wednesday to review the cases.\n\nAccording to the two federal agencies, six women between the ages of 18 and 48 developed a type of blood clot called cerebral venous sinus thrombosis, in combination with low levels of blood platelets, and symptoms occurred six to 13 days after vaccination.\n\nThe CDC and FDA are advising providers that this type of clot requires different treatment than might typically be given, as use of the anticoagulant drug heparin may be dangerous.\n\nGov. Charlie Baker often talks about the Johnson & Johnson vaccine as a game-changer for the state's vaccine distribution strategy, describing the single-dose shot as a way to accelerate vaccination speed and capacity.",
+      "dataType" : "news",
+      "date" : "2021-04-14",
+      "dateTime" : "2021-04-14T01:00:00Z",
+      "dateTimePub" : "2021-04-14T00:58:00Z",
+      "eventUri" : "eng-6706218",
+      "image" : "https://whdh.com/wp-content/uploads/sites/3/2021/03/hypatia-h_3321523c0b3dce2267e9dec16685feec-h_b9e3b76e5de629cf349625677748d025.jpg?quality=60&strip=color&w=1024",
+      "isDuplicate" : false,
+      "lang" : "eng",
+      "relevance" : 4,
+      "sentiment" : -0.1058823529411764,
+      "sim" : 0.5764706134796143,
+      "source" : {
+        "dataType" : "news",
+        "title" : "7News - WHDH Boston",
+        "uri" : "whdh.com"
+      },
+      "time" : "01:00:00",
+      "title" : "Health officials notify all Mass. providers to 'pause' use of Johnson & Johnson vaccine",
+      "uri" : "6518950094",
+      "url" : "https://whdh.com/news/health-officials-notify-all-mass-providers-to-pause-use-of-johnson-johnson-vaccine-2/",
+      "wgt" : 356058000
+    }, {
+      "body" : "Los Angeles, USA, April 13, 2021 (GLOBE NEWSWIRE) -- Non-cystic Fibrosis Bronchiectasis Treatment 2021 | Prominent Players, Pipeline Growth, Future Trends, Unmet Demands, Emerging Therapies: DelveInsight\n\nNew therapeutic options for Non-cystic Fibrosis Bronchiectasis treatment as 5+ companies are working for the drug profiles.\n\nDelveInsight's \"Non-cystic Fibrosis Bronchiectasis (NCFBE) Pipeline Insight\" report provides comprehensive insights about 5+ companies and 5+ pipeline drugs in the Non-cystic Fibrosis Bronchiectasis pipeline landscapes. It comprises NCFBE pipeline drug profiles, including clinical and non-clinical stage products. It also includes the NCFBE therapeutics assessment by product type, stage, route of administration, and molecule type and further highlights the inactive Non-cystic Fibrosis Bronchiectasis pipeline products.\n\nSome of the key takeaways of the Non-cystic Fibrosis Bronchiectasis Pipeline Report\n\nGet an overview of pipeline landscape @ Non-cystic Fibrosis Bronchiectasis Clinical Trial Analysis\n\nNon-cystic Fibrosis Bronchiectasis is a progressive respiratory disease characterised by permanent dilation of bronchi, mucus retention, and ciliary clearance impairment.\n\nThe Bronchiectasis treatment focuses on managing symptoms, slowing decline in lung function and preventing exacerbations. Chest physiotherapy is an acknowledged treatment in terms of side effects. Some patients may react to more specialist treatments such as regular antibiotics, mainly in a low dose of macrolide three times a week. Frailty and co-morbidities perform a role in determining the appropriateness of these treatments.\n\nNon-cystic Fibrosis Bronchiectasis Emerging Drugs\n\nColistimethate sodium is a polymixin antibiotic and bactericidal against susceptible Gram-negative bacteria. The drug is sent for clinical trials by Xellia Pharmaceuticals, Zambon's long-standing partner, with which it shares the objective of coming of this formulation to NCFBE patients globally. Colistimethate sodium is one of the antibiotics against Pseudomonas aeruginosa infections, and the I-Neb AAD system is an inhalation system developed to confer nebulised medications into the lung. Antibiotics by inhalation have high drug concentrations in the airways, minimising systemic exposure and potential side effects.\n\nINS1007 is an investigational, first-in-class, oral, selective, reversible inhibitor of dipeptidyl peptidase I (DPP1) developed by Insmed to treat Non-cystic Fibrosis Bronchiectasis patients. DPP1 is an enzyme held to activate neutrophil serine proteases (NSPs), such as neutrophil elastase, in neutrophils when formed in the bone marrow. Neutrophils are the most common type of white blood cell and execute a vital role in pathogen destruction and inflammatory mediation. In chronic inflammatory lung diseases, neutrophils garner in the airways and result in major active NSPs that cause lung destruction and inflammation. INS1007 may lessen the damaging effects of inflammatory diseases by prohibiting DPP1 and its activation of NSPs.\n\nCHF 6333 is a medicinal product for treating Cystic Fibrosis and Non-cystic Fibrosis Bronchiectasis and undergoing clinical testing. The authorities have not yet approved it for the treatment. CHF6333 is an inhaled anti-inflammatory which mechanism of action is based on the inhibition of Human Neutrophil Elastase.\n\nFor further information, refer to the detailed report @ NCFBE Pipeline Therapeutics\n\nScope of Non-cystic Fibrosis Bronchiectasis Pipeline Drug Insight\n\nKey Questions regarding Current Non-cystic Fibrosis Bronchiectasis Treatment Landscape and Emerging Therapies Answered in the Pipeline Report\n\nTable of Contents\n\nGet a customised pipeline report @ Non-cystic Fibrosis Bronchiectasis Drugs Pipeline Report\n\nRelated Reports\n\nDelveInsight's Non-Cystic Fibrosis Bronchiectasis (NCFB) - Market Insights, Epidemiology and Market Forecast - 2030 report provides a detailed overview of the disease and in-depth understanding of the disease, historical & forecasted epidemiology as well as the market trends of Non-Cystic Fibrosis Bronchiectasis (NCFB) in the United States, EU5 (Germany, Spain, Italy, France and the United Kingdom), and Japan.\n\nDelveInsight's Non-Cystic Fibrosis Bronchiectasis (NCFB) - Epidemiology Forecast 2030 report delivers an in-depth understanding of the disease, historical, and forecasted epidemiology of NCFB.\n\nVascular Grafts Pipeline Insights, 2021 report by DelveInsight outlays comprehensive insights of present clinical development scenario and growth prospects across the Vascular Grafts market.\n\nDelveInsight's Night Vision Disturbances Market Insights, Epidemiology and Market Forecast - 2030 report provides a detailed understanding of historical and forecasted epidemiology.\n\nDelveInsight's 'Brain Cancer Market Insights, Epidemiology and Market Forecast- 2030' report delivers an in-depth understanding of Brain Cancer, historical and forecasted epidemiology of brain cancer.\n\nDelveInsight' s Adult T-Cell Leukemia-Lymphoma Market Insights, Epidemiology and Market Forecast - 2030 report provides a detailed overview of the disease and a depth understanding of historical and forecasted epidemiology.\n\nAbout DelveInsight\n\nDelveInsight is a leading Business Consultant, and Market Research firm focused exclusively on life sciences. It supports Pharma companies by providing comprehensive end-to-end solutions to improve their performance.",
+      "dataType" : "news",
+      "date" : "2021-04-14",
+      "dateTime" : "2021-04-14T01:00:00Z",
+      "dateTimePub" : "2021-04-14T00:20:00Z",
+      "image" : "https://cdn.benzinga.com/files/imagecache/og_image_social_share_1200x630/sites/all/themes/bz2/images/bz-icon.png",
+      "isDuplicate" : false,
+      "lang" : "eng",
+      "relevance" : 5,
+      "sentiment" : 0.06666666666666665,
+      "sim" : 0,
+      "source" : {
+        "dataType" : "news",
+        "title" : "Benzinga",
+        "uri" : "benzinga.com"
+      },
+      "time" : "01:00:00",
+      "title" : "Non-cystic Fibrosis Bronchiectasis Treatment 2021 | Prominent Players, Pipeline Growth, Future Trends, Unmet Demands, Emerging Therapies: DelveInsight",
+      "uri" : "6518949942",
+      "url" : "https://www.benzinga.com/pressreleases/21/04/g20612276/non-cystic-fibrosis-bronchiectasis-treatment-2021-prominent-players-pipeline-growth-future-trends-",
+      "wgt" : 356058000
+    }, {
+      "authors" : [ {
+        "isAgency" : false,
+        "name" : "Marlowe Hood",
+        "type" : "author",
+        "uri" : "marlowe_hood@ibtimes.com.au"
+      } ],
+      "body" : "Among covid patients, a lack of exercise is linked to more severe symptoms and a higher risk of death, according to a study covering nearly 50,000 people who were infected with the virus.\n\nPeople physically inactive for at least two years before the pandemic were more likely to be hospitalised, to require intensive care, and to die, researchers reported Tuesday in the British Journal of Sports Medicine.\n\nAs a risk factor for serious Covid disease, physical inactivity was surpassed only by advanced age and a history of organ transplant, the study found.\n\nIndeed, compared to other modifiable risk factors such as smoking, obesity or hypertension, \"physical inactivity was the strongest risk factor across all outcomes,\" the authors concluded.\n\nThe pre-existing conditions most associated with severe Covid-19 infection are advanced age, being male, and having diabetes, obesity or cardiovascular disease.\n\nBut up to now, a sedentary lifestyle has not been included.\n\nTo see whether a lack of exercise increases the odds of severe infection, hospitalisation, admission into an intensive care unit (ICU), and death, the researchers compared these outcomes in 48,440 adults in the United States infected with Covid-19 between January and October 2020.\n\nThe average age of patients was 47, and three out of five were women. On average, their mass-body index was 31, just above the threshold for obesity.\n\nAs a risk factor for serious Covid disease, physical inactivity was surpassed only by advanced age and a history of organ transplant AFP / Angela Weiss\n\nAround half had no underlying illnesses, such as diabetes, chronic lung conditions, heart or kidney disease, or cancer. Nearly 20 percent had one, and more than 30 percent had two or more.\n\nAll of the patients had reported their level of regular physical activity at least three times between March 2018 and March 2020 at outpatient clinics.\n\nSome 15 percent described themselves as inactive (0-10 minutes of physical activity per week), nearly 80 percent reported \"some activity\" (11-149 minutes/week), and seven percent were consistently active in keeping with national health guidelines (150+ minutes/week).\n\nAfter allowing for differences due to race, age and underlying medical conditions, sedentary Covid-19 patients were more than twice as likely to be admitted to hospital as those who were most active.\n\nThey were also 73 percent more likely to require intensive care, and 2.5 times more likely to die due to the infection.\n\nCompared to patients in the habit of doing occasional physical activity, couch potatoes were 20 percent more likely to be admitted to hospital, 10 percent more likely to require intensive care, and 32 percent more likely to die.\n\nWhile the link is statistically strong, the study -- which is observational, as opposed to a clinical trial -- cannot be construed as direct evidence that a lack of exercise directly caused the difference in outcomes.\n\nThe findings also depend on self-reporting by patients, with a potential for bias.",
+      "dataType" : "news",
+      "date" : "2021-04-14",
+      "dateTime" : "2021-04-14T01:00:00Z",
+      "dateTimePub" : "2021-04-14T00:11:00Z",
+      "eventUri" : "eng-6706225",
+      "image" : "https://www.ibtimes.com.au/sites/au.ibtimes.com/files/styles/large/public/2021/04/14/as-a-risk-factor-for-serious-covid-disease.jpg?itok=P8X3iRmd",
+      "isDuplicate" : false,
+      "lang" : "eng",
+      "relevance" : 6,
+      "sentiment" : -0.2313725490196078,
+      "sim" : 0.8235294222831726,
+      "source" : {
+        "dataType" : "news",
+        "title" : "IBTimes AU",
+        "uri" : "ibtimes.com.au"
+      },
+      "time" : "01:00:00",
+      "title" : "Covid Patients With Sedentary Habits More Likely To Die: Study",
+      "uri" : "6518950637",
+      "url" : "https://www.ibtimes.com.au/covid-patients-sedentary-habits-more-likely-die-study-1703992",
+      "wgt" : 356058000
+    }, {
+      "body" : "China's disease control experts have called for efforts to guide and encourage the public to get inoculated voluntarily and ensure all people eligible for vaccination have access to it.\n\nRecent new cases in Yunnan's Ruili City are a reminder that the pressure of imported cases has not subsided, and the risk of the epidemic spreading in individual regions due to new imported cases remains, said Wu Zunyou, chief epidemiologist with the Chinese Center for Disease Control and Prevention.\n\nVaccination is an important strategy to prevent and control COVID-19, and herd immunity can only occur when the vaccination rate reaches around 70 to 80 percent among the whole population, Wu added.\n\nAnything below that can only bring about individual immunity, and that can not block the spread of a possible epidemic resurgence once new sources appear, he said.\n\nCOVID-19 vaccines not only shield one's own health but also that of younger and older family members, said Wu Liangyou, an official with the National Health Commission.\n\nChina is currently rolling out its vaccination in priority regions, including port and border cities with high risks of imported infection, big and medium-sized cities, and regions with a history of cluster infections. Priority populations, including cold chain, medical, and public sector staff, are also receiving the vaccines, he added.",
+      "dataType" : "news",
+      "date" : "2021-04-14",
+      "dateTime" : "2021-04-14T00:59:00Z",
+      "dateTimePub" : "2021-04-14T00:59:00Z",
+      "isDuplicate" : false,
+      "lang" : "eng",
+      "relevance" : 6,
+      "sentiment" : 0.07450980392156858,
+      "sim" : 0,
+      "source" : {
+        "dataType" : "news",
+        "title" : "China.org.cn",
+        "uri" : "china.org.cn"
+      },
+      "time" : "00:59:00",
+      "title" : "Chinese experts call for efforts to accelerate vaccination",
+      "uri" : "6518949497",
+      "url" : "http://www.china.org.cn/china/2021-04/14/content_77404520.htm",
+      "wgt" : 356057940
+    }, {
+      "body" : "Dr. Martine F. Roussel, Department of Tumor Cell Biology, has two exciting new postdoc positions available in her laboratory.\n\nProject 1. MYCN is overexpressed in a variety of childhood cancers, and aberrant MYCN expression is universally associated with a highly aggressive clinical phenotype, metastatic dissemination and low survival rates. The selected postdoc will play a major role in an integrated and multidisciplinary effort to discover and develop PROTACs that will directly degrade the MYCN protein in pediatric solid tumors.\n\nProject 2. Develop novel targeted protein degradation approaches to selectively degrade key oncogenic transcription factors in high risk childhood leukemia and medulloblastoma, two of the leading causes of childhood cancer death. Phenotypic and targeted screening approaches, along with robust computational and structural biology analyses, will be employed to identify and develop molecular glues that will selectively degrade multiple transcription factors. If successful, new therapeutic options for subtypes of pediatric cancers may be identified, and this could lead to further development of therapies to treat many hitherto undruggable cancers.\n\nProject 3. Understand the role of histone methyltransferases in MYC-driven Group3 medulloblastoma, the most aggressive form of this pediatric cerebellar disease. High throughput screens of epigenetic regulators using CRISPR-Cas9 gene editing and shRNA identified several chromatin regulators including two histone methyltransferases that regulate MYC expression and antagonize each other. Biomedical and molecular analysis will unravel how these proteins drive medulloblastoma development and progression. Inhibitors developed against these epigenetic regulators might be potential therapeutic targets that will be tested in pre-clinical trials using mouse models and patient-derived xenografts.\n\nProject 4. To target the p53 pathway in atypical thyroid/rhabdoid tumors (ATRTs). ATRTs are aggressive pediatric brain tumors that occur in very young children for whom novel therapies are warranted. We propose to conduct pre-clinical trials in patient-derived orthotopic xenograft (PDOX) models of ATRT to study the effect of compounds that target the p53 pathway in combination with radiation.\n\nIf interested, please contact Dr. Roussel by email at martine.roussel@stjude.org.",
+      "dataType" : "news",
+      "date" : "2021-04-14",
+      "dateTime" : "2021-04-14T00:59:00Z",
+      "dateTimePub" : "2021-04-14T00:59:00Z",
+      "isDuplicate" : false,
+      "lang" : "eng",
+      "relevance" : 6,
+      "sentiment" : -0.08235294117647063,
+      "sim" : 0,
+      "source" : {
+        "dataType" : "news",
+        "title" : "Nature",
+        "uri" : "nature.com"
+      },
+      "time" : "00:59:00",
+      "title" : "\n                                                Postdoctoral Research Associate\n                                            ",
+      "uri" : "6518949719",
+      "url" : "https://www.nature.com/naturecareers/job/postdoctoral-research-associate-st-jude-childrens-research-hospital-st-jude-737908",
+      "wgt" : 356057940
+    }, {
+      "body" : "The University of Paris Saclay for the laboratory directed by Pr Laurence ZITVOGEL, located in Institut Gustave Roussy, Villejuif-Grand Paris, FRANCE is offering a 3 year-fully funded PhD fellowship, through the T-OP european program on CAR T cells and gut microbiota.\n\nWe are looking for a highly motivated candidate holding a master degree or equivalent in immunology, microbiology, biology, biochemistry, cell biology, molecular medicine or a similar program to join our T-OP funded research program.\n\nLaurence Zitvogel group, UMR1015 research unit \" Tumor Immunology and immunotherapy of cancer \" is exploring the gut microbiota and its pro or anti -tumor immune functions. Bacteria modulate the antitumor efficacy in preclinical tumor models and clinical trials in cancer patients receiving conventional anticancer compounds and immunomodulators (Immune checkpoint inhibitors, immunogenic chemotherapy). These findings support the concept whereby bacteria-mediated interactions with the immune system are essential for optimal drug efficacy. Adoptive T cell therapy (ACT), that uses a patient's own immune system to fight tumors, has recently been approved by medicines agencies in leukemia and lymphoma patients. Clinical trials of ACT for solid tumors are undergoing and this field is rapidly expanding.\n\nThe PhD student applicant will explore the role of the gut microbiota in modulating the efficacy of adoptive T cell therapy (CAR T cells / TCR modified cells), using a mouse model and human samples from patients undergoing ACT in Institut Gustave Roussy.\n\nThe position is offered for a period of 3 years. The starting date is from June 2021 to February 2022, according to the candidate availabilities.\n\nThe training network for optimizing adoptive T-cell therapy of cancer (T-OP) is an ambitious European program offering competitive PhD grant to high quality students/early stage researchers, which aims to improve efficacy and production of cell therapies and enables future experts to develop new therapeutic solutions. The ITN T-OP Training Network for Optimizing Adoptive T cell Therapy of Cancer is funded by the Marie Skłodowska-Curie program, H2020 with Grant Agreement no 955575.\n\n- PhD student applicants must be in the first four years of research experience after completion of a Master's degree or equivalent and cannot hold a doctoral degree (except medical doctor) at the time of the recruitment;\n\n- The applicant cannot have spent more than 12 months within the past 36 months in France;\n\n- The applicant must be proficient in the English language both written and spoken (proof required).\n\nThe two-stage application procedure will be carried out in compliance with the Code of Conduct for Recruitment and the Charter for Researchers.\n\nApplications should be submitted online within the application portal of T-OP: https://www.portal.graduatecenter.uni-muenchen.de/ocgc/t-op .",
+      "dataType" : "news",
+      "date" : "2021-04-14",
+      "dateTime" : "2021-04-14T00:59:00Z",
+      "dateTimePub" : "2021-04-14T00:59:00Z",
+      "isDuplicate" : false,
+      "lang" : "eng",
+      "relevance" : 6,
+      "sentiment" : 0.02745098039215677,
+      "sim" : 0,
+      "source" : {
+        "dataType" : "news",
+        "title" : "Nature",
+        "uri" : "nature.com"
+      },
+      "time" : "00:59:00",
+      "title" : "\n                                                PhD student in IMMUNO-ONCOLOGY\n                                            ",
+      "uri" : "6518949720",
+      "url" : "https://www.nature.com/naturecareers/job/phd-student-in-immunooncology-institute-gustaveroussy-igr-737901",
+      "wgt" : 356057940
+    }, {
+      "body" : "Dr. Han lab in the Developmental Neurobiology Department at St. Jude Children's Research Hospital is seeking a research technologist to join our dynamic team studying mechanisms of brain development, neurodevelopmental disorders, and brain tumors. The lab recently revealed a key pathway that promotes the expansion and folding of the neocortex, the center for superior human cognitive abilities. Currently, we are elucidating underlying molecular/cellular mechanisms, and how alterations in such mechanisms lead to neurodevelopmental disorders and brain tumors.\n\nThe position will expose you to cutting-edge approaches such as pluripotent stem cell culture, brain organoids, CRISPR/Cas9, single-cell sequencing, and in utero surgeries in a world-leading institution in an intellectually stimulating environment. Our laboratory is highly collaborative and the technologist would be working closely with other members in the lab. We are looking for a highly motivated person, who is curious about mechanisms of brain development and diseases. An ideal candidate would have experience in basic laboratory skills and experience working with rodents in laboratory settings.",
+      "dataType" : "news",
+      "date" : "2021-04-14",
+      "dateTime" : "2021-04-14T00:57:00Z",
+      "dateTimePub" : "2021-04-14T00:57:00Z",
+      "isDuplicate" : false,
+      "lang" : "eng",
+      "relevance" : 5,
+      "sentiment" : 0.4509803921568627,
+      "sim" : 0,
+      "source" : {
+        "dataType" : "news",
+        "title" : "Nature",
+        "uri" : "nature.com"
+      },
+      "time" : "00:57:00",
+      "title" : "\n                                                Neuroscience Technologist\n                                            ",
+      "uri" : "6518948349",
+      "url" : "https://www.nature.com/naturecareers/job/neuroscience-technologist-st-jude-childrens-research-hospital-st-jude-737882",
+      "wgt" : 356057820
+    }, {
+      "authors" : [ {
+        "isAgency" : false,
+        "name" : "Emily Henderson",
+        "type" : "author",
+        "uri" : "emily_henderson@news-medical.net"
+      } ],
+      "body" : "Reviewed by Emily Henderson, B.Sc.Apr 13 2021\n\nIn certain circles of San Francisco, a case of syphilis can be as common and casual as the flu, to the point where Billy Lemon can't even remember how many times he's had it.\n\n\"Three or four? Five times in my life?\" he struggles to recall. \"It does not seem like a big deal.\"\n\nAt the time, about a decade ago, Lemon went on frequent methamphetamine binges, kicking his libido into overdrive and silencing the voice in his head that said condoms would be a wise choice at a raging sex party.\n\n\"It lowers your inhibitions, and also your decision-making abilities are skewed,\" said Lemon, who is 50.\n\nHe's sober now and runs the Castro Country Club in San Francisco -- which is not a resort, but a place where gay men come to get help with addiction, especially meth. Lemon said syphilis comes with the territory.\n\n\"In the 12-step community, if meth was your thing, everybody had syphilis,\" he said.\n\nIn 2000, syphilis rates were so low that public health officials believed eradication was on the horizon. But the rates started creeping up in 2001. From 2015 to 2019 alone, cases rose 74%. There were nearly 130,000 cases nationwide in 2019, according to data released Tuesday by the Centers for Disease Control and Prevention.\n\nIn California and the U.S., about half of syphilis cases are in men who have sex with men. More than a third of women in the West who have syphilis also use meth, which has surged in recent years. These are just some of the trends causing overall national cases of sexually transmitted diseases to hit an all-time high for the last six years in a row, reaching 2.5 million. And the consequences are now trickling down to babies, who are contracting syphilis from their mothers: Congenital syphilis rates nearly quadrupled between 2012 and 2019.\n\nThis was all before the coronavirus pandemic took hold in the U.S., and with contact tracers and testing supplies diverted from STDs to covid-19, the CDC is predicting 2020 numbers will be no better.\n\n\"We are quite worried about this and have seen this trend over time,\" said Dr. Erica Pan, California's state epidemiologist. \"Unfortunately, with years of not having enough funding and infrastructure in public health, and then in this past year, of course, both at the local and state level, a lot of personnel who had been focusing on STDs and syphilis follow-up have really been redirected to the pandemic.\"\n\nThere's no single cause\n\nMany factors have contributed to the rise of STDs, and syphilis in particular.\n\nIn San Francisco's gay community, for example, the rise of mobile dating apps like Grindr and Tinder made finding a date \"faster than getting pizza delivered to your home,\" said Dan Wohlfeiler, an STD prevention specialist and co-founder of Building Healthy Online Communities, which uses these apps to improve gay men's health.\n\nWhen the dating apps first came on the scene around 2009, they made it harder for disease investigators to track the spread of STDs and notify people who may have been infected, because men don't always know the names of the men they hook up with.\n\n\"They sometimes only know their online handle,\" said Dr. Ina Park, associate professor at the medical school of the University of California-San Francisco and author of \"Strange Bedfellows,\" about the history of STDs. \"And if the sex didn't go well, then sometimes they will block the person from their app and they don't even know how to reach that person again.\"\n\nOnline dating began back in the late 1990s, around the same time effective medications to prevent the transmission of HIV became available: first, antiretrovirals that suppress the virus in those who are HIV-positive, and then later, in 2012, pre-exposure prophylaxis, or PrEP, which prevents new infections in people who are HIV-negative but considered at risk for contracting the virus.\n\nWith the risk of contracting a deadly disease falling to almost zero, condoms fell even more out of favor than they already were, said Park.\n\n\"If one man is taking PrEP and the other one is virally suppressed, there's no HIV risk at all,\" she said. \"So why use condoms if you don't mind having a touch of syphilis?\"\n\nDiagnosing syphilis is tricky\n\nWhile syphilis is not benign - it can cause blindness, deafness or brain damage -- it is easy to treat. Typically, a shot of penicillin in the butt will cure it.\n\nBut diagnosing syphilis can be tricky, said Park, who treats patients with STDs at the San Francisco City Clinic. She often finds herself crouched low in the exam room, \"lifting up their scrotum and lifting up their penis,\" craning her head to get a look from all angles.\n\nShe does these gymnastics to find rashes associated with syphilis. Some are obvious, others subtle. She said doctors in regular family medicine clinics often aren't trained on where to look, or when.\n\n\"The patient came in saying, 'I'm tired,'\" Park said, referring to a common symptom of syphilis. \"How many people are going to say, 'Take off your pants and lift up your scrotum. I want to look'? We only do that at the STD clinic because that's what we do.\"\n\nBut specialized public STD clinics, like the one where Park works, have been shutting down nationwide. One reason is persistent underfunding of public health programs, a trend laid bare during the pandemic. Another reason is the Affordable Care Act. In a strange way, the 2010 law, intended to expand access to health care, actually contributed to the closure of STD clinics.\n\n\"Honestly, I think everyone thought they weren't going to be necessary,\" Dr. Karen Smith said in 2019, when she was the director of the California Department of Public Health. She said that, once Obamacare was in place, the thought was that STD testing would happen in primary care clinics.\n\n\"We sort of all assumed that if you've got health insurance and you've got access to a doctor, that's all that you need,\" she said. \"It turns out that that's not really all that you need.\"\n\nPeople still had affairs they didn't want to talk about with their family doctor. And some family doctors didn't want to probe into patients' sex lives. Young people, in particular, prefer clinics geared to them, out of their parents' purview.\n\n\"That loss of anonymous care really was a problem,\" Smith said.\n\nThe syphilis epidemic reaches babies, too\n\nWhen Christian Faulkenberry-Miranda decided to become a pediatrician, she never thought she'd become an expert in syphilis.\n\nIn 2010, shortly after finishing her medical training and starting work at Community Regional Medical Center in Fresno, California, she began seeing babies with a rash on their tummies that looked like a blueberry muffin. She thought it was a common viral infection, until these babies tested positive for syphilis.\n\nIn those early days, Dr. Faulkenberry-Miranda saw perhaps a few instances of congenital syphilis each year. Now she sees two cases every week. It's important to start the 10-day antibiotic treatment right away, to avoid complications, but she still follows her patients through their first year of life, and often through childhood, to watch for vision and hearing problems, developmental delays, attention deficits and learning disabilities, all of which can result from congenital syphilis infections. In 2019, 128 cases resulted in stillbirth or neonatal death.\n\n\"The disappointing thing is that syphilis is very treatable,\" she said. \"This is something that's completely preventable, with proper screening and treatment of these moms during pregnancy.\"\n\nCongenital syphilis cases hit a troubling milestone in 2019, reaching a high of 1,870 cases, an increase of 279% in five years. That is higher than the number of mother-to-child HIV cases at their peak in 1991.\n\n\"How could this be happening? Testing is cheap and widely available. The same treatment we've been using since the '40s still works,\" said Park, who has also seen an increase in congenital syphilis cases in San Francisco. \"And yet we have this completely out-of-control epidemic among the most vulnerable babies in our society.\"\n\nMany of the women who give birth to babies with syphilis have had no prenatal care. They often use drugs -- mainly methamphetamine -- and are often homeless, said Smith, the former California public health director. This makes them more likely to trade sex for housing, food or drugs. Drug use, in particular, makes women less likely to recognize they're pregnant at all, and less likely to seek health care if they do.\n\n\"They're very concerned about what's going to happen when they're found to be pregnant and using drugs,\" said Smith. \"They're concerned that their drug use will be reported and then ... their children will be taken away.\"\n\nThe complications of these women's lives also make disease investigation and contact tracing very challenging. Veteran contact tracer Romni Neiman remembers the difficulty she has had tracking down pregnant women in her career. Neiman works for the CDC, and before she was redirected to covid last year, she worked on preventing STDs, including congenital syphilis, in California.\n\nShe remembers looking for one woman in the late '80s in Chicago. The pregnant woman used drugs and had been exposed to syphilis. Her housing was so unstable that Neiman went to three places before finding her. The woman had no car, so Neiman offered to drive her to the clinic to get tested. The woman had no safe place to leave her toddler, because a man in the place she was staying was abusive, so Neiman took care of the child while the woman saw the doctor.\n\n\"She was just trying to do the best that she can, and she was really afraid,\" Neiman recalled. \"Sometimes it's really taxing and really sad. And you come home at the end of the day and you're like, 'Wow. Wow.'\"\n\nChallenges like those, combined with persistent underfunding for public health, are what led to the initial spike in congenital syphilis in Fresno County in the 2010s, said Park. Local contact tracers couldn't keep up, and the state had to step in with reinforcements.\n\nThe state is taking new measures to address the rates, said Pan, the state epidemiologist, like requiring women to be screened for syphilis twice during pregnancy instead of once. And, rather than wait for women to come in for prenatal care, the state is doing more outreach and screening pregnant women in the emergency room and in prisons and jails.\n\nPan believes the covid pandemic has created an opportunity to invest in a nimbler response to emerging and reemerging public health issues like syphilis.\n\n\"It's been a really long, hard year responding to this pandemic, but people have really acknowledged and realized the impact of divesting in public health infrastructure,\" she said. \"I hope that a lot of the resources that we hope to bring to bear in the longer term after this pandemic will benefit STDs as well.\"\n\nThis story is part of a partnership that includes KQED, NPR and KHN.",
+      "dataType" : "news",
+      "date" : "2021-04-14",
+      "dateTime" : "2021-04-14T00:57:00Z",
+      "dateTimePub" : "2021-04-14T00:54:00Z",
+      "eventUri" : "eng-6704950",
+      "image" : "https://d2jx2rerrg6sh3.cloudfront.net/image-handler/picture/2014/6/Pregnancy-620x480.jpg",
+      "isDuplicate" : false,
+      "lang" : "eng",
+      "relevance" : 4,
+      "sentiment" : 0.0117647058823529,
+      "sim" : 0.7843137383460999,
+      "source" : {
+        "dataType" : "news",
+        "title" : "News Medical",
+        "uri" : "news-medical.net"
+      },
+      "time" : "00:57:00",
+      "title" : "Syphilis cases in California drive a record-setting year for STDs nationwide",
+      "uri" : "6518948381",
+      "url" : "https://www.news-medical.net/news/20210413/Syphilis-cases-in-California-drive-a-record-setting-year-for-STDs-nationwide.aspx",
+      "wgt" : 356057820
+    }, {
+      "authors" : [ {
+        "isAgency" : false,
+        "name" : "Frank Miles",
+        "type" : "author",
+        "uri" : "frank_miles@foxbusiness.com"
+      } ],
+      "body" : "Stuart Varney weighs in on the government pausing Johnson & Johnson's vaccination effort.\n\nRepublican Ohio Gov. Mike DeWine announced a list of mass vaccination sites that will temporarily close after the suspension of the Johnson & Johnson coronavirus vaccine Tuesday.\n\nOn Twitter, the first-term governor wrote: \"The majority of Ohio's J&J doses have been directed to Ohio's mass vaccination clinics and to our colleges and universities. Due to the pause in administering the J&J vaccine, some sites will proceed with Pfizer or Moderna and other sites will pause entirely for the week.\"\n\nGET FOX BUSINESS ON THE GO BY CLICKING HERE\n\nOhio providers including, Kroger's, the nation's largest traditional supermarket chain and some college campuses paused the use of the vaccine while federal officials investigate reports of potentially dangerous blood clots.\n\nCincinnati-based Kroger Co. halted administering the J&J vaccine at pharmacies and clinics in its supermarkets. Patients who were scheduled to receive that vaccine will instead get the Pfizer or Moderna two-dose vaccination if those are available, and if not, Kroger will work to reschedule those vaccination appointments, spokesperson Kristal Howard said.\n\nCleveland State University announced it was pausing its student vaccination center as a precaution, and Kent State postponed its J&J clinics until further notice. The University of Cincinnati said its arena was still accepting walk-in patients on Tuesday, but they would get the Pfizer vaccine.\n\nFDA RECOMMENDS PAUSE OF JOHNSON & JOHNSON COVID-19 VACCINE AFTER BLOOD CLOT CASES\n\nOhio University said it will also switch to using Pfizer doses at its upcoming student clinics. Its statement acknowledged that the halt in J&J vaccines may be especially concerning to those who have received that vaccine, but it noted that the blood clotting occurrences have been rare.\n\nOhio health officials have been using the single-dose J&J shot for vaccination clinics on university campuses and to expand availability in other areas.\n\nIn Toledo, where health providers are racing to vaccinate more people as cases surge in neighboring Michigan, the J&J pause hinders efforts to get vaccines out faster, said Eric Zgodzinski, health commissioner for Lucas County.\n\nProviders who planned to use the J&J vaccine in a coordinated campaign to reach those who are homebound will need to use a different vaccine, he said. A mass clinic scheduled for Tuesday was switching from J&J to doses of Moderna.\n\n\"We do have vaccine available for everybody who wants it this week and in the coming weeks,\" Zgodzinski said.\n\nThe Centers for Disease Control and Prevention and the Food and Drug Administration recommended that pause while investigating blood clots in six women in the days after vaccination, in combination with reduced platelet counts that would make the usual treatment for the clots dangerous.\n\nJohnson & Johnson said no clear causal link has been established between its vaccine and the clots.\n\nMillions of doses of the J&J vaccine have been given around the country, the vast majority with no or mild side effects. The majority of vaccines administered in the U.S. have been from Pfizer and Moderna, which aren't affected by the pause.",
+      "dataType" : "news",
+      "date" : "2021-04-14",
+      "dateTime" : "2021-04-14T00:57:00Z",
+      "dateTimePub" : "2021-04-14T00:57:00Z",
+      "eventUri" : "eng-6706218",
+      "image" : "https://a57.foxnews.com/static.foxbusiness.com/foxbusiness.com/content/uploads/2021/04/1024/512/Ohio-Vaccine-AP-1.jpg?ve=1&tl=1",
+      "isDuplicate" : false,
+      "lang" : "eng",
+      "relevance" : 3,
+      "sentiment" : -0.05098039215686279,
+      "sim" : 0.5960784554481506,
+      "source" : {
+        "dataType" : "news",
+        "title" : "Fox Business",
+        "uri" : "foxbusiness.com"
+      },
+      "time" : "00:57:00",
+      "title" : "DeWine announces list of Ohio vaccination sites temporarily closing after J&J pause",
+      "uri" : "6518948270",
+      "url" : "https://www.foxbusiness.com/lifestyle/dewine-announces-list-of-ohio-mass-vaccination-sites-temporarily-closing-after-jj-pause",
+      "wgt" : 356057820
+    }, {
+      "body" : "Tinashe Sambiri|MDC Alliance leader, President Nelson Chamisa has described prominent lawyer, Advocate Thabani Mpofu as a man with a gentle heart.\n\nPresident Chamisa wrote a congratulatory message to Advocate Mpofu on his birthday.\n\n\"A gift in intellect and gentle at heart.\n\nA great brother, honest, consistent, caring and encouraging.\n\nSo in it all; good or bad, smooth or rough, highs or lows;he appears.\n\nHelp me to celebrate this great brother Advocate Fulcrum Thabani Mpofu, on the occasion of his birthday today. #legendbirthday #Godisinit,\" wrote President Chamisa on Twitter.",
+      "dataType" : "news",
+      "date" : "2021-04-14",
+      "dateTime" : "2021-04-14T00:57:00Z",
+      "dateTimePub" : "2021-04-14T00:56:00Z",
+      "isDuplicate" : false,
+      "lang" : "eng",
+      "relevance" : 4,
+      "sentiment" : 0.4509803921568627,
+      "sim" : 0,
+      "source" : {
+        "dataType" : "news",
+        "title" : "ZimEye",
+        "uri" : "zimeye.net"
+      },
+      "time" : "00:57:00",
+      "title" : "President Chamisa&#8217;s Message On Advocate Thabani Mpofu Birthday",
+      "uri" : "6518947935",
+      "url" : "https://www.zimeye.net/2021/04/14/president-chamisas-message-on-advocate-thabani-mpofu-birthday-2/",
+      "wgt" : 356057820
+    } ],
+    "totalResults" : 94029
+  }
+}

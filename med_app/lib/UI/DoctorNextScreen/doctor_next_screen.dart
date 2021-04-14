@@ -57,9 +57,30 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
 
     if (transactionResult.committed) {
       user.set(<String, dynamic>{
-        "Appointment": '',
-        "Appointment-AV": '',
+        "Appointment": [
+          {
+            "Date": '',
+            "Hour": '',
+            "PatientAvatar": '',
+            "PatientID": '',
+            "PatientName": '',
+          }
+        ],
+        "Appointment-AV": [
+          {
+            "AvailableDay": '',
+            "AvailableHours": [],
+          }
+        ],
         "Bio": '',
+        'Experience': '',
+        'Languages': '',
+        'Fees': '',
+        "Rating": '',
+        "Reviews": [
+          {"rating": "", "date": "", "review": ""}
+        ],
+        "Doctor-Avatar": '',
         "Documents": {
           "Certificate": certificate,
           "ID": id,

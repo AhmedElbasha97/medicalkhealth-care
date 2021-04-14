@@ -31,7 +31,7 @@ class _TextWithDropCompState extends State<TextWithDropComp> {
                 ),
               ),
               Positioned(
-                left: 1,
+                right: 1,
                 child: Container(
                   width: 80,
                   height: 58,
