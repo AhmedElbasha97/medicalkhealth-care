@@ -339,9 +339,9 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
                                 id,
                                 candidate,
                                 _langListSelected,
-                                _experienceText,
-                                _ageText,
                                 _nameText,
+                                _ageText,
+                                _experienceText,
                                 _selectedGender);
                           }
                         : null,
