@@ -78,8 +78,8 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
         print('Transaction  committed.');
       }).then((_) {
         print('Transaction  committed.');
-        DatabaseProvider provider =
-            Provider.of<DatabaseProvider>(context, listen: false);
+        PaitentDatabaseProvider provider =
+            Provider.of<PaitentDatabaseProvider>(context, listen: false);
         provider.getPatientById('VO2CnrLJfJRb0sEKUH3ncNTGmgA2');
       });
     } else {

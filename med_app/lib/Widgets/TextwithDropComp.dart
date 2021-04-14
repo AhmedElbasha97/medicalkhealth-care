@@ -24,7 +24,11 @@ class _TextWithDropCompState extends State<TextWithDropComp> {
           child: Stack(
             children: [
               Positioned(
-                child: TextFieldComp(label: widget.label, hint: widget.hint),
+                child: TextFieldComp(
+                  label: widget.label,
+                  hint: widget.hint,
+                  keyboardTypeNumber: true,
+                ),
               ),
               Positioned(
                 right: 1,

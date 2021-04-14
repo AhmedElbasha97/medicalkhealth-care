@@ -69,8 +69,8 @@ class _PatientInfoWidgetState extends State<PatientEditInfoWidget> {
       'age': (age != null && age.length > 0) ? age : widget.patient.age,
     }).then((_) {
       print('Transaction  committed.');
-      DatabaseProvider provider =
-          Provider.of<DatabaseProvider>(context, listen: false);
+      PaitentDatabaseProvider provider =
+          Provider.of<PaitentDatabaseProvider>(context, listen: false);
       provider.getPatientById(widget.patientId);
       Navigator.of(context).pop();
     });

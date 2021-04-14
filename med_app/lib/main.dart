@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile.dart';
 import 'package:med_app/ui/PatientNextScreen/patient_next_screen.dart';
 import 'package:med_app/ui/DoctorNextScreen/doctor_next_screen.dart';
+import 'package:med_app/UI/DoctorNextScreen/doctor_next_screen.dart';
+import 'package:med_app/UI/PatientNextScreen/patient_next_screen.dart';
+
+import 'package:med_app/UI/doctors/doctor_booking_next_screen/doctor_booking_next_screen.dart';
+import 'package:med_app/UI/doctors/doctor_booking_screen/doctor_booking_screen.dart';
 
 // import 'package:firebase_core/firebase_core.dart' as firebase_core;
 
-// void main() {
-//   runApp(MyApp());
-// }
 // Future<void> main() async {
 //   WidgetsFlutterBinding.ensureInitialized();
 //   await firebase_core.Firebase.initializeApp();
@@ -17,6 +19,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:med_app/UI/auth/login/Login.dart';
 import 'package:med_app/UI/auth/register/register_screen.dart';
 import 'package:med_app/UI/auth/signup/Signup.dart';
+import 'package:med_app/UI/specialitylist/specialty_list.dart';
 import 'package:med_app/UI/splash/splash_screen.dart';
 import 'package:med_app/services/auth.dart';
 import 'package:provider/provider.dart';
@@ -26,12 +29,17 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'UI/PatientProfile/patient_edit_info_widget.dart';
 import 'UI/PatientProfile/patient_info_screen.dart';
 import 'provider/patient_provider.dart';
+import 'providedrs/database_provider.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
 }
+
+// void main() {
+//   runApp(MyApp());
+// }
 
 class MyApp extends StatelessWidget {
   @override
@@ -40,7 +48,7 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(
             create: (context) =>
-                DatabaseProvider('VO2CnrLJfJRb0sEKUH3ncNTGmgA2'),
+                PaitentDatabaseProvider('VO2CnrLJfJRb0sEKUH3ncNTGmgA2'),
             // child: PatientInfoScreen(),
           ),
           // ChangeNotifierProvider(
@@ -58,7 +66,7 @@ class MyApp extends StatelessWidget {
           ),
           StreamProvider(
             create: (context) => context.read<AuthService>().authStateChanges,
-          )
+          ),
         ],
         child: MaterialApp(
           home: PatientProfile(),
