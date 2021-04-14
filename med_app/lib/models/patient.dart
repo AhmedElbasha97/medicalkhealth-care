@@ -1,3 +1,75 @@
+// class Patient {
+//   Patient({
+//     this.age,
+//     this.appointment,
+//     this.balance,
+//     this.bloodHighPressure,
+//     this.bloodLowPressure,
+//     this.bloodSuagr,
+//     this.email,
+//     this.gender,
+//     this.height,
+//     this.medicalNotes,
+//     this.name,
+//     this.userAvatar,
+//     this.userId,
+//     this.username,
+//     this.weight,
+//   });
+
+//   String age;
+//   List<Appointment> appointment;
+//   String balance;
+//   String bloodHighPressure;
+//   String bloodLowPressure;
+//   String bloodSuagr;
+//   String email;
+//   String gender;
+//   String height;
+//   List<dynamic> medicalNotes;
+//   String name;
+//   String userAvatar;
+//   String userId;
+//   String username;
+//   String weight;
+// }
+
+// class Appointment {
+//   Appointment({
+//     this.date,
+//     this.doctorAvatar,
+//     this.doctorId,
+//     this.doctorName,
+//     this.hour,
+//   });
+
+//   String date;
+//   String doctorAvatar;
+//   String doctorId;
+//   String doctorName;
+//   String hour;
+
+//   factory Appointment.fromJson(Map<dynamic, dynamic> json) => Appointment(
+//         date: json["date"],
+//         doctorAvatar: json["doctorAvatar"],
+//         doctorId: json["doctorId"],
+//         doctorName: json["doctorName"],
+//         hour: json["hour"],
+//       );
+
+//   Map<dynamic, dynamic> toJson() => {
+//         "date": date,
+//         "doctorAvatar": doctorAvatar,
+//         "doctorId": doctorId,
+//         "doctorName": doctorName,
+//         "hour": hour,
+//       };
+// }
+
+// To parse this JSON data, do
+//
+//     final patient = patientFromJson(jsonString);
+
 import 'dart:convert';
 
 Patient patientFromJson(String str) => Patient.fromJson(json.decode(str));
@@ -52,8 +124,11 @@ class Patient {
         email: json["email"],
         gender: json["gender"],
         height: json["height"],
-        medicalNotes:
-            (json.keys.contains('medicalNotes')) ? json["medicalNotes"] : [],
+        medicalNotes: (json.keys.contains('medicalNotes'))
+            ? List<Appointment>.from(
+                json["medicalNotes"].map((x) => Appointment.fromJson(x)))
+            : [],
+        // medicalNotes: List<String>.from(json["medicalNotes"].map((x) => x)),
         name: json["name"],
         userAvatar: json["userAvatar"],
         userId: json["userId"],
