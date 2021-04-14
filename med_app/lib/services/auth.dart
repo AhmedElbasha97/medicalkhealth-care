@@ -168,7 +168,8 @@ class AuthService {
   }
 
   //signout
-  void SignOut() async {
+  void signOut() async {
     await _auth.signOut();
+    print('u signout');
   }
 }
