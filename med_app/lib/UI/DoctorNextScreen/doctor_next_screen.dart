@@ -252,11 +252,6 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
                           label: 'Years of experience in this field',
                           hint: "Enter how many years of experience",
                           controller: experience,
-                          callback: (val) {
-                            setState(() {
-                              _experienceText = val;
-                            });
-                          },
                           keyboardTypeNumber: true),
                     ),
                     MultiSelectChipField(
@@ -341,7 +336,7 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
                                 _langListSelected,
                                 _nameText,
                                 _ageText,
-                                _experienceText,
+                                experience.text,
                                 _selectedGender);
                           }
                         : null,
