@@ -9,6 +9,7 @@ import 'package:med_app/Widgets/doctor_reviews_widget.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:med_app/providedrs/database_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class DoctorBookingScreen extends StatefulWidget {
   final userId;
@@ -21,6 +22,18 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
   DateTime selectedDay = DateTime.now();
   DatePickerController _controller = DatePickerController();
   String bookingHourSelected;
+
+  var dateString;
+  var dateTimeTime;
+  var avDayList;
+
+  getImgeUrl(imagepath) async {
+    String downloadURL = await firebase_storage.FirebaseStorage.instance
+        .ref(imagepath)
+        .getDownloadURL();
+    print(downloadURL);
+    return downloadURL;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +51,8 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
         ),
         extendBodyBehindAppBar: true,
         body: ChangeNotifierProvider<DatabaseProvider>(
-          create: (context) => DatabaseProvider(id: widget.userId),
+          create: (context) =>
+              DatabaseProvider(id: 'Hw7Q8FgT3TaUdzwrLkNrSF2auHj1'),
           child: Consumer<DatabaseProvider>(
             builder: (context, databaseProvider, _) {
               return (databaseProvider.doctor != null)
@@ -55,9 +69,23 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                           ],
                         )),
                         Positioned(
-                          child: Image(
-                            image: AssetImage("assets/doctor.jpg"),
-                          ),
+                          child: FutureBuilder(
+                              future: getImgeUrl(
+                                  databaseProvider.doctor.userAvatar),
+                              builder: (context, snapshot) {
+                                if (snapshot.hasData) {
+                                  return Container(
+                                    height: 300,
+                                    width: double.infinity,
+                                    child: Image(
+                                      image: NetworkImage(snapshot.data),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  );
+                                }
+                                return Center(
+                                    child: CircularProgressIndicator());
+                              }),
                         ),
                         Positioned(
                           top: 250,
@@ -91,7 +119,7 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              databaseProvider.doctor.username,
+                                              databaseProvider.doctor.name,
                                               style: TextStyle(
                                                   color: Colors.black,
                                                   fontSize: 30,
@@ -100,22 +128,34 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                             ),
                                             Row(
                                               children: [
-                                                Icon(
-                                                  FontAwesomeIcons
-                                                      .solidCommentDots,
-                                                  color: ColorsCollection
-                                                      .mainColor,
-                                                ),
-                                                Padding(
-                                                  padding:
-                                                      const EdgeInsets.only(
-                                                          left: 10.0),
-                                                  child: Icon(
-                                                    FontAwesomeIcons.video,
+                                                if (databaseProvider
+                                                    .doctor.callMethods.chat)
+                                                  Icon(
+                                                    FontAwesomeIcons
+                                                        .solidCommentDots,
                                                     color: ColorsCollection
                                                         .mainColor,
                                                   ),
-                                                )
+                                                if (databaseProvider
+                                                    .doctor.callMethods.voice)
+                                                  Icon(
+                                                    Icons.phone_in_talk,
+                                                    color: ColorsCollection
+                                                        .mainColor,
+                                                    size: 26.0,
+                                                  ),
+                                                if (databaseProvider
+                                                    .doctor.callMethods.video)
+                                                  Padding(
+                                                    padding:
+                                                        const EdgeInsets.only(
+                                                            left: 10.0),
+                                                    child: Icon(
+                                                      FontAwesomeIcons.video,
+                                                      color: ColorsCollection
+                                                          .mainColor,
+                                                    ),
+                                                  )
                                               ],
                                             )
                                           ],
@@ -125,7 +165,8 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                               MainAxisAlignment.spaceBetween,
                                           children: [
                                             Text(
-                                              'Neurology',
+                                              databaseProvider
+                                                  .doctor.speciality,
                                               style: TextStyle(
                                                   color: ColorsCollection
                                                       .mainColor,
@@ -156,7 +197,9 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                                         const EdgeInsets.only(
                                                             left: 8.0),
                                                     child: Text(
-                                                      '264',
+                                                      databaseProvider
+                                                          .doctor.reviews.length
+                                                          .toString(),
                                                       style: TextStyle(
                                                           color:
                                                               ColorsCollection
@@ -176,7 +219,7 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                           padding: const EdgeInsets.only(
                                               top: 10.0, bottom: 5.0),
                                           child: Text(
-                                            'He has served in many international expert committee such as the American International Committee for the Diagnosis of Diabetes (2008), the IDF guidelines revision committee and several WHO expert committees including the expert committee for diagnosis and classification of diabetes, and the committee on the diagnosis of diabetes in pregnancy',
+                                            databaseProvider.doctor.bio,
                                             maxLines: 3,
                                             overflow: TextOverflow.ellipsis,
                                             style: TextStyle(
@@ -196,7 +239,23 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                                       fontFamily: 'Proxima',
                                                       fontWeight:
                                                           FontWeight.bold)),
-                                              Text('10 Years in Neurology',
+                                              Text(
+                                                  databaseProvider
+                                                      .doctor.experience,
+                                                  style: TextStyle(
+                                                      fontSize: 18.0,
+                                                      fontFamily: 'Proxima',
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                              Text(' Years in ',
+                                                  style: TextStyle(
+                                                      fontSize: 18.0,
+                                                      fontFamily: 'Proxima',
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                              Text(
+                                                  databaseProvider
+                                                      .doctor.speciality,
                                                   style: TextStyle(
                                                       fontSize: 18.0,
                                                       fontFamily: 'Proxima',
@@ -207,63 +266,75 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                         ),
                                         Row(
                                           children: [
-                                            Text('Languages: ',
-                                                style: TextStyle(
-                                                    fontSize: 18.0,
-                                                    fontFamily: 'Proxima',
-                                                    fontWeight:
-                                                        FontWeight.bold)),
-                                            Container(
-                                              decoration: BoxDecoration(
-                                                color:
-                                                    ColorsCollection.mainColor,
-                                                borderRadius: BorderRadius.all(
-                                                    Radius.circular(5.0)),
-                                              ),
-                                              child: Padding(
-                                                padding:
-                                                    const EdgeInsets.symmetric(
-                                                        horizontal: 8.0,
-                                                        vertical: 5.0),
-                                                child: Text(
-                                                  'Arabic',
+                                            Expanded(
+                                              flex: 2,
+                                              child: Text('Languages: ',
                                                   style: TextStyle(
-                                                      color: Colors.white,
-                                                      fontSize: 17.0,
+                                                      fontSize: 18.0,
                                                       fontFamily: 'Proxima',
                                                       fontWeight:
-                                                          FontWeight.bold),
-                                                ),
-                                              ),
+                                                          FontWeight.bold)),
                                             ),
-                                            Padding(
-                                              padding: const EdgeInsets.only(
-                                                  left: 5.0),
+                                            Expanded(
+                                              flex: 5,
                                               child: Container(
-                                                decoration: BoxDecoration(
-                                                  color: ColorsCollection
-                                                      .mainColor,
-                                                  borderRadius:
-                                                      BorderRadius.all(
-                                                          Radius.circular(5.0)),
-                                                ),
-                                                child: Padding(
-                                                  padding: const EdgeInsets
-                                                          .symmetric(
-                                                      horizontal: 8.0,
-                                                      vertical: 5.0),
-                                                  child: Text(
-                                                    'English',
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 17.0,
-                                                        fontFamily: 'Proxima',
-                                                        fontWeight:
-                                                            FontWeight.bold),
-                                                  ),
-                                                ),
+                                                height: 30,
+                                                width: 120,
+                                                child: ListView.builder(
+                                                    scrollDirection:
+                                                        Axis.horizontal,
+                                                    itemCount: databaseProvider
+                                                        .doctor
+                                                        .languages
+                                                        .length,
+                                                    itemBuilder: (ctx, index) {
+                                                      return Padding(
+                                                        padding:
+                                                            const EdgeInsets
+                                                                    .only(
+                                                                left: 5.0),
+                                                        child: Container(
+                                                          decoration:
+                                                              BoxDecoration(
+                                                            color:
+                                                                ColorsCollection
+                                                                    .mainColor,
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .all(Radius
+                                                                        .circular(
+                                                                            5.0)),
+                                                          ),
+                                                          child: Padding(
+                                                            padding:
+                                                                const EdgeInsets
+                                                                        .symmetric(
+                                                                    horizontal:
+                                                                        8.0,
+                                                                    vertical:
+                                                                        5.0),
+                                                            child: Text(
+                                                              databaseProvider
+                                                                      .doctor
+                                                                      .languages[
+                                                                  index],
+                                                              style: TextStyle(
+                                                                  color: Colors
+                                                                      .white,
+                                                                  fontSize:
+                                                                      17.0,
+                                                                  fontFamily:
+                                                                      'Proxima',
+                                                                  fontWeight:
+                                                                      FontWeight
+                                                                          .bold),
+                                                            ),
+                                                          ),
+                                                        ),
+                                                      );
+                                                    }),
                                               ),
-                                            ),
+                                            )
                                           ],
                                         ),
                                         Padding(
@@ -277,24 +348,9 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ),
-                                        ReviewsSlider(reviews: [
-                                          {
-                                            "review":
-                                                "very good asasdf asdf asdf asdf asdf asdf asdf asd fasd fasdf asd fasd fasd f",
-                                            "date": "20 April 2021",
-                                            "rating": 3
-                                          },
-                                          {
-                                            "review": "very bad",
-                                            "date": "21 March 2021",
-                                            "rating": 4
-                                          },
-                                          {
-                                            "review": "very sad",
-                                            "date": "22 June 2020",
-                                            "rating": 5
-                                          }
-                                        ]),
+                                        ReviewsSlider(
+                                            reviews: databaseProvider
+                                                .doctor.reviews),
                                         Padding(
                                           padding: const EdgeInsets.only(
                                               top: 5.0, bottom: 5.0),
@@ -306,25 +362,33 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ),
-                                        DatePicker(
-                                          DateTime.now(),
-                                          controller: _controller,
-                                          initialSelectedDate: DateTime.now(),
-                                          selectionColor:
-                                              ColorsCollection.mainColor,
-                                          selectedTextColor: Colors.white,
-                                          daysCount: 15,
-                                          // inactiveDates: [
-                                          //   DateTime.now().add(Duration(days: 3)),
-                                          //   DateTime.now().add(Duration(days: 4)),
-                                          //   DateTime.now().add(Duration(days: 7))
-                                          // ],
-                                          onDateChange: (date) {
-                                            setState(() {
-                                              selectedDay = date;
-                                            });
-                                          },
-                                        ),
+                                        // DatePicker(
+                                        //   DateTime.now(),
+                                        //   controller: _controller,
+                                        //   initialSelectedDate: DateTime.now(),
+                                        //   selectionColor:
+                                        //       ColorsCollection.mainColor,
+                                        //   selectedTextColor: Colors.white,
+                                        //   daysCount: databaseProvider.doctor
+                                        //           .availableAppointment.length -
+                                        //       1,
+                                        //   activeDates: databaseProvider
+                                        //       .doctor.availableAppointment
+                                        //       .map((e) => DateTime.now().add(
+                                        //           Duration(
+                                        //               days: (DateFormat(
+                                        //                           'dd-MM-yyyy')
+                                        //                       .parse(e
+                                        //                           .availableDay)
+                                        //                       .day) -
+                                        //                   DateTime.now().day)))
+                                        //       .toList(),
+                                        //   onDateChange: (date) {
+                                        //     setState(() {
+                                        //       selectedDay = date;
+                                        //     });
+                                        //   },
+                                        // ),
                                         Padding(
                                           padding: const EdgeInsets.only(
                                               top: 10.0, bottom: 5.0),
@@ -377,12 +441,21 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                                   // String string =
                                                   //     df.format(DateTime.now());
                                                   // print(string);
-                                                  Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                        builder: (context) =>
-                                                            DoctorBookingNextScreen()),
-                                                  );
+                                                  // Navigator.push(
+                                                  //   context,
+                                                  //   MaterialPageRoute(
+                                                  //       builder: (context) =>
+                                                  //           DoctorBookingNextScreen()),
+                                                  // );
+                                                  setState(() {
+                                                    dateString = databaseProvider
+                                                        .doctor
+                                                        .availableAppointment[0]
+                                                        .availableDay;
+                                                    dateTimeTime =
+                                                        DateFormat('dd')
+                                                            .parse(dateString);
+                                                  });
                                                 },
                                                 style: ElevatedButton.styleFrom(
                                                   primary: ColorsCollection

@@ -52,7 +52,7 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
-          home: SignUp(),
+          home: DoctorBookingScreen(),
         ));
   }
 }

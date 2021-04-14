@@ -63,7 +63,7 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
         "medicalNotes": [],
         "userAvatar":
             "/data/user/0/com.example.med_app/cache/file_picker/placeholder.jpg",
-        "balance": "0",
+        "balance": "250",
         "userId": widget.userId,
         "weight": weight,
         "username": widget.username,

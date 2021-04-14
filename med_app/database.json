@@ -14,15 +14,15 @@
         ],
         "availableAppointment": [
           {
-            "availableDay": "13/04/2021",
+            "availableDay": "13-04-2021",
             "availableHours": ["9:00 AM","11:00 AM","1:00 PM","3:00 PM"]
           },
           {
-            "availableDay": "15/04/2021",
+            "availableDay": "15-04-2021",
             "availableHours": ["8:00 AM","10:00 AM","12:00 PM","2:00 PM"]
           },
           {
-            "availableDay": "17/04/2021",
+            "availableDay": "17-04-2021",
             "availableHours": ["3:00 PM","5:00 PM","7:00 PM","9:00 PM"]
           }
         ],

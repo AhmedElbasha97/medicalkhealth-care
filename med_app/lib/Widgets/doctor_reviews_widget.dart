@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
+import 'package:med_app/models/doctor.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:show_dialog/show_dialog.dart' as dialog;
 
 class ReviewsSlider extends StatelessWidget {
-  final List<Map<String, dynamic>> reviews;
+  final List<Review> reviews;
   ReviewsSlider({this.reviews});
   @override
   Widget build(BuildContext context) {
+    print(reviews);
     return Container(
       height: 100,
       child: ListView.builder(
@@ -16,8 +18,8 @@ class ReviewsSlider extends StatelessWidget {
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () async {
-              dialog.aboutDialog(context, reviews[index]['date'].toString(),
-                  reviews[index]['review']);
+              dialog.aboutDialog(context, reviews[index].date.toString(),
+                  reviews[index].review);
             },
             child: Container(
               width: 200,
@@ -36,20 +38,20 @@ class ReviewsSlider extends StatelessWidget {
                             allowHalfRating: false,
                             onRated: (v) {},
                             starCount: 5,
-                            rating: reviews[index]['rating'].toDouble(),
+                            rating: double.parse(reviews[index].rating),
                             size: 15.0,
                             isReadOnly: true,
                             color: ColorsCollection.mainColor,
                             borderColor: ColorsCollection.mainColor,
                             spacing: 0.0),
                         Text(
-                          reviews[index]['review'],
+                          reviews[index].review,
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: TextStyle(fontSize: 13),
                         ),
                         Text(
-                          reviews[index]['date'].toString(),
+                          reviews[index].date.toString(),
                           style: TextStyle(fontSize: 10),
                           textAlign: TextAlign.start,
                         ),
