@@ -6,7 +6,7 @@ class DatabaseRepositories {
   Future<List<Doctor>> fetchDoctorsBySpecialty(speciality) {
     return _doctorService.fetchDoctorsBySpecialty(speciality);
   }
-  Future<Doctor> fetchDoctor(id) {
+  Future<dynamic> fetchDoctor(id) {
     return _doctorService.fetchDoctor(id);
   }
 }
