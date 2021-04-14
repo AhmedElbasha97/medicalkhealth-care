@@ -22,8 +22,8 @@ class DatabaseProvider extends ChangeNotifier {
   }
 
   void getDoctorById(id) {
-    _database_repositorie.fetchDoctor(id).then((doctor) {
-      this.doctor = doctor;
+    _database_repositorie.fetchDoctor(id).then((doc) {
+      this.doctor = doc;
       notifyListeners();
     });
   }

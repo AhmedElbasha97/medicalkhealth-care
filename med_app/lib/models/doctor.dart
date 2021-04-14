@@ -1,132 +1,195 @@
+// To parse this JSON data, do
+//
+//     final doctor = doctorFromJson(jsonString);
 
 import 'dart:convert';
 
-// Doctor doctorFromJson(String str) => Doctor.fromJson(json.decode(str));
+Doctor doctorFromJson(String str) => Doctor.fromJson(json.decode(str));
 
-// String doctorToJson(Doctor data) => json.encode(data.toJson());
+String doctorToJson(Doctor data) => json.encode(data.toJson());
 
 class Doctor {
-    Doctor({
-        this.appointment,
-        this.appointmentAv,
-        this.bio,
-        this.documents,
-        this.email,
-        this.profession,
-        this.speciality,
-        this.userId,
-        this.doctorAvatare,
-        this.nameUser,
-    });
+  Doctor({
+    this.appointment,
+    this.availableAppointment,
+    this.balance,
+    this.bio,
+    this.experience,
+    this.languages,
+    this.fees,
+    this.rating,
+    this.reviews,
+    this.userAvatar,
+    this.documents,
+    this.email,
+    this.profession,
+    this.speciality,
+    this.userId,
+    this.username,
+    this.name,
+  });
 
-    List<Appointment> appointment;
-    List<AppointmentAv> appointmentAv;
-    String bio;
-    Documents documents;
-    String email;
-    String profession;
-    String speciality;
-    String userId;
-    String doctorAvatare;
-    String nameUser;
+  List<Appointment> appointment;
+  List<AvailableAppointment> availableAppointment;
+  String balance;
+  String bio;
+  String experience;
+  List<String> languages;
+  String fees;
+  String rating;
+  List<Review> reviews;
+  String userAvatar;
+  Documents documents;
+  String email;
+  String profession;
+  String speciality;
+  String userId;
+  String username;
+  String name;
 
-    // factory Doctor.fromJson(Map<dynamic, dynamic> json) => Doctor(
-    //     appointment: List<Appointment>.from(json["Appointment"].map((x) => Appointment.fromJson(x))),
-    //     appointmentAv: List<AppointmentAv>.from(json["Appointment-AV"].map((x) => AppointmentAv.fromJson(x))),
-    //     bio: json["Bio"],
-    //     documents: Documents.fromJson(json["Documents"]),
-    //     email: json["Email"],
-    //     profession: json["Profession"],
-    //     speciality: json["Speciality"],
-    //     userId: json["User-Id"],
-    //     doctorAvatare: json["doctor-avatare"],
-    //     nameUser: json["name-user"],
-    // );
+  factory Doctor.fromJson(Map<dynamic, dynamic> json) => Doctor(
+        appointment: List<Appointment>.from(
+            json["appointment"].map((x) => Appointment.fromJson(x))),
+        availableAppointment: List<AvailableAppointment>.from(
+            json["availableAppointment"]
+                .map((x) => AvailableAppointment.fromJson(x))),
+        balance: json["balance"],
+        bio: json["bio"],
+        experience: json["experience"],
+        languages: List<String>.from(json["languages"].map((x) => x)),
+        fees: json["fees"],
+        rating: json["rating"],
+        reviews:
+            List<Review>.from(json["reviews"].map((x) => Review.fromJson(x))),
+        userAvatar: json["userAvatar"],
+        documents: Documents.fromJson(json["documents"]),
+        email: json["email"],
+        profession: json["profession"],
+        speciality: json["speciality"],
+        userId: json["userId"],
+        username: json["username"],
+        name: json["name"],
+      );
 
-    // Map<String, dynamic> toJson() => {
-    //     "Appointment": List<dynamic>.from(appointment.map((x) => x.toJson())),
-    //     "Appointment-AV": List<dynamic>.from(appointmentAv.map((x) => x.toJson())),
-    //     "Bio": bio,
-    //     "Documents": documents.toJson(),
-    //     "Email": email,
-    //     "Profession": profession,
-    //     "Speciality": speciality,
-    //     "User-Id": userId,
-    //     "doctor-avatare": doctorAvatare,
-    //     "name-user": nameUser,
-    // };
+  Map<dynamic, dynamic> toJson() => {
+        "appointment": List<dynamic>.from(appointment.map((x) => x.toJson())),
+        "availableAppointment":
+            List<dynamic>.from(availableAppointment.map((x) => x.toJson())),
+        "balance": balance,
+        "bio": bio,
+        "experience": experience,
+        "languages": List<dynamic>.from(languages.map((x) => x)),
+        "fees": fees,
+        "rating": rating,
+        "reviews": List<dynamic>.from(reviews.map((x) => x.toJson())),
+        "userAvatar": userAvatar,
+        "documents": documents.toJson(),
+        "email": email,
+        "profession": profession,
+        "speciality": speciality,
+        "userId": userId,
+        "username": username,
+        "name": name,
+      };
 }
 
 class Appointment {
-    Appointment({
-        this.appointmentTime,
-        this.avatarPath,
-        this.patientId,
-        this.patientName,
-    });
+  Appointment({
+    this.date,
+    this.hour,
+    this.patientAvatar,
+    this.patientId,
+    this.patientName,
+  });
 
-    String appointmentTime;
-    String avatarPath;
-    int patientId;
-    String patientName;
+  String date;
+  String hour;
+  String patientAvatar;
+  String patientId;
+  String patientName;
 
-    factory Appointment.fromJson(Map<String, dynamic> json) => Appointment(
-        appointmentTime: json["Appointment-time"],
-        avatarPath: json["Avatar-Path"],
-        patientId: json["Patient-ID"],
-        patientName: json["Patient-Name"],
-    );
+  factory Appointment.fromJson(Map<dynamic, dynamic> json) => Appointment(
+        date: json["date"],
+        hour: json["hour"],
+        patientAvatar: json["patientAvatar"],
+        patientId: json["patientId"],
+        patientName: json["patientName"],
+      );
 
-    Map<String, dynamic> toJson() => {
-        "Appointment-time": appointmentTime,
-        "Avatar-Path": avatarPath,
-        "Patient-ID": patientId,
-        "Patient-Name": patientName,
-    };
+  Map<String, dynamic> toJson() => {
+        "date": date,
+        "hour": hour,
+        "patientAvatar": patientAvatar,
+        "patientId": patientId,
+        "patientName": patientName,
+      };
 }
 
-class AppointmentAv {
-    AppointmentAv({
-        this.appointmentAv,
-        this.availablity,
-    });
+class AvailableAppointment {
+  AvailableAppointment({
+    this.availableDay,
+    this.availableHours,
+  });
 
-    String appointmentAv;
-    bool availablity;
+  String availableDay;
+  List<String> availableHours;
 
-    factory AppointmentAv.fromJson(Map<String, dynamic> json) => AppointmentAv(
-        appointmentAv: json["Appointment-av"],
-        availablity: json["Availablity"],
-    );
+  factory AvailableAppointment.fromJson(Map<dynamic, dynamic> json) =>
+      AvailableAppointment(
+        availableDay: json["availableDay"],
+        availableHours: List<String>.from(json["availableHours"].map((x) => x)),
+      );
 
-    Map<String, dynamic> toJson() => {
-        "Appointment-av": appointmentAv,
-        "Availablity": availablity,
-    };
+  Map<String, dynamic> toJson() => {
+        "availableDay": availableDay,
+        "availableHours": List<dynamic>.from(availableHours.map((x) => x)),
+      };
 }
 
 class Documents {
-    Documents({
-        this.candidate,
-        this.certificate,
-        this.id,
-    });
+  Documents({
+    this.certificate,
+    this.id,
+    this.candidate,
+  });
 
-    String candidate;
-    String certificate;
-    String id;
+  String certificate;
+  String id;
+  String candidate;
 
-    factory Documents.fromJson(Map<String, dynamic> json) => Documents(
-        candidate: json["Candidate"],
-        certificate: json["Certificate"],
-        id: json["ID"],
-    );
+  factory Documents.fromJson(Map<dynamic, dynamic> json) => Documents(
+        certificate: json["certificate"],
+        id: json["id"],
+        candidate: json["candidate"],
+      );
 
-    Map<String, dynamic> toJson() => {
-        "Candidate": candidate,
-        "Certificate": certificate,
-        "ID": id,
-    };
+  Map<String, dynamic> toJson() => {
+        "certificate": certificate,
+        "id": id,
+        "candidate": candidate,
+      };
 }
 
+class Review {
+  Review({
+    this.rating,
+    this.date,
+    this.review,
+  });
 
+  String rating;
+  String date;
+  String review;
+
+  factory Review.fromJson(Map<dynamic, dynamic> json) => Review(
+        rating: json["rating"],
+        date: json["date"],
+        review: json["review"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "rating": rating,
+        "date": date,
+        "review": review,
+      };
+}
