@@ -5,11 +5,15 @@ class TextFieldComp extends StatefulWidget {
   final String label;
   final String hint;
   final controller;
+  final callback;
+  final onChange;
   final keyboardTypeNumber;
   TextFieldComp(
       {this.label,
       this.hint,
       this.controller,
+      this.callback,
+      this.onChange = false,
       this.keyboardTypeNumber = false});
 
   @override
@@ -33,6 +37,11 @@ class _TextFieldCompState extends State<TextFieldComp> {
                 });
               },
               child: TextFormField(
+                onChanged: (value) {
+                  if (widget.onChange) {
+                    widget.callback(value);
+                  }
+                },
                 controller: widget.controller,
                 keyboardType: widget.keyboardTypeNumber
                     ? TextInputType.number
@@ -42,11 +51,11 @@ class _TextFieldCompState extends State<TextFieldComp> {
                         borderSide:
                             BorderSide(width: 2, color: Color(0xFF02B4BB)),
                         borderRadius: const BorderRadius.all(
-                          const Radius.circular(40.0),
+                          const Radius.circular(10.0),
                         )),
                     enabledBorder: OutlineInputBorder(
                       borderRadius: const BorderRadius.all(
-                        const Radius.circular(40.0),
+                        const Radius.circular(10.0),
                       ),
                       borderSide: BorderSide(width: 2, color: Colors.grey),
                     ),
@@ -54,7 +63,7 @@ class _TextFieldCompState extends State<TextFieldComp> {
                     labelStyle: TextStyle(
                         color:
                             focused ? ColorsCollection.mainColor : Colors.grey,
-                        fontSize: 20,
+                        fontSize: 18,
                         fontFamily: 'Proxima',
                         fontWeight: FontWeight.bold),
                     hintText: widget.hint,
