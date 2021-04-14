@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:med_app/UI/DoctorNextScreen/doctor_next_screen.dart';
 import 'package:med_app/UI/PatientNextScreen/patient_next_screen.dart';
 
 import 'package:med_app/UI/doctors/doctor_booking_next_screen/doctor_booking_next_screen.dart';

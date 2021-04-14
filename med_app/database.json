@@ -8,7 +8,8 @@
             "hour": "10:00 AM",
             "patientAvatar": "/data/user/0/com.example.med_app/cache/file_picker/5LeLCr9t69A2r10GRaXsRIm71fw.jpg",
             "patientId": "jWg8VDotubNZUz2OpAeN5tE5ull2",
-            "patientName": "Ahmed Aboud"
+            "patientName": "Ahmed Aboud",
+            "callMethod": "voice"
           }
         ],
         "availableAppointment": [
@@ -25,10 +26,12 @@
             "availableHours": ["3:00 PM","5:00 PM","7:00 PM","9:00 PM"]
           }
         ],
-        "balance": "1500",
+        "age": "25",
+        "gender": "male",
         "bio": "im the doctors who is very good in my job and i wanna be like ahmed el basha",
         "experience": "10",
         "languages": ["Arabic","English","French"],
+        "balance": "1500",
         "fees": "200",
         "rating": "4.0",
         "reviews": [
@@ -44,7 +47,7 @@
           "candidate": "/data/user/0/com.example.med_app/cache/file_picker/fDSwNMte8meSCyvYxW6RUmHlHfA.jpg"
         },
         "callMethods": {
-          "chat": true,
+          "chat": false,
           "voice": true,
           "video": true
         },
@@ -64,7 +67,8 @@
           "hour": "10:00 AM",
           "doctorAvatar": "/data/user/0/com.example.med_app/cache/file_picker/5LeLCr9t69A2r10GRaXsRIm71fw.jpg",
           "doctorId": "Hw7Q8FgT3TaUdzwrLkNrSF2auHj1",
-          "doctorName": "Ahmed Samy"
+          "doctorName": "Ahmed Samy",
+          "callMethod": "voice"
         }
       ],
         "bloodSugar": "100",

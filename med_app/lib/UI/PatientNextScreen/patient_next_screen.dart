@@ -87,6 +87,13 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
         title: Text('Details'),
         backgroundColor: ColorsCollection.mainColor,
         elevation: 0.0,
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 15.0, top: 3.0),
+          child: Icon(
+            Icons.account_circle,
+            size: 30.0,
+          ),
+        ),
       ),
       body: Container(
         child: Column(
@@ -105,11 +112,12 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
                         label: 'What is your name*',
                         hint: "Enter your profile name",
                         controller: name,
-                        callback: () {
+                        callback: (val) {
                           setState(() {
-                            _nameText = name.text;
+                            _nameText = val;
                           });
                         },
+                        onChange: true,
                       ),
                     ),
                     Padding(
@@ -118,11 +126,12 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
                           label: 'What is your age*',
                           hint: "Enter your age",
                           controller: age,
-                          callback: () {
+                          callback: (val) {
                             setState(() {
-                              _ageText = age.text;
+                              _ageText = val;
                             });
                           },
+                          onChange: true,
                           keyboardTypeNumber: true),
                     ),
                     Padding(
@@ -279,7 +288,7 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
                   style: ElevatedButton.styleFrom(
                       primary: Color(0xFF00A1A7) // foreground
                       ),
-                  onPressed: (_nameText != null && _ageText != null)
+                  onPressed: (name.text.isNotEmpty && age.text.isNotEmpty)
                       ? () {
                           addPatient(height.text, weight.text, highBlood.text,
                               lowBlood.text, sugar.text);

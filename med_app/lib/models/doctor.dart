@@ -12,10 +12,12 @@ class Doctor {
   Doctor({
     this.appointment,
     this.availableAppointment,
-    this.balance,
+    this.age,
+    this.gender,
     this.bio,
     this.experience,
     this.languages,
+    this.balance,
     this.fees,
     this.rating,
     this.reviews,
@@ -32,10 +34,12 @@ class Doctor {
 
   List<Appointment> appointment;
   List<AvailableAppointment> availableAppointment;
-  String balance;
+  String age;
+  String gender;
   String bio;
   String experience;
   List<String> languages;
+  String balance;
   String fees;
   String rating;
   List<Review> reviews;
@@ -55,10 +59,12 @@ class Doctor {
         availableAppointment: List<AvailableAppointment>.from(
             json["availableAppointment"]
                 .map((x) => AvailableAppointment.fromJson(x))),
-        balance: json["balance"],
+        age: json["age"],
+        gender: json["gender"],
         bio: json["bio"],
         experience: json["experience"],
         languages: List<String>.from(json["languages"].map((x) => x)),
+        balance: json["balance"],
         fees: json["fees"],
         rating: json["rating"],
         reviews:
@@ -78,10 +84,12 @@ class Doctor {
         "appointment": List<dynamic>.from(appointment.map((x) => x.toJson())),
         "availableAppointment":
             List<dynamic>.from(availableAppointment.map((x) => x.toJson())),
-        "balance": balance,
+        "age": age,
+        "gender": gender,
         "bio": bio,
         "experience": experience,
         "languages": List<dynamic>.from(languages.map((x) => x)),
+        "balance": balance,
         "fees": fees,
         "rating": rating,
         "reviews": List<dynamic>.from(reviews.map((x) => x.toJson())),
@@ -104,6 +112,7 @@ class Appointment {
     this.patientAvatar,
     this.patientId,
     this.patientName,
+    this.callMethod,
   });
 
   String date;
@@ -111,6 +120,7 @@ class Appointment {
   String patientAvatar;
   String patientId;
   String patientName;
+  String callMethod;
 
   factory Appointment.fromJson(Map<String, dynamic> json) => Appointment(
         date: json["date"],
@@ -118,6 +128,7 @@ class Appointment {
         patientAvatar: json["patientAvatar"],
         patientId: json["patientId"],
         patientName: json["patientName"],
+        callMethod: json["callMethod"],
       );
 
   Map<String, dynamic> toJson() => {
@@ -126,6 +137,7 @@ class Appointment {
         "patientAvatar": patientAvatar,
         "patientId": patientId,
         "patientName": patientName,
+        "callMethod": callMethod,
       };
 }
 

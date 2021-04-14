@@ -51,6 +51,7 @@ dependencies:
   show_dialog: ^1.0.3
   progress_timeline: ^0.0.5
   intl: ^0.17.0
+  multi_select_flutter: ^4.0.0
   animated_onboarding:
     git:
       url: https://github.com/Eng-Mohamed-Osama/animated_onboarding

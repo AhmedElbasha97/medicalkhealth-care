@@ -6,12 +6,14 @@ class TextFieldComp extends StatefulWidget {
   final String hint;
   final controller;
   final callback;
+  final onChange;
   final keyboardTypeNumber;
   TextFieldComp(
       {this.label,
       this.hint,
       this.controller,
       this.callback,
+      this.onChange = false,
       this.keyboardTypeNumber = false});
 
   @override
@@ -36,9 +38,8 @@ class _TextFieldCompState extends State<TextFieldComp> {
               },
               child: TextFormField(
                 onChanged: (value) {
-                  if ((value != null || value.isNotEmpty) &&
-                      widget.callback != null) {
-                    widget.callback();
+                  if (widget.onChange) {
+                    widget.callback(value);
                   }
                 },
                 controller: widget.controller,
