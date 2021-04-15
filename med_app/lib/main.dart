@@ -1,7 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:med_app/UI/DoctorNextScreen/doctor_next_screen.dart';
 import 'package:med_app/Widgets/NavBar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -18,6 +17,8 @@ class MyHttpOverrides extends HttpOverrides{
   }
 }
 
+
+
 void main() async {
 
   HttpOverrides.global = new MyHttpOverrides();
@@ -29,6 +30,7 @@ void main() async {
   await Firebase.initializeApp();
   runApp(MyApp());
 }
+
 
 class MyApp extends StatelessWidget  {
 
@@ -52,6 +54,7 @@ class MyApp extends StatelessWidget  {
         ],
         child: MaterialApp(
           home:  Nav()
+
         ));
 
   }

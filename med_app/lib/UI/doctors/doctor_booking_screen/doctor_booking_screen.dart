@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:med_app/Styles/colors.dart';
-import 'file:///C:/Users/Kimo%20Store/Desktop/medicalkhealth-care/med_app/lib/UI/doctors/doctor_booking_next_screen/doctor_booking_next_screen.dart';
+import 'package:med_app/UI/doctors/doctor_booking_next_screen/doctor_booking_next_screen.dart';
 import 'package:med_app/UI/doctors/doctor_booking_screen/hour_picker_widget.dart';
 import 'package:med_app/Widgets/doctor_reviews_widget.dart';
 import 'package:med_app/provider/doctor_provider.dart';

@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:med_app/Styles/colors.dart';
-import 'file:///C:/Users/Kimo%20Store/Desktop/medicalkhealth-care/med_app/lib/UI/doctors/doctor_booking_next_screen/sliding_booking_page.dart';
+import 'package:med_app/UI/doctors/doctor_booking_next_screen/sliding_booking_page.dart';
 import 'package:med_app/provider/doctor_provider.dart';
 import 'package:provider/provider.dart';
 import 'progress_timeline_widget.dart';

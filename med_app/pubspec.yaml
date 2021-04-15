@@ -56,7 +56,7 @@ dependencies:
   animated_onboarding:
     git:
       url: https://github.com/Eng-Mohamed-Osama/animated_onboarding
-
+   
 
 
 
@@ -116,7 +116,7 @@ flutter:
         - asset: fonts/Proxima-Nova-Semibold.ttf
           weight: 700
         - asset: fonts/Proxima-Nova-Extrabold.ttf
-          weight: 300
+          weight: 800
 #     - family: Trajan Pro
 #       fonts:
 #         - asset: fonts/TrajanPro.ttf

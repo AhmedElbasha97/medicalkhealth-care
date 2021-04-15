@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'file:///C:/Users/Kimo%20Store/Desktop/medicalkhealth-care/med_app/lib/UI/doctors/doctor_booking_screen/hour_picker_item_widget.dart';
+import 'package:med_app/UI/doctors/doctor_booking_screen/hour_picker_item_widget.dart';
+
 
 class HourPicker extends StatefulWidget {
   final height;
