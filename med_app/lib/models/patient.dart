@@ -43,7 +43,7 @@ class Patient {
   String username;
   String name;
 
-  factory Patient.fromJson(Map<String, dynamic> json) => Patient(
+  factory Patient.fromJson(Map<dynamic, dynamic> json) => Patient(
         appointment: List<Appointment>.from(
             json["appointment"].map((x) => Appointment.fromJson(x))),
         bloodSugar: json["bloodSugar"],
@@ -62,7 +62,7 @@ class Patient {
         name: json["name"],
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<dynamic, dynamic> toJson() => {
         "appointment": List<dynamic>.from(appointment.map((x) => x.toJson())),
         "bloodSugar": bloodSugar,
         "bloodHighPressure": bloodHighPressure,
@@ -98,7 +98,7 @@ class Appointment {
   String doctorName;
   String callMethod;
 
-  factory Appointment.fromJson(Map<String, dynamic> json) => Appointment(
+  factory Appointment.fromJson(Map<dynamic, dynamic> json) => Appointment(
         date: json["date"],
         hour: json["hour"],
         doctorAvatar: json["doctorAvatar"],
@@ -107,7 +107,7 @@ class Appointment {
         callMethod: json["callMethod"],
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<dynamic, dynamic> toJson() => {
         "date": date,
         "hour": hour,
         "doctorAvatar": doctorAvatar,

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -19,19 +20,20 @@ class DoctorBookingScreen extends StatefulWidget {
 }
 
 class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
-  DateTime selectedDay = DateTime.now();
   DatePickerController _controller = DatePickerController();
+  DateTime selectedDay = DateTime.now();
   String bookingHourSelected;
+  String doctorImage;
 
-  var dateString;
-  var dateTimeTime;
-  var avDayList;
+  List avAppList;
+  List filteredAvDayList;
+  List formattedAvDayList;
+  List selectedHoursList;
 
   getImgeUrl(imagepath) async {
     String downloadURL = await firebase_storage.FirebaseStorage.instance
         .ref(imagepath)
         .getDownloadURL();
-    print(downloadURL);
     return downloadURL;
   }
 
@@ -51,10 +53,26 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
         ),
         extendBodyBehindAppBar: true,
         body: ChangeNotifierProvider<DatabaseProvider>(
-          create: (context) =>
-              DatabaseProvider(id: 'Hw7Q8FgT3TaUdzwrLkNrSF2auHj1'),
+          create: (context) => DatabaseProvider(id: widget.userId),
           child: Consumer<DatabaseProvider>(
             builder: (context, databaseProvider, _) {
+              if (databaseProvider.doctor != null) {
+                avAppList = databaseProvider.doctor.availableAppointment;
+                filteredAvDayList = avAppList.map((element) {
+                  var avDay =
+                      DateFormat('dd-MM-yyyy').parse(element.availableDay);
+                  if (avDay.day >= DateTime.now().day &&
+                      avDay.month >= DateTime.now().month) {
+                    if (selectedHoursList == null) {
+                      selectedHoursList = element.availableHours;
+                    }
+                    return avDay;
+                  }
+                }).toList();
+                filteredAvDayList.removeWhere((element) => element == null);
+                formattedAvDayList =
+                    filteredAvDayList.map((e) => e.day).toList();
+              }
               return (databaseProvider.doctor != null)
                   ? Stack(
                       // clipBehavior: Clip.none,
@@ -74,11 +92,12 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                   databaseProvider.doctor.userAvatar),
                               builder: (context, snapshot) {
                                 if (snapshot.hasData) {
+                                  doctorImage = snapshot.data;
                                   return Container(
                                     height: 300,
                                     width: double.infinity,
-                                    child: Image(
-                                      image: NetworkImage(snapshot.data),
+                                    child: CachedNetworkImage(
+                                      imageUrl: snapshot.data,
                                       fit: BoxFit.cover,
                                     ),
                                   );
@@ -362,33 +381,45 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                                 fontWeight: FontWeight.bold),
                                           ),
                                         ),
-                                        // DatePicker(
-                                        //   DateTime.now(),
-                                        //   controller: _controller,
-                                        //   initialSelectedDate: DateTime.now(),
-                                        //   selectionColor:
-                                        //       ColorsCollection.mainColor,
-                                        //   selectedTextColor: Colors.white,
-                                        //   daysCount: databaseProvider.doctor
-                                        //           .availableAppointment.length -
-                                        //       1,
-                                        //   activeDates: databaseProvider
-                                        //       .doctor.availableAppointment
-                                        //       .map((e) => DateTime.now().add(
-                                        //           Duration(
-                                        //               days: (DateFormat(
-                                        //                           'dd-MM-yyyy')
-                                        //                       .parse(e
-                                        //                           .availableDay)
-                                        //                       .day) -
-                                        //                   DateTime.now().day)))
-                                        //       .toList(),
-                                        //   onDateChange: (date) {
-                                        //     setState(() {
-                                        //       selectedDay = date;
-                                        //     });
-                                        //   },
-                                        // ),
+                                        DatePicker(
+                                          DateTime.now(),
+                                          controller: _controller,
+                                          initialSelectedDate: DateTime.now(),
+                                          selectionColor:
+                                              ColorsCollection.mainColor,
+                                          selectedTextColor: Colors.white,
+                                          daysCount: formattedAvDayList[
+                                                  formattedAvDayList.length -
+                                                      1] -
+                                              formattedAvDayList[0] +
+                                              1,
+                                          activeDates: avAppList
+                                              .map(
+                                                (e) => DateTime.now().add(
+                                                  Duration(
+                                                      days: (DateFormat(
+                                                                  'dd-MM-yyyy')
+                                                              .parse(e
+                                                                  .availableDay)
+                                                              .day) -
+                                                          DateTime.now().day),
+                                                ),
+                                              )
+                                              .toList(),
+                                          onDateChange: (date) {
+                                            setState(() {
+                                              selectedDay = date;
+                                            });
+                                            selectedHoursList = avAppList
+                                                .firstWhere((element) =>
+                                                    DateFormat('dd-MM-yyyy')
+                                                        .parse(element
+                                                            .availableDay)
+                                                        .day ==
+                                                    selectedDay.day)
+                                                .availableHours;
+                                          },
+                                        ),
                                         Padding(
                                           padding: const EdgeInsets.only(
                                               top: 10.0, bottom: 5.0),
@@ -403,14 +434,7 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                         HourPicker(
                                           height: 50.0,
                                           width: 100.0,
-                                          availableHours: [
-                                            '10:00 AM',
-                                            '11:00 AM',
-                                            '12:00 PM',
-                                            '1:00 PM',
-                                            '2:00 PM',
-                                            '3:00 PM'
-                                          ],
+                                          availableHours: selectedHoursList,
                                           callback: (val) {
                                             setState(() {
                                               bookingHourSelected = val;
@@ -436,26 +460,19 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                                           FontWeight.bold),
                                                 ),
                                                 onPressed: () {
-                                                  // DateFormat df =
-                                                  //     DateFormat('dd/MM/yyyy');
-                                                  // String string =
-                                                  //     df.format(DateTime.now());
-                                                  // print(string);
-                                                  // Navigator.push(
-                                                  //   context,
-                                                  //   MaterialPageRoute(
-                                                  //       builder: (context) =>
-                                                  //           DoctorBookingNextScreen()),
-                                                  // );
-                                                  setState(() {
-                                                    dateString = databaseProvider
-                                                        .doctor
-                                                        .availableAppointment[0]
-                                                        .availableDay;
-                                                    dateTimeTime =
-                                                        DateFormat('dd')
-                                                            .parse(dateString);
-                                                  });
+                                                  Navigator.push(
+                                                    context,
+                                                    MaterialPageRoute(
+                                                        builder: (context) => DoctorBookingNextScreen(
+                                                            userId:
+                                                                widget.userId,
+                                                            daySelected:
+                                                                selectedDay,
+                                                            hourSelected:
+                                                                bookingHourSelected,
+                                                            image:
+                                                                doctorImage)),
+                                                  );
                                                 },
                                                 style: ElevatedButton.styleFrom(
                                                   primary: ColorsCollection

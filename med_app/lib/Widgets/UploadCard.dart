@@ -46,7 +46,6 @@ class _UploadCardState extends State<UploadCard> {
 
   Future imagePick() async {
     FilePickerResult documents = await FilePicker.platform.pickFiles();
-
     if (documents != null) {
       setState(() {
         // files = documents.paths.map((path) => File(path)).toList();
@@ -64,7 +63,6 @@ class _UploadCardState extends State<UploadCard> {
       UploadTask uploadTask = ref.putFile(file);
       uploadTask.then((res) {
         res.ref.getDownloadURL();
-        print('hi from below ${file.path}');
       });
       // }
     });
