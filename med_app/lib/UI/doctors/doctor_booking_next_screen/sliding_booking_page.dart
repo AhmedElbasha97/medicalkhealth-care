@@ -1,28 +1,152 @@
+import 'dart:io';
+import 'package:file_picker/file_picker.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
-import 'package:med_app/Widgets/TextwithDropComp.dart';
 import 'package:med_app/Widgets/show_alert_dialog_widget.dart';
 import 'package:med_app/Widgets/text_field.dart';
 
 class SlidingBookingPage extends StatefulWidget {
   final callback;
   final progressIndicator;
+  final callMethods;
+  final daySelected;
+  final hourSelected;
+  final doctorName;
+  final doctorId;
+  final doctorAvatar;
+  final appointments;
   int pageNumber;
 
-  SlidingBookingPage({this.callback, this.pageNumber, this.progressIndicator});
+  SlidingBookingPage(
+      {this.callback,
+      this.pageNumber,
+      this.appointments,
+      this.daySelected,
+      this.hourSelected,
+      this.doctorAvatar,
+      this.doctorId,
+      this.doctorName,
+      this.progressIndicator,
+      this.callMethods});
 
   @override
   _SlidingBookingPageState createState() => _SlidingBookingPageState();
 }
 
 class _SlidingBookingPageState extends State<SlidingBookingPage> {
+  static FirebaseDatabase database = new FirebaseDatabase();
+  final counterRef = database.reference().child('counter');
+  DatabaseReference userRef = database.reference();
+  File file;
+
+  var callMethod;
+  var attachedFile;
+  var paymentMethod;
+  final phoneNum = TextEditingController();
+  final symptoms = TextEditingController();
+
   fawryCallback() {
     print(widget.pageNumber);
     setState(() {
       widget.pageNumber++;
     });
     widget.callback();
+    addDoctorAppoinment();
+    addPatientAppoinment();
     print(widget.pageNumber);
+  }
+
+  addDoctorAppoinment() async {
+    var doctor = userRef.child(
+        'users/doctors/${widget.doctorId}/appointment/${widget.appointments}');
+    var patient = userRef
+        .child('users/patients/jWg8VDotubNZUz2OpAeN5tE5ull2/appointment');
+
+    final TransactionResult transactionResult =
+        await counterRef.runTransaction((MutableData mutableData) async {
+      mutableData.value = (mutableData.value ?? 0) + 1;
+      return mutableData;
+    });
+
+    if (transactionResult.committed) {
+      doctor.set(<String, dynamic>{
+        "date": widget.daySelected,
+        "hour": widget.hourSelected,
+        "patientAvatar":
+            "/data/user/0/com.example.med_app/cache/file_picker/5LeLCr9t69A2r10GRaXsRIm71fw.jpg",
+        "patientId": "jWg8VDotubNZUz2OpAeN5tE5ull2",
+        "patientName": "Ahmed Aboud",
+        "callMethod": callMethod,
+        "symptoms": symptoms.text,
+        "patientPhoneNum": phoneNum.text,
+        "caseFile": attachedFile,
+        "paymentMethod": paymentMethod
+      }).then((_) {
+        print('Transaction  committed.');
+      });
+    } else {
+      print('Transaction not committed.');
+      if (transactionResult.error != null) {
+        print(transactionResult.error.message);
+      }
+    }
+  }
+
+  addPatientAppoinment() async {
+    var patient = userRef
+        .child('users/patients/jWg8VDotubNZUz2OpAeN5tE5ull2/appointment/0');
+
+    final TransactionResult transactionResult =
+        await counterRef.runTransaction((MutableData mutableData) async {
+      mutableData.value = (mutableData.value ?? 0) + 1;
+      return mutableData;
+    });
+
+    if (transactionResult.committed) {
+      patient.set(<String, dynamic>{
+        "date": widget.daySelected,
+        "hour": widget.hourSelected,
+        "doctorAvatar": widget.doctorAvatar,
+        "doctorId": widget.doctorId,
+        "doctorName": widget.doctorName,
+        "callMethod": callMethod,
+        "symptoms": symptoms.text,
+        "patientPhoneNum": phoneNum.text,
+        "caseFile": attachedFile,
+        "paymentMethod": paymentMethod
+      }).then((_) {
+        print('Transaction  committed.');
+      });
+    } else {
+      print('Transaction not committed.');
+      if (transactionResult.error != null) {
+        print(transactionResult.error.message);
+      }
+    }
+  }
+
+  Future imagePick() async {
+    FilePickerResult documents = await FilePicker.platform.pickFiles();
+    if (documents != null) {
+      setState(() {
+        file = File(documents.files.single.path);
+      });
+    }
+  }
+
+  Future uploadImageToFirebase(BuildContext context) async {
+    FirebaseStorage storage = FirebaseStorage.instance;
+    imagePick().then((_) {
+      attachedFile = file.path;
+      Reference ref = storage.ref().child(file.path);
+      UploadTask uploadTask = ref.putFile(file);
+      uploadTask.then((res) {
+        res.ref.getDownloadURL();
+        print('Transaction Committed');
+      });
+    });
   }
 
   @override
@@ -50,33 +174,36 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
                   style: TextStyle(fontFamily: 'Proxima', fontSize: 16.0),
                 ),
               ),
-              Container(
-                height: 100,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 2.0, horizontal: 20.0),
-                  child: Card(
-                    elevation: 3.0,
-                    child: InkWell(
-                      onTap: () {
-                        widget.callback();
-                      },
-                      child: Center(
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.comment,
-                            color: ColorsCollection.mainColor,
-                            size: 28.0,
-                          ),
-                          title: Text(
-                            'Chat',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 17),
-                          ),
-                          subtitle: Padding(
-                            padding: const EdgeInsets.only(top: 2.0),
-                            child: Text(
-                              'Using our voice chat to communicate through internet',
+              if (widget.callMethods.chat)
+                Container(
+                  height: 100,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 2.0, horizontal: 20.0),
+                    child: Card(
+                      elevation: 3.0,
+                      child: InkWell(
+                        onTap: () {
+                          widget.callback();
+                          callMethod = 'chat';
+                        },
+                        child: Center(
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.comment,
+                              color: ColorsCollection.mainColor,
+                              size: 28.0,
+                            ),
+                            title: Text(
+                              'Chat',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 17),
+                            ),
+                            subtitle: Padding(
+                              padding: const EdgeInsets.only(top: 2.0),
+                              child: Text(
+                                'Using our voice chat to communicate through internet',
+                              ),
                             ),
                           ),
                         ),
@@ -84,34 +211,36 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
                     ),
                   ),
                 ),
-              ),
-              Container(
-                height: 100,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 2.0, horizontal: 20.0),
-                  child: Card(
-                    elevation: 3.0,
-                    child: InkWell(
-                      onTap: () {
-                        widget.callback();
-                      },
-                      child: Center(
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.phone_in_talk,
-                            color: ColorsCollection.mainColor,
-                            size: 30.0,
-                          ),
-                          title: Text(
-                            'Voice Call',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 17),
-                          ),
-                          subtitle: Padding(
-                            padding: const EdgeInsets.only(top: 2.0),
-                            child: Text(
-                              'Using our voice chat to communicate through internet',
+              if (widget.callMethods.voice)
+                Container(
+                  height: 100,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 2.0, horizontal: 20.0),
+                    child: Card(
+                      elevation: 3.0,
+                      child: InkWell(
+                        onTap: () {
+                          widget.callback();
+                          callMethod = 'voice';
+                        },
+                        child: Center(
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.phone_in_talk,
+                              color: ColorsCollection.mainColor,
+                              size: 30.0,
+                            ),
+                            title: Text(
+                              'Voice Call',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 17),
+                            ),
+                            subtitle: Padding(
+                              padding: const EdgeInsets.only(top: 2.0),
+                              child: Text(
+                                'Using our voice chat to communicate through internet',
+                              ),
                             ),
                           ),
                         ),
@@ -119,41 +248,42 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
                     ),
                   ),
                 ),
-              ),
-              Container(
-                height: 100,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(
-                      vertical: 2.0, horizontal: 20.0),
-                  child: Card(
-                    elevation: 3.0,
-                    child: InkWell(
-                      onTap: () {
-                        widget.callback();
-                      },
-                      child: Center(
-                        child: ListTile(
-                          leading: Icon(
-                            Icons.video_call,
-                            color: ColorsCollection.mainColor,
-                            size: 32.0,
-                          ),
-                          title: Text(
-                            'Video Call',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 17),
-                          ),
-                          subtitle: Padding(
-                            padding: const EdgeInsets.only(top: 2.0),
-                            child: Text(
-                                'Using our voice chat to communicate through internet'),
+              if (widget.callMethods.video)
+                Container(
+                  height: 100,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 2.0, horizontal: 20.0),
+                    child: Card(
+                      elevation: 3.0,
+                      child: InkWell(
+                        onTap: () {
+                          widget.callback();
+                          callMethod = 'video';
+                        },
+                        child: Center(
+                          child: ListTile(
+                            leading: Icon(
+                              Icons.video_call,
+                              color: ColorsCollection.mainColor,
+                              size: 32.0,
+                            ),
+                            title: Text(
+                              'Video Call',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 17),
+                            ),
+                            subtitle: Padding(
+                              padding: const EdgeInsets.only(top: 2.0),
+                              child: Text(
+                                  'Using our voice chat to communicate through internet'),
+                            ),
                           ),
                         ),
                       ),
                     ),
                   ),
                 ),
-              ),
             ],
           )
         : widget.pageNumber == 1
@@ -186,6 +316,7 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
                       label: 'Phone Number',
                       hint: "01012345678",
                       keyboardTypeNumber: true,
+                      controller: phoneNum,
                     ),
                   )
                 ],
@@ -228,6 +359,7 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
                         TextFieldComp(
                           keyboardTypeNumber: false,
                           hint: "e.g. cough, back pain, etc.",
+                          controller: symptoms,
                         ),
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
@@ -258,7 +390,9 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
                                         fontFamily: 'Proxima',
                                         fontWeight: FontWeight.bold),
                                   ),
-                                  onPressed: () {},
+                                  onPressed: () {
+                                    uploadImageToFirebase(context);
+                                  },
                                   style: ElevatedButton.styleFrom(
                                     // elevation: 3.0,
                                     primary: Colors.grey[100],
@@ -310,6 +444,7 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
                                         context,
                                         "Are you sure you will pay with Fawry?",
                                         fawryCallback);
+                                    paymentMethod = 'fawry';
                                   },
                                   child: Center(
                                     child: ListTile(
@@ -346,7 +481,9 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
                               child: Card(
                                 elevation: 3.0,
                                 child: InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    paymentMethod = 'credit';
+                                  },
                                   child: Center(
                                     child: ListTile(
                                       leading: Container(
@@ -382,7 +519,9 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
                               child: Card(
                                 elevation: 3.0,
                                 child: InkWell(
-                                  onTap: () {},
+                                  onTap: () {
+                                    paymentMethod = 'paypal';
+                                  },
                                   child: Center(
                                     child: ListTile(
                                       leading: Container(

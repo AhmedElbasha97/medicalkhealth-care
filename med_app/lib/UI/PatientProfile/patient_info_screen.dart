@@ -17,7 +17,7 @@ class _PatientInfoScreenState extends State<PatientInfoScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
-      body: Consumer<PaitentDatabaseProvider>(
+      body: Consumer<PateintProvider>(
         builder: (context, databaseProvider, _) {
           return (databaseProvider.patient != null)
               ? PatientInfoWidget(patient: databaseProvider.patient)

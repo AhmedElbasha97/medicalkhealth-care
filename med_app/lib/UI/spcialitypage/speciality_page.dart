@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/Widgets/doctor_card.dart';
-import 'package:med_app/providedrs/database_provider.dart';
+import 'package:med_app/provider/doctor_provider.dart';
+import 'package:med_app/provider/patient_provider.dart';
 import 'package:provider/provider.dart';
 
 class SpecialityPage extends StatefulWidget {
@@ -21,16 +22,16 @@ class _SpecialityPageState extends State<SpecialityPage> {
           // the App.build method, and use it to set our appbar title.
           title: Text(widget.speciality),
         ),
-        body: ChangeNotifierProvider<DatabaseProvider>(
-          create: (context) => DatabaseProvider(speciality: widget.speciality),
-          child: Consumer<DatabaseProvider>(
-            builder: (context, DatabaseProvider, _) {
-              return (DatabaseProvider.Doctors != null)
+        body: ChangeNotifierProvider<DoctorProvider>(
+          create: (context) => DoctorProvider(speciality: widget.speciality),
+          child: Consumer<DoctorProvider>(
+            builder: (context, databaseProvider, _) {
+              return (databaseProvider.doctors != null)
                   ? ListView.builder(
-                      itemCount: DatabaseProvider.Doctors.length,
+                      itemCount: databaseProvider.doctors.length,
                       itemBuilder: (ctx, index) {
-                        final Doctor = DatabaseProvider.Doctors[index];
-                        return DoctorCard(doctor: Doctor);
+                        final doctor = databaseProvider.doctors[index];
+                        return DoctorCard(doctor: doctor);
                       })
                   : Center(
                       child: Text(

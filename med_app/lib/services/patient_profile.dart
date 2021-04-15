@@ -1,7 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:med_app/models/Patient.dart';
 
-class DataBaseService {
+class PatientService {
   static FirebaseDatabase database = new FirebaseDatabase();
 
   final ref = FirebaseDatabase.instance.reference();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile.dart';
+import 'package:med_app/UI/spcialitypage/speciality_page.dart';
 import 'package:med_app/ui/PatientNextScreen/patient_next_screen.dart';
 import 'package:med_app/ui/DoctorNextScreen/doctor_next_screen.dart';
 import 'package:med_app/UI/DoctorNextScreen/doctor_next_screen.dart';
@@ -48,7 +49,7 @@ class MyApp extends StatelessWidget {
         providers: [
           ChangeNotifierProvider(
             create: (context) =>
-                PaitentDatabaseProvider('VO2CnrLJfJRb0sEKUH3ncNTGmgA2'),
+                PateintProvider(patientId: 'VO2CnrLJfJRb0sEKUH3ncNTGmgA2'),
             // child: PatientInfoScreen(),
           ),
           // ChangeNotifierProvider(

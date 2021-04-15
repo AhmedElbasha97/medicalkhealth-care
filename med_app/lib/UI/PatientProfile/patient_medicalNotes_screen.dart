@@ -38,7 +38,7 @@ class _PatientMedicalNotesScreenState extends State<PatientMedicalNotesScreen> {
         backgroundColor: Colors.white,
         shadowColor: Colors.transparent,
       ),
-      body: Consumer<PaitentDatabaseProvider>(
+      body: Consumer<PateintProvider>(
         builder: (context, databaseProvider, _) {
           return (databaseProvider.patient.medicalNotes != null)
               ? ListView.builder(

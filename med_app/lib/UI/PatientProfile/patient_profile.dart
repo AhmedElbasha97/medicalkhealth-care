@@ -17,7 +17,7 @@ class _PatientProfileState extends State<PatientProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
-      body: Consumer<PaitentDatabaseProvider>(
+      body: Consumer<PateintProvider>(
         builder: (context, databaseProvider, _) {
           return (databaseProvider.patient != null)
               ? PatientProfileWidget(patient: databaseProvider.patient)
