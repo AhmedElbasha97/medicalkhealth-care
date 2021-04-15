@@ -85,47 +85,7 @@ class DrugsMainPageWidget extends StatelessWidget {
                           ),
                         )
                       ],
-                    )
-                    // elevation: 5,
-                    // shadowColor: ColorsCollection.mainColor,
-                    // clipBehavior: Clip.antiAlias,
-                    // shape: RoundedRectangleBorder(
-                    //     borderRadius: BorderRadius.circular(10)),
-                    // child: Row(
-                    //     mainAxisAlignment: MainAxisAlignment.start,
-                    //     crossAxisAlignment: CrossAxisAlignment.start,
-                    //     children: [
-                    //       Expanded(
-                    //         child: Padding(
-                    //           padding: const EdgeInsets.only(left: 10),
-                    //           child: Column(
-                    //             mainAxisAlignment: MainAxisAlignment.start,
-                    //             mainAxisSize: MainAxisSize.max,
-                    //             crossAxisAlignment: CrossAxisAlignment.start,
-                    //             children: [
-                    //               Padding(
-                    //                 padding: const EdgeInsets.only(
-                    //                   bottom: 25,
-                    //                   top: 25,
-                    //                 ),
-                    //                 child: Row(children: [
-                    //                   Expanded(
-                    //                     flex: 4,
-                    //                     child: Text(medicalNote,
-                    //                         textAlign: TextAlign.start,
-                    //                         style: TextStyle(
-                    //                             color:
-                    //                                 ColorsCollection.secondaryColor,
-                    //                             fontWeight: FontWeight.normal,
-                    //                             fontSize: 16)),
-                    //                   ),
-                    //                 ]),
-                    //               ),
-                    //             ],
-                    //           ),
-                    //         ),
-                    //       ),
-                    ),
+                    )),
               ),
             )),
         onTap: () async {

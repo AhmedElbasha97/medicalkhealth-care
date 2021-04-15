@@ -2,9 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/UI/Blogs/Blogs_Main_Screen.dart';
 import 'package:med_app/UI/Drugs/drugs_card_widget.dart';
-import 'package:med_app/UI/PatientProfile/patient_profile_widget.dart';
-import 'package:med_app/provider/patient_provider.dart';
-import 'package:provider/provider.dart';
 
 class NutritionScreen extends StatelessWidget {
   final String id;
@@ -30,10 +27,10 @@ class NutritionScreen extends StatelessWidget {
               child: Container(
                 decoration: BoxDecoration(
                   color: ColorsCollection.mainColor,
-                  borderRadius: BorderRadius.only(
-                    bottomRight: Radius.circular(10.0),
-                    bottomLeft: Radius.circular(10.0),
-                  ),
+                  // borderRadius: BorderRadius.only(
+                  //   bottomRight: Radius.circular(10.0),
+                  //   bottomLeft: Radius.circular(10.0),
+                  // ),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 30.0, top: 50),
