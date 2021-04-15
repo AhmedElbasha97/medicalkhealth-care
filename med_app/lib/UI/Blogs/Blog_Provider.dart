@@ -1,8 +1,6 @@
-import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
-
 import 'package:med_app/Models/ModelBlog.dart';
-import 'package:med_app/Repo/Blog_Repo.dart';
+import 'package:med_app/repository/Blog_Repo.dart';
 class BlogProvider extends ChangeNotifier{
   List<Result> Blogs;
   List<Result> NewsFeed;
