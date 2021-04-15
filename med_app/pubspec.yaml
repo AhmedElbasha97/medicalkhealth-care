@@ -28,7 +28,7 @@ dependencies:
   firebase_core: ^1.0.3
   firebase_database: ^6.1.2
   firebase_storage: ^8.0.2
-#  cloud_firestore: ^1.0.4
+  # cloud_firestore: ^1.0.4
   shared_preferences: ^2.0.5
   cupertino_tabbar: ^1.1.1
   image_picker: ^0.7.4
@@ -47,6 +47,12 @@ dependencies:
   flutter_dropdown: ^0.0.8
   file_picker: ^3.0.1
   font_awesome_flutter: ^8.8.1
+  dotted_border: ^1.0.7
+  date_picker_timeline: ^1.2.3
+  show_dialog: ^1.0.3
+  progress_timeline: ^0.0.5
+  intl: ^0.17.0
+  multi_select_flutter: ^4.0.0
   animated_onboarding:
     git:
       url: https://github.com/Eng-Mohamed-Osama/animated_onboarding
@@ -84,6 +90,13 @@ flutter:
    - assets/splash3.png
    - assets/Logo.png
    - assets/gbimage.png
+   - assets/userAvatar.jpg
+   - assets/medicalnoteBG.png
+   - assets/doctor.jpg
+   - assets/credit.png
+   - assets/paypal.png
+   - assets/fawry.jpg
+   - assets/Dermatology.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

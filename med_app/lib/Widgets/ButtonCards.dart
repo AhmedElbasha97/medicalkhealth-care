@@ -1,6 +1,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
+import 'package:med_app/UI/specialitylist/specialty_list.dart';
 class ButtonCard extends StatefulWidget {
   final title;
   final subtitle;
@@ -22,7 +23,9 @@ class _ButtonCardState extends State<ButtonCard> {
         return GestureDetector(
           onTap: () {
           if(widget.goDoctor){
-            print("doctor");
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) =>
+                  SpecialtyList(),));
           }else{
             print("AAppointment");
           }

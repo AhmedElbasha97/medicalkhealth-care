@@ -1,11 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:flutter/services.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/UI/Blogs/Blog_Provider.dart';
 import 'package:med_app/UI/Blogs/Blogs_Main_Screen.dart';
-import 'package:med_app/UI/Blogs/Nutrition_List_View.dart';
+import 'package:med_app/UI/PatientProfile/patient_profile.dart';
 import 'package:med_app/Widgets/BlogsCard.dart';
 import 'package:med_app/Widgets/ButtonCards.dart';
 import 'package:med_app/Widgets/Top_Header_custom.dart';
@@ -46,7 +45,7 @@ class Home extends StatelessWidget {
                   icon: const Icon(Icons.menu),
                   color: Colors.white,
                   iconSize: 30.0,
-                  tooltip: 'Increase volume by 10',
+
                   onPressed: () {
                     print("hiii");
                   },
@@ -58,9 +57,11 @@ class Home extends StatelessWidget {
                   icon: const Icon(Icons.account_circle_sharp),
                   color: Colors.white,
                   iconSize: 30.0,
-                  tooltip: 'Increase volume by 10',
+
                   onPressed: () {
-                    print("hiii");
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) =>
+                          PatientProfile(),));
                   },
                 ),
               ),

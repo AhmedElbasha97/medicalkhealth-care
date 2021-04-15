@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:med_app/UI/Blogs/Blogs_Main_Screen.dart';
 import 'package:med_app/UI/Home/HomeScreen.dart';
+import 'package:med_app/UI/PatientProfile/patient_profile.dart';
+import 'package:med_app/UI/specialitylist/specialty_list.dart';
 
 // import 'UI/movie_list/movie_screen.dart';
 
@@ -12,13 +14,13 @@ class Nav extends StatefulWidget {
 }
 
 class _NavbarState extends State<Nav> {
-  int _selectedIndex = 3;
+  int _selectedIndex = 1;
   List<Widget> _widgetotpions = <Widget>[
     BlogHomescreen(),
     Home(),
     Home(),
-    Home(),
-    Home()
+    SpecialtyList(),
+    PatientProfile()
   ];
 
   void _itemSwitch(int index) {
@@ -61,7 +63,7 @@ class _NavbarState extends State<Nav> {
           ),
         ],
         onTap: _itemSwitch,
-        height: 45,
+        height: 50,
         buttonBackgroundColor: Colors.white,
         color: Colors.white,
       ),
