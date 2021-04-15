@@ -5,6 +5,7 @@ import 'package:med_app/Widgets/NavBar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:med_app/UI/splash/splash_screen.dart';
+import 'package:med_app/provider/app_provider.dart';
 import 'package:med_app/provider/patient_provider.dart';
 import 'package:med_app/services/auth.dart';
 import 'package:provider/provider.dart';
@@ -40,7 +41,7 @@ class MyApp extends StatelessWidget  {
         providers: [
           ChangeNotifierProvider(
             create: (context) =>
-                PateintProvider(patientId: 'VO2CnrLJfJRb0sEKUH3ncNTGmgA2'),
+                AppProvider(patientId: 'VO2CnrLJfJRb0sEKUH3ncNTGmgA2'),
             // child: PatientInfoScreen(),
           ),
           Provider<AuthService>(

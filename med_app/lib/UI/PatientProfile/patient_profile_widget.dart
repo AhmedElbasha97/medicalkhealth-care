@@ -9,8 +9,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:med_app/UI/PatientProfile/patient_info_screen.dart';
 import 'package:med_app/UI/PatientProfile/patient_medicalNotes_screen.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile_cards.dart';
-import 'package:med_app/models/Patient.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:med_app/models/patient.dart';
+import 'package:med_app/provider/app_provider.dart';
 import 'package:med_app/provider/patient_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -78,8 +79,8 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
         print('Transaction  committed.');
       }).then((_) {
         print('Transaction  committed.');
-        PateintProvider provider =
-            Provider.of<PateintProvider>(context, listen: false);
+        AppProvider provider =
+            Provider.of<AppProvider>(context, listen: false);
         provider.getPatientById('VO2CnrLJfJRb0sEKUH3ncNTGmgA2');
       });
     } else {

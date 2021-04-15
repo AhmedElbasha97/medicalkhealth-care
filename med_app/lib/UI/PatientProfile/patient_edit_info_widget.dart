@@ -2,7 +2,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/Widgets/userProfile_edit.dart';
-import 'package:med_app/models/Patient.dart';
+import 'package:med_app/models/patient.dart';
+import 'package:med_app/provider/app_provider.dart';
 import 'package:med_app/provider/patient_provider.dart';
 import 'package:provider/provider.dart';
 class PatientEditInfoWidget extends StatefulWidget {
@@ -67,8 +68,8 @@ class _PatientInfoWidgetState extends State<PatientEditInfoWidget> {
       'age': (age != null && age.length > 0) ? age : widget.patient.age,
     }).then((_) {
       print('Transaction  committed.');
-      PateintProvider provider =
-          Provider.of<PateintProvider>(context, listen: false);
+      AppProvider provider =
+          Provider.of<AppProvider>(context, listen: false);
       provider.getPatientById(widget.patientId);
       Navigator.of(context).pop();
     });

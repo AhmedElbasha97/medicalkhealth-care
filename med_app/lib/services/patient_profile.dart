@@ -1,5 +1,6 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:med_app/models/Patient.dart';
+import 'package:med_app/models/patient.dart';
+
 
 class PatientService {
   static FirebaseDatabase database = new FirebaseDatabase();

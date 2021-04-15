@@ -1,4 +1,5 @@
 import 'package:med_app/models/doctor.dart';
+import 'package:med_app/models/patient.dart';
 import 'package:med_app/services/database.dart';
 import 'package:med_app/services/patient_profile.dart';
 
@@ -6,7 +7,7 @@ class DatabaseRepositories {
   PatientService _patientService = PatientService();
   DoctorService _doctorService = DoctorService();
 
-  Future<dynamic> fetchPatient(id) {
+  Future<Patient> fetchPatient(id) {
     return _patientService.fetchPatient(id);
   }
 

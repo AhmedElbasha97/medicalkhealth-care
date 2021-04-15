@@ -7,6 +7,7 @@ import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/UI/doctors/doctor_booking_next_screen/doctor_booking_next_screen.dart';
 import 'package:med_app/UI/doctors/doctor_booking_screen/hour_picker_widget.dart';
 import 'package:med_app/Widgets/doctor_reviews_widget.dart';
+import 'package:med_app/provider/app_provider.dart';
 import 'package:med_app/provider/doctor_provider.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:provider/provider.dart';
@@ -52,9 +53,9 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
           elevation: 0.0,
         ),
         extendBodyBehindAppBar: true,
-        body: ChangeNotifierProvider<DoctorProvider>(
-          create: (context) => DoctorProvider(doctorId: widget.userId),
-          child: Consumer<DoctorProvider>(
+        body: ChangeNotifierProvider<AppProvider>(
+          create: (context) => AppProvider(doctorId: widget.userId),
+          child: Consumer<AppProvider>(
             builder: (context, databaseProvider, _) {
               if (databaseProvider.doctor != null) {
                 avAppList = databaseProvider.doctor.availableAppointment;

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/UI/PatientProfile/patient_medicalNotes_widget.dart';
+import 'package:med_app/provider/app_provider.dart';
 import 'package:med_app/provider/patient_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -38,7 +39,7 @@ class _PatientMedicalNotesScreenState extends State<PatientMedicalNotesScreen> {
         backgroundColor: Colors.white,
         shadowColor: Colors.transparent,
       ),
-      body: Consumer<PateintProvider>(
+      body: Consumer<AppProvider>(
         builder: (context, databaseProvider, _) {
           return (databaseProvider.patient.medicalNotes != null)
               ? ListView.builder(
