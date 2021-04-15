@@ -10,7 +10,17 @@ class AuthService {
   AuthService(this._auth);
   //
   Stream<User> get authStateChanges => _auth.authStateChanges();
+// getStringValuesSF() async {
 
+// SharedPreferences prefs = await SharedPreferences.getInstance();
+
+// //Return String
+
+// String stringValue = prefs.getString('stringValue');
+
+// return stringValue;
+
+// }
   addStringToSF(id) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('userid', id);
@@ -151,8 +161,15 @@ class AuthService {
     }
   }
 
+//Get current User
+
+  Future getCurrentUser() async {
+    return await _auth.currentUser;
+  }
+
   //signout
-  void SignOut() async {
+  void signOut() async {
     await _auth.signOut();
+    print('u signout');
   }
 }

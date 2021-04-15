@@ -1,7 +1,3 @@
-// To parse this JSON data, do
-//
-//     final patient = patientFromJson(jsonString);
-
 import 'dart:convert';
 
 Patient patientFromJson(String str) => Patient.fromJson(json.decode(str));
@@ -10,109 +6,112 @@ String patientToJson(Patient data) => json.encode(data.toJson());
 
 class Patient {
   Patient({
+    this.age,
     this.appointment,
-    this.bloodSugar,
+    this.balance,
     this.bloodHighPressure,
     this.bloodLowPressure,
+    this.bloodSugar,
     this.email,
-    this.height,
-    this.age,
     this.gender,
+    this.height,
     this.medicalNotes,
-    this.userAvatar,
-    this.balance,
-    this.userId,
-    this.weight,
-    this.username,
     this.name,
+    this.userAvatar,
+    this.userId,
+    this.username,
+    this.weight,
   });
 
+  String age;
   List<Appointment> appointment;
-  String bloodSugar;
+  String balance;
   String bloodHighPressure;
   String bloodLowPressure;
+  String bloodSugar;
   String email;
-  String height;
-  String age;
   String gender;
+  String height;
   List<String> medicalNotes;
-  String userAvatar;
-  String balance;
-  String userId;
-  String weight;
-  String username;
   String name;
+  String userAvatar;
+  String userId;
+  String username;
+  String weight;
 
-  factory Patient.fromJson(Map<String, dynamic> json) => Patient(
-        appointment: List<Appointment>.from(
-            json["appointment"].map((x) => Appointment.fromJson(x))),
-        bloodSugar: json["bloodSugar"],
+  factory Patient.fromJson(Map<dynamic, dynamic> json) => Patient(
+        age: json["age"],
+        appointment: (json.keys.contains('appointment'))
+            ? List<Appointment>.from(
+                json["appointment"].map((x) => Appointment.fromJson(x)))
+            : [],
+        balance: json["balance"],
         bloodHighPressure: json["bloodHighPressure"],
         bloodLowPressure: json["bloodLowPressure"],
+        bloodSugar: json["bloodSugar"],
         email: json["email"],
-        height: json["height"],
-        age: json["age"],
         gender: json["gender"],
-        medicalNotes: List<String>.from(json["medicalNotes"].map((x) => x)),
-        userAvatar: json["userAvatar"],
-        balance: json["balance"],
-        userId: json["userId"],
-        weight: json["weight"],
-        username: json["username"],
+        height: json["height"],
+        medicalNotes:
+            (json.keys.contains('medicalNotes')) ? json["medicalNotes"] : [],
         name: json["name"],
+        userAvatar: json["userAvatar"],
+        userId: json["userId"],
+        username: json["username"],
+        weight: json["weight"],
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<dynamic, dynamic> toJson() => {
+        "age": age,
         "appointment": List<dynamic>.from(appointment.map((x) => x.toJson())),
-        "bloodSugar": bloodSugar,
+        "balance": balance,
         "bloodHighPressure": bloodHighPressure,
         "bloodLowPressure": bloodLowPressure,
+        "bloodSugar": bloodSugar,
         "email": email,
-        "height": height,
-        "age": age,
         "gender": gender,
+        "height": height,
         "medicalNotes": List<dynamic>.from(medicalNotes.map((x) => x)),
-        "userAvatar": userAvatar,
-        "balance": balance,
-        "userId": userId,
-        "weight": weight,
-        "username": username,
         "name": name,
+        "userAvatar": userAvatar,
+        "userId": userId,
+        "username": username,
+        "weight": weight,
       };
 }
 
 class Appointment {
   Appointment({
+    this.callMethod,
     this.date,
-    this.hour,
     this.doctorAvatar,
     this.doctorId,
     this.doctorName,
-    this.callMethod,
+    this.hour,
   });
 
+  String callMethod;
   String date;
-  String hour;
   String doctorAvatar;
   String doctorId;
   String doctorName;
-  String callMethod;
+  String hour;
 
-  factory Appointment.fromJson(Map<String, dynamic> json) => Appointment(
+  factory Appointment.fromJson(Map<dynamic, dynamic> json) => Appointment(
+        callMethod: json["callMethod"],
         date: json["date"],
-        hour: json["hour"],
         doctorAvatar: json["doctorAvatar"],
         doctorId: json["doctorId"],
         doctorName: json["doctorName"],
-        callMethod: json["callMethod"],
+        hour: json["hour"],
       );
 
-  Map<String, dynamic> toJson() => {
+  Map<dynamic, dynamic> toJson() => {
+        "callMethod": callMethod,
         "date": date,
-        "hour": hour,
         "doctorAvatar": doctorAvatar,
         "doctorId": doctorId,
         "doctorName": doctorName,
-        "callMethod": callMethod,
+        "hour": hour,
       };
 }

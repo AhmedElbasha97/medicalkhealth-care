@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:med_app/UI/PatientProfile/patient_profile.dart';
+import 'package:med_app/UI/spcialitypage/speciality_page.dart';
+import 'package:med_app/ui/PatientNextScreen/patient_next_screen.dart';
+import 'package:med_app/ui/DoctorNextScreen/doctor_next_screen.dart';
 import 'package:med_app/UI/DoctorNextScreen/doctor_next_screen.dart';
 import 'package:med_app/UI/PatientNextScreen/patient_next_screen.dart';
 
@@ -22,6 +26,10 @@ import 'package:med_app/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// import 'UI/PatientProfile/patient_profile.dart';
+import 'UI/PatientProfile/patient_edit_info_widget.dart';
+import 'UI/PatientProfile/patient_info_screen.dart';
+import 'provider/patient_provider.dart';
 import 'providedrs/database_provider.dart';
 
 void main() async {
@@ -39,10 +47,20 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
         providers: [
+          ChangeNotifierProvider(
+            create: (context) =>
+                PateintProvider(patientId: 'VO2CnrLJfJRb0sEKUH3ncNTGmgA2'),
+            // child: PatientInfoScreen(),
+          ),
           // ChangeNotifierProvider(
-          //   create: (context) => DatabaseProvider(
-          //       speciality: 'Dermatology', id: '32FqmbJsHCTEMn8pgTXBnPLoAr82'),
-          //   child: DoctorBookingScreen(),
+          //   create: (context) =>
+          //       DatabaseProvider('fmSI3GbaBGbblc5oDGJHWaROnSg2'),
+          //   child: PatientEditInfoWidget(),
+          // ),
+          // ChangeNotifierProvider(
+          //   create: (context) =>
+          //       DatabaseProvider('fmSI3GbaBGbblc5oDGJHWaROnSg2'),
+          //   child: PatientInfoScreen(),
           // ),
           Provider<AuthService>(
             create: (_) => AuthService(FirebaseAuth.instance),
@@ -52,7 +70,8 @@ class MyApp extends StatelessWidget {
           ),
         ],
         child: MaterialApp(
-          home: DoctorBookingScreen(),
+          home: PatientProfile(),
+          // fmSI3GbaBGbblc5oDGJHWaROnSg2
         ));
   }
 }
