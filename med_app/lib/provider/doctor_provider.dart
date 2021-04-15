@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:med_app/models/doctor.dart';
 import 'package:med_app/repository/patient_profile_repo.dart';
-
 class DoctorProvider extends ChangeNotifier {
   List<Doctor> doctors;
   Doctor doctor;

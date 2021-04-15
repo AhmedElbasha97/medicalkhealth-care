@@ -2,7 +2,21 @@
 class Assets {
   Assets._();
 
-  static const String generatedAssets = 'lib/generated/assets.dart';
-  static const String libMain = 'lib/main.dart';
+  // static const String assetsCandidate = 'assets/Candidate.png';
+  // static const String assetsCredit = 'assets/credit.png';
+  // static const String assetsDermatology = 'assets/Dermatology.png';
+  // static const String assetsDoctor = 'assets/doctor.jpg';
+  // static const String assetsDoctors-pana = 'assets/Doctors-pana.png';
+  // static const String assetsDocuments = 'assets/documents.jpg';
+  // static const String assetsFawry = 'assets/fawry.jpg';
+  // static const String assetsGbimage = 'assets/gbimage.png';
+  // static const String assetsID = 'assets/ID.png';
+  // static const String assetsLogo = 'assets/Logo.png';
+  // static const String assetsMedicalnoteBG = 'assets/medicalnoteBG.png';
+  // static const String assetsPaypal = 'assets/paypal.png';
+  // static const String assetsSplash1 = 'assets/splash1.png';
+  // static const String assetsSplash2 = 'assets/splash2.png';
+  // static const String assetsSplash3 = 'assets/splash3.png';
+  // static const String assetsUserAvatar = 'assets/userAvatar.jpg';
 
 }

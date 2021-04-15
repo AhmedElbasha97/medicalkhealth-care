@@ -1,12 +1,10 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:med_app/Styles/colors.dart';
+import 'package:med_app/Widgets/userProfile_edit.dart';
 import 'package:med_app/models/Patient.dart';
 import 'package:med_app/provider/patient_provider.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:med_app/Styles/colors.dart';
-import 'package:med_app/Widgets/userProfile_edit.dart';
-
 class PatientEditInfoWidget extends StatefulWidget {
   final text;
   final color;

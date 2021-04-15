@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/Widgets/doctor_card.dart';
 import 'package:med_app/provider/doctor_provider.dart';
-import 'package:med_app/provider/patient_provider.dart';
 import 'package:provider/provider.dart';
-
 class SpecialityPage extends StatefulWidget {
   SpecialityPage({Key key, this.speciality}) : super(key: key);
 

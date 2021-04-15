@@ -19,7 +19,13 @@
     <select />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="7dbff01e-5548-4647-bacf-2b06ad332963" name="Default Changelist" comment="" />
+    <list default="true" id="7dbff01e-5548-4647-bacf-2b06ad332963" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/med_app/lib/Widgets/NavBar.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/med_app/lib/UI/Home/HomeScreen.dart" beforeDir="false" afterPath="$PROJECT_DIR$/med_app/lib/UI/Home/HomeScreen.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/med_app/lib/Widgets/ButtonCards.dart" beforeDir="false" afterPath="$PROJECT_DIR$/med_app/lib/Widgets/ButtonCards.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/med_app/lib/Widgets/Top_Header_custom.dart" beforeDir="false" afterPath="$PROJECT_DIR$/med_app/lib/Widgets/Top_Header_custom.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/med_app/lib/main.dart" beforeDir="false" afterPath="$PROJECT_DIR$/med_app/lib/main.dart" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,7 +46,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="dart.analysis.tool.window.visible" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/med_app" />
-    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
+    <property name="settings.editor.selected.configurable" value="flutter.settings" />
     <property name="show.migrate.to.gradle.popup" value="false" />
   </component>
   <component name="RunManager">
@@ -67,13 +73,12 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State>
-              <option name="COLUMN_ORDER" />
-            </State>
+            <State />
           </value>
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
     <state x="223" y="67" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1617828720799">
@@ -88,11 +93,11 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="100" y="100" width="1336" height="624" key="AVDManager/0.0.1536.824@0.0.1536.824" timestamp="1617828975228" />
-    <state x="488" y="156" key="FileChooserDialogImpl" timestamp="1617937426229">
-      <screen x="0" y="0" width="1366" height="768" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1618240731827">
+      <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="488" y="156" key="FileChooserDialogImpl/0.0.1366.768@0.0.1366.768" timestamp="1617937426229" />
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1617829001030" />
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1618240731827" />
     <state width="738" height="201" key="GridCell.Tab.0.bottom" timestamp="1617828975137">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
@@ -109,9 +114,9 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state width="738" height="201" key="GridCell.Tab.0.right/0.0.1536.824@0.0.1536.824" timestamp="1617828975137" />
-    <state x="277" y="57" key="SettingsEditor" timestamp="1617828681020">
+    <state x="277" y="57" key="SettingsEditor" timestamp="1618240721725">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1617828681020" />
+    <state x="277" y="57" key="SettingsEditor/0.0.1536.824@0.0.1536.824" timestamp="1618240721725" />
   </component>
 </project>
