@@ -9,66 +9,58 @@ import 'package:med_app/provider/patient_provider.dart';
 import 'package:med_app/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-class MyHttpOverrides extends HttpOverrides{
+
+import 'UI/Drugs/drugs_main_page.dart';
+
+class MyHttpOverrides extends HttpOverrides {
   @override
-  HttpClient createHttpClient(SecurityContext context){
+  HttpClient createHttpClient(SecurityContext context) {
     return super.createHttpClient(context)
-      ..badCertificateCallback = (X509Certificate cert, String host, int port)=> true;
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }
 
-
-
 void main() async {
-
   HttpOverrides.global = new MyHttpOverrides();
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));
-  
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
 }
 
-
-class MyApp extends StatelessWidget  {
-
+class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-            create: (context) =>
-                PateintProvider(patientId: 'VO2CnrLJfJRb0sEKUH3ncNTGmgA2'),
-            // child: PatientInfoScreen(),
-          ),
-          Provider<AuthService>(
-            create: (_) => AuthService(FirebaseAuth.instance),
-          ),
-
-          StreamProvider(
-            create: (context) => context.read<AuthService>().authStateChanges,
-
-          )
-        ],
-        child: MaterialApp(
-          home:  Nav()
-
-        ));
-
+    return MultiProvider(providers: [
+      ChangeNotifierProvider(
+        create: (context) =>
+            PateintProvider(patientId: 'VO2CnrLJfJRb0sEKUH3ncNTGmgA2'),
+        // child: PatientInfoScreen(),
+      ),
+      Provider<AuthService>(
+        create: (_) => AuthService(FirebaseAuth.instance),
+      ),
+      StreamProvider(
+        create: (context) => context.read<AuthService>().authStateChanges,
+      )
+    ], child: MaterialApp(home: DrugsMainPageScreen()));
   }
-   signedin() async {
-     SharedPreferences prefs = await SharedPreferences.getInstance();
-     bool CheckValue = prefs.containsKey('userid');
-     return CheckValue;
-   }
-  decideScreen() async{
-    if(signedin()){
+
+  signedin() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool CheckValue = prefs.containsKey('userid');
+    return CheckValue;
+  }
+
+  decideScreen() async {
+    if (signedin()) {
       return Nav();
-    }else{
+    } else {
       return Splash();
     }
   }
-
 }

@@ -97,6 +97,9 @@ flutter:
    - assets/paypal.png
    - assets/fawry.jpg
    - assets/Dermatology.png
+   - assets/drugs.png
+   - assets/reminders.jpg
+   - assets/consultation.jpg
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
