@@ -5,16 +5,9 @@ import 'package:med_app/UI/PatientProfile/patient_profile_widget.dart';
 import 'package:med_app/provider/patient_provider.dart';
 import 'package:provider/provider.dart';
 
-class DrugsMainPageScreen extends StatefulWidget {
+class DrugsMainPageScreen extends StatelessWidget {
   final String id;
-  final String patientId;
-  DrugsMainPageScreen({Key key, this.id, this.patientId}) : super(key: key);
-
-  @override
-  _DrugsMainPageScreenState createState() => _DrugsMainPageScreenState();
-}
-
-class _DrugsMainPageScreenState extends State<DrugsMainPageScreen> {
+  DrugsMainPageScreen({Key key, this.id}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,16 +23,19 @@ class _DrugsMainPageScreenState extends State<DrugsMainPageScreen> {
         backgroundColor: Color(0xFFFFFFFF),
         body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
           DrugsMainPageWidget(
+              // buttonNavigation: ,
               bg: 'assets/drugs.png',
               title: 'Drugs',
               subTtitle:
                   'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s'),
           DrugsMainPageWidget(
+              // buttonNavigation: ,
               bg: 'assets/consultation.jpg',
               title: 'Consultation',
               subTtitle:
                   'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s'),
           DrugsMainPageWidget(
+              // buttonNavigation: ,
               bg: 'assets/reminders.jpg',
               title: 'Reminders',
               subTtitle:
