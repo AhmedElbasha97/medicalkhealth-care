@@ -8,8 +8,9 @@ import 'package:flutter/material.dart';
 class BlogsCard extends StatelessWidget {
   final Title;
   final subTitle;
+  final imageURL;
  final index;
-  const BlogsCard({Key key, this.Title, this.subTitle,this.index }) : super(key: key);
+  const BlogsCard({Key key, this.Title, this.subTitle,this.index, this.imageURL }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return  Card(
@@ -36,17 +37,19 @@ class BlogsCard extends StatelessWidget {
                   child: Text(
                    Title,
                     overflow: TextOverflow.ellipsis,
+                    maxLines: 3,
                     textAlign: TextAlign.left,
                     style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(height: 20,),
+                SizedBox(height: 10,),
                 SizedBox(
                   width: MediaQuery.of(context).size.width * 0.35,
                   child: Text(
-                     subTitle,
+                      subTitle, maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
                       textAlign: TextAlign.left),
                 ),
 
@@ -59,9 +62,9 @@ class BlogsCard extends StatelessWidget {
             tag: 'imageHero$index',
             child:CachedNetworkImage(
               imageUrl:
-              'https://images.unsplash.com/photo-1507297230445-ff678f10b524?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1050&q=80',
+              image(),
               imageBuilder: (context, imageProvider) => Container(
-                height: MediaQuery.of(context).size.height * 0.3,
+                height: MediaQuery.of(context).size.height * 0.29,
                 width: MediaQuery.of(context).size.width * 0.4,
 
                 decoration: BoxDecoration(
@@ -87,5 +90,13 @@ class BlogsCard extends StatelessWidget {
       ),
     );
 
+  }
+
+  image() {
+    if(imageURL == null){
+      return "https://image.freepik.com/free-photo/digital-healthcare-network-connection-hologram-modern-virtual-screen-interface-medical-technology-network-concept_1205-6951.jpg";
+    }else{
+      return imageURL;
+    }
   }
 }

@@ -1,16 +1,12 @@
-import 'dart:io';
-import 'package:file_picker/file_picker.dart';
-import 'package:firebase_database/firebase_database.dart';
-import 'package:firebase_storage/firebase_storage.dart';
+
 import 'package:flutter/material.dart';
-import 'package:med_app/Styles/colors.dart';
-// import 'package:image_picker/image_picker.dart';
 import 'package:med_app/Styles/colors.dart';
 class ButtonCard extends StatefulWidget {
   final title;
   final subtitle;
+  final goDoctor;
 
-  ButtonCard({this.title,this.subtitle});
+  ButtonCard({this.title,this.subtitle, this.goDoctor});
 
   @override
   _ButtonCardState createState() => _ButtonCardState();
@@ -25,7 +21,11 @@ class _ButtonCardState extends State<ButtonCard> {
       builder: (ctx, constraints) {
         return GestureDetector(
           onTap: () {
-          print("hiii");
+          if(widget.goDoctor){
+            print("doctor");
+          }else{
+            print("AAppointment");
+          }
           },
           child: Container(
             decoration: BoxDecoration(
