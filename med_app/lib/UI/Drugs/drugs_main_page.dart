@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/UI/Drugs/drugs_card_widget.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile_widget.dart';
+import 'package:med_app/UI/spcialitypage/speciality_page.dart';
 import 'package:med_app/provider/patient_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -32,6 +33,9 @@ class DrugsMainPageScreen extends StatelessWidget {
               // buttonNavigation: ,
               bg: 'assets/consultation.jpg',
               title: 'Consultation',
+              buttonNavigation: SpecialityPage(
+                speciality: 'Pharmacist',
+              ),
               subTtitle:
                   'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s'),
           DrugsMainPageWidget(

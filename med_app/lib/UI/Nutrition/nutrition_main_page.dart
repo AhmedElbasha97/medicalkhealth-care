@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/UI/Blogs/Blogs_Main_Screen.dart';
 import 'package:med_app/UI/Drugs/drugs_card_widget.dart';
+import 'package:med_app/UI/spcialitypage/speciality_page.dart';
 
 class NutritionScreen extends StatelessWidget {
   final String id;
@@ -53,7 +54,9 @@ class NutritionScreen extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.only(bottom: 55.0),
               child: DrugsMainPageWidget(
-                  // buttonNavigation ,
+                  buttonNavigation: SpecialityPage(
+                    speciality: 'Nutrition',
+                  ),
                   bg: 'assets/consultation.jpg',
                   title: 'Nutruitonal Consultation',
                   subTtitle:
