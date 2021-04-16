@@ -35,12 +35,14 @@ class NutritionScreen extends StatelessWidget {
                 ),
                 child: Padding(
                   padding: const EdgeInsets.only(left: 30.0, top: 50),
-                  child: Text(
-                    'Make Your Consultation Now',
-                    style: TextStyle(
-                        fontSize: 45,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white),
+                  child: Expanded(
+                    child: Text(
+                      'Make Your Consultation Now',
+                      style: TextStyle(
+                          fontSize: 45,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white),
+                    ),
                   ),
                 ),
               )),

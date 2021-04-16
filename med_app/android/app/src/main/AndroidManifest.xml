@@ -2,7 +2,7 @@
     package="com.example.med_app">
    <application
        android:requestLegacyExternalStorage="true"
-        android:label="med_app"
+        android:label="TeleMed"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
