@@ -22,28 +22,30 @@ class DrugsMainPageScreen extends StatelessWidget {
           backgroundColor: ColorsCollection.mainColor,
         ),
         backgroundColor: Color(0xFFFFFFFF),
-        body: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
-          DrugsMainPageWidget(
-              // buttonNavigation: ,
-              bg: 'assets/drugs.png',
-              title: 'Drugs',
-              subTtitle:
-                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s'),
-          DrugsMainPageWidget(
-              // buttonNavigation: ,
-              bg: 'assets/consultation.jpg',
-              title: 'Consultation',
-              buttonNavigation: SpecialityPage(
-                speciality: 'Pharmacist',
-              ),
-              subTtitle:
-                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s'),
-          DrugsMainPageWidget(
-              // buttonNavigation: ,
-              bg: 'assets/reminders.jpg',
-              title: 'Reminders',
-              subTtitle:
-                  'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s')
-        ]));
+        body: SingleChildScrollView(
+          child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+            DrugsMainPageWidget(
+                // buttonNavigation: ,
+                bg: 'assets/drugs.png',
+                title: 'Drugs',
+                subTtitle:
+                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s'),
+            DrugsMainPageWidget(
+                // buttonNavigation: ,
+                bg: 'assets/consultation.jpg',
+                title: 'Consultation',
+                buttonNavigation: SpecialityPage(
+                  speciality: 'Pharmacist',
+                ),
+                subTtitle:
+                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s'),
+            DrugsMainPageWidget(
+                // buttonNavigation: ,
+                bg: 'assets/reminders.jpg',
+                title: 'Reminders',
+                subTtitle:
+                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s')
+          ]),
+        ));
   }
 }

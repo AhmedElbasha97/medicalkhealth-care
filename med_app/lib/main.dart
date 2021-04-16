@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
       StreamProvider(
         create: (context) => context.read<AuthService>().authStateChanges,
       )
-    ], child: MaterialApp(home: NutritionScreen()));
+    ], child: MaterialApp(home: Nav()));
   }
 
   signedin() async {
