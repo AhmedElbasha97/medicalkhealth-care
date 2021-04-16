@@ -31,9 +31,13 @@ class PatientInfoWidget extends StatefulWidget {
 class _PatientInfoWidgetState extends State<PatientInfoWidget> {
   bool changePassword = false;
   String _newPassword;
+  String pattern =
+      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,10}$';
 
   @override
   Widget build(BuildContext context) {
+    RegExp regExp = new RegExp(pattern);
+
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -146,7 +150,7 @@ class _PatientInfoWidgetState extends State<PatientInfoWidget> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 (_newPassword != null &&
-                                        _newPassword.length > 8)
+                                        regExp.hasMatch(_newPassword))
                                     ? Padding(
                                         padding:
                                             const EdgeInsets.only(right: 8.0),

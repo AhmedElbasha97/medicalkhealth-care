@@ -13,6 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'UI/Drugs/drugs_main_page.dart';
 import 'UI/Nutrition/nutrition_main_page.dart';
+import 'UI/PatientProfile/patient_profile.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -49,7 +50,7 @@ class MyApp extends StatelessWidget {
       StreamProvider(
         create: (context) => context.read<AuthService>().authStateChanges,
       )
-    ], child: MaterialApp(home: Nav()));
+    ], child: MaterialApp(home: PatientProfile()));
   }
 
   signedin() async {
