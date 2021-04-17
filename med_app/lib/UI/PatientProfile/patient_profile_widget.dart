@@ -66,7 +66,7 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
   }
 
   addDoctor() async {
-    var user = userRef.child('users/patients/VO2CnrLJfJRb0sEKUH3ncNTGmgA2');
+    var user = userRef.child('users/patients/${widget.patient.userId}');
     final TransactionResult transactionResult =
         await counterRef.runTransaction((MutableData mutableData) async {
       mutableData.value = (mutableData.value ?? 0) + 1;
@@ -80,7 +80,7 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
         print('Transaction  committed.');
         PateintProvider provider =
             Provider.of<PateintProvider>(context, listen: false);
-        provider.getPatientById('VO2CnrLJfJRb0sEKUH3ncNTGmgA2');
+        provider.getPatientById('${widget.patient.userId}');
       });
     } else {
       print('Transaction not committed.');
