@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/Widgets/Blogs_Card_List.dart';
 import 'package:provider/provider.dart';
-import 'Blog_Provider.dart';
+import '../../provider/Blog_Provider.dart';
 import 'BlogsDetailsScreen.dart';
 class NutritionalListScreen extends StatefulWidget {
   @override

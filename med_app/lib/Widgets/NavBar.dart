@@ -2,6 +2,7 @@ import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:med_app/UI/Blogs/Blogs_Main_Screen.dart';
+import 'package:med_app/UI/Drugs/DrugsList.dart';
 import 'package:med_app/UI/Home/HomeScreen.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile.dart';
 import 'package:med_app/UI/specialitylist/specialty_list.dart';
@@ -14,10 +15,10 @@ class Nav extends StatefulWidget {
 }
 
 class _NavbarState extends State<Nav> {
-  int _selectedIndex = 1;
+  int _selectedIndex = 0;
   List<Widget> _widgetotpions = <Widget>[
     BlogHomescreen(),
-    Home(),
+    DrugsList(),
     Home(),
     SpecialtyList(),
     PatientProfile()

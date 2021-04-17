@@ -19,12 +19,12 @@ class TopHaderCustom extends StatelessWidget {
             style: TextStyle(
               color: Colors.white,
               fontWeight: FontWeight.w600,
-              fontSize: 28,
+              fontSize: MediaQuery.of(context).size.height * 0.03,
             ),
           ),
           Image.asset(
             image,
-            height: 220,
+            height: MediaQuery.of(context).size.height * 0.3,
             fit: BoxFit.fitHeight,
           )
         ],
