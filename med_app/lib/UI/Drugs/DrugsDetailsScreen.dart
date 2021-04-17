@@ -55,9 +55,9 @@ class DrugsDetailedScreen extends StatelessWidget {
                     ),
                   ),
                   placeholder: (context, url) =>
-                      Image.asset('lib/assets/iPhone X, XS, 11 Pro – 1.png'),
+                      Center(child: CircularProgressIndicator()),
                   errorWidget: (context, url, error) =>
-                      Image.asset('lib/assets/iPhone X, XS, 11 Pro – 1.png'),
+                      Center(child: CircularProgressIndicator()),
                 ),
               ),
             ),

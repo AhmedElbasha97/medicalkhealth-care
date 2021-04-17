@@ -59,16 +59,16 @@ class BlogsDetailedScreen extends StatelessWidget {
                         ),
                       ),
                       placeholder: (context, url) =>
-                          Image.asset('lib/assets/iPhone X, XS, 11 Pro – 1.png'),
+                          Center(child: CircularProgressIndicator()),
                       errorWidget: (context, url, error) =>
-                          Image.asset('lib/assets/iPhone X, XS, 11 Pro – 1.png'),
+                          Center(child: CircularProgressIndicator()),
                     ),
                   ),
                 ),
               ),
               Positioned(
-                  top: 50,
-                  left: 0,
+                  top:30,
+                  left: 20,
                   right: 0,
 
                   child:Row(
@@ -78,11 +78,11 @@ class BlogsDetailedScreen extends StatelessWidget {
                         padding: EdgeInsets.all(1.0),
                         child: IconButton(
                           icon: const Icon(Icons.arrow_back_ios),
-                          color: Colors.white,
+                          color: ColorsCollection.mainColor,
                           iconSize: 30.0,
-                          tooltip: 'Increase volume by 10',
+
                           onPressed: () {
-                            print("hiii");
+                            Navigator.pop(context);
                           },
                         ),
                       ),
@@ -140,42 +140,41 @@ class BlogsDetailedScreen extends StatelessWidget {
                               height: MediaQuery.of(context).size.height * 0.04,
 
                               child:Container(
+                                  height: MediaQuery.of(context).size.height * 0.08,
                                 width: MediaQuery.of(context).size.width * 0.4,
                                 decoration: BoxDecoration(
                                   boxShadow: [
                                     BoxShadow(
                                       color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 5,
-                                      blurRadius: 7,
-                                      offset: Offset(0, 3), // changes position of shadow
+                                      spreadRadius: 1,
+                                      blurRadius: 2,
+                                      offset: Offset(1, 1), // changes position of shadow
                                     ),
                                   ],
                                   color: Colors.white,
                                   border: Border.all(
                                       width: 3.0,
-                                      color: ColorsCollection.mainColor),
-                                  borderRadius: BorderRadius.only(
-                                      bottomRight: Radius.circular(40.0),
-                                      topRight: Radius.circular(
-                                          40.0) //                 <--- border radius here
-                                  ),
+                                      color: Colors.white),
+                                  borderRadius: BorderRadius.circular(20),
                                 ),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border(
-                                      left: BorderSide(width: 7.0,style: BorderStyle.solid, color:ColorsCollection.mainColor),
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.fromLTRB(3.0,0.0, 0.0, 0.0),
-                                    child: Text(
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(10.0,0.0,0.0,0.0,),
+                                  child: Container(
+                                    child: Padding(
+                                      padding: EdgeInsets.fromLTRB(3.0,0.0, 0.0, 0.0),
+                                      child:  Row(
+                                          children: [
+                                            Icon(Icons.date_range,
+                                              color: ColorsCollection.mainColor,),
+                                            Text(
+                                              "Date Of Publishing:",
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold),
 
-                                      "Date Of Publishing:",
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-
+                                            ),]
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -185,7 +184,7 @@ class BlogsDetailedScreen extends StatelessWidget {
                         SizedBox(height: 5),
                         Container(
                           width: MediaQuery.of(context).size.width * 0.9,
-                          height: MediaQuery.of(context).size.height * 0.1,
+                          height: MediaQuery.of(context).size.height * 0.05,
 
                           child: Padding(
                               padding: EdgeInsets.all(10),
@@ -206,42 +205,41 @@ class BlogsDetailedScreen extends StatelessWidget {
                               height: MediaQuery.of(context).size.height * 0.04,
 
                               child:Container(
+                                height: MediaQuery.of(context).size.height * 0.08,
                                 width: MediaQuery.of(context).size.width * 0.4,
                                 decoration: BoxDecoration(
                                   boxShadow: [
                                     BoxShadow(
                                       color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 5,
-                                      blurRadius: 7,
-                                      offset: Offset(0, 3), // changes position of shadow
+                                      spreadRadius: 1,
+                                      blurRadius: 2,
+                                      offset: Offset(1, 1), // changes position of shadow
                                     ),
                                   ],
                                   color: Colors.white,
                                   border: Border.all(
                                       width: 3.0,
-                                      color: ColorsCollection.mainColor),
-                                  borderRadius: BorderRadius.only(
-                                      bottomRight: Radius.circular(40.0),
-                                      topRight: Radius.circular(
-                                          40.0) //                 <--- border radius here
-                                  ),
+                                      color: Colors.white),
+                                  borderRadius: BorderRadius.circular(20),
                                 ),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border(
-                                      left: BorderSide(width: 7.0,style: BorderStyle.solid, color:ColorsCollection.mainColor),
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.fromLTRB(3.0,0.0, 0.0, 0.0),
-                                    child: Text(
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(10.0,0.0,0.0,0.0,),
+                                  child: Container(
+                                    child: Padding(
+                                      padding: EdgeInsets.fromLTRB(3.0,0.0, 0.0, 0.0),
+                                      child:  Row(
+                                          children: [
+                                            Icon(Icons.description,
+                                              color: ColorsCollection.mainColor,),
+                                            Text(
+                                              "Description:",
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold),
 
-                                      "Description:",
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-
+                                            ),]
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -265,42 +263,41 @@ class BlogsDetailedScreen extends StatelessWidget {
                               height: MediaQuery.of(context).size.height * 0.04,
 
                               child:Container(
+                                height: MediaQuery.of(context).size.height * 0.08,
                                 width: MediaQuery.of(context).size.width * 0.4,
                                 decoration: BoxDecoration(
                                   boxShadow: [
                                     BoxShadow(
                                       color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 5,
-                                      blurRadius: 7,
-                                      offset: Offset(0, 3), // changes position of shadow
+                                      spreadRadius: 1,
+                                      blurRadius: 2,
+                                      offset: Offset(1, 1), // changes position of shadow
                                     ),
                                   ],
                                   color: Colors.white,
                                   border: Border.all(
                                       width: 3.0,
-                                      color: ColorsCollection.mainColor),
-                                  borderRadius: BorderRadius.only(
-                                      bottomRight: Radius.circular(40.0),
-                                      topRight: Radius.circular(
-                                          40.0) //                 <--- border radius here
-                                  ),
+                                      color: Colors.white),
+                                  borderRadius: BorderRadius.circular(20),
                                 ),
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    border: Border(
-                                      left: BorderSide(width: 7.0,style: BorderStyle.solid, color:ColorsCollection.mainColor),
-                                    ),
-                                  ),
-                                  child: Padding(
-                                    padding: EdgeInsets.fromLTRB(3.0,0.0, 0.0, 0.0),
-                                    child: Text(
+                                child: Padding(
+                                  padding: EdgeInsets.fromLTRB(10.0,0.0,0.0,0.0,),
+                                  child: Container(
+                                    child: Padding(
+                                      padding: EdgeInsets.fromLTRB(3.0,0.0, 0.0, 0.0),
+                                      child:  Row(
+                                          children: [
+                                            Icon(Icons.add,
+                                              color: ColorsCollection.mainColor,),
+                                            Text(
+                                              "For More Details:",
+                                              textAlign: TextAlign.left,
+                                              style: TextStyle(
+                                                  fontSize: 20,
+                                                  fontWeight: FontWeight.bold),
 
-                                      "For More Details:",
-                                      textAlign: TextAlign.left,
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-
+                                            ),]
+                                      ),
                                     ),
                                   ),
                                 ),
