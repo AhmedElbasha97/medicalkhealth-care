@@ -31,7 +31,7 @@ class DoctorService {
   Future<Doctor> fetchDoctor(id) async {
     Map<dynamic, dynamic> values;
     Doctor doctor;
-    await ref.child('users/doctors/$id').once().then((DataSnapshot data) {
+    await ref.child('users/$id').once().then((DataSnapshot data) {
       values = data.value;
     });
     if (values != null) {

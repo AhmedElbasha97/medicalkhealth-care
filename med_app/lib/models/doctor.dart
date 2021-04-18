@@ -32,7 +32,7 @@ class Doctor {
     this.name,
   });
 
-  List<Appointment> appointment;
+  List<DoctorAppointment> appointment;
   List<AvailableAppointment> availableAppointment;
   String age;
   String gender;
@@ -59,8 +59,8 @@ class Doctor {
                 .map((x) => AvailableAppointment.fromJson(x)))
             : [],
         appointment: (json.keys.contains('appointment'))
-            ? List<Appointment>.from(
-                json["appointment"].map((x) => Appointment.fromJson(x)))
+            ? List<DoctorAppointment>.from(
+                json["appointment"].map((x) => DoctorAppointment.fromJson(x)))
             : [],
         age: json["age"],
         gender: json["gender"],
@@ -109,39 +109,64 @@ class Doctor {
       };
 }
 
-class Appointment {
-  Appointment({
+// To parse this JSON data, do
+//
+//     final doctorAppointment = doctorAppointmentFromJson(jsonString);
+
+class DoctorAppointment {
+  DoctorAppointment({
+    this.callMethod,
+    this.channelName,
     this.date,
     this.hour,
     this.patientAvatar,
     this.patientId,
     this.patientName,
-    this.callMethod,
+    this.patientPhoneNum,
+    this.paymentMethod,
+    this.symptoms,
+    this.token,
   });
 
+  String callMethod;
+  String channelName;
   String date;
   String hour;
   String patientAvatar;
   String patientId;
   String patientName;
-  String callMethod;
+  String patientPhoneNum;
+  String paymentMethod;
+  String symptoms;
+  String token;
 
-  factory Appointment.fromJson(Map<dynamic, dynamic> json) => Appointment(
+  factory DoctorAppointment.fromJson(Map<dynamic, dynamic> json) =>
+      DoctorAppointment(
+        callMethod: json["callMethod"],
+        channelName: json["channelName"],
         date: json["date"],
         hour: json["hour"],
         patientAvatar: json["patientAvatar"],
         patientId: json["patientId"],
         patientName: json["patientName"],
-        callMethod: json["callMethod"],
+        patientPhoneNum: json["patientPhoneNum"],
+        paymentMethod: json["paymentMethod"],
+        symptoms: json["symptoms"],
+        token: json["token"],
       );
 
   Map<dynamic, dynamic> toJson() => {
+        "callMethod": callMethod,
+        "channelName": channelName,
         "date": date,
         "hour": hour,
         "patientAvatar": patientAvatar,
         "patientId": patientId,
         "patientName": patientName,
-        "callMethod": callMethod,
+        "patientPhoneNum": patientPhoneNum,
+        "paymentMethod": paymentMethod,
+        "symptoms": symptoms,
+        "token": token,
       };
 }
 

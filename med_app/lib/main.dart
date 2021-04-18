@@ -11,6 +11,7 @@ import 'package:med_app/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'UI/DoctorProfile/doctor_profile.dart';
 import 'UI/Drugs/drugs_main_page.dart';
 import 'UI/Nutrition/nutrition_main_page.dart';
 import 'UI/PatientProfile/patient_profile.dart';
@@ -41,7 +42,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(providers: [
       ChangeNotifierProvider(
         create: (context) =>
-            PateintProvider(patientId: 'VO2CnrLJfJRb0sEKUH3ncNTGmgA2'),
+            PateintProvider(doctorId: 'Hw7Q8FgT3TaUdzwrLkNrSF2auHj1'),
         // child: PatientInfoScreen(),
       ),
       Provider<AuthService>(
@@ -50,7 +51,7 @@ class MyApp extends StatelessWidget {
       StreamProvider(
         create: (context) => context.read<AuthService>().authStateChanges,
       )
-    ], child: MaterialApp(home: PatientProfile()));
+    ], child: MaterialApp(home: DcotorProfile()));
   }
 
   signedin() async {
