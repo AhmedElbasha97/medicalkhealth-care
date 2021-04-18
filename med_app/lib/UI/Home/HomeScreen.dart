@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:med_app/Styles/colors.dart';
-import 'file:///C:/Users/Kimo%20Store/Desktop/medicalkhealth-care/med_app/lib/provider/Blog_Provider.dart';
 import 'package:med_app/UI/Blogs/Blogs_Main_Screen.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile.dart';
 import 'package:med_app/Widgets/BlogsCard.dart';
 import 'package:med_app/Widgets/ButtonCards.dart';
 import 'package:med_app/Widgets/Top_Header_custom.dart';
+import 'package:med_app/provider/Blog_Provider.dart';
 import 'package:provider/provider.dart';
 import 'package:med_app/UI/Blogs/BlogsDetailsScreen.dart';
 
