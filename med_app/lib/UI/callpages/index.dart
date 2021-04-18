@@ -2,12 +2,13 @@ import 'dart:async';
 
 import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:flutter/material.dart';
+import 'package:med_app/Styles/colors.dart';
 import 'package:permission_handler/permission_handler.dart';
 
 import './call.dart';
 
 class IndexPage extends StatefulWidget {
-  IndexPage({this.channelName, this.method,this.token});
+  IndexPage({this.channelName, this.method, this.token});
   final method;
   final channelName;
   final token;
@@ -18,7 +19,7 @@ class IndexPage extends StatefulWidget {
 
 class IndexState extends State<IndexPage> {
   /// if channel textField is validated to have error
-  bool _validateError ;
+  bool _validateError;
 
   ClientRole _role = ClientRole.Broadcaster;
   @override
@@ -29,19 +30,28 @@ class IndexState extends State<IndexPage> {
 
   @override
   Widget build(BuildContext context) {
-     _validateError = (widget.channelName!=null);
+    _validateError = (widget.channelName != null);
     return Center(
-      child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 20),
-          child: 
-           RaisedButton(
-              onPressed: onJoin,
-              child: Text('Join'),
-              color: Colors.blueAccent,
-              textColor: Colors.white,
-            ),
+        child: Container(
+      height: 50,
+      width: double.infinity,
+      child: ElevatedButton(
+        child: Text(
+          "Join Session",
+          style: TextStyle(fontSize: 16.0),
+        ),
+        onPressed: onJoin,
+        style: ElevatedButton.styleFrom(
+          elevation: 3.0,
+          primary: Colors.white,
+          onPrimary: ColorsCollection.mainColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(40.0),
+            side: BorderSide(color: ColorsCollection.mainColor, width: 1.0),
           ),
-    );
+        ),
+      ),
+    ));
   }
 
   Future<void> onJoin() async {
@@ -60,11 +70,10 @@ class IndexState extends State<IndexPage> {
         context,
         MaterialPageRoute(
           builder: (context) => CallPage(
-            channelName: widget.channelName,
-            role: _role,
-            method: widget.method,
-            token:widget.token
-          ),
+              channelName: widget.channelName,
+              role: _role,
+              method: widget.method,
+              token: widget.token),
         ),
       );
     }

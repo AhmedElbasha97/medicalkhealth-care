@@ -2,17 +2,22 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:med_app/Styles/colors.dart';
+import 'package:med_app/UI/callpages/index.dart';
 import 'package:med_app/UI/doctors/doctor_booking_screen/doctor_booking_screen.dart';
+import 'package:med_app/models/doctor.dart';
+import 'package:med_app/models/patient.dart';
 
 class AppointmentPage extends StatelessWidget {
+  final userType;
   final appointment;
-  final doctorImage;
+  final Image;
   final callback;
 
-  AppointmentPage({this.appointment, this.doctorImage, this.callback});
-
+  AppointmentPage({this.appointment, this.Image, this.callback, this.userType});
+  var isPatient;
   @override
   Widget build(BuildContext context) {
+    isPatient = (userType == 'patient');
     return Scaffold(
         appBar: AppBar(
           shadowColor: Colors.black,
@@ -36,7 +41,7 @@ class AppointmentPage extends StatelessWidget {
                           color: ColorsCollection.mainColor, width: 5.0),
                       image: new DecorationImage(
                         fit: BoxFit.fill,
-                        image: NetworkImage(doctorImage),
+                        image: NetworkImage(Image),
                       ),
                     ),
                   ),
@@ -57,26 +62,29 @@ class AppointmentPage extends StatelessWidget {
                           ],
                         ),
                         title: Text('Doctor Name'),
-                        subtitle: Text('Ahmed Samy'),
+                        subtitle: Text(isPatient
+                            ? appointment.doctorName
+                            : appointment.patientName),
                       ),
                     ),
-                    Expanded(
-                      flex: 1,
-                      child: ListTile(
-                        leading: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.format_list_bulleted_outlined,
-                              size: 35.0,
-                              color: ColorsCollection.mainColor,
-                            ),
-                          ],
+                    if (isPatient)
+                      Expanded(
+                        flex: 1,
+                        child: ListTile(
+                          leading: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.format_list_bulleted_outlined,
+                                size: 35.0,
+                                color: ColorsCollection.mainColor,
+                              ),
+                            ],
+                          ),
+                          title: Text('Speciality'),
+                          subtitle: Text(appointment.doctorSpeciality),
                         ),
-                        title: Text('Speciality'),
-                        subtitle: Text('Dermatology'),
                       ),
-                    ),
                   ],
                 ),
                 Row(
@@ -95,7 +103,7 @@ class AppointmentPage extends StatelessWidget {
                           ],
                         ),
                         title: Text('Date'),
-                        subtitle: Text('17-04-2021'),
+                        subtitle: Text(appointment.day),
                       ),
                     ),
                     Expanded(
@@ -112,7 +120,7 @@ class AppointmentPage extends StatelessWidget {
                           ],
                         ),
                         title: Text('Hour'),
-                        subtitle: Text('10:00 AM'),
+                        subtitle: Text(appointment.hour),
                       ),
                     ),
                   ],
@@ -133,7 +141,7 @@ class AppointmentPage extends StatelessWidget {
                           ],
                         ),
                         title: Text('Fees'),
-                        subtitle: Text('200 EGP'),
+                        subtitle: Text(appointment.fees.toString()),
                       ),
                     ),
                     Expanded(
@@ -150,7 +158,7 @@ class AppointmentPage extends StatelessWidget {
                           ],
                         ),
                         title: Text('Call Type'),
-                        subtitle: Text('Video Call'),
+                        subtitle: Text(appointment.callMethod),
                       ),
                     ),
                   ],
@@ -175,33 +183,10 @@ class AppointmentPage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 30.0),
               child: Column(
                 children: [
-                  Container(
-                    height: 50,
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      child: Text(
-                        "View Doctor's Profile",
-                        style: TextStyle(fontSize: 16.0),
-                      ),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => DoctorBookingScreen(
-                                      userId: appointment.doctorId,
-                                    )));
-                      },
-                      style: ElevatedButton.styleFrom(
-                        elevation: 3.0,
-                        primary: Colors.white,
-                        onPrimary: ColorsCollection.mainColor,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(40.0),
-                          side: BorderSide(
-                              color: ColorsCollection.mainColor, width: 1.0),
-                        ),
-                      ),
-                    ),
+                  IndexPage(
+                    method: appointment.callMethod,
+                    channelName: appointment.channelName,
+                    token: appointment.token,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),

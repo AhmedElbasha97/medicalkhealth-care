@@ -114,6 +114,7 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
       "doctorAvatar": widget.doctorAvatar,
       "doctorId": widget.doctorId,
       "doctorName": widget.doctorName,
+      "doctorSpeciality": widget.doctorSpeciality,
       "callMethod": callMethod,
       "symptoms": symptoms.text,
       "patientPhoneNum": phoneNum.text,
