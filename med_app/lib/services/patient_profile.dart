@@ -1,5 +1,5 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:med_app/models/Patient.dart';
+import 'package:med_app/models/patient.dart';
 
 class PatientService {
   static FirebaseDatabase database = new FirebaseDatabase();
@@ -10,7 +10,7 @@ class PatientService {
     Map<dynamic, dynamic> values;
     Patient patient;
 
-    await ref.child('users/patients/$userId').once().then((DataSnapshot data) {
+    await ref.child('users/$userId').once().then((DataSnapshot data) {
       values = data.value;
       print(values);
     });

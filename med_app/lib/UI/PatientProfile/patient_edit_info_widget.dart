@@ -2,8 +2,8 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/Widgets/userProfile_edit.dart';
-import 'package:med_app/models/Patient.dart';
-import 'package:med_app/provider/patient_provider.dart';
+import 'package:med_app/models/patient.dart';
+import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
 class PatientEditInfoWidget extends StatefulWidget {
   final text;
@@ -41,7 +41,7 @@ class _PatientInfoWidgetState extends State<PatientEditInfoWidget> {
       age,
       username;
   void updateUser() async {
-    var user = userRef.child('users/patients/VO2CnrLJfJRb0sEKUH3ncNTGmgA2');
+    var user = userRef.child('users/${widget.patient.userId}');
 
     await user.update({
       'bloodSugar': (bloodSugar != null && bloodSugar.length > 0)
@@ -67,9 +67,10 @@ class _PatientInfoWidgetState extends State<PatientEditInfoWidget> {
       'age': (age != null && age.length > 0) ? age : widget.patient.age,
     }).then((_) {
       print('Transaction  committed.');
-      PateintProvider provider =
-          Provider.of<PateintProvider>(context, listen: false);
-      provider.getPatientById(widget.patientId);
+      AppProvider provider =
+          Provider.of<AppProvider>(context, listen: false);
+      provider.getPatientById(widget.patient.userId);
+      print("edite: ${provider.patient.name}");
       Navigator.of(context).pop();
     });
   }

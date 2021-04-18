@@ -1,23 +1,14 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:med_app/UI/DoctorNextScreen/doctor_next_screen.dart';
-import 'package:med_app/UI/appointments/patient_appointment_list/appointment_list.dart';
-import 'package:med_app/UI/doctors/doctor_booking_screen/doctor_booking_screen.dart';
-import 'package:med_app/UI/doctors/doctor_profile/doctor_profile_schedule.dart';
-import 'package:med_app/UI/drug_reminder/screens/welcome/reminderIntro.dart';
-import 'package:med_app/UI/specialitylist/specialty_list.dart';
-import 'package:med_app/Widgets/NavBar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:med_app/UI/splash/splash_screen.dart';
-import 'package:med_app/provider/patient_provider.dart';
+import 'package:med_app/Widgets/start.dart';
+import 'package:med_app/provider/app_provider.dart';
 import 'package:med_app/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'UI/drug_reminder/screens/home/home.dart';
-import 'UI/specialitylist/specialty_list.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -42,24 +33,18 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) =>
-              PateintProvider(patientId: 'VO2CnrLJfJRb0sEKUH3ncNTGmgA2'),
-          // child: PatientInfoScreen(),
-        ),
-        Provider<AuthService>(
-          create: (_) => AuthService(FirebaseAuth.instance),
-        ),
-        StreamProvider(
-          create: (context) => context.read<AuthService>().authStateChanges,
-        )
-      ],
-      child: MaterialApp(
-        home: SpecialtyList(),
+    return MultiProvider(providers: [
+      ChangeNotifierProvider(
+        create: (context) => AppProvider(),
+        // child: PatientInfoScreen(),
       ),
-    );
+      Provider<AuthService>(
+        create: (_) => AuthService(FirebaseAuth.instance),
+      ),
+      StreamProvider(
+        create: (context) => context.read<AuthService>().authStateChanges,
+      )
+    ], child: MaterialApp(home: Splash()));
   }
 
   signedin() async {
@@ -70,7 +55,7 @@ class MyApp extends StatelessWidget {
 
   decideScreen() async {
     if (signedin()) {
-      return Nav();
+      return Start();
     } else {
       return Splash();
     }

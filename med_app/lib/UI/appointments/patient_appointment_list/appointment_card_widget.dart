@@ -4,8 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:med_app/UI/appointments/appointment_page/appointment_page.dart';
-import 'package:med_app/models/doctor.dart';
-import 'package:med_app/provider/patient_provider.dart';
+import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
 
 class AppointmentCard extends StatefulWidget {
@@ -39,8 +38,7 @@ class _AppointmentCardState extends State<AppointmentCard> {
     var newApps = widget.appointments.map((e) => e.toJson()).toList();
     await app.update({"appointment": newApps}).then((_) {
       print('Transaction  committed.');
-      PateintProvider provider =
-          Provider.of<PateintProvider>(context, listen: false);
+      AppProvider provider = Provider.of<AppProvider>(context, listen: false);
       provider.getPatientById(widget.patientId);
     });
   }

@@ -1,11 +1,21 @@
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/Widgets/show_alert_dialog_widget.dart';
 import 'package:med_app/Widgets/text_field.dart';
+import 'package:med_app/models/patient.dart';
+import 'package:med_app/models/token.dart';
+import 'package:med_app/provider/app_provider.dart';
+import 'package:med_app/services/auth.dart';
+import 'dart:math';
+import 'package:provider/provider.dart';
+
+import 'package:med_app/services/callservice.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SlidingBookingPage extends StatefulWidget {
   final callback;
@@ -49,12 +59,24 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
   var paymentMethod;
   final phoneNum = TextEditingController();
   final symptoms = TextEditingController();
-
-  fawryCallback() {
+  Token token;
+  User user;
+  String id;
+  Patient patient;
+  fawryCallback() async {
     print(widget.pageNumber);
     setState(() {
       widget.pageNumber++;
     });
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    id = prefs.getString('userid');
+    print("booking $id");
+    token = await CallService().generateToken(widget.doctorName);
+    AppProvider provider = Provider.of<AppProvider>(context, listen: false);
+
+    provider.getPatientById(id);
+    patient = provider.patient;
+    print("booking: ${provider.patient.email}");
     widget.callback();
     addDoctorAppoinment();
     addPatientAppoinment();
@@ -62,41 +84,43 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
   }
 
   addDoctorAppoinment() async {
-    var doctor = userRef.child(
-        'users/doctors/${widget.doctorId}/appointment/${widget.appointments}');
+    var doctor = userRef
+        .child('users/${widget.doctorId}/appointment/${widget.appointments}');
+
     doctor.set(<String, dynamic>{
       "date": widget.daySelected,
       "hour": widget.hourSelected,
-      "patientAvatar":
-          "/data/user/0/com.example.med_app/cache/file_picker/5LeLCr9t69A2r10GRaXsRIm71fw.jpg",
-      "patientId": "jWg8VDotubNZUz2OpAeN5tE5ull2",
-      "patientName": "Ahmed Aboud",
+      "patientAvatar": patient.userAvatar,
+      "patientId": id,
+      "patientName": patient.name,
       "callMethod": callMethod,
       "symptoms": symptoms.text,
       "patientPhoneNum": phoneNum.text,
       "caseFile": attachedFile,
-      "paymentMethod": paymentMethod
+      "paymentMethod": paymentMethod,
+      "token": token.token,
+      "channelName": token.channelName
     }).then((_) {
       print('Transaction  committed.');
     });
   }
 
   addPatientAppoinment() async {
-    var patient = userRef
-        .child('users/patients/jWg8VDotubNZUz2OpAeN5tE5ull2/appointment/2');
-
-    patient.set(<String, dynamic>{
+    var ref = userRef.child(
+        'users/$id/appointment/${(patient.appointment == null) ? 0 : patient.appointment.length}');
+    ref.set(<String, dynamic>{
       "date": widget.daySelected,
       "hour": widget.hourSelected,
       "doctorAvatar": widget.doctorAvatar,
       "doctorId": widget.doctorId,
       "doctorName": widget.doctorName,
-      "doctorSpeciality": widget.doctorSpeciality,
       "callMethod": callMethod,
       "symptoms": symptoms.text,
+      "patientPhoneNum": phoneNum.text,
       "caseFile": attachedFile,
       "paymentMethod": paymentMethod,
-      "fees": widget.fees
+      "token": token.token,
+      "channelName": token.channelName
     }).then((_) {
       print('Transaction  committed.');
     });
@@ -126,6 +150,7 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
 
   @override
   Widget build(BuildContext context) {
+    var random = new Random.secure();
     return widget.pageNumber == 0
         ? ListView(
             children: [
@@ -575,7 +600,7 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
                                         child: Text('Reference Number'),
                                       ),
                                       Text(
-                                        '800309730',
+                                        "${random.nextInt(10000000)}",
                                         style: TextStyle(
                                             fontSize: 20.0,
                                             fontFamily: 'Proxima',

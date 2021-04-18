@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile_widget.dart';
-import 'package:med_app/provider/patient_provider.dart';
+import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
 
 class PatientProfile extends StatefulWidget {
@@ -17,10 +17,10 @@ class _PatientProfileState extends State<PatientProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
-      body: Consumer<PateintProvider>(
-        builder: (context, databaseProvider, _) {
-          return (databaseProvider.patient != null)
-              ? PatientProfileWidget(patient: databaseProvider.patient)
+      body: Consumer<AppProvider>(
+        builder: (context, appProvider, _) {
+          return (appProvider.patient != null)
+              ? PatientProfileWidget(patient: appProvider.patient)
               : Center(
                   child: CircularProgressIndicator(),
                 );

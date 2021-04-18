@@ -2,16 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:med_app/Styles/colors.dart';
-import 'package:med_app/UI/Blogs/Blog_Provider.dart';
 import 'package:med_app/UI/Blogs/Blogs_Main_Screen.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile.dart';
 import 'package:med_app/Widgets/BlogsCard.dart';
 import 'package:med_app/Widgets/ButtonCards.dart';
 import 'package:med_app/Widgets/Top_Header_custom.dart';
+import 'package:med_app/provider/Blog_Provider.dart';
 import 'package:provider/provider.dart';
 import 'package:med_app/UI/Blogs/BlogsDetailsScreen.dart';
-
-import '../drug_reminder/screens/welcome/reminderIntro.dart';
 
 class Home extends StatelessWidget {
   final myEmailController = TextEditingController();
@@ -31,14 +29,14 @@ class Home extends StatelessWidget {
         backgroundColor: Colors.transparent,
         body: Stack(children: [
           Positioned(
-              top: 50,
+              top: MediaQuery.of(context).size.height * 0.06,
               left: 0,
               right: 0,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Padding(
-                    padding: EdgeInsets.all(1.0),
+                    padding: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
                     child: IconButton(
                       icon: const Icon(Icons.menu),
                       color: Colors.white,
@@ -49,7 +47,7 @@ class Home extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.all(1.0),
+                    padding: EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
                     child: IconButton(
                       icon: const Icon(Icons.account_circle_sharp),
                       color: Colors.white,
@@ -64,7 +62,7 @@ class Home extends StatelessWidget {
                 ],
               )),
           Positioned(
-              top: 60,
+              top: MediaQuery.of(context).size.height * 0.08,
               left: 0,
               right: 0,
               child: Padding(
@@ -76,8 +74,8 @@ class Home extends StatelessWidget {
                 ),
               )),
           DraggableScrollableSheet(
-              initialChildSize: 0.7,
-              minChildSize: 0.7,
+              initialChildSize: 0.65,
+              minChildSize: 0.65,
               maxChildSize: 1,
               builder: (context, scrollController) {
                 return Container(
@@ -103,6 +101,7 @@ class Home extends StatelessWidget {
                               title: "Doctor Speciality",
                               subtitle:
                                   "you can find doctors with it speciality there",
+                              goDoctor: true,
                             )),
                         SizedBox(height: 10),
                         Padding(
@@ -110,6 +109,7 @@ class Home extends StatelessWidget {
                             child: ButtonCard(
                               title: "Appointment",
                               subtitle: 'you can follow yor appointments here',
+                              goDoctor: false,
                             )),
                         SizedBox(height: 20),
                         Column(
@@ -138,7 +138,8 @@ class Home extends StatelessWidget {
                                       onTap: () async {
                                         Navigator.of(context)
                                             .push(MaterialPageRoute(
-                                          builder: (context) => ReminderIntro(),
+                                          builder: (context) =>
+                                              BlogHomescreen(),
                                         ));
                                       },
                                       child: Container(
@@ -179,19 +180,11 @@ class Home extends StatelessWidget {
                                                 itemBuilder: (ctx, index) {
                                                   final person =
                                                       BlogProvider.Blogs[index];
-                                                  if ((BlogProvider
-                                                              .Blogs.length -
-                                                          2) ==
-                                                      index) {
-                                                    BlogProvider
-                                                        .getBlogAtFrist();
-                                                  }
-
                                                   return GestureDetector(
-                                                    child: BlogsCard(
-                                                      Title: person.title,
-                                                      subTitle: person.body,
-                                                      imageURL: person.image,
+                                                    child: BlogsCardWidget(
+                                                      title: person.title,
+                                                      subTtitle: person.body,
+                                                      bg: person.image,
                                                     ),
                                                     onTap: () async {
                                                       Navigator.of(context)
@@ -291,10 +284,10 @@ class Home extends StatelessWidget {
                                                       .NewsFeed[index];
 
                                                   return GestureDetector(
-                                                    child: BlogsCard(
-                                                      Title: person.title,
-                                                      subTitle: person.body,
-                                                      imageURL: person.image,
+                                                    child: BlogsCardWidget(
+                                                      title: person.title,
+                                                      subTtitle: person.body,
+                                                      bg: person.image,
                                                     ),
                                                     onTap: () async {
                                                       Navigator.of(context)

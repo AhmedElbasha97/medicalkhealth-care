@@ -28,6 +28,7 @@ dependencies:
   firebase_core: ^1.0.3
   firebase_database: ^6.1.2
   firebase_storage: ^8.0.2
+  expandable: ^5.0.1
   # cloud_firestore: ^1.0.4
   shared_preferences: ^2.0.5
   cupertino_tabbar: ^1.1.1
@@ -62,6 +63,9 @@ dependencies:
   after_layout: ^1.1.0
   weekday_selector: ^1.0.0
   day_night_time_picker: ^1.0.1
+  agora_rtc_engine: any
+  permission_handler: any
+
   animated_onboarding:
     git:
       url: https://github.com/Eng-Mohamed-Osama/animated_onboarding

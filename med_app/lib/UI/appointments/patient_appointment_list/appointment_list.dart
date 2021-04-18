@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/UI/appointments/patient_appointment_list/appointment_card_widget.dart';
-import 'package:med_app/provider/doctor_provider.dart';
-import 'package:med_app/provider/patient_provider.dart';
+import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
 
 class AppointmentList extends StatelessWidget {
@@ -25,10 +24,10 @@ class AppointmentList extends StatelessWidget {
           backgroundColor: ColorsCollection.mainColor,
           elevation: 0.0,
         ),
-        body: ChangeNotifierProvider<PateintProvider>(
+        body: ChangeNotifierProvider<AppProvider>(
           create: (context) =>
-              PateintProvider(patientId: "jWg8VDotubNZUz2OpAeN5tE5ull2"),
-          child: Consumer<PateintProvider>(
+              AppProvider(patientId: "jWg8VDotubNZUz2OpAeN5tE5ull2"),
+          child: Consumer<AppProvider>(
             builder: (context, patientProvider, _) {
               return (patientProvider.patient != null)
                   ? Padding(

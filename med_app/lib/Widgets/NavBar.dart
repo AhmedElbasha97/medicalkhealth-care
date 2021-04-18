@@ -1,26 +1,35 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:med_app/UI/Blogs/Blogs_Main_Screen.dart';
+import 'package:med_app/UI/Drugs/DrugsList.dart';
 import 'package:med_app/UI/Home/HomeScreen.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile.dart';
+import 'package:med_app/UI/callpages/callingtest.dart';
 import 'package:med_app/UI/specialitylist/specialty_list.dart';
+import 'package:med_app/provider/app_provider.dart';
+import 'package:med_app/services/auth.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../UI/drug_reminder/screens/welcome/reminderIntro.dart';
 
 // import 'UI/movie_list/movie_screen.dart';
 
 class Nav extends StatefulWidget {
+  final String userid;
+  Nav(this.userid);
   @override
   _NavbarState createState() => _NavbarState();
 }
 
 class _NavbarState extends State<Nav> {
-  int _selectedIndex = 1;
+  int _selectedIndex = 0;
   List<Widget> _widgetotpions = <Widget>[
     BlogHomescreen(),
+    DrugsList(),
     Home(),
-    ReminderIntro(),
     SpecialtyList(),
     PatientProfile()
   ];
@@ -32,7 +41,20 @@ class _NavbarState extends State<Nav> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    // getStringValuesSF().then((i){
+    //   id=i;
+    // });
+    AppProvider provider = Provider.of<AppProvider>(context, listen: false);
+    provider.getUserType('${widget.userid}');
+  }
+
+  @override
   Widget build(BuildContext context) {
+    print("nav ${widget.userid}");
+
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
         backgroundColor: Color(0xFF00A1A7),
