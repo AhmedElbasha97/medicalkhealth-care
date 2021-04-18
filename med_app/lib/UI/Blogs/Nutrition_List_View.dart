@@ -13,9 +13,7 @@ class _NutritionalListScreenState extends State<NutritionalListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-        body: ChangeNotifierProvider<BlogProvider>(
-          create: (context) => BlogProvider(),
-          child: Consumer<BlogProvider>(
+        body:Consumer<BlogProvider>(
             builder: (buildContext, BlogProvider, _) {
               print('hi4');
 
@@ -39,8 +37,8 @@ class _NutritionalListScreenState extends State<NutritionalListScreen> {
                     ); },): Center(child: CircularProgressIndicator());
                   })
 
-            )
-          );
+            );
+   
 
   }
 
