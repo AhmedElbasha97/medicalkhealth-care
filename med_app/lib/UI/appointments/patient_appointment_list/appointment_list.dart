@@ -5,48 +5,50 @@ import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
 
 class AppointmentList extends StatelessWidget {
-  final patientId;
-  AppointmentList({this.patientId});
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          shadowColor: Colors.black,
-          title: Text('Appointments'),
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 10.0),
-            child: IconButton(
-                icon: Icon(Icons.event_note),
-                color: Colors.white,
-                onPressed: () => null),
-          ),
-          backgroundColor: ColorsCollection.mainColor,
-          elevation: 0.0,
+      appBar: AppBar(
+        shadowColor: Colors.black,
+        title: Text('Appointments'),
+        leading: Padding(
+          padding: const EdgeInsets.only(left: 10.0),
+          child: IconButton(
+              icon: Icon(Icons.event_note),
+              color: Colors.white,
+              onPressed: () => null),
         ),
-        body: ChangeNotifierProvider<AppProvider>(
-          create: (context) =>
-              AppProvider(patientId: "jWg8VDotubNZUz2OpAeN5tE5ull2"),
-          child: Consumer<AppProvider>(
-            builder: (context, patientProvider, _) {
-              return (patientProvider.patient != null)
-                  ? Padding(
-                      padding: const EdgeInsets.only(top: 5.0),
-                      child: ListView.builder(
-                        itemCount: patientProvider.patient.appointment.length,
-                        itemBuilder: (ctx, index) {
-                          return AppointmentCard(
-                              appointment:
-                                  patientProvider.patient.appointment[index],
-                              appointments: patientProvider.patient.appointment,
-                              index: index,
-                              patientId: patientProvider.patient.userId);
-                        },
-                      ),
-                    )
-                  : Center(child: CircularProgressIndicator());
-            },
-          ),
-        ));
+        backgroundColor: ColorsCollection.mainColor,
+        elevation: 0.0,
+      ),
+      body: Consumer<AppProvider>(
+        builder: (context, appProvider, _) {
+          return (appProvider.patient != null || appProvider.doctor != null)
+              ? Padding(
+                  padding: const EdgeInsets.only(top: 5.0),
+                  child: ListView.builder(
+                    itemCount: appProvider.type == 'patient'
+                        ? appProvider.patient.appointment.length
+                        : appProvider.doctor.appointment.length,
+                    itemBuilder: (ctx, index) {
+                      return AppointmentCard(
+                          appointment: appProvider.type == 'patient'
+                              ? appProvider.patient.appointment[index]
+                              : appProvider.doctor.appointment[index],
+                          appointments: appProvider.type == 'patient'
+                              ? appProvider.patient.appointment
+                              : appProvider.doctor.appointment,
+                          index: index,
+                          userId: appProvider.type == 'patient'
+                              ? appProvider.patient.userId
+                              : appProvider.doctor.userId,
+                          userType: appProvider.type);
+                    },
+                  ),
+                )
+              : Center(child: CircularProgressIndicator());
+        },
+      ),
+    );
   }
 }

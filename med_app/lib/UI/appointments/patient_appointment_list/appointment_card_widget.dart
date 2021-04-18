@@ -4,17 +4,25 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:med_app/UI/appointments/appointment_page/appointment_page.dart';
+import 'package:med_app/models/doctor.dart';
+import 'package:med_app/models/patient.dart';
 import 'package:med_app/provider/app_provider.dart';
+import 'package:med_app/repository/database_repo.dart';
 import 'package:provider/provider.dart';
 
 class AppointmentCard extends StatefulWidget {
   static FirebaseDatabase database = new FirebaseDatabase();
-  final patientId;
+  final userId;
   final appointment;
   final appointments;
   final index;
+  final userType;
   AppointmentCard(
-      {this.appointment, this.patientId, this.appointments, this.index});
+      {this.appointment,
+      this.userId,
+      this.appointments,
+      this.index,
+      this.userType});
 
   @override
   _AppointmentCardState createState() => _AppointmentCardState();
@@ -24,6 +32,7 @@ class _AppointmentCardState extends State<AppointmentCard> {
   DatabaseReference userRef = AppointmentCard.database.reference();
 
   String downloadURL;
+  bool isPatient;
 
   getImageUrl(imagepath) async {
     downloadURL = await firebase_storage.FirebaseStorage.instance
@@ -33,18 +42,46 @@ class _AppointmentCardState extends State<AppointmentCard> {
   }
 
   deleteAppointment() async {
-    var app = userRef.child('users/patients/${widget.patientId}');
+    DatabaseRepositories _repo = DatabaseRepositories();
+
+    var app = userRef.child('users/${widget.userId}');
+    var appDoctor = userRef.child(
+        'users/${isPatient ? widget.appointment.doctorId : widget.appointment.patientId}');
+
     widget.appointments.removeAt(widget.index);
     var newApps = widget.appointments.map((e) => e.toJson()).toList();
-    await app.update({"appointment": newApps}).then((_) {
-      print('Transaction  committed.');
-      AppProvider provider = Provider.of<AppProvider>(context, listen: false);
-      provider.getPatientById(widget.patientId);
-    });
+
+    if (widget.userType == 'patient') {
+      Doctor doctor = await _repo.fetchDoctor(widget.appointment.doctorId);
+      var docApps = doctor.appointment;
+      print(docApps);
+      docApps
+          .removeWhere((element) => element.token == widget.appointment.token);
+      var docAppsMapped = docApps.map((e) => e.toJson()).toList();
+      await app.update({"appointment": newApps}).then((_) {
+        appDoctor.update({"appointment": docAppsMapped});
+        print('Transaction  committed.');
+        AppProvider provider = Provider.of<AppProvider>(context, listen: false);
+        provider.getPatientById(widget.userId);
+      });
+    } else {
+      Patient patient = await _repo.fetchPatient(widget.appointment.patientId);
+      var patApps = patient.appointment;
+      patApps
+          .removeWhere((element) => element.token == widget.appointment.token);
+      var patAppsMapped = patApps.map((e) => e.toJson()).toList();
+      await app.update({"appointment": newApps}).then((_) {
+        appDoctor.update({"appointment": patAppsMapped});
+        print('Transaction  committed.');
+        AppProvider provider = Provider.of<AppProvider>(context, listen: false);
+        provider.getPatientById(widget.userId);
+      });
+    }
   }
 
   @override
   Widget build(BuildContext context) {
+    isPatient = (widget.userType == 'patient');
     return Padding(
       padding: const EdgeInsets.only(right: 8.0, left: 8.0, top: 2.0),
       child: Container(
@@ -63,7 +100,9 @@ class _AppointmentCardState extends State<AppointmentCard> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 10),
                     child: FutureBuilder(
-                      future: getImageUrl(widget.appointment.doctorAvatar),
+                      future: getImageUrl(isPatient
+                          ? widget.appointment.doctorAvatar
+                          : widget.appointment.patientAvatar),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
                           return Container(
@@ -98,7 +137,9 @@ class _AppointmentCardState extends State<AppointmentCard> {
                                 fontFamily: 'Proxima'),
                           ),
                           Text(
-                            widget.appointment.doctorName,
+                            isPatient
+                                ? widget.appointment.doctorName
+                                : widget.appointment.patientName,
                             style: TextStyle(
                                 fontSize: 18.0,
                                 fontWeight: FontWeight.bold,
@@ -106,7 +147,8 @@ class _AppointmentCardState extends State<AppointmentCard> {
                           ),
                         ],
                       ),
-                      Text(widget.appointment.doctorSpeciality),
+                      Text(
+                          isPatient ? widget.appointment.doctorSpeciality : ''),
                       Padding(
                         padding: const EdgeInsets.only(top: 5.0),
                         child: Row(
@@ -160,7 +202,8 @@ class _AppointmentCardState extends State<AppointmentCard> {
                                 MaterialPageRoute(
                                   builder: (context) => AppointmentPage(
                                     appointment: widget.appointment,
-                                    doctorImage: downloadURL,
+                                    Image: downloadURL,
+                                    userType: widget.userType,
                                     callback: () {
                                       deleteAppointment();
                                     },

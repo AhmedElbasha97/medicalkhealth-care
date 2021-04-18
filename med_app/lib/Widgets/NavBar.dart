@@ -6,6 +6,7 @@ import 'package:med_app/UI/Blogs/Blogs_Main_Screen.dart';
 import 'package:med_app/UI/Drugs/DrugsList.dart';
 import 'package:med_app/UI/Home/HomeScreen.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile.dart';
+import 'package:med_app/UI/appointments/patient_appointment_list/appointment_list.dart';
 import 'package:med_app/UI/callpages/callingtest.dart';
 import 'package:med_app/UI/specialitylist/specialty_list.dart';
 import 'package:med_app/provider/app_provider.dart';
@@ -29,8 +30,8 @@ class _NavbarState extends State<Nav> {
   List<Widget> _widgetotpions = <Widget>[
     BlogHomescreen(),
     DrugsList(),
-    Home(),
     SpecialtyList(),
+    AppointmentList(),
     PatientProfile()
   ];
 

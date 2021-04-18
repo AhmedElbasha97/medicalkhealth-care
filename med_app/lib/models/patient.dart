@@ -115,17 +115,17 @@ class PatientAppointment {
 
   factory PatientAppointment.fromJson(Map<dynamic, dynamic> json) =>
       PatientAppointment(
-        callMethod: json["callMethod"],
-        channelName: json["channelName"],
-        day: json["date"],
-        doctorAvatar: json["doctorAvatar"],
-        doctorId: json["doctorId"],
-        doctorName: json["doctorName"],
-        hour: json["hour"],
-        paymentMethod: json["paymentMethod"],
-        symptoms: json["symptoms"],
-        token: json["token"],
-      );
+          callMethod: json["callMethod"],
+          channelName: json["channelName"],
+          day: json["date"],
+          doctorAvatar: json["doctorAvatar"],
+          doctorId: json["doctorId"],
+          doctorName: json["doctorName"],
+          hour: json["hour"],
+          paymentMethod: json["paymentMethod"],
+          symptoms: json["symptoms"],
+          token: json["token"],
+          doctorSpeciality: json["doctorSpeciality"]);
 
   Map<String, dynamic> toJson() => {
         "callMethod": callMethod,
