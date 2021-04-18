@@ -13,6 +13,8 @@ import 'package:med_app/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../UI/drug_reminder/screens/welcome/reminderIntro.dart';
+
 // import 'UI/movie_list/movie_screen.dart';
 
 class Nav extends StatefulWidget {
@@ -34,63 +36,61 @@ class _NavbarState extends State<Nav> {
 
   void _itemSwitch(int index) {
     setState(() {
-      _selectedIndex = index; 
+      _selectedIndex = index;
     });
   }
-@override void initState() {
+
+  @override
+  void initState() {
     // TODO: implement initState
     super.initState();
-      // getStringValuesSF().then((i){
-      //   id=i;
-      // });
+    // getStringValuesSF().then((i){
+    //   id=i;
+    // });
+    AppProvider provider = Provider.of<AppProvider>(context, listen: false);
+    provider.getUserType('${widget.userid}');
   }
+
   @override
   Widget build(BuildContext context) {
     print("nav ${widget.userid}");
 
-    AppProvider provider =
-
-          Provider.of<AppProvider>(context, listen: false);
-
-      provider.getUserType('${widget.userid}');
-    return 
-    
-   Scaffold(  
-          bottomNavigationBar: CurvedNavigationBar(
-            backgroundColor: Color(0xFF00A1A7),
-            items: <Widget>[
-              Icon(
-                FontAwesomeIcons.blog,
-                size: 25,
-                color: Color(0xFF00A1A7),
-              ),
-              Icon(
-                FontAwesomeIcons.tablets,
-                size: 25,
-                color: Color(0xFF00A1A7),
-              ),
-              Icon(
-                Icons.home,
-                size: 25,
-                color: Color(0xFF00A1A7),
-              ),
-              Icon(
-                Icons.search,
-                size: 25,
-                color: Color(0xFF00A1A7),
-              ),
-              Icon(
-                Icons.people,
-                size: 25,
-                color: Color(0xFF00A1A7),
-              ),
-            ],
-            onTap: _itemSwitch,
-            height: 50,
-            buttonBackgroundColor: Colors.white,
-            color: Colors.white,
+    return Scaffold(
+      bottomNavigationBar: CurvedNavigationBar(
+        backgroundColor: Color(0xFF00A1A7),
+        items: <Widget>[
+          Icon(
+            FontAwesomeIcons.blog,
+            size: 25,
+            color: Color(0xFF00A1A7),
           ),
-          body: _widgetotpions.elementAt(_selectedIndex),
-        );
+          Icon(
+            FontAwesomeIcons.tablets,
+            size: 25,
+            color: Color(0xFF00A1A7),
+          ),
+          Icon(
+            Icons.home,
+            size: 25,
+            color: Color(0xFF00A1A7),
+          ),
+          Icon(
+            Icons.search,
+            size: 25,
+            color: Color(0xFF00A1A7),
+          ),
+          Icon(
+            Icons.people,
+            size: 25,
+            color: Color(0xFF00A1A7),
+          ),
+        ],
+        onTap: _itemSwitch,
+        height: 50,
+        buttonBackgroundColor: Colors.white,
+        color: Colors.white,
+      ),
+      body: _widgetotpions.elementAt(_selectedIndex),
+    );
   }
 }

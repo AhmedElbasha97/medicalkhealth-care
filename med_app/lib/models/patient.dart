@@ -1,5 +1,7 @@
 import 'dart:convert';
 
+import 'package:intl/intl.dart';
+
 Patient patientFromJson(String str) => Patient.fromJson(json.decode(str));
 
 String patientToJson(Patient data) => json.encode(data.toJson());
@@ -52,8 +54,9 @@ class Patient {
         email: json["email"],
         gender: json["gender"],
         height: json["height"],
-        medicalNotes:
-            (json.keys.contains('medicalNotes')) ? List<String>.from(json["medicalNotes"].map((x) => x)) : [],
+        medicalNotes: (json.keys.contains('medicalNotes'))
+            ? List<String>.from(json["medicalNotes"])
+            : [],
         name: json["name"],
         userAvatar: json["userAvatar"],
         userId: json["userId"],
@@ -80,64 +83,62 @@ class Patient {
       };
 }
 
-// To parse this JSON data, do
-//
-//     final apointment = apointmentFromJson(jsonString);
-
 class PatientAppointment {
-    PatientAppointment({
-        this.callMethod,
-        this.channelName,
-        this.date,
-        this.doctorAvatar,
-        this.doctorId,
-        this.doctorName,
-        this.hour,
-        this.patientPhoneNum,
-        this.paymentMethod,
-        this.symptoms,
-        this.token,
-    });
+  PatientAppointment(
+      {this.callMethod,
+      this.channelName,
+      this.day,
+      this.doctorAvatar,
+      this.doctorId,
+      this.doctorName,
+      this.hour,
+      this.patientPhoneNum,
+      this.paymentMethod,
+      this.symptoms,
+      this.token,
+      this.fees,
+      this.doctorSpeciality});
 
-    String callMethod;
-    String channelName;
-    String date;
-    String doctorAvatar;
-    String doctorId;
-    String doctorName;
-    String hour;
-    String patientPhoneNum;
-    String paymentMethod;
-    String symptoms;
-    String token;
+  String fees;
+  String doctorSpeciality;
+  String callMethod;
+  String channelName;
+  String day;
+  String doctorAvatar;
+  String doctorId;
+  String doctorName;
+  String hour;
+  String patientPhoneNum;
+  String paymentMethod;
+  String symptoms;
+  String token;
 
-    factory PatientAppointment.fromJson(Map<dynamic, dynamic> json) => PatientAppointment(
-        callMethod: json["callMethod"]  ,
+  factory PatientAppointment.fromJson(Map<dynamic, dynamic> json) =>
+      PatientAppointment(
+        callMethod: json["callMethod"],
         channelName: json["channelName"],
-        date: json["date"],
+        day: json["date"],
         doctorAvatar: json["doctorAvatar"],
         doctorId: json["doctorId"],
         doctorName: json["doctorName"],
         hour: json["hour"],
-        patientPhoneNum: json["patientPhoneNum"],
         paymentMethod: json["paymentMethod"],
         symptoms: json["symptoms"],
         token: json["token"],
-    );
+      );
 
-    Map<String, dynamic> toJson() => {
+  Map<String, dynamic> toJson() => {
         "callMethod": callMethod,
+        "date": day,
         "channelName": channelName,
-        "date": date,
         "doctorAvatar": doctorAvatar,
         "doctorId": doctorId,
         "doctorName": doctorName,
         "hour": hour,
-        "patientPhoneNum": patientPhoneNum,
         "paymentMethod": paymentMethod,
+        "doctorSpeciality": doctorSpeciality,
+        "fees": fees,
         "symptoms": symptoms,
         "token": token,
-    };
+      };
 }
-
-

@@ -24,7 +24,9 @@ class SlidingBookingPage extends StatefulWidget {
   final daySelected;
   final hourSelected;
   final doctorName;
+  final doctorSpeciality;
   final doctorId;
+  final fees;
   final doctorAvatar;
   final appointments;
   int pageNumber;
@@ -32,6 +34,8 @@ class SlidingBookingPage extends StatefulWidget {
   SlidingBookingPage(
       {this.callback,
       this.pageNumber,
+      this.doctorSpeciality,
+      this.fees,
       this.appointments,
       this.daySelected,
       this.hourSelected,
@@ -47,7 +51,6 @@ class SlidingBookingPage extends StatefulWidget {
 
 class _SlidingBookingPageState extends State<SlidingBookingPage> {
   static FirebaseDatabase database = new FirebaseDatabase();
-  final counterRef = database.reference().child('counter');
   DatabaseReference userRef = database.reference();
   File file;
 
@@ -58,23 +61,22 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
   final symptoms = TextEditingController();
   Token token;
   User user;
-  String id ;
-      Patient patient;
+  String id;
+  Patient patient;
   fawryCallback() async {
     print(widget.pageNumber);
     setState(() {
       widget.pageNumber++;
     });
-          SharedPreferences prefs = await SharedPreferences.getInstance();
-   id = prefs.getString('userid') ;
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    id = prefs.getString('userid');
     print("booking $id");
     token = await CallService().generateToken(widget.doctorName);
-      AppProvider provider =
-          Provider.of<AppProvider>(context, listen: false);
-            
-         provider.getPatientById(id);
-         patient=provider.patient;
-      print( "booking: ${provider.patient.name}");
+    AppProvider provider = Provider.of<AppProvider>(context, listen: false);
+
+    provider.getPatientById(id);
+    patient = provider.patient;
+    print("booking: ${provider.patient.email}");
     widget.callback();
     addDoctorAppoinment();
     addPatientAppoinment();
@@ -82,75 +84,46 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
   }
 
   addDoctorAppoinment() async {
-    var doctor = userRef.child(
-        'users/${widget.doctorId}/appointment/${widget.appointments}');
+    var doctor = userRef
+        .child('users/${widget.doctorId}/appointment/${widget.appointments}');
 
-    final TransactionResult transactionResult =
-        await counterRef.runTransaction((MutableData mutableData) async {
-      mutableData.value = (mutableData.value ?? 0) + 1;
-      return mutableData;
+    doctor.set(<String, dynamic>{
+      "date": widget.daySelected,
+      "hour": widget.hourSelected,
+      "patientAvatar": patient.userAvatar,
+      "patientId": id,
+      "patientName": patient.name,
+      "callMethod": callMethod,
+      "symptoms": symptoms.text,
+      "patientPhoneNum": phoneNum.text,
+      "caseFile": attachedFile,
+      "paymentMethod": paymentMethod,
+      "token": token.token,
+      "channelName": token.channelName
+    }).then((_) {
+      print('Transaction  committed.');
     });
-
-    if (transactionResult.committed) {
-      doctor.set(<String, dynamic>{
-        "date": widget.daySelected,
-        "hour": widget.hourSelected,
-        "patientAvatar":
-            patient.userAvatar,
-        "patientId": id,
-        "patientName": patient.name,
-        "callMethod": callMethod,
-        "symptoms": symptoms.text,
-        "patientPhoneNum": phoneNum.text,
-        "caseFile": attachedFile,
-        "paymentMethod": paymentMethod,
-        "token": token.token,
-        "channelName": token.channelName
-      }).then((_) {
-        print('Transaction  committed.');
-      });
-    } else {
-      print('Transaction not committed.');
-      if (transactionResult.error != null) {
-        print(transactionResult.error.message);
-      }
-    }
   }
 
   addPatientAppoinment() async {
-    
-    var ref = userRef
-        .child('users/$id/appointment/${(patient.appointment.length==0)?patient.appointment.length:patient.appointment.length+1}');
-
-    final TransactionResult transactionResult =
-        await counterRef.runTransaction((MutableData mutableData) async {
-      mutableData.value = (mutableData.value ?? 0) + 1;
-      return mutableData;
+    var ref = userRef.child(
+        'users/$id/appointment/${(patient.appointment == null) ? 0 : patient.appointment.length}');
+    ref.set(<String, dynamic>{
+      "date": widget.daySelected,
+      "hour": widget.hourSelected,
+      "doctorAvatar": widget.doctorAvatar,
+      "doctorId": widget.doctorId,
+      "doctorName": widget.doctorName,
+      "callMethod": callMethod,
+      "symptoms": symptoms.text,
+      "patientPhoneNum": phoneNum.text,
+      "caseFile": attachedFile,
+      "paymentMethod": paymentMethod,
+      "token": token.token,
+      "channelName": token.channelName
+    }).then((_) {
+      print('Transaction  committed.');
     });
-
-    if (transactionResult.committed) {
-      ref.set(<String, dynamic>{
-        "date": widget.daySelected,
-        "hour": widget.hourSelected,
-        "doctorAvatar": widget.doctorAvatar,
-        "doctorId": widget.doctorId,
-        "doctorName": widget.doctorName,
-        "callMethod": callMethod,
-        "symptoms": symptoms.text,
-        "patientPhoneNum": phoneNum.text,
-        "caseFile": attachedFile,
-        "paymentMethod": paymentMethod,
-        "token": token.token,
-        "channelName": token.channelName
-      }).then((_) {
-        print('Transaction  committed.');
-      });
-    } else {
-      print('Transaction not committed.');
-      if (transactionResult.error != null) {
-        print(transactionResult.error.message);
-      }
-    }
   }
 
   Future imagePick() async {
@@ -177,7 +150,7 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
 
   @override
   Widget build(BuildContext context) {
-   var random= new Random.secure();
+    var random = new Random.secure();
     return widget.pageNumber == 0
         ? ListView(
             children: [

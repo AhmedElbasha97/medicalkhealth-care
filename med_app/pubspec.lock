@@ -24,6 +24,20 @@ packages:
       url: "https://github.com/Eng-Mohamed-Osama/animated_onboarding"
     source: git
     version: "0.0.2"
+  animated_text_kit:
+    dependency: "direct main"
+    description:
+      name: animated_text_kit
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.5.4"
+  animated_widgets:
+    dependency: "direct main"
+    description:
+      name: animated_widgets
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.6"
   animations:
     dependency: "direct main"
     description:
@@ -45,6 +59,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.5.0"
+  auto_size_text:
+    dependency: "direct main"
+    description:
+      name: auto_size_text
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.1.0"
   boolean_selector:
     dependency: transitive
     description:
@@ -164,6 +185,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.3"
+  day_night_time_picker:
+    dependency: "direct main"
+    description:
+      name: day_night_time_picker
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   dotted_border:
     dependency: "direct main"
     description:
@@ -309,6 +337,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.0+1"
+  flutter_local_notifications:
+    dependency: "direct main"
+    description:
+      name: flutter_local_notifications
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "5.0.0+1"
+  flutter_local_notifications_platform_interface:
+    dependency: transitive
+    description:
+      name: flutter_local_notifications_platform_interface
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.0"
   flutter_plugin_android_lifecycle:
     dependency: transitive
     description:
@@ -432,7 +474,7 @@ packages:
     source: hosted
     version: "0.3.0"
   path:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: path
       url: "https://pub.dartlang.org"
@@ -631,7 +673,7 @@ packages:
       name: source_span
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.8.1"
+    version: "1.8.0"
   sqflite:
     dependency: "direct main"
     description:
@@ -688,6 +730,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.2.19"
+  timezone:
+    dependency: "direct main"
+    description:
+      name: timezone
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.7.0"
   typed_data:
     dependency: transitive
     description:
@@ -751,6 +800,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  weekday_selector:
+    dependency: "direct main"
+    description:
+      name: weekday_selector
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.0"
   win32:
     dependency: transitive
     description:
