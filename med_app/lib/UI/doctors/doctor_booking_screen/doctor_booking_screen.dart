@@ -8,7 +8,6 @@ import 'package:med_app/UI/doctors/doctor_booking_next_screen/doctor_booking_nex
 import 'package:med_app/UI/doctors/doctor_booking_screen/hour_picker_widget.dart';
 import 'package:med_app/Widgets/doctor_reviews_widget.dart';
 import 'package:med_app/provider/app_provider.dart';
-import 'package:med_app/provider/doctor_provider.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
@@ -53,11 +52,10 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
           elevation: 0.0,
         ),
         extendBodyBehindAppBar: true,
-        body: ChangeNotifierProvider<AppProvider>(
-          create: (context) => AppProvider(doctorId: widget.userId),
-          child: Consumer<AppProvider>(
+        body: Consumer<AppProvider>(
             builder: (context, databaseProvider, _) {
-              if (databaseProvider.doctor != null) {
+              databaseProvider.getDoctorById(widget.userId);
+              if (databaseProvider.doctor.availableAppointment != null) {
                 avAppList = databaseProvider.doctor.availableAppointment;
                 filteredAvDayList = avAppList.map((element) {
                   var avDay =
@@ -504,6 +502,6 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                     );
             },
           ),
-        ));
+        );
   }
 }

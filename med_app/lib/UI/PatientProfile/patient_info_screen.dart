@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/UI/PatientProfile/patient_info_widget.dart';
 import 'package:med_app/provider/app_provider.dart';
-import 'package:med_app/provider/patient_provider.dart';
 import 'package:provider/provider.dart';
 
 class PatientInfoScreen extends StatefulWidget {

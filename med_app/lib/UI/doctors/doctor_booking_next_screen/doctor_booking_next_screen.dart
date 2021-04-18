@@ -5,7 +5,6 @@ import 'package:intl/intl.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/UI/doctors/doctor_booking_next_screen/sliding_booking_page.dart';
 import 'package:med_app/provider/app_provider.dart';
-import 'package:med_app/provider/doctor_provider.dart';
 import 'package:provider/provider.dart';
 import 'progress_timeline_widget.dart';
 
@@ -70,10 +69,9 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
         backgroundColor: ColorsCollection.mainColor,
         elevation: 0.0,
       ),
-      body: ChangeNotifierProvider<AppProvider>(
-        create: (context) => AppProvider(doctorId: widget.userId),
-        child: Consumer<AppProvider>(
+      body: Consumer<AppProvider>(
           builder: (context, databaseProvider, _) {
+            databaseProvider.getDoctorById(widget.userId);
             return (databaseProvider.doctor != null)
                 ? Center(
                     child: Column(
@@ -394,7 +392,7 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
                 : Center(child: CircularProgressIndicator());
           },
         ),
-      ),
+     
     );
   }
 }

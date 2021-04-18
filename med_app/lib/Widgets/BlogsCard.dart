@@ -80,10 +80,8 @@ class BlogsCard extends StatelessWidget {
 
                 ),
               ),
-              placeholder: (context, url) =>
-                  Image.asset('lib/assets/iPhone X, XS, 11 Pro – 1.png'),
-              errorWidget: (context, url, error) =>
-                  Image.asset('lib/assets/iPhone X, XS, 11 Pro – 1.png'),
+              placeholder: (context, url) => Center(child: CircularProgressIndicator()),
+              errorWidget: (context, url, error) => Center(child: CircularProgressIndicator())
             ),
           ),
         ],

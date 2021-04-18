@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dropdown/flutter_dropdown.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/Widgets/UploadCard.dart';
+import 'package:med_app/Widgets/start.dart';
 import 'package:med_app/Widgets/text_field.dart';
 import 'package:multi_select_flutter/chip_field/multi_select_chip_field.dart';
 import 'package:multi_select_flutter/util/multi_select_item.dart';
@@ -77,7 +78,7 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
 
   addDoctor(profession, speciality, certificate, id, candidate, languages, name,
       age, experience, gender) async {
-    var user = userRef.child('users/doctors/${widget.userId}');
+    var user = userRef.child('users/${widget.userId}');
     final TransactionResult transactionResult =
         await counterRef.runTransaction((MutableData mutableData) async {
       mutableData.value = (mutableData.value ?? 0) + 1;
@@ -338,6 +339,10 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
                                 _ageText,
                                 experience.text,
                                 _selectedGender);
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => Start()));
                           }
                         : null,
                     child: Text(

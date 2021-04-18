@@ -12,7 +12,7 @@ class PatientService {
     Patient patient;
 
     await ref
-        .child('users/patients/VO2CnrLJfJRb0sEKUH3ncNTGmgA2')
+        .child('users/$userId')
         .once()
         .then((DataSnapshot data) {
       values = data.value;
