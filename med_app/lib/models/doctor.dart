@@ -114,23 +114,23 @@ class Doctor {
 //     final doctorAppointment = doctorAppointmentFromJson(jsonString);
 
 class DoctorAppointment {
-  DoctorAppointment({
-    this.callMethod,
-    this.channelName,
-    this.date,
-    this.hour,
-    this.patientAvatar,
-    this.patientId,
-    this.patientName,
-    this.patientPhoneNum,
-    this.paymentMethod,
-    this.symptoms,
-    this.token,
-  });
+  DoctorAppointment(
+      {this.callMethod,
+      this.channelName,
+      this.day,
+      this.hour,
+      this.patientAvatar,
+      this.patientId,
+      this.patientName,
+      this.patientPhoneNum,
+      this.paymentMethod,
+      this.symptoms,
+      this.token,
+      this.fees});
 
   String callMethod;
   String channelName;
-  String date;
+  String day;
   String hour;
   String patientAvatar;
   String patientId;
@@ -139,26 +139,26 @@ class DoctorAppointment {
   String paymentMethod;
   String symptoms;
   String token;
-
+  String fees;
   factory DoctorAppointment.fromJson(Map<dynamic, dynamic> json) =>
       DoctorAppointment(
-        callMethod: json["callMethod"],
-        channelName: json["channelName"],
-        date: json["date"],
-        hour: json["hour"],
-        patientAvatar: json["patientAvatar"],
-        patientId: json["patientId"],
-        patientName: json["patientName"],
-        patientPhoneNum: json["patientPhoneNum"],
-        paymentMethod: json["paymentMethod"],
-        symptoms: json["symptoms"],
-        token: json["token"],
-      );
+          callMethod: json["callMethod"],
+          channelName: json["channelName"],
+          day: json["date"],
+          hour: json["hour"],
+          patientAvatar: json["patientAvatar"],
+          patientId: json["patientId"],
+          patientName: json["patientName"],
+          patientPhoneNum: json["patientPhoneNum"],
+          paymentMethod: json["paymentMethod"],
+          symptoms: json["symptoms"],
+          token: json["token"],
+          fees: json["fees"]);
 
   Map<dynamic, dynamic> toJson() => {
         "callMethod": callMethod,
         "channelName": channelName,
-        "date": date,
+        "date": day,
         "hour": hour,
         "patientAvatar": patientAvatar,
         "patientId": patientId,
@@ -167,6 +167,7 @@ class DoctorAppointment {
         "paymentMethod": paymentMethod,
         "symptoms": symptoms,
         "token": token,
+        "fees": fees
       };
 }
 

@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:med_app/UI/DoctorNextScreen/doctor_next_screen.dart';
 import 'package:med_app/UI/PatientNextScreen/patient_next_screen.dart';
+import 'package:med_app/Widgets/NavBar.dart';
+import 'package:med_app/Widgets/start.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
@@ -10,6 +12,20 @@ class AuthService {
   AuthService(this._auth);
   //
   Stream<User> get authStateChanges => _auth.authStateChanges();
+
+ Future<String> getUserId() async{
+    _auth
+  .userChanges()
+  .listen((User user) {
+    if (user == null) {
+      print('User is currently signed out!');
+      return null;
+    } else {
+      print('User is signed in id ${user.uid}!');
+      return   user.uid;
+    }
+  });
+  }
 // getStringValuesSF() async {
 
 // SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -75,8 +91,8 @@ class AuthService {
               .signInWithEmailAndPassword(email: email, password: password);
           final userid = userCredential.user.uid;
           addStringToSF(userid);
-          // Navigator.of(context)
-          //     .push(MaterialPageRoute(builder: (context) => Home()));
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => Start()));
           return "Signd in";
         } on FirebaseAuthException catch (e) {
           if (e.code == 'user-not-found') {
@@ -163,7 +179,7 @@ class AuthService {
 
 //Get current User
 
-  Future getCurrentUser() async {
+  Future <User>getCurrentUser() async {
     return await _auth.currentUser;
   }
 

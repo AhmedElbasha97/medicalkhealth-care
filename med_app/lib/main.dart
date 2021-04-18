@@ -6,15 +6,11 @@ import 'package:med_app/Widgets/NavBar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:med_app/UI/splash/splash_screen.dart';
-import 'package:med_app/provider/patient_provider.dart';
+import 'package:med_app/Widgets/start.dart';
+import 'package:med_app/provider/app_provider.dart';
 import 'package:med_app/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'UI/DoctorProfile/doctor_profile.dart';
-import 'UI/Drugs/drugs_main_page.dart';
-import 'UI/Nutrition/nutrition_main_page.dart';
-import 'UI/PatientProfile/patient_profile.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override
@@ -41,8 +37,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(providers: [
       ChangeNotifierProvider(
-        create: (context) =>
-            PateintProvider(doctorId: 'Hw7Q8FgT3TaUdzwrLkNrSF2auHj1'),
+        create: (context) => AppProvider(),
         // child: PatientInfoScreen(),
       ),
       Provider<AuthService>(
@@ -51,7 +46,7 @@ class MyApp extends StatelessWidget {
       StreamProvider(
         create: (context) => context.read<AuthService>().authStateChanges,
       )
-    ], child: MaterialApp(home: DcotorProfile()));
+    ], child: MaterialApp(home: Splash()));
   }
 
   signedin() async {
@@ -62,7 +57,7 @@ class MyApp extends StatelessWidget {
 
   decideScreen() async {
     if (signedin()) {
-      return Nav();
+      return Start();
     } else {
       return Splash();
     }

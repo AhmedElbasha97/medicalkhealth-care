@@ -4,7 +4,7 @@ import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/Widgets/userProfile_edit.dart';
 import 'package:med_app/models/Patient.dart';
 import 'package:med_app/models/doctor.dart';
-import 'package:med_app/provider/patient_provider.dart';
+import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
@@ -57,8 +57,7 @@ class _DoctorEditInfoWidgetState extends State<DoctorEditInfoWidget> {
       'age': (age != null && age.length > 0) ? age : widget.doctor.age,
     }).then((_) {
       print('Transaction  committed.');
-      PateintProvider provider =
-          Provider.of<PateintProvider>(context, listen: false);
+      AppProvider provider = Provider.of<AppProvider>(context, listen: false);
       provider.getDoctorById('${widget.doctor.userId}');
       Navigator.of(context).pop();
     });

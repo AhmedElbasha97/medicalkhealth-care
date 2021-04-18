@@ -9,9 +9,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:med_app/UI/PatientProfile/patient_info_screen.dart';
 import 'package:med_app/UI/PatientProfile/patient_medicalNotes_screen.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile_cards.dart';
-import 'package:med_app/models/Patient.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:med_app/provider/patient_provider.dart';
+import 'package:med_app/models/patient.dart';
+import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
@@ -66,7 +66,7 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
   }
 
   addDoctor() async {
-    var user = userRef.child('users/patients/${widget.patient.userId}');
+    var user = userRef.child('users/${widget.patient.userId}');
     final TransactionResult transactionResult =
         await counterRef.runTransaction((MutableData mutableData) async {
       mutableData.value = (mutableData.value ?? 0) + 1;
@@ -78,8 +78,7 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
         print('Transaction  committed.');
       }).then((_) {
         print('Transaction  committed.');
-        PateintProvider provider =
-            Provider.of<PateintProvider>(context, listen: false);
+        AppProvider provider = Provider.of<AppProvider>(context, listen: false);
         provider.getPatientById('${widget.patient.userId}');
       });
     } else {
@@ -104,15 +103,14 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
       return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.chevron_left),
-            color: ColorsCollection.splashTitleColor,
-            onPressed: () => {
-              Navigator.of(context).pop(),
-            },
-          ),
-          title: Padding(
-            padding: const EdgeInsets.only(left: 80),
+          // leading: IconButton(
+          //   icon: Icon(Icons.chevron_left),
+          //   color: ColorsCollection.splashTitleColor,
+          //   onPressed: () => {
+          //     Navigator.of(context).pop(),
+          //   },
+          // ),
+          title: Center(
             child: Text(
               'Profile',
               style: TextStyle(

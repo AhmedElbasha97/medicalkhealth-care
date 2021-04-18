@@ -14,7 +14,7 @@ class UserProfileInfoEditWidget extends StatelessWidget {
       @required this.infoTitle,
       @required this.infoValue,
       @required this.keyboardTypeNumber,
-      this.isBio,
+      this.isBio = false,
       this.callback})
       : super(key: key);
 

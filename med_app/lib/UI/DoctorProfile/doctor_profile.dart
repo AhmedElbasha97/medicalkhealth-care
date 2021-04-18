@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile_widget.dart';
-import 'package:med_app/provider/patient_provider.dart';
+import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'doctor_profile_widget.dart';
@@ -19,7 +19,7 @@ class _DcotorProfileState extends State<DcotorProfile> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
-      body: Consumer<PateintProvider>(
+      body: Consumer<AppProvider>(
         builder: (context, databaseProvider, _) {
           return (databaseProvider.doctor != null)
               ? DoctorProfileWidget(doctor: databaseProvider.doctor)

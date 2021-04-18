@@ -11,9 +11,9 @@ class DoctorService {
     List<Map<dynamic, dynamic>> retrievedName = [];
     List<Doctor> doctors = [];
     await ref
-        .child('users/doctors')
+        .child('users/')
         .orderByChild("speciality")
-        .equalTo(speciality)
+        .equalTo(speciality)  
         .once()
         .then((DataSnapshot data) {
       values = data.value;
@@ -41,4 +41,20 @@ class DoctorService {
       return null;
     }
   }
+  
+  Future<String> getUserType(id) async{
+    String type;
+     await ref.child('users/$id').child("userType").once().then((DataSnapshot data) {
+       type = data.value;
+       print(type);
+    });
+   if (type != null) {
+      
+      return type;
+    } else {
+      return null;
+    }
+    
+  }
+
 }

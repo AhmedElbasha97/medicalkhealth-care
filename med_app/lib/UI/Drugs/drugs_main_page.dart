@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/UI/Drugs/drugs_card_widget.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile_widget.dart';
+import 'package:med_app/UI/drug_reminder/screens/home/home.dart';
+import 'package:med_app/UI/drug_reminder/screens/welcome/reminderIntro.dart';
 import 'package:med_app/UI/spcialitypage/speciality_page.dart';
-import 'package:med_app/provider/patient_provider.dart';
 import 'package:provider/provider.dart';
+
+import 'DrugsList.dart';
 
 class DrugsMainPageScreen extends StatelessWidget {
   final String id;
@@ -25,13 +28,12 @@ class DrugsMainPageScreen extends StatelessWidget {
         body: SingleChildScrollView(
           child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
             DrugsMainPageWidget(
-                // buttonNavigation: ,
+                buttonNavigation: DrugsList(),
                 bg: 'assets/drugs.png',
                 title: 'Drugs',
                 subTtitle:
                     'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s'),
             DrugsMainPageWidget(
-                // buttonNavigation: ,
                 bg: 'assets/consultation.jpg',
                 title: 'Consultation',
                 buttonNavigation: SpecialityPage(
@@ -40,7 +42,7 @@ class DrugsMainPageScreen extends StatelessWidget {
                 subTtitle:
                     'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s'),
             DrugsMainPageWidget(
-                // buttonNavigation: ,
+                buttonNavigation: ReminderIntro(),
                 bg: 'assets/reminders.jpg',
                 title: 'Reminders',
                 subTtitle:
