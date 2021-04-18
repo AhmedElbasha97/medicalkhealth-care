@@ -54,6 +54,12 @@ dependencies:
   progress_timeline: ^0.0.5
   intl: ^0.17.0
   multi_select_flutter: ^4.0.0
+  agora_rtc_engine: any
+  permission_handler: any
+  after_layout: ^1.1.0
+
+
+
   animated_onboarding:
     git:
       url: https://github.com/Eng-Mohamed-Osama/animated_onboarding

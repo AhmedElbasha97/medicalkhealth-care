@@ -5,6 +5,7 @@ import 'package:flutter_dropdown/flutter_dropdown.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/Widgets/NavBar.dart';
 import 'package:med_app/Widgets/TextwithDropComp.dart';
+import 'package:med_app/Widgets/start.dart';
 import 'package:med_app/Widgets/text_field.dart';
 
 // ignore: must_be_immutable
@@ -44,7 +45,7 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
 
   addPatient(height, weight, highBlood, lowBlood, sugar) async {
     // inputData();
-    var user = userRef.child('users/patients/${widget.userId}');
+    var user = userRef.child('users/${widget.userId}');
     final TransactionResult transactionResult =
         await counterRef.runTransaction((MutableData mutableData) async {
       mutableData.value = (mutableData.value ?? 0) + 1;
@@ -294,9 +295,8 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
                           addPatient(height.text, weight.text, highBlood.text,
                               lowBlood.text, sugar.text);
                           print(_nameText);
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                Nav(),));
+                          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => Start()));
                         }
                       : null,
                   child: Text(
