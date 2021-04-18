@@ -6,6 +6,8 @@ import 'package:med_app/UI/Home/HomeScreen.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile.dart';
 import 'package:med_app/UI/specialitylist/specialty_list.dart';
 
+import '../UI/drug_reminder/screens/welcome/reminderIntro.dart';
+
 // import 'UI/movie_list/movie_screen.dart';
 
 class Nav extends StatefulWidget {
@@ -18,7 +20,7 @@ class _NavbarState extends State<Nav> {
   List<Widget> _widgetotpions = <Widget>[
     BlogHomescreen(),
     Home(),
-    Home(),
+    ReminderIntro(),
     SpecialtyList(),
     PatientProfile()
   ];
@@ -33,7 +35,6 @@ class _NavbarState extends State<Nav> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: CurvedNavigationBar(
-
         backgroundColor: Color(0xFF00A1A7),
         items: <Widget>[
           Icon(
@@ -41,12 +42,12 @@ class _NavbarState extends State<Nav> {
             size: 25,
             color: Color(0xFF00A1A7),
           ),
-
           Icon(
             FontAwesomeIcons.tablets,
             size: 25,
             color: Color(0xFF00A1A7),
-          ),Icon(
+          ),
+          Icon(
             Icons.home,
             size: 25,
             color: Color(0xFF00A1A7),

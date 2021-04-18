@@ -14,7 +14,9 @@ class SlidingBookingPage extends StatefulWidget {
   final daySelected;
   final hourSelected;
   final doctorName;
+  final doctorSpeciality;
   final doctorId;
+  final fees;
   final doctorAvatar;
   final appointments;
   int pageNumber;
@@ -22,6 +24,8 @@ class SlidingBookingPage extends StatefulWidget {
   SlidingBookingPage(
       {this.callback,
       this.pageNumber,
+      this.doctorSpeciality,
+      this.fees,
       this.appointments,
       this.daySelected,
       this.hourSelected,
@@ -37,7 +41,6 @@ class SlidingBookingPage extends StatefulWidget {
 
 class _SlidingBookingPageState extends State<SlidingBookingPage> {
   static FirebaseDatabase database = new FirebaseDatabase();
-  final counterRef = database.reference().child('counter');
   DatabaseReference userRef = database.reference();
   File file;
 
@@ -61,70 +64,42 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
   addDoctorAppoinment() async {
     var doctor = userRef.child(
         'users/doctors/${widget.doctorId}/appointment/${widget.appointments}');
-    var patient = userRef
-        .child('users/patients/jWg8VDotubNZUz2OpAeN5tE5ull2/appointment');
-
-    final TransactionResult transactionResult =
-        await counterRef.runTransaction((MutableData mutableData) async {
-      mutableData.value = (mutableData.value ?? 0) + 1;
-      return mutableData;
+    doctor.set(<String, dynamic>{
+      "date": widget.daySelected,
+      "hour": widget.hourSelected,
+      "patientAvatar":
+          "/data/user/0/com.example.med_app/cache/file_picker/5LeLCr9t69A2r10GRaXsRIm71fw.jpg",
+      "patientId": "jWg8VDotubNZUz2OpAeN5tE5ull2",
+      "patientName": "Ahmed Aboud",
+      "callMethod": callMethod,
+      "symptoms": symptoms.text,
+      "patientPhoneNum": phoneNum.text,
+      "caseFile": attachedFile,
+      "paymentMethod": paymentMethod
+    }).then((_) {
+      print('Transaction  committed.');
     });
-
-    if (transactionResult.committed) {
-      doctor.set(<String, dynamic>{
-        "date": widget.daySelected,
-        "hour": widget.hourSelected,
-        "patientAvatar":
-            "/data/user/0/com.example.med_app/cache/file_picker/5LeLCr9t69A2r10GRaXsRIm71fw.jpg",
-        "patientId": "jWg8VDotubNZUz2OpAeN5tE5ull2",
-        "patientName": "Ahmed Aboud",
-        "callMethod": callMethod,
-        "symptoms": symptoms.text,
-        "patientPhoneNum": phoneNum.text,
-        "caseFile": attachedFile,
-        "paymentMethod": paymentMethod
-      }).then((_) {
-        print('Transaction  committed.');
-      });
-    } else {
-      print('Transaction not committed.');
-      if (transactionResult.error != null) {
-        print(transactionResult.error.message);
-      }
-    }
   }
 
   addPatientAppoinment() async {
     var patient = userRef
-        .child('users/patients/jWg8VDotubNZUz2OpAeN5tE5ull2/appointment/0');
+        .child('users/patients/jWg8VDotubNZUz2OpAeN5tE5ull2/appointment/2');
 
-    final TransactionResult transactionResult =
-        await counterRef.runTransaction((MutableData mutableData) async {
-      mutableData.value = (mutableData.value ?? 0) + 1;
-      return mutableData;
+    patient.set(<String, dynamic>{
+      "date": widget.daySelected,
+      "hour": widget.hourSelected,
+      "doctorAvatar": widget.doctorAvatar,
+      "doctorId": widget.doctorId,
+      "doctorName": widget.doctorName,
+      "doctorSpeciality": widget.doctorSpeciality,
+      "callMethod": callMethod,
+      "symptoms": symptoms.text,
+      "caseFile": attachedFile,
+      "paymentMethod": paymentMethod,
+      "fees": widget.fees
+    }).then((_) {
+      print('Transaction  committed.');
     });
-
-    if (transactionResult.committed) {
-      patient.set(<String, dynamic>{
-        "date": widget.daySelected,
-        "hour": widget.hourSelected,
-        "doctorAvatar": widget.doctorAvatar,
-        "doctorId": widget.doctorId,
-        "doctorName": widget.doctorName,
-        "callMethod": callMethod,
-        "symptoms": symptoms.text,
-        "patientPhoneNum": phoneNum.text,
-        "caseFile": attachedFile,
-        "paymentMethod": paymentMethod
-      }).then((_) {
-        print('Transaction  committed.');
-      });
-    } else {
-      print('Transaction not committed.');
-      if (transactionResult.error != null) {
-        print(transactionResult.error.message);
-      }
-    }
   }
 
   Future imagePick() async {

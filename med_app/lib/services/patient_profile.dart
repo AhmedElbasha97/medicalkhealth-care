@@ -10,10 +10,7 @@ class PatientService {
     Map<dynamic, dynamic> values;
     Patient patient;
 
-    await ref
-        .child('users/patients/VO2CnrLJfJRb0sEKUH3ncNTGmgA2')
-        .once()
-        .then((DataSnapshot data) {
+    await ref.child('users/patients/$userId').once().then((DataSnapshot data) {
       values = data.value;
       print(values);
     });

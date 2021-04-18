@@ -244,6 +244,9 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
                               doctorId: databaseProvider.doctor.userId,
                               doctorName: databaseProvider.doctor.name,
                               doctorAvatar: databaseProvider.doctor.userAvatar,
+                              doctorSpeciality:
+                                  databaseProvider.doctor.speciality,
+                              fees: databaseProvider.doctor.fees,
                               appointments:
                                   databaseProvider.doctor.appointment.length,
                               daySelected: DateFormat('dd-MM-yyyy')

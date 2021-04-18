@@ -298,7 +298,7 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                               flex: 5,
                                               child: Container(
                                                 height: 30,
-                                                width: 120,
+                                                // width: 120,
                                                 child: ListView.builder(
                                                     scrollDirection:
                                                         Axis.horizontal,
