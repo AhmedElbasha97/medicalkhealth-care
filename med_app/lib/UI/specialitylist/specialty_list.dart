@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/Widgets/speciality_card.dart';
 import 'package:med_app/models/speciality.dart';
 
@@ -76,17 +77,12 @@ class _SpecialtyListState extends State<SpecialtyList> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          shadowColor: Colors.white,
-          leading: IconButton(
-            icon: Icon(Icons.arrow_back_ios_sharp),
-            color: Colors.grey,
-            onPressed: () => Navigator.pop(context),
-          ),
+
           title: Text(
             'Speciality',
-            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.black),
+            style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
           ),
-          backgroundColor: Colors.white,
+          backgroundColor: ColorsCollection.mainColor,
           elevation: 0.0,
         ),
         body: Container(

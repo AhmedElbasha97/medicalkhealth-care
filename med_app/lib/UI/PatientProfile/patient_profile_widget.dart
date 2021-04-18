@@ -104,15 +104,15 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
       return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          leading: IconButton(
-            icon: Icon(Icons.chevron_left),
-            color: ColorsCollection.splashTitleColor,
-            onPressed: () => {
-              Navigator.of(context).pop(),
-            },
-          ),
-          title: Padding(
-            padding: const EdgeInsets.only(left: 80),
+          // leading: IconButton(
+          //   icon: Icon(Icons.chevron_left),
+          //   color: ColorsCollection.splashTitleColor,
+          //   onPressed: () => {
+          //     Navigator.of(context).pop(),
+          //   },
+          // ),
+          title: Center(
+
             child: Text(
               'Profile',
               style: TextStyle(

@@ -29,7 +29,7 @@ void main() async {
   SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
     statusBarColor: Colors.transparent,
   ));
-  
+
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   runApp(MyApp());
@@ -62,11 +62,11 @@ class MyApp extends StatelessWidget  {
         ));
 
   }
-   signedin() async {
-     SharedPreferences prefs = await SharedPreferences.getInstance();
-     bool CheckValue = prefs.containsKey('userid');
-     return CheckValue;
-   }
+  signedin() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool CheckValue = prefs.containsKey('userid');
+    return CheckValue;
+  }
   decideScreen() async{
     if(signedin()){
         return Start();

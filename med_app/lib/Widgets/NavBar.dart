@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:med_app/UI/Blogs/Blogs_Main_Screen.dart';
+import 'package:med_app/UI/Drugs/DrugsList.dart';
 import 'package:med_app/UI/Home/HomeScreen.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile.dart';
 import 'package:med_app/UI/callpages/callingtest.dart';
@@ -22,29 +23,10 @@ class Nav extends StatefulWidget {
 }
 
 class _NavbarState extends State<Nav> {
-  
-  int _selectedIndex = 1;
-
-
-
-//    inputData() async {
-//    User u=await context.read<AuthService>().getCurrentUser();
-//   return u.uid;
- 
-//     // here you write the codes to input the data into firestore
-//   }
-// getStringValuesSF() async {
-
-// SharedPreferences prefs = await SharedPreferences.getInstance();
-// String stringValue = prefs.getString('userid');
-
-// return stringValue;
-// }
-
-
+  int _selectedIndex = 0;
   List<Widget> _widgetotpions = <Widget>[
     BlogHomescreen(),
-    CallingTest(),
+    DrugsList(),
     Home(),
     SpecialtyList(),
     PatientProfile()
