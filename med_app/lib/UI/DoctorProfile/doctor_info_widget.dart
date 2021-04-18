@@ -2,33 +2,36 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:med_app/UI/PatientProfile/patient_edit_info_widget.dart';
+import 'package:med_app/models/Patient.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/Widgets/userProfile_info_widget.dart';
-import 'package:med_app/models/patient.dart';
+import 'package:med_app/models/doctor.dart';
+
+import 'doctor_edit_info_widget.dart';
 
 // ignore: must_be_immutable
-class PatientInfoWidget extends StatefulWidget {
+class DoctorInfoWidget extends StatefulWidget {
   final text;
   final color;
   final String cardLabel;
   final IconData icon;
   final buttonNavigation;
-  Patient patient;
+  Doctor doctor;
 
-  PatientInfoWidget(
+  DoctorInfoWidget(
       {this.text,
       this.color,
       this.cardLabel,
       this.icon,
-      this.patient,
+      this.doctor,
       this.buttonNavigation});
 
   @override
-  _PatientInfoWidgetState createState() => _PatientInfoWidgetState();
+  _DoctorInfoWidgetState createState() => _DoctorInfoWidgetState();
 }
 
-class _PatientInfoWidgetState extends State<PatientInfoWidget> {
+class _DoctorInfoWidgetState extends State<DoctorInfoWidget> {
   bool changePassword = false;
   String _newPassword;
   String pattern =
@@ -66,7 +69,7 @@ class _PatientInfoWidgetState extends State<PatientInfoWidget> {
                     });
                     Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) =>
-                            PatientEditInfoWidget(patient: widget.patient)));
+                            DoctorEditInfoWidget(doctor: widget.doctor)));
                   },
                 ),
               ),
@@ -83,32 +86,36 @@ class _PatientInfoWidgetState extends State<PatientInfoWidget> {
               children: [
                 UserProfileInfoWidget(
                     icon: Icons.person,
-                    infoTitle: 'username : ',
-                    infoValue: widget.patient.username),
+                    infoTitle: 'name : ',
+                    infoValue: widget.doctor.name),
                 UserProfileInfoWidget(
-                    icon: FontAwesomeIcons.heartbeat,
-                    infoTitle: 'Blood-Sugar  : ',
-                    infoValue: widget.patient.bloodSugar),
+                    icon: Icons.language_outlined,
+                    infoTitle: 'languages : ',
+                    infoValue: widget.doctor.languages.join(' , ')),
                 UserProfileInfoWidget(
-                    icon: FontAwesomeIcons.heartbeat,
-                    infoTitle: 'Blood Preassure High : ',
-                    infoValue: widget.patient.bloodHighPressure),
+                    icon: FontAwesomeIcons.moneyBill,
+                    infoTitle: 'Balance : ',
+                    infoValue: widget.doctor.balance),
                 UserProfileInfoWidget(
-                    icon: FontAwesomeIcons.heartbeat,
-                    infoTitle: 'Blood Preassure Low  : ',
-                    infoValue: widget.patient.bloodLowPressure),
+                    icon: Icons.info,
+                    infoTitle: 'Profession : ',
+                    infoValue: widget.doctor.profession),
                 UserProfileInfoWidget(
-                    icon: Icons.height,
-                    infoTitle: 'Height : ',
-                    infoValue: widget.patient.height),
+                    icon: FontAwesomeIcons.info,
+                    infoTitle: 'speciality : ',
+                    infoValue: widget.doctor.speciality),
                 UserProfileInfoWidget(
                     icon: Icons.line_weight_outlined,
-                    infoTitle: 'Weight : ',
-                    infoValue: widget.patient.weight),
+                    infoTitle: 'Experience : ',
+                    infoValue: widget.doctor.experience),
                 UserProfileInfoWidget(
                     icon: Icons.supervised_user_circle,
                     infoTitle: 'Age : ',
-                    infoValue: widget.patient.age),
+                    infoValue: widget.doctor.age),
+                UserProfileInfoWidget(
+                    icon: FontAwesomeIcons.user,
+                    infoTitle: 'Bio  : ',
+                    infoValue: widget.doctor.bio),
                 Column(
                   children: [
                     Padding(

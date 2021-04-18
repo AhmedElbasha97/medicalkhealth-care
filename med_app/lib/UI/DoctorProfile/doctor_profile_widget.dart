@@ -6,36 +6,41 @@ import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:med_app/UI/DoctorProfile/doctor_info_screen.dart';
 import 'package:med_app/UI/PatientProfile/patient_info_screen.dart';
 import 'package:med_app/UI/PatientProfile/patient_medicalNotes_screen.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile_cards.dart';
+import 'package:med_app/models/Patient.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
-import 'package:med_app/models/patient.dart';
+import 'package:med_app/models/doctor.dart';
 import 'package:med_app/provider/app_provider.dart';
+
 import 'package:provider/provider.dart';
 
+import 'doctor_reviews_screen.dart';
+
 // ignore: must_be_immutable
-class PatientProfileWidget extends StatefulWidget {
+class DoctorProfileWidget extends StatefulWidget {
   final text;
   final profileInfo;
 
   final color;
   final userId;
-  Patient patient;
+  Doctor doctor;
 
-  PatientProfileWidget({
+  DoctorProfileWidget({
     this.text,
     this.color,
     this.profileInfo,
     this.userId,
-    this.patient,
+    this.doctor,
   });
 
   @override
-  _PatientProfileWidgetState createState() => _PatientProfileWidgetState();
+  _DoctorProfileWidgetState createState() => _DoctorProfileWidgetState();
 }
 
-class _PatientProfileWidgetState extends State<PatientProfileWidget> {
+class _DoctorProfileWidgetState extends State<DoctorProfileWidget> {
   static FirebaseDatabase database = new FirebaseDatabase();
   final counterRef = database.reference().child('counter');
   DatabaseReference userRef = database.reference();
@@ -48,7 +53,6 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
 
     if (documents != null) {
       setState(() {
-        // files = documents.paths.map((path) => File(path)).toList();
         file = File(documents.files.single.path);
       });
     }
@@ -66,7 +70,7 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
   }
 
   addDoctor() async {
-    var user = userRef.child('users/${widget.patient.userId}');
+    var user = userRef.child('users/${widget.doctor.userId}');
     final TransactionResult transactionResult =
         await counterRef.runTransaction((MutableData mutableData) async {
       mutableData.value = (mutableData.value ?? 0) + 1;
@@ -74,12 +78,12 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
     });
     if (transactionResult.committed) {
       user.update({'userAvatar': file.path}).then((_) {
-        getImgeUrl(widget.patient.userAvatar);
+        getImgeUrl(widget.doctor.userAvatar);
         print('Transaction  committed.');
       }).then((_) {
         print('Transaction  committed.');
         AppProvider provider = Provider.of<AppProvider>(context, listen: false);
-        provider.getPatientById('${widget.patient.userId}');
+        provider.getDoctorById('${widget.doctor.userId}');
       });
     } else {
       print('Transaction not committed.');
@@ -103,14 +107,15 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
       return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          // leading: IconButton(
-          //   icon: Icon(Icons.chevron_left),
-          //   color: ColorsCollection.splashTitleColor,
-          //   onPressed: () => {
-          //     Navigator.of(context).pop(),
-          //   },
-          // ),
-          title: Center(
+          leading: IconButton(
+            icon: Icon(Icons.chevron_left),
+            color: ColorsCollection.splashTitleColor,
+            onPressed: () => {
+              Navigator.of(context).pop(),
+            },
+          ),
+          title: Padding(
+            padding: const EdgeInsets.only(left: 80),
             child: Text(
               'Profile',
               style: TextStyle(
@@ -148,7 +153,7 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
                         child: CircleAvatar(
                           radius: 55,
                           child: FutureBuilder(
-                              future: getImgeUrl(widget.patient.userAvatar),
+                              future: getImgeUrl(widget.doctor.userAvatar),
                               builder: (context, snapshot) {
                                 if (snapshot.hasData) {
                                   return Container(
@@ -175,14 +180,33 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
               ),
               Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: Text(widget.patient.username,
-                      style: TextStyle(
-                          color: ColorsCollection.splashTitleColor,
-                          fontWeight: FontWeight.w900,
-                          fontSize: 22))),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(right: 10.0),
+                        child: Text(widget.doctor.name,
+                            style: TextStyle(
+                                color: ColorsCollection.splashTitleColor,
+                                fontWeight: FontWeight.w900,
+                                fontSize: 22)),
+                      ),
+                      Icon(
+                        Icons.star_rate,
+                        color: Colors.yellow,
+                        size: 22,
+                      ),
+                      Text(widget.doctor.rating,
+                          style: TextStyle(
+                              color: ColorsCollection.splashTitleColor,
+                              fontWeight: FontWeight.bold,
+                              fontSize: 18)),
+                    ],
+                  )),
               Padding(
                   padding: const EdgeInsets.only(top: 5),
-                  child: Text(widget.patient.email,
+                  child: Text(widget.doctor.email,
                       style: TextStyle(
                           color: Colors.grey,
                           fontWeight: FontWeight.normal,
@@ -218,7 +242,7 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
                               child: Text(
-                                "\$${widget.patient.balance}",
+                                "\$${widget.doctor.balance}",
                                 style: TextStyle(
                                     color: ColorsCollection.splashTitleColor,
                                     fontWeight: FontWeight.w900,
@@ -235,16 +259,16 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
               PatientCardWidget(
                 cardLabel: "Info",
                 icon: Icons.info,
-                buttonNavigation: PatientInfoScreen(),
+                buttonNavigation: DoctorInfoScreen(),
               ),
               PatientCardWidget(
-                cardLabel: "Medical Records",
+                cardLabel: "Reviews",
                 icon: Icons.notes_rounded,
-                buttonNavigation: PatientMedicalNotesScreen(),
+                buttonNavigation: DocotorReviewsScreen(),
               ),
               PatientCardWidget(
-                cardLabel: "My Payments",
-                icon: Icons.payment,
+                cardLabel: "My schedule",
+                icon: Icons.schedule,
               ),
               PatientCardWidget(
                 cardLabel: "Settings",

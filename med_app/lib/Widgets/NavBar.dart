@@ -3,6 +3,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:med_app/UI/Blogs/Blogs_Main_Screen.dart';
+import 'package:med_app/UI/DoctorProfile/doctor_profile.dart';
+import 'package:med_app/UI/DoctorProfile/doctor_profile_widget.dart';
+import 'package:med_app/UI/Drugs/drugs_main_page.dart';
 import 'package:med_app/UI/Drugs/DrugsList.dart';
 import 'package:med_app/UI/Home/HomeScreen.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile.dart';
@@ -26,14 +29,9 @@ class Nav extends StatefulWidget {
 }
 
 class _NavbarState extends State<Nav> {
+  var type = '';
   int _selectedIndex = 0;
-  List<Widget> _widgetotpions = <Widget>[
-    BlogHomescreen(),
-    DrugsList(),
-    SpecialtyList(),
-    AppointmentList(),
-    PatientProfile()
-  ];
+  List<Widget> _widgetotpions;
 
   void _itemSwitch(int index) {
     setState(() {
@@ -45,11 +43,21 @@ class _NavbarState extends State<Nav> {
   void initState() {
     // TODO: implement initState
     super.initState();
+
     // getStringValuesSF().then((i){
     //   id=i;
     // });
     AppProvider provider = Provider.of<AppProvider>(context, listen: false);
     provider.getUserType('${widget.userid}');
+    type = provider.type;
+    _widgetotpions = <Widget>[
+      BlogHomescreen(),
+      DrugsMainPageScreen(),
+      SpecialtyList(),
+      AppointmentList(),
+      (type == 'patient') ? PatientProfile() : DcotorProfile(),
+    ];
+    print('type $type');
   }
 
   @override
