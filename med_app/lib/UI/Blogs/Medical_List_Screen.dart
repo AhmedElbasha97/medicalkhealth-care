@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../provider/Blog_Provider.dart';
 import 'BlogsDetailsScreen.dart';
 class MedicalListScreen extends StatefulWidget {
+  
   @override
   _MedicalListScreenState createState() => _MedicalListScreenState();
 }
@@ -13,9 +14,8 @@ class _MedicalListScreenState extends State<MedicalListScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-        body: ChangeNotifierProvider<BlogProvider>(
-            create: (context) => BlogProvider(),
-            child: Consumer<BlogProvider>(
+        body:
+           Consumer<BlogProvider>(
                 builder: (buildContext, BlogProvider, _) {
                   print('hi4');
 
@@ -39,8 +39,8 @@ class _MedicalListScreenState extends State<MedicalListScreen> {
                       ); },): Center(child: CircularProgressIndicator());
                 })
 
-        )
-    );
+        );
+
 
   }
 
