@@ -1,14 +1,9 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
-import 'package:med_app/UI/Blogs/Blogs_Main_Screen.dart';
-import 'package:med_app/UI/callpages/index.dart';
 import 'package:med_app/Widgets/NavBar.dart';
-import 'package:med_app/models/doctor.dart';
 import 'package:med_app/models/patient.dart';
-import 'package:med_app/provider/app_provider.dart';
 import 'package:med_app/services/auth.dart';
 import 'package:provider/provider.dart';
 
@@ -35,12 +30,12 @@ class _MedicalNoteScreenState extends State<MedicalNoteScreen> {
         print('Transaction  committed.');
         var userId = await context.read<AuthService>().getCurrentUser();
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => Nav(userid: userId.uid)));
+            MaterialPageRoute(builder: (context) => Nav(userId: userId.uid)));
       });
     } else {
       var userId = await context.read<AuthService>().getCurrentUser();
       Navigator.push(context,
-          MaterialPageRoute(builder: (context) => Nav(userid: userId.uid)));
+          MaterialPageRoute(builder: (context) => Nav(userId: userId.uid)));
     }
   }
 

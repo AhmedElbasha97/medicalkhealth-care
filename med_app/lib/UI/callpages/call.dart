@@ -5,7 +5,6 @@ import 'package:agora_rtc_engine/rtc_local_view.dart' as RtcLocalView;
 import 'package:agora_rtc_engine/rtc_remote_view.dart' as RtcRemoteView;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:med_app/UI/appointments/appointment_page/appointment_page.dart';
 import 'package:med_app/UI/callpages/rewiew_screen.dart';
 import 'package:med_app/models/doctor.dart';
 import 'package:med_app/models/patient.dart';
@@ -76,6 +75,7 @@ class _CallPageState extends State<CallPage> {
 
     await _initAgoraRtcEngine(this.widget.method);
     _addAgoraEventHandlers();
+    // ignore: deprecated_member_use
     await _engine.enableWebSdkInteroperability(true);
     VideoEncoderConfiguration configuration = VideoEncoderConfiguration();
     configuration.dimensions = VideoDimensions(1920, 1080);

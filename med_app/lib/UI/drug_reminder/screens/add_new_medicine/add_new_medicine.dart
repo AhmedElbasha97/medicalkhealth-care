@@ -6,8 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:intl/intl.dart';
 import 'package:weekday_selector/weekday_selector.dart';
-import '../../../../Styles/colors.dart';
-import '../../../../Styles/colors.dart';
+
 import '../../../../Styles/colors.dart';
 import '../../database/reminder_repository.dart';
 import '../../helpers/platform_flat_button.dart';

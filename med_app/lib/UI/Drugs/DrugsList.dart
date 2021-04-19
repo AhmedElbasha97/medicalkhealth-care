@@ -67,9 +67,9 @@ class _DrugsListState extends State<DrugsList> {
                                             DrugsDetailedScreen(
                                           title: Drug.name,
                                           price: Drug.price,
-                                          SubTitle: Drug.descripti,
+                                          subTitle: Drug.descripti,
                                           imageURL: Drug.image,
-                                          Ingrediant: Drug.ingridients,
+                                          ingrediant: Drug.ingridients,
                                         ),
                                       ));
                                     },
@@ -138,7 +138,6 @@ class _DrugsListState extends State<DrugsList> {
                                         ),
                                       ),
                                     ));
-                                ;
                               },
                             )))
                           : Center(child: CircularProgressIndicator());

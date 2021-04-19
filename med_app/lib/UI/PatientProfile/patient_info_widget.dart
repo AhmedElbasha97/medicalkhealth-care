@@ -173,6 +173,7 @@ class _PatientInfoWidgetState extends State<PatientInfoWidget> {
                                               setState(() {
                                                 changePassword = false;
                                               });
+                                              // ignore: unused_element
                                               void _changePassword() async {
                                                 final FirebaseAuth
                                                     firebaseAuth =

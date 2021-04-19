@@ -1,19 +1,18 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/UI/callpages/index.dart';
-import 'package:med_app/UI/doctors/doctor_booking_screen/doctor_booking_screen.dart';
-import 'package:med_app/models/doctor.dart';
-import 'package:med_app/models/patient.dart';
 
+// ignore: must_be_immutable
 class AppointmentPage extends StatelessWidget {
   final userType;
   final appointment;
-  final Image;
+  // ignore: non_constant_identifier_names
+  final image;
   final callback;
 
-  AppointmentPage({this.appointment, this.Image, this.callback, this.userType});
+  // ignore: non_constant_identifier_names
+  AppointmentPage({this.appointment, this.image, this.callback, this.userType});
   var isPatient;
   @override
   Widget build(BuildContext context) {
@@ -42,7 +41,7 @@ class AppointmentPage extends StatelessWidget {
                             color: ColorsCollection.mainColor, width: 5.0),
                         image: new DecorationImage(
                           fit: BoxFit.fill,
-                          image: NetworkImage(Image),
+                          image: NetworkImage(image),
                         ),
                       ),
                     ),

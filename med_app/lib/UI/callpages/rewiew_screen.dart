@@ -1,20 +1,15 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:med_app/Styles/colors.dart';
-import 'package:med_app/UI/Blogs/Blogs_Main_Screen.dart';
-import 'package:med_app/UI/callpages/index.dart';
 import 'package:med_app/Widgets/NavBar.dart';
 import 'package:med_app/models/doctor.dart';
-import 'package:med_app/models/patient.dart';
-import 'package:med_app/provider/app_provider.dart';
 import 'package:med_app/services/auth.dart';
 import 'package:provider/provider.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 
+// ignore: must_be_immutable
 class ReviewScreen extends StatefulWidget {
   Doctor doctor;
   ReviewScreen({Key key, this.doctor}) : super(key: key);
@@ -43,12 +38,12 @@ class _ReviewScreenState extends State<ReviewScreen> {
         print('Transaction  committed.');
         var userId = await context.read<AuthService>().getCurrentUser();
         Navigator.push(context,
-            MaterialPageRoute(builder: (context) => Nav(userid: userId.uid)));
+            MaterialPageRoute(builder: (context) => Nav(userId: userId.uid)));
       });
     } else {
       var userId = await context.read<AuthService>().getCurrentUser();
       Navigator.push(context,
-          MaterialPageRoute(builder: (context) => Nav(userid: userId.uid)));
+          MaterialPageRoute(builder: (context) => Nav(userId: userId.uid)));
     }
   }
 
@@ -113,7 +108,7 @@ class _ReviewScreenState extends State<ReviewScreen> {
                 });
               },
             ),
-            Text('${rating} Stars'),
+            Text('$rating Stars'),
             Padding(
               padding: const EdgeInsets.only(top: 25.0),
               // ignore: deprecated_member_use

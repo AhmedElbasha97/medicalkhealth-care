@@ -202,7 +202,7 @@ class _AppointmentCardState extends State<AppointmentCard> {
                                 MaterialPageRoute(
                                   builder: (context) => AppointmentPage(
                                     appointment: widget.appointment,
-                                    Image: downloadURL,
+                                    image: downloadURL,
                                     userType: widget.userType,
                                     callback: () {
                                       deleteAppointment();

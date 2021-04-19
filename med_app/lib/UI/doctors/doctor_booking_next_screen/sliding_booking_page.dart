@@ -10,13 +10,13 @@ import 'package:med_app/Widgets/text_field.dart';
 import 'package:med_app/models/patient.dart';
 import 'package:med_app/models/token.dart';
 import 'package:med_app/provider/app_provider.dart';
-import 'package:med_app/services/auth.dart';
 import 'dart:math';
 import 'package:provider/provider.dart';
 
 import 'package:med_app/services/callservice.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+// ignore: must_be_immutable
 class SlidingBookingPage extends StatefulWidget {
   final callback;
   final progressIndicator;

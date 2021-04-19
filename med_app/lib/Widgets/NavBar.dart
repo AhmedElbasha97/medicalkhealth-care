@@ -13,8 +13,8 @@ import 'package:provider/provider.dart';
 // import 'UI/movie_list/movie_screen.dart';
 
 class Nav extends StatefulWidget {
-  final String userid;
-  Nav({this.userid});
+  final String userId;
+  Nav({this.userId});
   @override
   _NavbarState createState() => _NavbarState();
 }

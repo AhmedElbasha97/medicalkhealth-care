@@ -33,7 +33,6 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     progressTimeline = ProgressTimeline(
       states: states,

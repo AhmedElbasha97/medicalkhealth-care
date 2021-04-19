@@ -20,6 +20,7 @@ class _UploadCardState extends State<UploadCard> {
   static FirebaseDatabase database = new FirebaseDatabase();
   final counterRef = database.reference().child('counter');
   DatabaseReference userRef = database.reference();
+  // ignore: unused_field
   PlatformFile _image;
   File file;
 
