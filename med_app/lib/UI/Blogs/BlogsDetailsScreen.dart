@@ -6,12 +6,12 @@ import 'package:med_app/Styles/colors.dart';
 import 'package:url_launcher/url_launcher.dart';
 class BlogsDetailedScreen extends StatelessWidget {
   final title;
-  final SubTitle;
+  final subTitle;
   final URI;
   final imageURL;
-  final Date;
-  final Index;
-  const BlogsDetailedScreen({Key key, this.title, this.SubTitle, this.URI, this.imageURL, this.Index, this.Date}) : super(key: key);
+  final date;
+  final index;
+  const BlogsDetailedScreen({Key key, this.title, this.subTitle, this.URI, this.imageURL, this.index, this.date}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -36,7 +36,7 @@ class BlogsDetailedScreen extends StatelessWidget {
                     ),
                   ),
                  child: Hero(
-                    tag: 'imageHero$Index',
+                    tag: 'imageHero$index',
                     child:CachedNetworkImage(
                       imageUrl:
                         image(),
@@ -132,16 +132,16 @@ class BlogsDetailedScreen extends StatelessWidget {
 
                             )),
                         SizedBox(height: 5),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(0.0, 0.0, 150.0, 0.0),
-                          child: Container(
+                        Row(
+
+                          children:[ Container(
 
                               width: MediaQuery.of(context).size.width * 0.6,
-                              height: MediaQuery.of(context).size.height * 0.04,
+                              height: MediaQuery.of(context).size.height * 0.05,
 
                               child:Container(
-                                  height: MediaQuery.of(context).size.height * 0.08,
-                                width: MediaQuery.of(context).size.width * 0.4,
+                                  height: MediaQuery.of(context).size.height * 0.1,
+                                width: MediaQuery.of(context).size.width * 0.5,
                                 decoration: BoxDecoration(
                                   boxShadow: [
                                     BoxShadow(
@@ -160,6 +160,7 @@ class BlogsDetailedScreen extends StatelessWidget {
                                 child: Padding(
                                   padding: EdgeInsets.fromLTRB(10.0,0.0,0.0,0.0,),
                                   child: Container(
+                                    height: MediaQuery.of(context).size.height * 0.1,
                                     child: Padding(
                                       padding: EdgeInsets.fromLTRB(3.0,0.0, 0.0, 0.0),
                                       child:  Row(
@@ -179,134 +180,134 @@ class BlogsDetailedScreen extends StatelessWidget {
                                   ),
                                 ),
                               )),
-                        ),
+                        ]),
 
-                        SizedBox(height: 5),
+                        SizedBox(height: MediaQuery.of(context).size.height * 0.05),
                         Container(
                           width: MediaQuery.of(context).size.width * 0.9,
                           height: MediaQuery.of(context).size.height * 0.05,
-
-                          child: Padding(
-                              padding: EdgeInsets.all(10),
-                              child: Text(
-                                formatDate(Date.toString()),
-                                textAlign: TextAlign.center,
-                                style: TextStyle(
-                                  fontSize: 18,
-                                ),
-                              )),
+                          child: Text(
+                            formatDate(date.toString()),
+                            textAlign: TextAlign.center,
+                            style: TextStyle(
+                              fontSize: 18,
+                            ),
+                          ),
                         ),
                         SizedBox(height: 10,),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(0.0, 0.0, 150.0, 0.0),
-                          child: Container(
+                        Row(
 
-                              width: MediaQuery.of(context).size.width * 0.6,
-                              height: MediaQuery.of(context).size.height * 0.04,
+                            children:[ Container(
 
-                              child:Container(
-                                height: MediaQuery.of(context).size.height * 0.08,
-                                width: MediaQuery.of(context).size.width * 0.4,
-                                decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 1,
-                                      blurRadius: 2,
-                                      offset: Offset(1, 1), // changes position of shadow
-                                    ),
-                                  ],
-                                  color: Colors.white,
-                                  border: Border.all(
-                                      width: 3.0,
-                                      color: Colors.white),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.fromLTRB(10.0,0.0,0.0,0.0,),
-                                  child: Container(
-                                    child: Padding(
-                                      padding: EdgeInsets.fromLTRB(3.0,0.0, 0.0, 0.0),
-                                      child:  Row(
-                                          children: [
-                                            Icon(Icons.description,
-                                              color: ColorsCollection.mainColor,),
-                                            Text(
-                                              "Description:",
-                                              textAlign: TextAlign.left,
-                                              style: TextStyle(
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold),
+                                width: MediaQuery.of(context).size.width * 0.6,
+                                height: MediaQuery.of(context).size.height * 0.05,
 
-                                            ),]
+                                child:Container(
+                                  height: MediaQuery.of(context).size.height * 0.1,
+                                  width: MediaQuery.of(context).size.width * 0.5,
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.5),
+                                        spreadRadius: 1,
+                                        blurRadius: 2,
+                                        offset: Offset(1, 1), // changes position of shadow
+                                      ),
+                                    ],
+                                    color: Colors.white,
+                                    border: Border.all(
+                                        width: 3.0,
+                                        color: Colors.white),
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(10.0,0.0,0.0,0.0,),
+                                    child: Container(
+                                      height: MediaQuery.of(context).size.height * 0.1,
+                                      child: Padding(
+                                        padding: EdgeInsets.fromLTRB(3.0,0.0, 0.0, 0.0),
+                                        child:  Row(
+                                            children: [
+                                              Icon(Icons.description,
+                                                color: ColorsCollection.mainColor,),
+                                              Text(
+                                                "Description:",
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.bold),
+
+                                              ),]
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              )),
-                        ),
+                                )),
+                            ]),
                         SizedBox(height: 5),
                         Padding(
                             padding: EdgeInsets.all(10),
                             child: Text(
-                          SubTitle,
+                          subTitle,
                               style: TextStyle(
                                   fontSize: 18,
                                  ),
                         )),
                         SizedBox(height: 20),
-                        Padding(
-                          padding: EdgeInsets.fromLTRB(0.0, 0.0, 150.0, 0.0),
-                          child: Container(
+                        Row(
 
-                              width: MediaQuery.of(context).size.width * 0.6,
-                              height: MediaQuery.of(context).size.height * 0.04,
+                            children:[ Container(
 
-                              child:Container(
-                                height: MediaQuery.of(context).size.height * 0.08,
-                                width: MediaQuery.of(context).size.width * 0.4,
-                                decoration: BoxDecoration(
-                                  boxShadow: [
-                                    BoxShadow(
-                                      color: Colors.grey.withOpacity(0.5),
-                                      spreadRadius: 1,
-                                      blurRadius: 2,
-                                      offset: Offset(1, 1), // changes position of shadow
-                                    ),
-                                  ],
-                                  color: Colors.white,
-                                  border: Border.all(
-                                      width: 3.0,
-                                      color: Colors.white),
-                                  borderRadius: BorderRadius.circular(20),
-                                ),
-                                child: Padding(
-                                  padding: EdgeInsets.fromLTRB(10.0,0.0,0.0,0.0,),
-                                  child: Container(
-                                    child: Padding(
-                                      padding: EdgeInsets.fromLTRB(3.0,0.0, 0.0, 0.0),
-                                      child:  Row(
-                                          children: [
-                                            Icon(Icons.add,
-                                              color: ColorsCollection.mainColor,),
-                                            Text(
-                                              "For More Details:",
-                                              textAlign: TextAlign.left,
-                                              style: TextStyle(
-                                                  fontSize: 20,
-                                                  fontWeight: FontWeight.bold),
+                                width: MediaQuery.of(context).size.width * 0.6,
+                                height: MediaQuery.of(context).size.height * 0.05,
 
-                                            ),]
+                                child:Container(
+                                  height: MediaQuery.of(context).size.height * 0.1,
+                                  width: MediaQuery.of(context).size.width * 0.5,
+                                  decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.grey.withOpacity(0.5),
+                                        spreadRadius: 1,
+                                        blurRadius: 2,
+                                        offset: Offset(1, 1), // changes position of shadow
+                                      ),
+                                    ],
+                                    color: Colors.white,
+                                    border: Border.all(
+                                        width: 3.0,
+                                        color: Colors.white),
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                  child: Padding(
+                                    padding: EdgeInsets.fromLTRB(10.0,0.0,0.0,0.0,),
+                                    child: Container(
+                                      height: MediaQuery.of(context).size.height * 0.1,
+                                      child: Padding(
+                                        padding: EdgeInsets.fromLTRB(3.0,0.0, 0.0, 0.0),
+                                        child:  Row(
+                                            children: [
+                                              Icon(Icons.add,
+                                                color: ColorsCollection.mainColor,),
+                                              Text(
+                                                "For More Details:",
+                                                textAlign: TextAlign.left,
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.bold),
+
+                                              ),]
+                                        ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              )),
-                        ),
+                                )),
+                            ]),
                         SizedBox(height: 20),
                         SizedBox(
                           width: MediaQuery.of(context).size.width * 0.9,
-                          height: MediaQuery.of(context).size.height * 0.07,
+                          height: MediaQuery.of(context).size.height * 0.1,
+                          // ignore: deprecated_member_use
                           child: FlatButton(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)),
@@ -344,6 +345,7 @@ class BlogsDetailedScreen extends StatelessWidget {
             title: Text("oop's somethng goes wrong"),
             content: Text("please Check Your Internet"),
             actions: <Widget>[
+              // ignore: deprecated_member_use
               FlatButton(
                 child: Text('OK'),
                 onPressed: () {

@@ -30,15 +30,16 @@ class _NutritionalListScreenState extends State<NutritionalListScreen> {
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => BlogsDetailedScreen(
                           title: person.title,
-                          SubTitle: person.body,
+                          subTitle: person.body,
                           imageURL: person.image,
                           URI: person.url,
-                          Index: index,
-                          Date: person.date,
+                          index: index,
+                          date: person.date,
                         ),
                       ));
                     });
               },
+
             )
           : Center(child: CircularProgressIndicator());
     }));

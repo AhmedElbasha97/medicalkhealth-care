@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:med_app/Styles/colors.dart';
-import 'package:url_launcher/url_launcher.dart';
 
 class DrugsDetailedScreen extends StatelessWidget {
   final title;
@@ -258,29 +257,5 @@ class DrugsDetailedScreen extends StatelessWidget {
             }),
       ]),
     );
-  }
-
-  _launchURL(String url, context) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      showDialog<void>(
-        context: context,
-        builder: (BuildContext dialogContext) {
-          return AlertDialog(
-            title: Text("oop's somethng goes wrong"),
-            content: Text("please Check Your Internet"),
-            actions: <Widget>[
-              FlatButton(
-                child: Text('OK'),
-                onPressed: () {
-                  Navigator.of(dialogContext).pop();
-                },
-              ),
-            ],
-          );
-        },
-      );
-    }
   }
 }
