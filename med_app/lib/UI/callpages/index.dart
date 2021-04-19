@@ -8,10 +8,11 @@ import 'package:permission_handler/permission_handler.dart';
 import './call.dart';
 
 class IndexPage extends StatefulWidget {
-  IndexPage({this.channelName, this.method, this.token});
+  IndexPage({this.channelName, this.method, this.token, this.id});
   final method;
   final channelName;
   final token;
+  final id;
 
   @override
   State<StatefulWidget> createState() => IndexState();
@@ -70,6 +71,7 @@ class IndexState extends State<IndexPage> {
         context,
         MaterialPageRoute(
           builder: (context) => CallPage(
+              id: widget.id,
               channelName: widget.channelName,
               role: _role,
               method: widget.method,

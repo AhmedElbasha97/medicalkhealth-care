@@ -100,10 +100,12 @@ class _DoctorInfoWidgetState extends State<DoctorInfoWidget> {
                     icon: Icons.info,
                     infoTitle: 'Profession : ',
                     infoValue: widget.doctor.profession),
-                UserProfileInfoWidget(
-                    icon: FontAwesomeIcons.info,
-                    infoTitle: 'speciality : ',
-                    infoValue: widget.doctor.speciality),
+                (widget.doctor.speciality != null)
+                    ? UserProfileInfoWidget(
+                        icon: FontAwesomeIcons.info,
+                        infoTitle: 'speciality : ',
+                        infoValue: widget.doctor.speciality)
+                    : Text(''),
                 UserProfileInfoWidget(
                     icon: Icons.line_weight_outlined,
                     infoTitle: 'Experience : ',

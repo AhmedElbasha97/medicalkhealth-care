@@ -7,7 +7,7 @@ import 'package:show_dialog/show_dialog.dart' as dialog;
 class ReviewsSlider extends StatelessWidget {
   final List<Review> reviews;
   final bool isProfileView;
-  ReviewsSlider({this.reviews, this.isProfileView});
+  ReviewsSlider({this.reviews, this.isProfileView = false});
   @override
   Widget build(BuildContext context) {
     print(reviews);
