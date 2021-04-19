@@ -12,8 +12,8 @@ class DrugsProvider extends ChangeNotifier {
   }
 
   void getDrugs() async {
-    _drugRepo.fetchDrugs().then((Newdrugs) {
-      drugs = Newdrugs;
+    _drugRepo.fetchDrugs().then((newdrugs) {
+    this.drugs = newdrugs;
       notifyListeners();
     });
   }

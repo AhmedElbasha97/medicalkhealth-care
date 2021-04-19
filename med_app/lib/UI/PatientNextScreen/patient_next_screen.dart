@@ -51,7 +51,7 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
       mutableData.value = (mutableData.value ?? 0) + 1;
       return mutableData;
     });
-
+ String type="patient";
     if (transactionResult.committed) {
       user.set(<String, dynamic>{
         "appointment": [],
@@ -69,7 +69,8 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
         "userId": widget.userId,
         "weight": weight,
         "username": widget.username,
-        "name": _nameText
+        "name": _nameText,
+        "userType":type
       }).then((_) {
         print('Transaction  committed.');
       });

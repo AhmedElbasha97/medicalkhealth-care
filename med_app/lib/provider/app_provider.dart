@@ -14,13 +14,14 @@ class AppProvider extends ChangeNotifier {
   String doctorName;
   Token token;
   String type;
+  bool logout=false;
   List<PatientAppointment> patientAppointments;
-  List<DoctorAppointment> doctorAppointments; 
+  List<DoctorAppointment> doctorAppointments;
   DatabaseRepositories _databaseRepositories = DatabaseRepositories();
-  AppProvider({patientId, speciality, doctorId,userId}) {
-   
-    if(userId!=null){  getUserType(userId);}
-
+  AppProvider({patientId, speciality, doctorId, userId}) {
+    if (userId != null) {
+      getUserType(userId);
+    }
     if (speciality != null) {
       getDoctorsBySpecialty(speciality);
     }
@@ -30,11 +31,12 @@ class AppProvider extends ChangeNotifier {
     if (patientId != null) {
       getPatientById(patientId);
     }
-    if(doctorName!=null){
+    if (doctorName != null) {
       generateToken(doctorName);
     }
-  }
 
+  }
+ 
   void getDoctorsBySpecialty(speciality) {
     _databaseRepositories.fetchDoctorsBySpecialty(speciality).then((doctors) {
       this.doctors = doctors;
@@ -45,7 +47,7 @@ class AppProvider extends ChangeNotifier {
   void getDoctorById(id) {
     _databaseRepositories.fetchDoctor(id).then((doctor) {
       this.doctor = doctor;
-      this.doctorAppointments=doctor.appointment;
+      this.doctorAppointments = doctor.appointment;
       notifyListeners();
     });
   }
@@ -53,38 +55,47 @@ class AppProvider extends ChangeNotifier {
   void getPatientById(id) {
     _databaseRepositories.fetchPatient(id).then((patient) {
       this.patient = patient;
-      this.patientAppointments=this.patient.appointment;
+      this.patientAppointments = this.patient.appointment;
       notifyListeners();
     });
   }
-  void generateToken(doctorName){
-    _databaseRepositories.generateToken(doctorName).then((token){
-      this.token=token;
+
+  void generateToken(doctorName) {
+    _databaseRepositories.generateToken(doctorName).then((token) {
+      this.token = token;
       notifyListeners();
     });
   }
+
   // void getPatientApointmentlen(){
   //     notifyListeners();
   // }
-void getUserType(userId){
-  print("prov $userId");
-    _databaseRepositories.getUserType(userId).then((value)
-    { 
-          this.type=value;
-          print("type:$type");
-          if(type=="doctor"){
-            getDoctorById(userId);
-          }
-          else{
-            getPatientById(userId);
-          }
+  void getUserType(userId) {
+    this.logout=false;
+    
+    _databaseRepositories.getUserType(userId).then((value) {
+      this.type = value;
+      print("prov $userId");
+      print("prov type: ${this.type}");
+      if (type == "patient") {
+        getPatientById(userId);
+      } else {
+        getDoctorById(userId);
+      }
     });
+  }
 
-}
+  void clear() {
+    this.patient=null;
+    this.doctor=null;
+    this.type=null;
+    this.logout=true;
+    
+  }
 
 //  void getParent(id){
 //    _databaseRepositories.getParent(id).then((value) {print(value);});
 
 //  }
-  
+
 }

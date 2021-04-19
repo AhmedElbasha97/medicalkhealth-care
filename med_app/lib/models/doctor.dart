@@ -30,6 +30,7 @@ class Doctor {
     this.userId,
     this.username,
     this.name,
+    this.userType
   });
 
   List<DoctorAppointment> appointment;
@@ -52,7 +53,7 @@ class Doctor {
   String userId;
   String username;
   String name;
-
+  String userType;
   factory Doctor.fromJson(Map<dynamic, dynamic> json) => Doctor(
         availableAppointment: (json.keys.contains('availableAppointment'))
             ? List<AvailableAppointment>.from(json["availableAppointment"]
@@ -66,7 +67,7 @@ class Doctor {
         gender: json["gender"],
         bio: json["bio"],
         experience: json["experience"],
-        languages: List<String>.from(json["languages"].map((x) => x)),
+        languages: List<dynamic>.from(json["languages"].map((x) => x)),
         balance: json["balance"],
         fees: json["fees"],
         rating: json["rating"],
@@ -82,6 +83,8 @@ class Doctor {
         userId: json["userId"],
         username: json["username"],
         name: json["name"],
+        userType:json["userType"]
+
       );
 
   Map<dynamic, dynamic> toJson() => {
@@ -106,6 +109,7 @@ class Doctor {
         "userId": userId,
         "username": username,
         "name": name,
+        "userType":userType
       };
 }
 
