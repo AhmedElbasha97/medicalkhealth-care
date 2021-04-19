@@ -10,13 +10,11 @@ import 'package:med_app/UI/specialitylist/specialty_list.dart';
 import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
 
-
 // import 'UI/movie_list/movie_screen.dart';
 
 class Nav extends StatefulWidget {
-  final String userId;
-  final type;
-  Nav({this.userId,this.type});
+  final String userid;
+  Nav({this.userid});
   @override
   _NavbarState createState() => _NavbarState();
 }
@@ -38,61 +36,61 @@ class _NavbarState extends State<Nav> {
     // getStringValuesSF().then((i){
     //   id=i;
     // });
-   
- 
   }
 
   @override
   Widget build(BuildContext context) {
-
-       _widgetotpions = <Widget>[
+    _widgetotpions = <Widget>[
       BlogHomescreen(),
       DrugsMainPageScreen(),
       SpecialtyList(),
       AppointmentList(),
-      if(context.read<AppProvider>().type !=null) ( context.read<AppProvider>().type=="patient")?PatientProfile():DcotorProfile()    ];
-    return 
-           Consumer<AppProvider>(
-            builder: (context, databaseProvider, _) {
-              if(databaseProvider.type==null){
-                databaseProvider.getUserType(widget.userId);
-              }
-    return Scaffold(
-      bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: Color(0xFF00A1A7),
-        items: <Widget>[
-          Icon(
-            FontAwesomeIcons.blog,
-            size: 25,
-            color: Color(0xFF00A1A7),
-          ),
-          Icon(
-            FontAwesomeIcons.tablets,
-            size: 25,
-            color: Color(0xFF00A1A7),
-          ),
-          Icon(
-            Icons.home,
-            size: 25,
-            color: Color(0xFF00A1A7),
-          ),
-          Icon(
-            Icons.search,
-            size: 25,
-            color: Color(0xFF00A1A7),
-          ),
-          Icon(
-            Icons.people,
-            size: 25,
-            color: Color(0xFF00A1A7),
-          ),
-        ],
-        onTap: _itemSwitch,
-        height: 50,
-        buttonBackgroundColor: Colors.white,
-        color: Colors.white,
-      ),
-      body: _widgetotpions.elementAt(_selectedIndex),
-    );
-  });}
+      if (context.read<AppProvider>().type != null)
+        (context.read<AppProvider>().type == "patient")
+            ? PatientProfile()
+            : DcotorProfile()
+    ];
+    return Consumer<AppProvider>(builder: (context, databaseProvider, _) {
+      if (databaseProvider.type == null) {
+        databaseProvider.getUserType(widget.userId);
+      }
+      return Scaffold(
+        bottomNavigationBar: CurvedNavigationBar(
+          backgroundColor: Color(0xFF00A1A7),
+          items: <Widget>[
+            Icon(
+              FontAwesomeIcons.blog,
+              size: 25,
+              color: Color(0xFF00A1A7),
+            ),
+            Icon(
+              FontAwesomeIcons.tablets,
+              size: 25,
+              color: Color(0xFF00A1A7),
+            ),
+            Icon(
+              Icons.home,
+              size: 25,
+              color: Color(0xFF00A1A7),
+            ),
+            Icon(
+              Icons.search,
+              size: 25,
+              color: Color(0xFF00A1A7),
+            ),
+            Icon(
+              Icons.people,
+              size: 25,
+              color: Color(0xFF00A1A7),
+            ),
+          ],
+          onTap: _itemSwitch,
+          height: 50,
+          buttonBackgroundColor: Colors.white,
+          color: Colors.white,
+        ),
+        body: _widgetotpions.elementAt(_selectedIndex),
+      );
+    });
+  }
 }

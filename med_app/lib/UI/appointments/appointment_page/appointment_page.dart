@@ -186,6 +186,9 @@ class AppointmentPage extends StatelessWidget {
               child: Column(
                 children: [
                   IndexPage(
+                    id: (userType != 'patient')
+                        ? appointment.patientId
+                        : appointment.doctorId,
                     method: appointment.callMethod,
                     channelName: appointment.channelName,
                     token: appointment.token,
