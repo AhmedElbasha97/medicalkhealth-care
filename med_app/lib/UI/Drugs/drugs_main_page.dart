@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/UI/Drugs/drugs_card_widget.dart';
-import 'package:med_app/UI/PatientProfile/patient_profile_widget.dart';
-import 'package:med_app/UI/drug_reminder/screens/home/home.dart';
 import 'package:med_app/UI/drug_reminder/screens/welcome/reminderIntro.dart';
 import 'package:med_app/UI/spcialitypage/speciality_page.dart';
-import 'package:provider/provider.dart';
 
 import 'DrugsList.dart';
 

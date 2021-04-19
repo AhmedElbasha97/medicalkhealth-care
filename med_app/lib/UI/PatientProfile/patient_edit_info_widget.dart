@@ -6,6 +6,7 @@ import 'package:med_app/models/patient.dart';
 import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
 
+// ignore: must_be_immutable
 class PatientEditInfoWidget extends StatefulWidget {
   final text;
   final color;

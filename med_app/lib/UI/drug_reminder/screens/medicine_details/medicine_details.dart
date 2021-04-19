@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:med_app/UI/drug_reminder/database/reminder_repository.dart';
 
 class MedicineDetails extends StatefulWidget {
   final medicine;

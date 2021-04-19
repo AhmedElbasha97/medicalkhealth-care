@@ -1,30 +1,27 @@
 import 'dart:convert';
 
-import 'package:intl/intl.dart';
-
 Patient patientFromJson(String str) => Patient.fromJson(json.decode(str));
 
 String patientToJson(Patient data) => json.encode(data.toJson());
 
 class Patient {
-  Patient({
-    this.age,
-    this.appointment,
-    this.balance,
-    this.bloodHighPressure,
-    this.bloodLowPressure,
-    this.bloodSugar,
-    this.email,
-    this.gender,
-    this.height,
-    this.medicalNotes,
-    this.name,
-    this.userAvatar,
-    this.userId,
-    this.username,
-    this.weight,
-    this.userType
-  });
+  Patient(
+      {this.age,
+      this.appointment,
+      this.balance,
+      this.bloodHighPressure,
+      this.bloodLowPressure,
+      this.bloodSugar,
+      this.email,
+      this.gender,
+      this.height,
+      this.medicalNotes,
+      this.name,
+      this.userAvatar,
+      this.userId,
+      this.username,
+      this.weight,
+      this.userType});
 
   String age;
   List<PatientAppointment> appointment;
@@ -43,28 +40,27 @@ class Patient {
   String weight;
   String userType;
   factory Patient.fromJson(Map<dynamic, dynamic> json) => Patient(
-        age: json["age"],
-        appointment: (json.keys.contains('appointment'))
-            ? List<PatientAppointment>.from(
-                json["appointment"].map((x) => PatientAppointment.fromJson(x)))
-            : [],
-        balance: json["balance"],
-        bloodHighPressure: json["bloodHighPressure"],
-        bloodLowPressure: json["bloodLowPressure"],
-        bloodSugar: json["bloodSugar"],
-        email: json["email"],
-        gender: json["gender"],
-        height: json["height"],
-        medicalNotes: (json.keys.contains('medicalNotes'))
-            ? List<String>.from(json["medicalNotes"])
-            : [],
-        name: json["name"],
-        userAvatar: json["userAvatar"],
-        userId: json["userId"],
-        username: json["username"],
-        weight: json["weight"],
-        userType:json["userType"]
-      );
+      age: json["age"],
+      appointment: (json.keys.contains('appointment'))
+          ? List<PatientAppointment>.from(
+              json["appointment"].map((x) => PatientAppointment.fromJson(x)))
+          : [],
+      balance: json["balance"],
+      bloodHighPressure: json["bloodHighPressure"],
+      bloodLowPressure: json["bloodLowPressure"],
+      bloodSugar: json["bloodSugar"],
+      email: json["email"],
+      gender: json["gender"],
+      height: json["height"],
+      medicalNotes: (json.keys.contains('medicalNotes'))
+          ? List<String>.from(json["medicalNotes"])
+          : [],
+      name: json["name"],
+      userAvatar: json["userAvatar"],
+      userId: json["userId"],
+      username: json["username"],
+      weight: json["weight"],
+      userType: json["userType"]);
 
   Map<dynamic, dynamic> toJson() => {
         "age": age,
@@ -82,7 +78,7 @@ class Patient {
         "userId": userId,
         "username": username,
         "weight": weight,
-        "userType":userType
+        "userType": userType
       };
 }
 

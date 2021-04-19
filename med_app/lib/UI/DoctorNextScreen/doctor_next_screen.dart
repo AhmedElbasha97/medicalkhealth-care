@@ -71,7 +71,6 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
   final experience = TextEditingController();
   var speciality, certificate, id, candidate;
   List _langListSelected = [];
-  String _experienceText;
   String _selectedGender;
   String _nameText;
   String _ageText;
@@ -84,7 +83,7 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
       mutableData.value = (mutableData.value ?? 0) + 1;
       return mutableData;
     });
-    String prof=profession.toLowerCase();
+    String prof = profession.toLowerCase();
     if (transactionResult.committed) {
       user.set(<String, dynamic>{
         "appointment": [],
@@ -112,8 +111,7 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
         "userId": widget.userId,
         "username": widget.username,
         "name": name,
-        "userType":prof
-        
+        "userType": prof
       }).then((_) {
         print('Transaction  committed.');
       });

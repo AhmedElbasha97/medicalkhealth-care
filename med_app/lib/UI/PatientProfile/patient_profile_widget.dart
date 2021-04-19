@@ -41,7 +41,6 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
   DatabaseReference userRef = database.reference();
   File file;
   String filePath;
-  PlatformFile _image;
 
   Future imagePick() async {
     FilePickerResult documents = await FilePicker.platform.pickFiles();

@@ -75,7 +75,7 @@ class SignUp extends StatelessWidget {
                           email: myEmailController.text,
                           username: myUsernameController.text,
                           password: myPasswordController.text,
-                          confirm_password: myConfirmPasswordController.text,
+                          confirmPassword: myConfirmPasswordController.text,
                           type: "doctor"),
                       SizedBox(height: 12),
                       RoundedSmallButton(
@@ -83,7 +83,7 @@ class SignUp extends StatelessWidget {
                           email: myEmailController.text,
                           username: myUsernameController.text,
                           password: myPasswordController.text,
-                          confirm_password: myConfirmPasswordController.text,
+                          confirmPassword: myConfirmPasswordController.text,
                           type: "user"),
                       SizedBox(height: 12),
                       Align(

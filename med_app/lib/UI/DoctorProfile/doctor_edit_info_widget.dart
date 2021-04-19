@@ -2,7 +2,6 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/Widgets/userProfile_edit.dart';
-import 'package:med_app/models/Patient.dart';
 import 'package:med_app/models/doctor.dart';
 import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
