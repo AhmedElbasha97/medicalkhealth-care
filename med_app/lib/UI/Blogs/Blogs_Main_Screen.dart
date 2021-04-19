@@ -28,7 +28,6 @@ class _BlogHomescreenState extends State<BlogHomescreen> {
 
   @override
   Widget build(BuildContext context) {
-
    return ChangeNotifierProvider<BlogProvider>(
         create: (context) => BlogProvider(),
         child: Consumer<BlogProvider>(builder: (context, blogprovider, _) {
@@ -58,6 +57,5 @@ class _BlogHomescreenState extends State<BlogHomescreen> {
                   ),
                   body: _widgetotpions.elementAt(_selectedIndex)));
         }));
-
   }
 }
