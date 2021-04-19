@@ -29,6 +29,9 @@ dependencies:
   firebase_database: ^6.1.2
   firebase_storage: ^8.0.2
   expandable: ^5.0.1
+  map_launcher: ^2.0.0
+  flutter_zoom_drawer: ^2.0.1
+
   # cloud_firestore: ^1.0.4
   shared_preferences: ^2.0.5
   cupertino_tabbar: ^1.1.1

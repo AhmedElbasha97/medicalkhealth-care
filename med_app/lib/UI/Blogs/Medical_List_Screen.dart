@@ -17,7 +17,7 @@ class _MedicalListScreenState extends State<MedicalListScreen> {
             create: (context) => BlogProvider(),
             child: Consumer<BlogProvider>(
                 builder: (buildContext, BlogProvider, _) {
-                  print('hi4');
+
 
                   return (BlogProvider.Medical != null)
                       ? ListView.builder(

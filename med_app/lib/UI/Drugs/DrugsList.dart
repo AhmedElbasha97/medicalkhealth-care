@@ -88,7 +88,7 @@ class _DrugsListState extends State<DrugsList> {
                                               ),
                                             ),
                                             child: Padding(
-                                              padding: const EdgeInsets.all(8.0),
+                                              padding: const EdgeInsets.all(3.6),
                                               child: Column(
                                                 children: [
                                                   Container(
@@ -120,51 +120,6 @@ class _DrugsListState extends State<DrugsList> {
                                           ));;
                                     },
                                   ))): Center(child: CircularProgressIndicator());
-                            //   ? ListView.builder(
-                            // itemCount: DrugsProvider.drugs.length,
-                            // itemBuilder: (ctx, index) {
-                            //   final person = DrugsProvider.drugs[index];
-                            //
-                            //   return GestureDetector(
-                            //       child: Padding(
-                            //         padding: EdgeInsets.all(10),
-                            //         child: Container(
-                            //         height: MediaQuery.of(context).size.height * 0.07,
-                            //         width: MediaQuery.of(context).size.width * 0.8,
-                            //   decoration: BoxDecoration(
-                            //     color: Colors.white,
-                            //     border: Border.all(
-                            //           width: 5.0,
-                            //           color: Color(0xff00c5cc)),
-                            //     borderRadius: BorderRadius.circular(10.0),
-                            //   ),
-                            //
-                            //
-                            //       //     child: Padding(
-                            //       //       padding: EdgeInsets.all(10.0),
-                            //       //       child: Text(
-                            //       //         person.name,
-                            //       //         textAlign: TextAlign.center,
-                            //       //         style: TextStyle(
-                            //       //             color: Color(0xff00c5cc),
-                            //       //             fontWeight: FontWeight.bold,
-                            //       //             fontFamily: 'Proxima',
-                            //       //             fontSize: 18),
-                            //       //       ),
-                            //       //     ),
-                            //       //   ),
-                            //       // ),
-                            //       onTap: () async{
-                            //         print("hiii");
-                            //
-                            //         Navigator.of(context).push(MaterialPageRoute(
-                            //           builder: (context) =>
-                            //           DrugsDetailedScreen(title: person.name,price: person.price,SubTitle: person.descripti,imageURL: person.image,Ingrediant: person.ingridients,),));
-                            //
-                            //
-                            //
-                            //       }
-                            //   ); },): Center(child: CircularProgressIndicator());
                         })
 
                 ),
