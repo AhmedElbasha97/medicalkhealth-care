@@ -15,7 +15,6 @@ class _NutritionalListScreenState extends State<NutritionalListScreen> {
 
         body:Consumer<BlogProvider>(
             builder: (buildContext, BlogProvider, _) {
-              print('hi4');
 
               return (BlogProvider.nuitrition != null)
                   ? ListView.builder(

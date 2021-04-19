@@ -17,6 +17,7 @@ class DcotorProfile extends StatefulWidget {
 class _DcotorProfileState extends State<DcotorProfile> {
   @override
   Widget build(BuildContext context) {
+    print("doc profile");
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
       body: Consumer<AppProvider>(

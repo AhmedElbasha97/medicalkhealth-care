@@ -23,6 +23,7 @@ class Patient {
     this.userId,
     this.username,
     this.weight,
+    this.userType
   });
 
   String age;
@@ -40,7 +41,7 @@ class Patient {
   String userId;
   String username;
   String weight;
-
+  String userType;
   factory Patient.fromJson(Map<dynamic, dynamic> json) => Patient(
         age: json["age"],
         appointment: (json.keys.contains('appointment'))
@@ -62,6 +63,7 @@ class Patient {
         userId: json["userId"],
         username: json["username"],
         weight: json["weight"],
+        userType:json["userType"]
       );
 
   Map<dynamic, dynamic> toJson() => {
@@ -80,6 +82,7 @@ class Patient {
         "userId": userId,
         "username": username,
         "weight": weight,
+        "userType":userType
       };
 }
 

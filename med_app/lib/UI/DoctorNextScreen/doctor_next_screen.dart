@@ -84,7 +84,7 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
       mutableData.value = (mutableData.value ?? 0) + 1;
       return mutableData;
     });
-
+    String prof=profession.toLowerCase();
     if (transactionResult.committed) {
       user.set(<String, dynamic>{
         "appointment": [],
@@ -111,7 +111,9 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
         "speciality": speciality,
         "userId": widget.userId,
         "username": widget.username,
-        "name": name
+        "name": name,
+        "userType":prof
+        
       }).then((_) {
         print('Transaction  committed.');
       });

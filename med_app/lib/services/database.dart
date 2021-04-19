@@ -43,15 +43,17 @@ class DoctorService {
   }
   
   Future<String> getUserType(id) async{
-    String type;
+    var user;
      await ref.child('users/$id').child("userType").once().then((DataSnapshot data) {
-       type = data.value;
-       print(type);
+       user = data.value;
+
+       print("service ${user}");
     });
-   if (type != null) {
-      
-      return type;
+   if (user != null) {
+      print("service : ${user}");
+      return user;
     } else {
+       print("service else : ${user}");
       return null;
     }
     

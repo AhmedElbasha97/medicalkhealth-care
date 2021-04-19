@@ -312,7 +312,6 @@ class BlogsDetailedScreen extends StatelessWidget {
                                 borderRadius: BorderRadius.circular(20)),
                             color: Color.fromRGBO(21, 104, 102, 1),
                             onPressed: () {
-                              print("hiiiiiiii");
                               _launchURL(URI, context);
 
                             },
