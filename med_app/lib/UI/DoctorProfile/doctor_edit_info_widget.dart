@@ -2,32 +2,34 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/Widgets/userProfile_edit.dart';
-import 'package:med_app/models/patient.dart';
+import 'package:med_app/models/Patient.dart';
+import 'package:med_app/models/doctor.dart';
 import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
 
-class PatientEditInfoWidget extends StatefulWidget {
+// ignore: must_be_immutable
+class DoctorEditInfoWidget extends StatefulWidget {
   final text;
   final color;
   final String cardLabel;
   final IconData icon;
   final String patientId;
-  Patient patient;
+  Doctor doctor;
 
-  PatientEditInfoWidget({
+  DoctorEditInfoWidget({
     this.text,
     this.color,
     this.cardLabel,
     this.icon,
-    this.patient,
+    this.doctor,
     this.patientId,
   });
 
   @override
-  _PatientInfoWidgetState createState() => _PatientInfoWidgetState();
+  _DoctorEditInfoWidgetState createState() => _DoctorEditInfoWidgetState();
 }
 
-class _PatientInfoWidgetState extends State<PatientEditInfoWidget> {
+class _DoctorEditInfoWidgetState extends State<DoctorEditInfoWidget> {
   bool edit = false;
 
   static FirebaseDatabase database = new FirebaseDatabase();
@@ -37,40 +39,26 @@ class _PatientInfoWidgetState extends State<PatientEditInfoWidget> {
   String bloodSugar,
       bloodPreassureHigh,
       bloodPreassureLow,
-      height,
-      wieght,
+      experience,
+      bio,
       age,
-      username;
+      name;
   void updateUser() async {
-    var user = userRef.child('users/${widget.patient.userId}');
+    var user = userRef.child('users/${widget.doctor.userId}');
 
     await user.update({
-      'bloodSugar': (bloodSugar != null && bloodSugar.length > 0)
-          ? bloodSugar
-          : widget.patient.bloodSugar,
-      'bloodHighPressure':
-          (bloodPreassureHigh != null && bloodPreassureHigh.length > 0)
-              ? bloodPreassureHigh
-              : widget.patient.bloodHighPressure,
-      'bloodLowPressure':
-          (bloodPreassureLow != null && bloodPreassureLow.length > 0)
-              ? bloodPreassureLow
-              : widget.patient.bloodLowPressure,
-      'height': (height != null && height.length > 0)
-          ? height
-          : widget.patient.height,
-      'weight': (wieght != null && wieght.length > 0)
-          ? wieght
-          : widget.patient.weight,
-      'username': (username != null && username.length > 0)
-          ? username
-          : widget.patient.username,
-      'age': (age != null && age.length > 0) ? age : widget.patient.age,
+      'bio': (bio != null && bio.length > 0 && bio.length < 120)
+          ? bio
+          : widget.doctor.bio,
+      'experience': (experience != null && experience.length > 0)
+          ? experience
+          : widget.doctor.experience,
+      'name': (name != null && name.length > 0) ? name : widget.doctor.name,
+      'age': (age != null && age.length > 0) ? age : widget.doctor.age,
     }).then((_) {
       print('Transaction  committed.');
       AppProvider provider = Provider.of<AppProvider>(context, listen: false);
-      provider.getPatientById(widget.patient.userId);
-      print("edite: ${provider.patient.name}");
+      provider.getDoctorById('${widget.doctor.userId}');
       Navigator.of(context).pop();
     });
   }
@@ -104,40 +92,29 @@ class _PatientInfoWidgetState extends State<PatientEditInfoWidget> {
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               UserProfileInfoEditWidget(
+                  isBio: false,
                   keyboardTypeNumber: false,
-                  callback: (val) => setState(() => username = val),
-                  infoTitle: 'username  ',
-                  infoValue: widget.patient.username),
+                  callback: (val) => setState(() => name = val),
+                  infoTitle: 'name  ',
+                  infoValue: widget.doctor.name),
               UserProfileInfoEditWidget(
+                  isBio: false,
                   keyboardTypeNumber: true,
-                  callback: (val) => setState(() => bloodSugar = val),
-                  infoTitle: 'Blood-Sugar   ',
-                  infoValue: widget.patient.bloodSugar),
+                  callback: (val) => setState(() => experience = val),
+                  infoTitle: 'experience  ',
+                  infoValue: widget.doctor.experience),
               UserProfileInfoEditWidget(
-                  keyboardTypeNumber: true,
-                  callback: (val) => setState(() => bloodPreassureHigh = val),
-                  infoTitle: 'BloodPreassureHigh  ',
-                  infoValue: widget.patient.bloodHighPressure),
-              UserProfileInfoEditWidget(
-                  keyboardTypeNumber: true,
-                  callback: (val) => setState(() => bloodPreassureLow = val),
-                  infoTitle: 'BloodPreassureLow   ',
-                  infoValue: widget.patient.bloodLowPressure),
-              UserProfileInfoEditWidget(
-                  keyboardTypeNumber: true,
-                  callback: (val) => setState(() => height = val),
-                  infoTitle: 'Height  ',
-                  infoValue: widget.patient.height),
-              UserProfileInfoEditWidget(
-                  keyboardTypeNumber: true,
-                  callback: (val) => setState(() => wieght = val),
-                  infoTitle: 'Weight  ',
-                  infoValue: widget.patient.weight),
-              UserProfileInfoEditWidget(
+                  isBio: false,
                   keyboardTypeNumber: true,
                   callback: (val) => setState(() => age = val),
                   infoTitle: 'age  ',
-                  infoValue: widget.patient.age),
+                  infoValue: widget.doctor.age),
+              UserProfileInfoEditWidget(
+                  keyboardTypeNumber: false,
+                  isBio: true,
+                  callback: (val) => setState(() => bio = val),
+                  infoTitle: 'bio   ',
+                  infoValue: widget.doctor.bio),
               Column(
                 children: [
                   Padding(

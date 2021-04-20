@@ -1,6 +1,7 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:intl/intl.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:med_app/UI/appointments/appointment_page/appointment_page.dart';
@@ -43,16 +44,39 @@ class _AppointmentCardState extends State<AppointmentCard> {
 
   deleteAppointment() async {
     DatabaseRepositories _repo = DatabaseRepositories();
+    Doctor doctor;
+    Patient patient;
 
     var app = userRef.child('users/${widget.userId}');
     var appDoctor = userRef.child(
         'users/${isPatient ? widget.appointment.doctorId : widget.appointment.patientId}');
+    var appDoc = userRef.child(
+        'users/${isPatient ? widget.appointment.doctorId : widget.userId}');
 
     widget.appointments.removeAt(widget.index);
     var newApps = widget.appointments.map((e) => e.toJson()).toList();
 
+    doctor = await _repo
+        .fetchDoctor(isPatient ? widget.appointment.doctorId : widget.userId);
+    var availDates = doctor.availableAppointment;
+    List availDatesSorted;
+    for (var i = 0; i < availDates.length; i++) {
+      if (DateFormat('yyyy-MM-dd').parse(availDates[i].availableDay).day ==
+          DateFormat('yyyy-MM-dd').parse(widget.appointment.day).day) {
+        availDates[i].availableHours.add(widget.appointment.hour);
+        availDates[i].availableHours.sort((a, b) => DateFormat.jm()
+            .parse(a)
+            .hour
+            .compareTo(DateFormat.jm().parse(b).hour));
+      }
+    }
+
+    var availDatesMapped = availDates.map((e) => e.toJson()).toList();
+    await appDoc.update({"availableAppointment": availDatesMapped}).then((_) {
+      print('Transaction  committed.');
+    });
+
     if (widget.userType == 'patient') {
-      Doctor doctor = await _repo.fetchDoctor(widget.appointment.doctorId);
       var docApps = doctor.appointment;
       print(docApps);
       docApps
@@ -65,7 +89,7 @@ class _AppointmentCardState extends State<AppointmentCard> {
         provider.getPatientById(widget.userId);
       });
     } else {
-      Patient patient = await _repo.fetchPatient(widget.appointment.patientId);
+      patient = await _repo.fetchPatient(widget.appointment.patientId);
       var patApps = patient.appointment;
       patApps
           .removeWhere((element) => element.token == widget.appointment.token);
@@ -77,6 +101,19 @@ class _AppointmentCardState extends State<AppointmentCard> {
         provider.getPatientById(widget.userId);
       });
     }
+  }
+
+  @override
+  void initState() {
+    var dateAppointment =
+        DateFormat('yyyy-MM-dd').parse(widget.appointment.day);
+    if ((dateAppointment.year <= DateTime.now().year ||
+            dateAppointment.month <= DateTime.now().month) &&
+        dateAppointment.day <= DateTime.now().day &&
+        dateAppointment.minute <= DateTime.now().minute - 60) {
+      deleteAppointment();
+    }
+    super.initState();
   }
 
   @override

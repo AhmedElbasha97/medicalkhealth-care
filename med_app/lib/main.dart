@@ -1,6 +1,9 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:med_app/UI/Blogs/Blogs_Main_Screen.dart';
+import 'package:med_app/UI/DoctorProfile/doctor_profile_schedule.dart';
+import 'package:med_app/Widgets/NavBar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:med_app/UI/splash/splash_screen.dart';
@@ -9,6 +12,7 @@ import 'package:med_app/provider/app_provider.dart';
 import 'package:med_app/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:med_app/UI/appointments/appointment_page/session_notification.dart';
 
 class MyHttpOverrides extends HttpOverrides {
   @override

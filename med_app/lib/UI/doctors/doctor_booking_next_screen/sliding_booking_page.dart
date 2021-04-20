@@ -4,18 +4,21 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/Widgets/show_alert_dialog_widget.dart';
 import 'package:med_app/Widgets/text_field.dart';
 import 'package:med_app/models/patient.dart';
 import 'package:med_app/models/token.dart';
 import 'package:med_app/provider/app_provider.dart';
-import 'package:med_app/services/auth.dart';
 import 'dart:math';
 import 'package:provider/provider.dart';
-
 import 'package:med_app/services/callservice.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:med_app/UI/appointments/appointment_page/session_notification.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 class SlidingBookingPage extends StatefulWidget {
   final callback;
@@ -29,11 +32,17 @@ class SlidingBookingPage extends StatefulWidget {
   final fees;
   final doctorAvatar;
   final appointments;
+  final callbackAppointed;
+  final List selectedHoursList;
+  final List avAppList;
   int pageNumber;
 
   SlidingBookingPage(
       {this.callback,
+      this.avAppList,
+      this.callbackAppointed,
       this.pageNumber,
+      this.selectedHoursList,
       this.doctorSpeciality,
       this.fees,
       this.appointments,
@@ -56,13 +65,36 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
 
   var callMethod;
   var attachedFile;
+  var appointdate;
+  var appointdateFormed;
   var paymentMethod;
+
   final phoneNum = TextEditingController();
   final symptoms = TextEditingController();
   Token token;
   User user;
   String id;
   Patient patient;
+
+  final SessionNotification _notifications = SessionNotification();
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+
+  Future initNotifies() async => flutterLocalNotificationsPlugin =
+      await _notifications.initNotifies(context);
+
+  @override
+  void initState() {
+    super.initState();
+    initNotifies();
+    print(widget.daySelected);
+    print(DateTime.now());
+    appointdate = DateFormat('yyyy-MM-dd').parse(widget.daySelected).add(
+        Duration(
+            hours: DateFormat('hh:mm').parse(widget.hourSelected).hour,
+            minutes: DateFormat('hh:mm').parse(widget.hourSelected).minute));
+    appointdateFormed = appointdate.difference(DateTime.now()).inMilliseconds;
+  }
+
   fawryCallback() async {
     print(widget.pageNumber);
     setState(() {
@@ -80,7 +112,24 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
     widget.callback();
     addDoctorAppoinment();
     addPatientAppoinment();
+    deleteAvailableAppointment();
     print(widget.pageNumber);
+  }
+
+  deleteAvailableAppointment() async {
+    var doctor = userRef.child('users/${widget.doctorId}/availableAppointment');
+    List x = widget.avAppList;
+    for (var i = 0; i < x.length; i++) {
+      if (DateFormat('yyyy-MM-dd').parse(x[i].availableDay).day ==
+          appointdate.day) {
+        x[i].availableHours.removeWhere(
+            (e) => (DateFormat('hh:mm').parse(e).hour == appointdate.hour));
+      }
+    }
+    var avAppListMapped = x.map((e) => e.toJson()).toList();
+    doctor.set(avAppListMapped).then((_) {
+      print("Transaction Committed");
+    });
   }
 
   addDoctorAppoinment() async {
@@ -122,7 +171,15 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
       "paymentMethod": paymentMethod,
       "token": token.token,
       "channelName": token.channelName
-    }).then((_) {
+    }).then((_) async {
+      tz.initializeTimeZones();
+      tz.setLocalLocation(tz.getLocation('Europe/Warsaw'));
+      await _notifications.showNotification(
+          widget.doctorName,
+          'You have an appointment',
+          appointdateFormed,
+          Random().nextInt(10000000),
+          flutterLocalNotificationsPlugin);
       print('Transaction  committed.');
     });
   }
