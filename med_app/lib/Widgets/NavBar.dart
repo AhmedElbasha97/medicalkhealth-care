@@ -4,6 +4,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:med_app/UI/Blogs/Blogs_Main_Screen.dart';
 import 'package:med_app/UI/DoctorProfile/doctor_profile.dart';
 import 'package:med_app/UI/Drugs/drugs_main_page.dart';
+import 'package:med_app/UI/Home/HomeScreen.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile.dart';
 import 'package:med_app/UI/appointments/patient_appointment_list/appointment_list.dart';
 import 'package:med_app/UI/specialitylist/specialty_list.dart';
@@ -43,7 +44,7 @@ class _NavbarState extends State<Nav> {
     _widgetotpions = <Widget>[
       BlogHomescreen(),
       DrugsMainPageScreen(),
-      SpecialtyList(),
+      Home(),
       AppointmentList(),
       if (context.read<AppProvider>().type != null)
         (context.read<AppProvider>().type == "patient")

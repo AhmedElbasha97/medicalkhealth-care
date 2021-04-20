@@ -12,7 +12,7 @@ class ResetScreen extends StatefulWidget {
 class _ResetScreenState extends State<ResetScreen> {
   final _email = TextEditingController();
   final auth = FirebaseAuth.instance;
-  bool _hasFocus = false;
+
 
   @override
   Widget build(BuildContext context) {
