@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../../helpers/platform_flat_button.dart';
 import '../../screens/welcome/title_and_message.dart';
-import 'package:after_layout/after_layout.dart';
 
 import '../home/home.dart';
 

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/provider/app_provider.dart';
 import 'package:med_app/services/auth.dart';
-import 'package:path/path.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:med_app/Styles/colors.dart';

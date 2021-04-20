@@ -1,10 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:med_app/models/doctor.dart';
 import 'package:med_app/models/patient.dart';
 import 'package:med_app/models/token.dart';
 import 'package:med_app/repository/database_repo.dart';
-import 'package:med_app/services/auth.dart';
 
 class AppProvider extends ChangeNotifier {
   String userId;
@@ -14,7 +12,7 @@ class AppProvider extends ChangeNotifier {
   String doctorName;
   Token token;
   String type;
-  bool logout=false;
+  bool logout = false;
   List<PatientAppointment> patientAppointments;
   List<DoctorAppointment> doctorAppointments;
   DatabaseRepositories _databaseRepositories = DatabaseRepositories();
@@ -34,9 +32,8 @@ class AppProvider extends ChangeNotifier {
     if (doctorName != null) {
       generateToken(doctorName);
     }
-
   }
- 
+
   void getDoctorsBySpecialty(speciality) {
     _databaseRepositories.fetchDoctorsBySpecialty(speciality).then((doctors) {
       this.doctors = doctors;
@@ -46,6 +43,7 @@ class AppProvider extends ChangeNotifier {
 
   void getDoctorById(id) {
     _databaseRepositories.fetchDoctor(id).then((doctor) {
+      print('hi ${doctor.appointment}');
       this.doctor = doctor;
       this.doctorAppointments = doctor.appointment;
       notifyListeners();
@@ -71,8 +69,8 @@ class AppProvider extends ChangeNotifier {
   //     notifyListeners();
   // }
   void getUserType(userId) {
-    this.logout=false;
-    
+    this.logout = false;
+
     _databaseRepositories.getUserType(userId).then((value) {
       this.type = value;
       print("prov $userId");
@@ -86,11 +84,14 @@ class AppProvider extends ChangeNotifier {
   }
 
   void clear() {
-    this.patient=null;
-    this.doctor=null;
-    this.type=null;
-    this.logout=true;
-    
+    this.patient = null;
+    this.doctor = null;
+    this.type = null;
+    this.logout = true;
+  }
+
+  void refresh() {
+    notifyListeners();
   }
 
 //  void getParent(id){

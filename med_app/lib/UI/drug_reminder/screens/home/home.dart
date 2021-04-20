@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
-import 'package:intl/intl.dart';
 import '../../../../Styles/colors.dart';
 import '../../notifications/notifications.dart';
 import '../../database/reminder_repository.dart';
@@ -23,8 +22,10 @@ class _ReminderHomeState extends State<ReminderHome> {
   //===============================================================
 
   //--------------------| List of Pills from database |----------------------
+  // ignore: deprecated_member_use
   List<Pill> allListOfPills = List<Pill>();
   final ReminderRepository _repository = ReminderRepository();
+  // ignore: deprecated_member_use
   List<Pill> dailyPills = List<Pill>();
   //=========================================================================
 
@@ -35,6 +36,7 @@ class _ReminderHomeState extends State<ReminderHome> {
 
   //handle last choose day index in calendar
   int _lastChooseDay = 0;
+  // ignore: unused_field
   int _howManyWeeks = 1;
 
   @override
@@ -183,10 +185,7 @@ class _ReminderHomeState extends State<ReminderHome> {
       _lastChooseDay = _daysList.indexOf(clickedDay);
       _daysList.forEach((day) => day.isChecked = false);
       CalendarDayModel chooseDay = _daysList[_daysList.indexOf(clickedDay)];
-      var cd = chooseDay.dayNumber;
-      var cm = chooseDay.month;
-      var cy = chooseDay.year;
-      var newChooseDay = DateFormat('dd-MM-yyyy').parse('$cd-$cm-$cy');
+
       chooseDay.isChecked = true;
       dailyPills.clear();
       allListOfPills.forEach((pill) {

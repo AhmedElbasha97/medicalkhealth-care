@@ -53,9 +53,10 @@ class _SpecialtyListState extends State<SpecialtyList> {
     },
     {"speciality": 'General Practice', "image": "assets/Dermatology.png"},
   ];
-  List<Speciality> Specialties_list = [];
-  List<Speciality> Filterd_list = [];
+  List<Speciality> specialtiesList = [];
+  List<Speciality> filterdList = [];
   List<String> specialties = [];
+  // ignore: unused_field
   bool _isSearching;
   final TextEditingController _controller = new TextEditingController();
 
@@ -68,7 +69,7 @@ class _SpecialtyListState extends State<SpecialtyList> {
 
   void values() {
     for (var item in items) {
-      Specialties_list.add(Speciality.fromJson(item));
+      specialtiesList.add(Speciality.fromJson(item));
       specialties.add(item["speciality"].toString());
     }
   }
@@ -77,7 +78,6 @@ class _SpecialtyListState extends State<SpecialtyList> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-
           title: Text(
             'Speciality',
             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
@@ -89,12 +89,12 @@ class _SpecialtyListState extends State<SpecialtyList> {
             height: MediaQuery.of(context).size.height,
             width: MediaQuery.of(context).size.width,
             child: Stack(children: [
-              (Specialties_list.length > 0 && _controller.text.isEmpty)
+              (specialtiesList.length > 0 && _controller.text.isEmpty)
                   ? Container(
                       padding: EdgeInsets.only(top: 75.0),
                       child: SingleChildScrollView(
                           child: GridView.builder(
-                        itemCount: Specialties_list.length,
+                        itemCount: specialtiesList.length,
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -103,7 +103,7 @@ class _SpecialtyListState extends State<SpecialtyList> {
                             crossAxisSpacing: 4.0,
                             mainAxisSpacing: 4.0),
                         itemBuilder: (BuildContext context, int index) {
-                          var speciality = Specialties_list[index];
+                          var speciality = specialtiesList[index];
                           return SpecialityCard(speciality);
                         },
                       )))
@@ -111,7 +111,7 @@ class _SpecialtyListState extends State<SpecialtyList> {
                       padding: EdgeInsets.only(top: 75.0),
                       child: SingleChildScrollView(
                           child: GridView.builder(
-                        itemCount: Filterd_list.length,
+                        itemCount: filterdList.length,
                         shrinkWrap: true,
                         physics: NeverScrollableScrollPhysics(),
                         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -120,7 +120,7 @@ class _SpecialtyListState extends State<SpecialtyList> {
                             crossAxisSpacing: 4.0,
                             mainAxisSpacing: 4.0),
                         itemBuilder: (BuildContext context, int index) {
-                          var speciality = Filterd_list[index];
+                          var speciality = filterdList[index];
                           return SpecialityCard(speciality);
                         },
                       ))),
@@ -133,7 +133,7 @@ class _SpecialtyListState extends State<SpecialtyList> {
                   child: Padding(
                     padding: const EdgeInsets.only(right: 8.0, left: 8),
                     child: TextFormField(
-                       controller: _controller,
+                        controller: _controller,
                         onChanged: searchOperation,
                         decoration:
                             InputDecoration(labelText: "Search By Speciality")),
@@ -142,22 +142,22 @@ class _SpecialtyListState extends State<SpecialtyList> {
               ),
             ])));
   }
+
   void searchOperation(String searchText) {
-    Filterd_list.clear();
+    filterdList.clear();
     if (searchText != null) {
       for (int i = 0; i < specialties.length; i++) {
         String data = specialties[i];
         if (data.toLowerCase().contains(searchText.toLowerCase())) {
-           List<Speciality> Filter=[];
-           Specialties_list.forEach((element) {
-             if(element.speciality==data)
-             Filter.add(element);
-            });
-          setState(() {
-            Filterd_list.addAll(Filter);
+          List<Speciality> Filter = [];
+          specialtiesList.forEach((element) {
+            if (element.speciality == data) Filter.add(element);
           });
-          
+          setState(() {
+            filterdList.addAll(Filter);
+          });
         }
       }
     }
-}}
+  }
+}

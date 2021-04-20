@@ -1,10 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dropdown/flutter_dropdown.dart';
 import 'package:med_app/Styles/colors.dart';
-import 'package:med_app/Widgets/NavBar.dart';
-import 'package:med_app/Widgets/TextwithDropComp.dart';
+
 import 'package:med_app/Widgets/start.dart';
 import 'package:med_app/Widgets/text_field.dart';
 
@@ -51,7 +49,7 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
       mutableData.value = (mutableData.value ?? 0) + 1;
       return mutableData;
     });
- String type="patient";
+    String type = "patient";
     if (transactionResult.committed) {
       user.set(<String, dynamic>{
         "appointment": [],
@@ -70,7 +68,7 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
         "weight": weight,
         "username": widget.username,
         "name": _nameText,
-        "userType":type
+        "userType": type
       }).then((_) {
         print('Transaction  committed.');
       });
@@ -296,8 +294,8 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
                           addPatient(height.text, weight.text, highBlood.text,
                               lowBlood.text, sugar.text);
                           print(_nameText);
-                          Navigator.of(context)
-              .push(MaterialPageRoute(builder: (context) => Start()));
+                          Navigator.of(context).push(
+                              MaterialPageRoute(builder: (context) => Start()));
                         }
                       : null,
                   child: Text(

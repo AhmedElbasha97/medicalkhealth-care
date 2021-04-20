@@ -1,20 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:med_app/UI/PatientProfile/patient_profile_widget.dart';
 import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
 
 import 'doctor_profile_widget.dart';
 
-class DcotorProfile extends StatefulWidget {
+class DoctorProfile extends StatefulWidget {
   final String id;
   final String patientId;
-  DcotorProfile({Key key, this.id, this.patientId}) : super(key: key);
+  DoctorProfile({Key key, this.id, this.patientId}) : super(key: key);
 
   @override
-  _DcotorProfileState createState() => _DcotorProfileState();
+  _DoctorProfileState createState() => _DoctorProfileState();
 }
 
-class _DcotorProfileState extends State<DcotorProfile> {
+class _DoctorProfileState extends State<DoctorProfile> {
   @override
   Widget build(BuildContext context) {
     print("doc profile");

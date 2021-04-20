@@ -4,9 +4,7 @@ import 'package:intl/intl.dart';
 import 'package:med_app/UI/drug_reminder/database/reminder_repository.dart';
 
 import '../../../../Styles/colors.dart';
-import '../../../../Styles/colors.dart';
-import '../../../../Styles/colors.dart';
-import '../../../../Styles/colors.dart';
+
 import '../../models/pill.dart';
 import '../../notifications/notifications.dart';
 import '../medicine_details/medicine_details.dart';
@@ -119,6 +117,7 @@ class MedicineCard extends StatelessWidget {
               contentTextStyle:
                   TextStyle(fontSize: 17.0, color: Colors.grey[800]),
               actions: [
+                // ignore: deprecated_member_use
                 FlatButton(
                   splashColor: ColorsCollection.mainColor.withOpacity(0.3),
                   child: Text(
@@ -129,6 +128,7 @@ class MedicineCard extends StatelessWidget {
                     Navigator.of(context).pop();
                   },
                 ),
+                // ignore: deprecated_member_use
                 FlatButton(
                   splashColor: ColorsCollection.mainColor.withOpacity(0.3),
                   child: Text("Delete",

@@ -30,7 +30,7 @@ class UserProfileInfoEditWidget extends StatelessWidget {
             child: Padding(
               padding: const EdgeInsets.only(bottom: 0, left: 20, right: 20),
               child: TextFormField(
-                initialValue: '${infoValue}',
+                initialValue: '$infoValue',
                 maxLength: (isBio) ? 120 : 20,
                 maxLines: (isBio) ? 3 : 1,
                 keyboardType: keyboardTypeNumber
@@ -48,7 +48,7 @@ class UserProfileInfoEditWidget extends StatelessWidget {
                         fontSize: 23,
                         fontFamily: 'Proxima',
                         fontWeight: FontWeight.bold),
-                    labelText: '${infoTitle}'),
+                    labelText: '$infoTitle'),
                 onChanged: (text) {
                   callback(text);
                 },

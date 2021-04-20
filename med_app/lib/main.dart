@@ -1,8 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:med_app/UI/Blogs/Blogs_Main_Screen.dart';
-import 'package:med_app/Widgets/NavBar.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:med_app/UI/splash/splash_screen.dart';
@@ -38,7 +36,6 @@ class MyApp extends StatelessWidget {
     return MultiProvider(providers: [
       ChangeNotifierProvider(
         create: (context) => AppProvider(),
-        // child: PatientInfoScreen(),
       ),
       Provider<AuthService>(
         create: (_) => AuthService(FirebaseAuth.instance),
@@ -51,8 +48,8 @@ class MyApp extends StatelessWidget {
 
   signedin() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool CheckValue = prefs.containsKey('userid');
-    return CheckValue;
+    bool checkValue = prefs.containsKey('userid');
+    return checkValue;
   }
 
   decideScreen() async {

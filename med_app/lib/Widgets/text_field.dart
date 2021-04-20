@@ -28,7 +28,7 @@ class _TextFieldCompState extends State<TextFieldComp> {
     return LayoutBuilder(
       builder: (ctx, constraints) {
         return Container(
-          width: constraints.maxWidth - 50,
+          width: constraints.maxWidth,
           child: FocusScope(
             child: Focus(
               onFocusChange: (focus) {

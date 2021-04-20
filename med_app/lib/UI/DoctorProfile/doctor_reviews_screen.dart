@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
-import 'package:med_app/UI/PatientProfile/patient_medicalNotes_widget.dart';
 import 'package:med_app/Widgets/doctor_reviews_widget.dart';
 import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';

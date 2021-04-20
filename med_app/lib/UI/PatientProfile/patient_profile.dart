@@ -10,19 +10,17 @@ class PatientProfile extends StatefulWidget {
 
   @override
   _PatientProfileState createState() => _PatientProfileState();
-  
 }
 
 class _PatientProfileState extends State<PatientProfile> {
-  @override void initState() {
-    
-
-    // TODO: implement initState
+  @override
+  void initState() {
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
-print("patient profile");
+    print("patient profile");
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
       body: Consumer<AppProvider>(

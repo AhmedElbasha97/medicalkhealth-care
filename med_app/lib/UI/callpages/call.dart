@@ -4,19 +4,37 @@ import 'package:agora_rtc_engine/rtc_engine.dart';
 import 'package:agora_rtc_engine/rtc_local_view.dart' as RtcLocalView;
 import 'package:agora_rtc_engine/rtc_remote_view.dart' as RtcRemoteView;
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
+import 'package:med_app/UI/callpages/rewiew_screen.dart';
+import 'package:med_app/models/doctor.dart';
+import 'package:med_app/models/patient.dart';
+import 'package:med_app/provider/app_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../utils/settings.dart';
+import 'medical_note_screen.dart';
 
 class CallPage extends StatefulWidget {
   /// non-modifiable channel name of the page
   final String channelName;
   final String method;
   final String token;
+  final String id;
+
   /// non-modifiable client role of the page
   final ClientRole role;
+  final callbackDelete;
 
   /// Creates a call page with given channel name.
-  const CallPage({Key key, this.token,this.channelName, this.role, this.method = "video"})
+  const CallPage(
+      {Key key,
+      this.token,
+      this.channelName,
+      this.role,
+      this.callbackDelete,
+      this.id,
+      this.method = "video"})
       : super(key: key);
 
   @override
@@ -59,6 +77,7 @@ class _CallPageState extends State<CallPage> {
 
     await _initAgoraRtcEngine(this.widget.method);
     _addAgoraEventHandlers();
+    // ignore: deprecated_member_use
     await _engine.enableWebSdkInteroperability(true);
     VideoEncoderConfiguration configuration = VideoEncoderConfiguration();
     configuration.dimensions = VideoDimensions(1920, 1080);
@@ -201,7 +220,10 @@ class _CallPageState extends State<CallPage> {
             padding: const EdgeInsets.all(12.0),
           ),
           RawMaterialButton(
-            onPressed: () => _onCallEnd(context),
+            onPressed: () => {
+              _onCallEnd(context),
+              widget.callbackDelete(),
+            },
             child: Icon(
               Icons.call_end,
               color: Colors.white,
@@ -279,9 +301,30 @@ class _CallPageState extends State<CallPage> {
     );
   }
 
-  void _onCallEnd(BuildContext context) {
-    
-    Navigator.pop(context);
+  void _onCallEnd(BuildContext context) async {
+    AppProvider provider = Provider.of<AppProvider>(context, listen: false);
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    String currentUserId = prefs.getString('userid');
+    provider.getUserType(currentUserId);
+    String type = provider.type;
+
+    if (type != "patient") {
+      provider.getPatientById(widget.id);
+      Patient patient = provider.patient;
+
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => MedicalNoteScreen(patient: patient)));
+    } else {
+      provider.getDoctorById(widget.id);
+      Doctor doctor = provider.doctor;
+
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => ReviewScreen(doctor: doctor)));
+    }
   }
 
   void _onToggleMute() {
