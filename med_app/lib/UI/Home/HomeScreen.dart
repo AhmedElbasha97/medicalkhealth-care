@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/UI/Blogs/Blogs_Main_Screen.dart';
+import 'package:med_app/UI/Drawer/Drawer.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile.dart';
 import 'package:med_app/Widgets/BlogsCard.dart';
 import 'package:med_app/Widgets/ButtonCards.dart';
@@ -26,56 +27,50 @@ class Home extends StatelessWidget {
         ),
       ),
       child: Scaffold(
+        appBar: PreferredSize(
+          preferredSize: Size.fromHeight(50.0),
+          child: AppBar(
+              leading: Builder(
+                builder: (context) => IconButton(
+                  icon: Icon(Icons.menu_rounded),
+                  iconSize: 30.0,
+                  onPressed: () => Scaffold.of(context).openDrawer(),
+                ),
+              ),
+              backgroundColor: Colors.transparent,
+              elevation: 0.0,
+              actions: <Widget>[
+                IconButton(
+                  icon: const Icon(Icons.account_circle_sharp),
+                  color: Colors.white,
+                  iconSize: 30.0,
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => PatientProfile(),
+                    ));
+                  },
+                ),
+              ]),
+        ),
+        drawer: new DrawerSide(),
         backgroundColor: Colors.transparent,
         body: Stack(children: [
           Positioned(
-              top: MediaQuery.of(context).size.height * 0.06,
-              left: 0,
-              right: 0,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
-                    child: IconButton(
-                      icon: const Icon(Icons.menu),
-                      color: Colors.white,
-                      iconSize: 30.0,
-                      onPressed: () {
-                        print("hiii");
-                      },
-                    ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
-                    child: IconButton(
-                      icon: const Icon(Icons.account_circle_sharp),
-                      color: Colors.white,
-                      iconSize: 30.0,
-                      onPressed: () {
-                        Navigator.of(context).push(MaterialPageRoute(
-                          builder: (context) => PatientProfile(),
-                        ));
-                      },
-                    ),
-                  ),
-                ],
-              )),
-          Positioned(
-              top: MediaQuery.of(context).size.height * 0.08,
-              left: 0,
+              top: 0,
+              left: 10,
               right: 0,
               child: Padding(
                 padding: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
                 child: Container(
+                  height: MediaQuery.of(context).size.height * 0.25,
                   child: TopHaderCustom(
                       text: 'Welcome\n   akram \n    To TeleMed',
                       image: "assets/Doctors-pana.png"),
                 ),
               )),
           DraggableScrollableSheet(
-              initialChildSize: 0.65,
-              minChildSize: 0.65,
+              initialChildSize: 0.75,
+              minChildSize: 0.75,
               maxChildSize: 1,
               builder: (context, scrollController) {
                 return Container(
@@ -164,22 +159,20 @@ class Home extends StatelessWidget {
                               child: Container(
                                   width: MediaQuery.of(context).size.width * 1,
                                   height:
-                                      MediaQuery.of(context).size.height * 0.25,
+                                      MediaQuery.of(context).size.height * 0.27,
                                   child: ChangeNotifierProvider<BlogProvider>(
                                     create: (context) => BlogProvider(),
                                     child: Consumer<BlogProvider>(
                                       builder: (buildContext, BlogProvider, _) {
-                                        print('hi4');
-
-                                        return (BlogProvider.Blogs != null)
+                                        return (BlogProvider.blogs != null)
                                             ? ListView.builder(
                                                 scrollDirection:
                                                     Axis.horizontal,
                                                 itemCount:
-                                                    BlogProvider.Blogs.length,
+                                                    BlogProvider.blogs.length,
                                                 itemBuilder: (ctx, index) {
                                                   final person =
-                                                      BlogProvider.Blogs[index];
+                                                      BlogProvider.blogs[index];
                                                   return GestureDetector(
                                                     child: BlogsCardWidget(
                                                       title: person.title,
@@ -193,12 +186,12 @@ class Home extends StatelessWidget {
                                                         builder: (context) =>
                                                             BlogsDetailedScreen(
                                                           title: person.title,
-                                                          SubTitle: person.body,
+                                                          subTitle: person.body,
                                                           imageURL:
                                                               person.image,
                                                           URI: person.url,
-                                                          Index: index,
-                                                          Date: person.date,
+                                                          index: index,
+                                                          date: person.date,
                                                         ),
                                                       ));
                                                     },
@@ -266,22 +259,20 @@ class Home extends StatelessWidget {
                               child: Container(
                                   width: MediaQuery.of(context).size.width * 1,
                                   height:
-                                      MediaQuery.of(context).size.height * 0.25,
+                                      MediaQuery.of(context).size.height * 0.27,
                                   child: ChangeNotifierProvider<BlogProvider>(
                                     create: (context) => BlogProvider(),
                                     child: Consumer<BlogProvider>(
                                       builder: (buildContext, BlogProvider, _) {
-                                        print('hi4');
-
-                                        return (BlogProvider.NewsFeed != null)
+                                        return (BlogProvider.newsFeed != null)
                                             ? ListView.builder(
                                                 scrollDirection:
                                                     Axis.horizontal,
                                                 itemCount: BlogProvider
-                                                    .NewsFeed.length,
+                                                    .newsFeed.length,
                                                 itemBuilder: (ctx, index) {
                                                   final person = BlogProvider
-                                                      .NewsFeed[index];
+                                                      .newsFeed[index];
 
                                                   return GestureDetector(
                                                     child: BlogsCardWidget(
@@ -296,12 +287,12 @@ class Home extends StatelessWidget {
                                                         builder: (context) =>
                                                             BlogsDetailedScreen(
                                                           title: person.title,
-                                                          SubTitle: person.body,
+                                                          subTitle: person.body,
                                                           imageURL:
                                                               person.image,
                                                           URI: person.url,
-                                                          Index: index,
-                                                          Date: person.date,
+                                                          index: index,
+                                                          date: person.date,
                                                         ),
                                                       ));
                                                     },
@@ -317,9 +308,6 @@ class Home extends StatelessWidget {
                           ],
                         ),
                         SizedBox(height: 20),
-                        SizedBox(height: 12),
-                        SizedBox(height: 18),
-                        SizedBox(height: 18),
                       ],
                     ),
                   ),

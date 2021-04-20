@@ -11,6 +11,7 @@ class IndexPage extends StatefulWidget {
   IndexPage(
       {this.channelName,
       this.method,
+      this.id,
       this.token,
       this.appointmentDate,
       this.callbackDelete});
@@ -19,6 +20,7 @@ class IndexPage extends StatefulWidget {
   final token;
   final DateTime appointmentDate;
   final callbackDelete;
+  final id;
 
   @override
   State<StatefulWidget> createState() => IndexState();
@@ -83,6 +85,7 @@ class IndexState extends State<IndexPage> {
         MaterialPageRoute(
           builder: (context) => CallPage(
               callbackDelete: widget.callbackDelete,
+              id: widget.id,
               channelName: widget.channelName,
               role: _role,
               method: widget.method,

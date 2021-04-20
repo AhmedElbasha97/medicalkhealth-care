@@ -157,6 +157,7 @@ class DoctorCard extends StatelessWidget {
                       alignment: Alignment.bottomRight,
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 7),
+                        // ignore: deprecated_member_use
                         child: FlatButton(
                             color: Colors.transparent,
                             splashColor: Colors.black26,

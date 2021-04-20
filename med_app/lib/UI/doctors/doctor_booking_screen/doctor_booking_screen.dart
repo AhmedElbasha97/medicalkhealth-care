@@ -24,7 +24,6 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
   DateTime selectedDay = DateTime.now();
   String bookingHourSelected;
   String doctorImage;
-
   List avAppList;
   List filteredAvDayList;
   List formattedAvDayList;
@@ -39,8 +38,7 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
 
   @override
   void initState() {
-    AppProvider provider = Provider.of<AppProvider>(context, listen: false);
-    provider.getDoctorById('${widget.userId}');
+    context.read<AppProvider>().getDoctorById(widget.userId);
     super.initState();
   }
 
@@ -61,7 +59,9 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
       extendBodyBehindAppBar: true,
       body: Consumer<AppProvider>(
         builder: (context, databaseProvider, _) {
-          // databaseProvider.getDoctorById(widget.userId);
+          if (databaseProvider.doctor == null) {
+            context.read<AppProvider>().getDoctorById(widget.userId);
+          }
           if (databaseProvider.doctor != null) {
             avAppList = databaseProvider.doctor.availableAppointment;
             filteredAvDayList = avAppList.map((element) {
@@ -75,7 +75,6 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
               }
             }).toList();
             filteredAvDayList.removeWhere((element) => element == null);
-            selectedDay = filteredAvDayList[0];
           }
           return (databaseProvider.doctor != null)
               ? Stack(
@@ -454,7 +453,12 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                                                   bookingHourSelected,
                                                               image:
                                                                   doctorImage)),
-                                                    );
+                                                    ).then((_) {
+                                                      print('ana da5alt');
+                                                      context
+                                                          .read<AppProvider>()
+                                                          .refresh();
+                                                    });
                                                   }
                                                 : null,
                                             style: ElevatedButton.styleFrom(

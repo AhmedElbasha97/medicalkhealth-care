@@ -32,7 +32,7 @@ class UserProfileInfoWidget extends StatelessWidget {
                   ),
                   Padding(
                     padding: const EdgeInsets.only(left: 10),
-                    child: Text('${infoTitle}',
+                    child: Text('$infoTitle',
                         style: TextStyle(
                           color: ColorsCollection.mainColor,
                           fontWeight: FontWeight.bold,

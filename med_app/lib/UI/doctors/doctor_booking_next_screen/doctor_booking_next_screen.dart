@@ -42,7 +42,6 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     progressTimeline = ProgressTimeline(
       states: states,
@@ -62,8 +61,8 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
         color: Colors.grey,
       ),
     );
-    AppProvider provider = Provider.of<AppProvider>(context, listen: false);
-    provider.getDoctorById('${widget.userId}');
+    context.read<AppProvider>().getDoctorById(widget.userId);
+    print("appointment ${context.read<AppProvider>().doctor.name}");
   }
 
   @override
@@ -392,6 +391,11 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
                                             fontWeight: FontWeight.bold),
                                       ),
                                       onPressed: () {
+                                        AppProvider provider =
+                                            Provider.of<AppProvider>(context,
+                                                listen: false);
+                                        provider.getUserType(widget.userId);
+
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(

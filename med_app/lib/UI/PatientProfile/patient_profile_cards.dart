@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:med_app/provider/app_provider.dart';
 import 'package:med_app/services/auth.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:med_app/Styles/colors.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class PatientCardWidget extends StatelessWidget {
   final text;
@@ -71,8 +73,13 @@ class PatientCardWidget extends StatelessWidget {
         ),
         onTap: () async {
           if (logout == true) {
+                 context.read<AppProvider>().clear();
+            
+
             context.read<AuthService>().signOut();
-            Navigator.of(context).pop();
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              await prefs.setString('userid','');
+              Navigator.of(context).pop();
           }
           if (buttonNavigation != null) {
             await Navigator.of(context).push(

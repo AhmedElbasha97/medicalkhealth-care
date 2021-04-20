@@ -20,6 +20,7 @@ import 'package:med_app/UI/appointments/appointment_page/session_notification.da
 import 'package:timezone/data/latest.dart' as tz;
 import 'package:timezone/timezone.dart' as tz;
 
+// ignore: must_be_immutable
 class SlidingBookingPage extends StatefulWidget {
   final callback;
   final progressIndicator;
@@ -104,16 +105,14 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
     id = prefs.getString('userid');
     print("booking $id");
     token = await CallService().generateToken(widget.doctorName);
-    AppProvider provider = Provider.of<AppProvider>(context, listen: false);
 
-    provider.getPatientById(id);
-    patient = provider.patient;
-    print("booking: ${provider.patient.email}");
+    patient = context.read<AppProvider>().patient;
     widget.callback();
     addDoctorAppoinment();
     addPatientAppoinment();
     deleteAvailableAppointment();
     print(widget.pageNumber);
+    context.read<AppProvider>().refresh();
   }
 
   deleteAvailableAppointment() async {
@@ -166,8 +165,6 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
       "doctorSpeciality": widget.doctorSpeciality,
       "callMethod": callMethod,
       "symptoms": symptoms.text,
-      "patientPhoneNum": phoneNum.text,
-      "caseFile": attachedFile,
       "paymentMethod": paymentMethod,
       "token": token.token,
       "channelName": token.channelName

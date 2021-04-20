@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:med_app/UI/PatientProfile/patient_profile_widget.dart';
 import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
 
@@ -17,6 +16,7 @@ class DoctorProfile extends StatefulWidget {
 class _DoctorProfileState extends State<DoctorProfile> {
   @override
   Widget build(BuildContext context) {
+    print("doc profile");
     return Scaffold(
       backgroundColor: Color(0xFFFFFFFF),
       body: Consumer<AppProvider>(

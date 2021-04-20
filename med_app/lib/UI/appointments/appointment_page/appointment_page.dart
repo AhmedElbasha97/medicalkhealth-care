@@ -1,17 +1,19 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/UI/callpages/index.dart';
 
+// ignore: must_be_immutable
 class AppointmentPage extends StatefulWidget {
   final userType;
   final appointment;
-  final Image;
+  // ignore: non_constant_identifier_names
+  final Imagee;
   final callback;
 
-  AppointmentPage({this.appointment, this.Image, this.callback, this.userType});
+  AppointmentPage(
+      {this.appointment, this.Imagee, this.callback, this.userType});
 
   @override
   _AppointmentPageState createState() => _AppointmentPageState();
@@ -59,7 +61,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
                             color: ColorsCollection.mainColor, width: 5.0),
                         image: new DecorationImage(
                           fit: BoxFit.fill,
-                          image: NetworkImage(widget.Image),
+                          image: NetworkImage(widget.Imagee),
                         ),
                       ),
                     ),
@@ -208,6 +210,9 @@ class _AppointmentPageState extends State<AppointmentPage> {
                     method: widget.appointment.callMethod,
                     channelName: widget.appointment.channelName,
                     token: widget.appointment.token,
+                    id: (widget.userType != 'patient')
+                        ? widget.appointment.patientId
+                        : widget.appointment.doctorId,
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 8.0),

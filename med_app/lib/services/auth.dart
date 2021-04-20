@@ -3,7 +3,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:med_app/UI/DoctorNextScreen/doctor_next_screen.dart';
 import 'package:med_app/UI/PatientNextScreen/patient_next_screen.dart';
-import 'package:med_app/Widgets/NavBar.dart';
 import 'package:med_app/Widgets/start.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -13,18 +12,17 @@ class AuthService {
   //
   Stream<User> get authStateChanges => _auth.authStateChanges();
 
- Future<String> getUserId() async{
-    _auth
-  .userChanges()
-  .listen((User user) {
-    if (user == null) {
-      print('User is currently signed out!');
-      return null;
-    } else {
-      print('User is signed in id ${user.uid}!');
-      return   user.uid;
-    }
-  });
+  // ignore: missing_return
+  Future<String> getUserId() async {
+    _auth.userChanges().listen((User user) {
+      if (user == null) {
+        print('User is currently signed out!');
+        return null;
+      } else {
+        print('User is signed in id ${user.uid}!');
+        return user.uid;
+      }
+    });
   }
 // getStringValuesSF() async {
 
@@ -70,6 +68,7 @@ class AuthService {
           title: Text(lable),
           content: Text(message),
           actions: <Widget>[
+            // ignore: deprecated_member_use
             FlatButton(
               child: Text('OK'),
               onPressed: () {
@@ -83,6 +82,7 @@ class AuthService {
   }
 
   //signin email
+  // ignore: missing_return
   Future<String> signInEmail(context, email, password) async {
     if (validateEmail(email)) {
       if (validatePassword(password)) {
@@ -117,6 +117,7 @@ class AuthService {
   }
 
   //register email & password
+  // ignore: missing_return
   Future<String> signUpEmail(
       {context, email, username, confirmpassword, password, type}) async {
     if (validateUsername(username)) {
@@ -166,6 +167,7 @@ class AuthService {
   }
 
 //resetpassword
+  // ignore: missing_return
   Future<String> resetPassword({email, context}) {
     if (validateEmail(email)) {
       _auth.sendPasswordResetEmail(email: email);
@@ -179,7 +181,8 @@ class AuthService {
 
 //Get current User
 
-  Future <User>getCurrentUser() async {
+  Future<User> getCurrentUser() async {
+    // ignore: await_only_futures
     return await _auth.currentUser;
   }
 

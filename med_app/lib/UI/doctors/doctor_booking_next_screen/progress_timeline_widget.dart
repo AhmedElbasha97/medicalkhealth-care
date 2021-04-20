@@ -2,7 +2,6 @@ library progress_timeline;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 /// Created by Luciferx86 on 08/09/20.
 class ProgressTimeline extends StatefulWidget {
@@ -77,8 +76,6 @@ class _ProgressTimelineState extends State<ProgressTimeline> {
   int currentStageIndex = 0;
   List<SingleState> states;
   double height = 70;
-
-  final _controller = ItemScrollController();
 
   @override
   void initState() {
@@ -155,7 +152,6 @@ class _ProgressTimelineState extends State<ProgressTimeline> {
 
   List<Widget> buildStates() {
     List<Widget> allStates = [];
-    int len = states.length;
     for (var i = 0; i < states.length; i++) {
       allStates.add(RenderedState(
         textStyle: widget.textStyle,

@@ -59,22 +59,28 @@ class _AppointmentCardState extends State<AppointmentCard> {
     doctor = await _repo
         .fetchDoctor(isPatient ? widget.appointment.doctorId : widget.userId);
     var availDates = doctor.availableAppointment;
-    List availDatesSorted;
-    for (var i = 0; i < availDates.length; i++) {
-      if (DateFormat('yyyy-MM-dd').parse(availDates[i].availableDay).day ==
-          DateFormat('yyyy-MM-dd').parse(widget.appointment.day).day) {
-        availDates[i].availableHours.add(widget.appointment.hour);
-        availDates[i].availableHours.sort((a, b) => DateFormat.jm()
-            .parse(a)
-            .hour
-            .compareTo(DateFormat.jm().parse(b).hour));
-      }
-    }
+    var dateAppointment =
+        DateFormat('yyyy-MM-dd').parse(widget.appointment.day);
 
-    var availDatesMapped = availDates.map((e) => e.toJson()).toList();
-    await appDoc.update({"availableAppointment": availDatesMapped}).then((_) {
-      print('Transaction  committed.');
-    });
+    if ((dateAppointment.year > DateTime.now().year ||
+            dateAppointment.month > DateTime.now().month) &&
+        dateAppointment.day > DateTime.now().day &&
+        dateAppointment.minute > DateTime.now().minute) {
+      for (var i = 0; i < availDates.length; i++) {
+        if (DateFormat('yyyy-MM-dd').parse(availDates[i].availableDay).day ==
+            DateFormat('yyyy-MM-dd').parse(widget.appointment.day).day) {
+          availDates[i].availableHours.add(widget.appointment.hour);
+          availDates[i].availableHours.sort((a, b) => DateFormat.jm()
+              .parse(a)
+              .hour
+              .compareTo(DateFormat.jm().parse(b).hour));
+        }
+      }
+      var availDatesMapped = availDates.map((e) => e.toJson()).toList();
+      await appDoc.update({"availableAppointment": availDatesMapped}).then((_) {
+        print('Transaction  committed.');
+      });
+    }
 
     if (widget.userType == 'patient') {
       var docApps = doctor.appointment;
@@ -119,6 +125,7 @@ class _AppointmentCardState extends State<AppointmentCard> {
   @override
   Widget build(BuildContext context) {
     isPatient = (widget.userType == 'patient');
+    print('dfdfdfdf');
     return Padding(
       padding: const EdgeInsets.only(right: 8.0, left: 8.0, top: 2.0),
       child: Container(
@@ -239,7 +246,7 @@ class _AppointmentCardState extends State<AppointmentCard> {
                                 MaterialPageRoute(
                                   builder: (context) => AppointmentPage(
                                     appointment: widget.appointment,
-                                    Image: downloadURL,
+                                    Imagee: downloadURL,
                                     userType: widget.userType,
                                     callback: () {
                                       deleteAppointment();
