@@ -308,6 +308,7 @@ class BlogsDetailedScreen extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.9,
                           height: MediaQuery.of(context).size.height * 0.1,
                           // ignore: deprecated_member_use
+
                           child: FlatButton(
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)),

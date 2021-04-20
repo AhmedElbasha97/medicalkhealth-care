@@ -44,5 +44,6 @@ class _MedicalListScreenState extends State<MedicalListScreen> {
           : Center(child: CircularProgressIndicator());
     }));
 
+
   }
 }

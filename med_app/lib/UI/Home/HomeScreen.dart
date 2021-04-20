@@ -39,20 +39,20 @@ class Home extends StatelessWidget {
                   onPressed: () => Scaffold.of(context).openDrawer(),
                 ),
               ),
-              backgroundColor: Colors.transparent,
-              elevation: 0.0,
+            backgroundColor: Colors.transparent,
+            elevation: 0.0,
               actions: <Widget>[
-                IconButton(
-                  icon: const Icon(Icons.account_circle_sharp),
-                  color: Colors.white,
-                  iconSize: 30.0,
+               IconButton(
+                      icon: const Icon(Icons.account_circle_sharp),
+                      color: Colors.white,
+                      iconSize: 30.0,
 
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) =>
-                          PatientProfile(),));
-                  },
-                ),
+                      onPressed: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                          builder: (context) =>
+                              PatientProfile(),));
+                      },
+                    ),
 
               ]
           ),
@@ -61,48 +61,7 @@ class Home extends StatelessWidget {
 
         drawer: new DrawerSide(),
         backgroundColor: Colors.transparent,
-
         body: Stack(children: [
-          // Positioned(
-          //     top: MediaQuery.of(context).size.height * 0.06,
-          //     left: 0,
-          //     right: 0,
-          //
-          //     child:Row(
-          //       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          //   children: [
-          //     Padding(
-          //       padding: EdgeInsets.fromLTRB(10.0,0.0,0.0,0.0),
-          //       child: IconButton(
-          //         icon: const Icon(Icons.menu),
-          //         color: Colors.white,
-          //         iconSize: 30.0,
-          //
-          //         onPressed: () {
-          //           Navigator.of(context).push(MaterialPageRoute(
-          //             builder: (context) =>
-          //                 Drawer(),));
-          //
-          //         },
-          //       ),
-          //     ),
-          //     Padding(
-          //       padding: EdgeInsets.fromLTRB(0.0,0.0,10.0,0.0),
-          //       child: IconButton(
-          //         icon: const Icon(Icons.account_circle_sharp),
-          //         color: Colors.white,
-          //         iconSize: 30.0,
-          //
-          //         onPressed: () {
-          //           Navigator.of(context).push(MaterialPageRoute(
-          //             builder: (context) =>
-          //                 PatientProfile(),));
-          //         },
-          //       ),
-          //     ),
-          //
-          //   ],
-          // )),
           Positioned(
               top: 0,
               left: 10,
@@ -111,7 +70,6 @@ class Home extends StatelessWidget {
                 padding: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
                 child: Container(
                   height: MediaQuery.of(context).size.height*0.25 ,
-
                   child: TopHaderCustom(
                       text: 'Welcome\n   akram \n    To TeleMed',image: "assets/Doctors-pana.png"),
                 ),
@@ -197,8 +155,6 @@ class Home extends StatelessWidget {
                                     create: (context) => BlogProvider(),
                                     child: Consumer<BlogProvider>(
                                       builder: (buildContext, BlogProvider, _) {
-
-
                                         return (BlogProvider.blogs != null)
                                             ? ListView.builder(
                                             scrollDirection: Axis.horizontal,
@@ -268,14 +224,10 @@ class Home extends StatelessWidget {
                               child: Container(
                                   width: MediaQuery.of(context).size.width*1,
                                   height: MediaQuery.of(context).size.height * 0.27,
-
-
                                   child: ChangeNotifierProvider<BlogProvider>(
                                     create: (context) => BlogProvider(),
                                     child: Consumer<BlogProvider>(
                                       builder: (buildContext, BlogProvider, _) {
-
-
                                         return (BlogProvider.newsFeed != null)
                                             ? ListView.builder(
                                             scrollDirection: Axis.horizontal,

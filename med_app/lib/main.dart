@@ -34,10 +34,11 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
+
     return MultiProvider(providers: [
       ChangeNotifierProvider(
         create: (context) => AppProvider(),
-        // child: PatientInfoScreen(),
+     
       ),
       Provider<AuthService>(
         create: (_) => AuthService(FirebaseAuth.instance),

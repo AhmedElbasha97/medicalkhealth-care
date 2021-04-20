@@ -13,6 +13,7 @@ class _NutritionalListScreenState extends State<NutritionalListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
         body: Consumer<BlogProvider>(builder: (buildContext, blogProvider, _) {
       return (blogProvider.nuitrition != null)
           ? ListView.builder(
