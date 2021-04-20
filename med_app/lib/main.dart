@@ -33,12 +33,9 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-
-
     return MultiProvider(providers: [
       ChangeNotifierProvider(
         create: (context) => AppProvider(),
-     
       ),
       Provider<AuthService>(
         create: (_) => AuthService(FirebaseAuth.instance),
@@ -47,7 +44,7 @@ class MyApp extends StatelessWidget {
         create: (context) => context.read<AuthService>().authStateChanges,
       )
     ], child: MaterialApp(home: Splash()));
-}
+  }
 
   signedin() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
