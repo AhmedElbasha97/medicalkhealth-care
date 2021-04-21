@@ -3,9 +3,12 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/UI/callpages/index.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:firebase_database/firebase_database.dart';
 
 // ignore: must_be_immutable
 class AppointmentPage extends StatefulWidget {
+  static FirebaseDatabase database = new FirebaseDatabase();
   final userType;
   final appointment;
   // ignore: non_constant_identifier_names
@@ -20,6 +23,9 @@ class AppointmentPage extends StatefulWidget {
 }
 
 class _AppointmentPageState extends State<AppointmentPage> {
+  DatabaseReference userRef = AppointmentPage.database.reference();
+
+  String downloadURL;
   var isPatient;
   var appointmentHour;
   DateTime appointmentDay;
@@ -32,6 +38,13 @@ class _AppointmentPageState extends State<AppointmentPage> {
     appointmentDate = appointmentDay.add(
         Duration(hours: appointmentHour.hour, minutes: appointmentHour.minute));
     super.initState();
+  }
+
+  getImageUrl(imagepath) async {
+    downloadURL = await firebase_storage.FirebaseStorage.instance
+        .ref(imagepath)
+        .getDownloadURL();
+    return downloadURL;
   }
 
   @override
@@ -81,30 +94,51 @@ class _AppointmentPageState extends State<AppointmentPage> {
                               ),
                             ],
                           ),
-                          title: Text('Doctor Name'),
+                          title: isPatient
+                              ? Text('Doctor Name')
+                              : Text('Patient Name'),
                           subtitle: Text(isPatient
-                              ? widget.appointment.doctorName
-                              : widget.appointment.patientName),
+                              ? "${widget.appointment.doctorName}"
+                              : "${widget.appointment.patientName}"),
                         ),
                       ),
-                      if (isPatient)
-                        Expanded(
-                          flex: 1,
-                          child: ListTile(
-                            leading: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  Icons.format_list_bulleted_outlined,
-                                  size: 35.0,
-                                  color: ColorsCollection.mainColor,
+                      (isPatient)
+                          ? Expanded(
+                              flex: 1,
+                              child: ListTile(
+                                leading: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.format_list_bulleted_outlined,
+                                      size: 35.0,
+                                      color: ColorsCollection.mainColor,
+                                    ),
+                                  ],
                                 ),
-                              ],
-                            ),
-                            title: Text('Speciality'),
-                            subtitle: Text(widget.appointment.doctorSpeciality),
-                          ),
-                        ),
+                                title: Text('Speciality'),
+                                subtitle: Text(
+                                    widget.appointment.doctorSpeciality ?? ''),
+                              ),
+                            )
+                          : Expanded(
+                              flex: 1,
+                              child: ListTile(
+                                leading: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(
+                                      Icons.sick,
+                                      size: 35.0,
+                                      color: ColorsCollection.mainColor,
+                                    ),
+                                  ],
+                                ),
+                                title: Text('Symptoms'),
+                                subtitle:
+                                    Text(widget.appointment.symptoms ?? ''),
+                              ),
+                            )
                     ],
                   ),
                   Row(
@@ -123,7 +157,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
                             ],
                           ),
                           title: Text('Date'),
-                          subtitle: Text(widget.appointment.day),
+                          subtitle: Text("${widget.appointment.day}"),
                         ),
                       ),
                       Expanded(
@@ -140,7 +174,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
                             ],
                           ),
                           title: Text('Hour'),
-                          subtitle: Text(widget.appointment.hour),
+                          subtitle: Text("${widget.appointment.hour}"),
                         ),
                       ),
                     ],
@@ -161,7 +195,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
                             ],
                           ),
                           title: Text('Fees'),
-                          subtitle: Text(widget.appointment.fees.toString()),
+                          subtitle: Text("${widget.appointment.fees} EGP"),
                         ),
                       ),
                       Expanded(
@@ -178,25 +212,96 @@ class _AppointmentPageState extends State<AppointmentPage> {
                             ],
                           ),
                           title: Text('Call Type'),
-                          subtitle: Text(widget.appointment.callMethod),
+                          subtitle: Text("${widget.appointment.callMethod}"),
                         ),
                       ),
                     ],
                   ),
-                  ListTile(
-                    leading: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          FontAwesomeIcons.info,
-                          size: 35.0,
-                          color: ColorsCollection.mainColor,
+                  Row(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: ListTile(
+                          leading: Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                FontAwesomeIcons.info,
+                                size: 35.0,
+                                color: ColorsCollection.mainColor,
+                              ),
+                            ],
+                          ),
+                          title: Text('Status'),
+                          subtitle: Text('${widget.appointment.status}'),
                         ),
-                      ],
-                    ),
-                    title: Text('Status'),
-                    subtitle: Text('Pending Payment'),
-                  ),
+                      ),
+                      if (!isPatient)
+                        Expanded(
+                          flex: 1,
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.only(right: 30.0, left: 15.0),
+                            child: Container(
+                              height: 48,
+                              child: ElevatedButton(
+                                child: Text(
+                                  "Show Case",
+                                  style: TextStyle(
+                                      fontSize: 20.0,
+                                      fontFamily: 'Proxima',
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                onPressed: widget.appointment.caseFile != null
+                                    ? () async {
+                                        await showDialog(
+                                          barrierDismissible: false,
+                                          context: context,
+                                          builder: (_) => GestureDetector(
+                                            onTap: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                            child: FutureBuilder(
+                                              future: getImageUrl(
+                                                  widget.appointment.caseFile),
+                                              builder: (context, snapshot) {
+                                                if (snapshot.hasData) {
+                                                  return Container(
+                                                    width:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .width,
+                                                    height:
+                                                        MediaQuery.of(context)
+                                                            .size
+                                                            .height,
+                                                    child: Image(
+                                                      image: NetworkImage(
+                                                          snapshot.data),
+                                                    ),
+                                                  );
+                                                }
+                                                return Text('');
+                                              },
+                                            ),
+                                          ),
+                                        );
+                                      }
+                                    : null,
+                                style: ElevatedButton.styleFrom(
+                                  // elevation: 3.0,
+                                  primary: Colors.grey[100],
+                                  onPrimary: ColorsCollection.mainColor,
+                                  shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10.0),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                    ],
+                  )
                 ],
               ),
             ),
@@ -205,6 +310,7 @@ class _AppointmentPageState extends State<AppointmentPage> {
               child: Column(
                 children: [
                   IndexPage(
+                    status: widget.appointment.status,
                     callbackDelete: widget.callback,
                     appointmentDate: appointmentDate,
                     method: widget.appointment.callMethod,

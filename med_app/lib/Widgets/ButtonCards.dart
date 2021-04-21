@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/UI/appointments/patient_appointment_list/appointment_list.dart';
 import 'package:med_app/UI/specialitylist/specialty_list.dart';
+import 'package:med_app/provider/app_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ButtonCard extends StatefulWidget {
   final title;
@@ -20,7 +23,12 @@ class _ButtonCardState extends State<ButtonCard> {
     return LayoutBuilder(
       builder: (ctx, constraints) {
         return GestureDetector(
-          onTap: () {
+          onTap: () async {
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            String id = prefs.getString('userid');
+            AppProvider provider =
+                Provider.of<AppProvider>(context, listen: false);
+            provider.getUserType(id);
             if (widget.goDoctor) {
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) => SpecialtyList(),

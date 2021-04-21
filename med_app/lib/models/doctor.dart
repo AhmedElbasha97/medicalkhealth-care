@@ -126,10 +126,14 @@ class DoctorAppointment {
       this.patientPhoneNum,
       this.paymentMethod,
       this.symptoms,
+      this.caseFile,
       this.token,
+      this.status,
       this.fees});
 
+  String status;
   String callMethod;
+  String caseFile;
   String channelName;
   String day;
   String hour;
@@ -143,6 +147,8 @@ class DoctorAppointment {
   String fees;
   factory DoctorAppointment.fromJson(Map<dynamic, dynamic> json) =>
       DoctorAppointment(
+          status: json["status"],
+          caseFile: json["caseFile"],
           callMethod: json["callMethod"],
           channelName: json["channelName"],
           day: json["date"],
@@ -159,6 +165,8 @@ class DoctorAppointment {
   Map<dynamic, dynamic> toJson() => {
         "callMethod": callMethod,
         "channelName": channelName,
+        "caseFile": caseFile,
+        "status": status,
         "date": day,
         "hour": hour,
         "patientAvatar": patientAvatar,

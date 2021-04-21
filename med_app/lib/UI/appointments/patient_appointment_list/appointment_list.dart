@@ -4,7 +4,24 @@ import 'package:med_app/UI/appointments/patient_appointment_list/appointment_car
 import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
 
-class AppointmentList extends StatelessWidget {
+class AppointmentList extends StatefulWidget {
+  @override
+  _AppointmentListState createState() => _AppointmentListState();
+}
+
+class _AppointmentListState extends State<AppointmentList> {
+  String id;
+
+  @override
+  void initState() {
+    AppProvider provider = Provider.of<AppProvider>(context, listen: false);
+    setState(() {
+      id = provider.userId;
+    });
+    print('seko seko $id');
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +40,9 @@ class AppointmentList extends StatelessWidget {
       ),
       body: Consumer<AppProvider>(
         builder: (context, appProvider, _) {
-          return (appProvider.patient != null || appProvider.doctor != null)
+          return ((appProvider.type == "patient" &&
+                      appProvider.patient != null) ||
+                  (appProvider.type == "doctor" && appProvider.doctor != null))
               ? Padding(
                   padding: const EdgeInsets.only(top: 5.0),
                   child: ListView.builder(
@@ -32,6 +51,7 @@ class AppointmentList extends StatelessWidget {
                         : appProvider.doctor.appointment.length,
                     itemBuilder: (ctx, index) {
                       return AppointmentCard(
+                          userId: id,
                           appointment: appProvider.type == 'patient'
                               ? appProvider.patient.appointment[index]
                               : appProvider.doctor.appointment[index],
@@ -39,9 +59,6 @@ class AppointmentList extends StatelessWidget {
                               ? appProvider.patient.appointment
                               : appProvider.doctor.appointment,
                           index: index,
-                          userId: appProvider.type == 'patient'
-                              ? appProvider.patient.userId
-                              : appProvider.doctor.userId,
                           userType: appProvider.type);
                     },
                   ),

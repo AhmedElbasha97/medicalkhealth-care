@@ -4,6 +4,7 @@ import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/UI/doctors/doctor_booking_screen/doctor_booking_screen.dart';
 import 'package:med_app/models/doctor.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+import 'package:med_app/models/patient.dart';
 
 class DoctorCard extends StatelessWidget {
   getImgeUrl(imagepath) async {
@@ -14,8 +15,9 @@ class DoctorCard extends StatelessWidget {
     return downloadURL;
   }
 
-  DoctorCard({this.doctor});
+  DoctorCard({this.doctor, this.patient});
   final Doctor doctor;
+  final Patient patient;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -60,7 +62,7 @@ class DoctorCard extends StatelessWidget {
                 ),
               ),
               Expanded(
-                flex: 4,
+                flex: 5,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.center,
@@ -71,42 +73,38 @@ class DoctorCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            children: [
-                              Text("Dr.${doctor.name}",
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w600,
-                                      fontSize: 18)),
-                              SizedBox(
-                                width: 10,
-                              ),
-                              Row(
-                                children: [
-                                  if (doctor.callMethods.chat)
-                                    Icon(
-                                      FontAwesomeIcons.solidCommentDots,
-                                      color: ColorsCollection.mainColor,
-                                      size: 20,
-                                    ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  if (doctor.callMethods.video)
-                                    Icon(FontAwesomeIcons.video,
+                          Padding(
+                            padding: const EdgeInsets.only(right: 15.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Dr.${doctor.name}",
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 18)),
+                                SizedBox(
+                                  width: 10,
+                                ),
+                                Row(
+                                  children: [
+                                    if (doctor.callMethods.voice)
+                                      Icon(
+                                        Icons.phone_in_talk,
                                         color: ColorsCollection.mainColor,
-                                        size: 20),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                  if (doctor.callMethods.voice)
-                                    Icon(
-                                      Icons.phone_in_talk,
-                                      color: ColorsCollection.mainColor,
-                                      size: 23.0,
-                                    )
-                                ],
-                              )
-                            ],
+                                        size: 23.0,
+                                      ),
+                                    if (doctor.callMethods.video)
+                                      Padding(
+                                        padding:
+                                            const EdgeInsets.only(left: 10.0),
+                                        child: Icon(FontAwesomeIcons.video,
+                                            color: ColorsCollection.mainColor,
+                                            size: 20),
+                                      ),
+                                  ],
+                                )
+                              ],
+                            ),
                           ),
                           SizedBox(
                             height: 3,
@@ -164,7 +162,8 @@ class DoctorCard extends StatelessWidget {
                             onPressed: () {
                               Navigator.of(context).push(MaterialPageRoute(
                                   builder: (context) => DoctorBookingScreen(
-                                      userId: doctor.userId)));
+                                      userId: doctor.userId,
+                                      patient: patient)));
                             },
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10.0),

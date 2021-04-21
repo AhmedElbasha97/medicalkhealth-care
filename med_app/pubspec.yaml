@@ -119,6 +119,7 @@ flutter:
    - assets/consultation.jpg
    - assets/Blogs.jpg
    - assets/appointment.png
+   - assets/balance.jpg
    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see

@@ -64,7 +64,7 @@ class Home extends StatelessWidget {
                 child: Container(
                   height: MediaQuery.of(context).size.height * 0.25,
                   child: TopHaderCustom(
-                      text: 'Welcome\n   akram \n    To TeleMed',
+                      text: 'Welcome \n    To TeleMed',
                       image: "assets/Doctors-pana.png"),
                 ),
               )),

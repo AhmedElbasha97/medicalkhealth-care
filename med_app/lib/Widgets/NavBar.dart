@@ -15,18 +15,18 @@ import 'package:provider/provider.dart';
 
 class Nav extends StatefulWidget {
   final String userId;
-  Nav({this.userId});
+  int selectedIndex;
+  Nav({this.userId, this.selectedIndex = 0});
   @override
   _NavbarState createState() => _NavbarState();
 }
 
 class _NavbarState extends State<Nav> {
-  int _selectedIndex = 0;
   List<Widget> _widgetotpions;
 
   void _itemSwitch(int index) {
     setState(() {
-      _selectedIndex = index;
+      widget.selectedIndex = index;
     });
   }
 
@@ -100,7 +100,7 @@ class _NavbarState extends State<Nav> {
           buttonBackgroundColor: Colors.white,
           color: Colors.white,
         ),
-        body: _widgetotpions.elementAt(_selectedIndex),
+        body: _widgetotpions.elementAt(widget.selectedIndex),
       );
     });
   }

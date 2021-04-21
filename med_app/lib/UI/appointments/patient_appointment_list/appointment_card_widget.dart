@@ -1,29 +1,33 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:intl/intl.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:med_app/UI/appointments/appointment_page/appointment_page.dart';
+import 'package:med_app/UI/appointments/appointment_page/session_notification.dart';
+import 'package:med_app/Widgets/show_alert_dialog_widget.dart';
 import 'package:med_app/models/doctor.dart';
 import 'package:med_app/models/patient.dart';
 import 'package:med_app/provider/app_provider.dart';
 import 'package:med_app/repository/database_repo.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AppointmentCard extends StatefulWidget {
   static FirebaseDatabase database = new FirebaseDatabase();
-  final userId;
   final appointment;
   final appointments;
   final index;
   final userType;
+  final userId;
   AppointmentCard(
       {this.appointment,
-      this.userId,
       this.appointments,
       this.index,
-      this.userType});
+      this.userType,
+      this.userId});
 
   @override
   _AppointmentCardState createState() => _AppointmentCardState();
@@ -31,6 +35,18 @@ class AppointmentCard extends StatefulWidget {
 
 class _AppointmentCardState extends State<AppointmentCard> {
   DatabaseReference userRef = AppointmentCard.database.reference();
+  final SessionNotification _notifications = SessionNotification();
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+
+  DatabaseRepositories _repo = DatabaseRepositories();
+  Doctor doctor;
+  Patient patient;
+  var appDoctor;
+  var app;
+  var appDoc;
+  var availDates;
+  var dateAppointment;
+  SharedPreferences prefs;
 
   String downloadURL;
   bool isPatient;
@@ -43,32 +59,20 @@ class _AppointmentCardState extends State<AppointmentCard> {
   }
 
   deleteAppointment() async {
-    DatabaseRepositories _repo = DatabaseRepositories();
-    Doctor doctor;
-    Patient patient;
-
-    var app = userRef.child('users/${widget.userId}');
-    var appDoctor = userRef.child(
-        'users/${isPatient ? widget.appointment.doctorId : widget.appointment.patientId}');
-    var appDoc = userRef.child(
-        'users/${isPatient ? widget.appointment.doctorId : widget.userId}');
-
     widget.appointments.removeAt(widget.index);
     var newApps = widget.appointments.map((e) => e.toJson()).toList();
 
+    _notifications.removeNotify(
+        prefs.getInt('notifyId'), flutterLocalNotificationsPlugin);
+
     doctor = await _repo
         .fetchDoctor(isPatient ? widget.appointment.doctorId : widget.userId);
-    var availDates = doctor.availableAppointment;
-    var dateAppointment =
-        DateFormat('yyyy-MM-dd').parse(widget.appointment.day);
 
-    if ((dateAppointment.year > DateTime.now().year ||
-            dateAppointment.month > DateTime.now().month) &&
-        dateAppointment.day > DateTime.now().day &&
-        dateAppointment.minute > DateTime.now().minute) {
+    if (dateAppointment.difference(DateTime.now()).inMinutes > 0) {
+      availDates = doctor.availableAppointment;
+      var appointDay = widget.appointment.day;
       for (var i = 0; i < availDates.length; i++) {
-        if (DateFormat('yyyy-MM-dd').parse(availDates[i].availableDay).day ==
-            DateFormat('yyyy-MM-dd').parse(widget.appointment.day).day) {
+        if (availDates[i].availableDay == appointDay) {
           availDates[i].availableHours.add(widget.appointment.hour);
           availDates[i].availableHours.sort((a, b) => DateFormat.jm()
               .parse(a)
@@ -77,14 +81,11 @@ class _AppointmentCardState extends State<AppointmentCard> {
         }
       }
       var availDatesMapped = availDates.map((e) => e.toJson()).toList();
-      await appDoc.update({"availableAppointment": availDatesMapped}).then((_) {
-        print('Transaction  committed.');
-      });
+      appDoc.update({"availableAppointment": availDatesMapped});
     }
 
     if (widget.userType == 'patient') {
       var docApps = doctor.appointment;
-      print(docApps);
       docApps
           .removeWhere((element) => element.token == widget.appointment.token);
       var docAppsMapped = docApps.map((e) => e.toJson()).toList();
@@ -92,7 +93,7 @@ class _AppointmentCardState extends State<AppointmentCard> {
         appDoctor.update({"appointment": docAppsMapped});
         print('Transaction  committed.');
         AppProvider provider = Provider.of<AppProvider>(context, listen: false);
-        provider.getPatientById(widget.userId);
+        provider.getUserType(widget.userId);
       });
     } else {
       patient = await _repo.fetchPatient(widget.appointment.patientId);
@@ -104,19 +105,31 @@ class _AppointmentCardState extends State<AppointmentCard> {
         appDoctor.update({"appointment": patAppsMapped});
         print('Transaction  committed.');
         AppProvider provider = Provider.of<AppProvider>(context, listen: false);
-        provider.getPatientById(widget.userId);
+        provider.getUserType(widget.userId);
       });
     }
   }
 
+  getShared() async {
+    prefs = await SharedPreferences.getInstance();
+    print('done');
+  }
+
   @override
   void initState() {
-    var dateAppointment =
-        DateFormat('yyyy-MM-dd').parse(widget.appointment.day);
-    if ((dateAppointment.year <= DateTime.now().year ||
-            dateAppointment.month <= DateTime.now().month) &&
-        dateAppointment.day <= DateTime.now().day &&
-        dateAppointment.minute <= DateTime.now().minute - 60) {
+    getShared();
+    isPatient = (widget.userType == 'patient');
+    app = userRef.child('users/${widget.userId}');
+    appDoctor = userRef.child(
+        'users/${isPatient ? widget.appointment.doctorId : widget.appointment.patientId}');
+    appDoc = userRef.child(
+        'users/${isPatient ? widget.appointment.doctorId : widget.userId}');
+    dateAppointment = DateFormat('yyyy-MM-dd')
+        .parse(widget.appointment.day)
+        .add(Duration(
+            hours: (DateFormat.jm().parse(widget.appointment.hour).hour),
+            minutes: (DateFormat.jm().parse(widget.appointment.hour).minute)));
+    if (dateAppointment.difference(DateTime.now()).inMinutes < -30) {
       deleteAppointment();
     }
     super.initState();
@@ -124,8 +137,6 @@ class _AppointmentCardState extends State<AppointmentCard> {
 
   @override
   Widget build(BuildContext context) {
-    isPatient = (widget.userType == 'patient');
-    print('dfdfdfdf');
     return Padding(
       padding: const EdgeInsets.only(right: 8.0, left: 8.0, top: 2.0),
       child: Container(
@@ -173,13 +184,14 @@ class _AppointmentCardState extends State<AppointmentCard> {
                     children: [
                       Row(
                         children: [
-                          Text(
-                            'Dr. ',
-                            style: TextStyle(
-                                fontSize: 18.0,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Proxima'),
-                          ),
+                          if (!isPatient)
+                            Text(
+                              'Dr. ',
+                              style: TextStyle(
+                                  fontSize: 18.0,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Proxima'),
+                            ),
                           Text(
                             isPatient
                                 ? widget.appointment.doctorName
@@ -207,7 +219,7 @@ class _AppointmentCardState extends State<AppointmentCard> {
                                 Padding(
                                   padding: const EdgeInsets.only(left: 3.0),
                                   child: Text(
-                                    widget.appointment.day.toString(),
+                                    widget.appointment.day.toString() ?? '',
                                     style:
                                         TextStyle(fontWeight: FontWeight.bold),
                                   ),
@@ -225,7 +237,7 @@ class _AppointmentCardState extends State<AppointmentCard> {
                                   Padding(
                                     padding: const EdgeInsets.only(left: 3.0),
                                     child: Text(
-                                      widget.appointment.hour.toString(),
+                                      widget.appointment.hour.toString() ?? '',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold),
                                     ),
@@ -272,7 +284,10 @@ class _AppointmentCardState extends State<AppointmentCard> {
                             child: ElevatedButton(
                               child: Text("Cancel"),
                               onPressed: () {
-                                deleteAppointment();
+                                showAlertDialog(
+                                    context,
+                                    "Are you sure to delete appointment?",
+                                    deleteAppointment);
                               },
                               style: ElevatedButton.styleFrom(
                                 elevation: 3.0,

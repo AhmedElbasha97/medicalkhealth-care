@@ -222,7 +222,6 @@ class _CallPageState extends State<CallPage> {
           RawMaterialButton(
             onPressed: () => {
               _onCallEnd(context),
-              widget.callbackDelete(),
             },
             child: Icon(
               Icons.call_end,
@@ -315,15 +314,17 @@ class _CallPageState extends State<CallPage> {
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => MedicalNoteScreen(patient: patient)));
+              builder: (context) => MedicalNoteScreen(
+                  patient: patient, callbackDelete: widget.callbackDelete)));
     } else {
       provider.getDoctorById(widget.id);
       Doctor doctor = provider.doctor;
-
+      print('hish ${doctor.fees}');
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => ReviewScreen(doctor: doctor)));
+              builder: (context) => ReviewScreen(
+                  doctor: doctor, callbackDelete: widget.callbackDelete)));
     }
   }
 

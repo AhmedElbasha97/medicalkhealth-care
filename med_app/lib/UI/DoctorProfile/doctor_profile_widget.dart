@@ -239,7 +239,7 @@ class _DoctorProfileWidgetState extends State<DoctorProfileWidget> {
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
                               child: Text(
-                                "\$${widget.doctor.balance}",
+                                "${widget.doctor.balance} EGP",
                                 style: TextStyle(
                                     color: ColorsCollection.splashTitleColor,
                                     fontWeight: FontWeight.w900,
