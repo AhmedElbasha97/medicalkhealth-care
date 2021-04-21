@@ -6,7 +6,8 @@ import 'package:provider/provider.dart';
 class PatientProfile extends StatefulWidget {
   final String id;
   final String patientId;
-  PatientProfile({Key key, this.id, this.patientId}) : super(key: key);
+  final bool navigateFromOtherScreen;
+  PatientProfile({Key key, this.id, this.patientId, this.navigateFromOtherScreen=false}) : super(key: key);
 
   @override
   _PatientProfileState createState() => _PatientProfileState();
@@ -26,7 +27,7 @@ class _PatientProfileState extends State<PatientProfile> {
       body: Consumer<AppProvider>(
         builder: (context, appProvider, _) {
           return (appProvider.patient != null)
-              ? PatientProfileWidget(patient: appProvider.patient)
+              ? PatientProfileWidget(patient: appProvider.patient, navigateFromAnotherScreen: widget.navigateFromOtherScreen,)
               : Center(
                   child: CircularProgressIndicator(),
                 );

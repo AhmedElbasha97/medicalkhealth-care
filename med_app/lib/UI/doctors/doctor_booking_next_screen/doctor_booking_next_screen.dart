@@ -36,7 +36,6 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
   var pageNumber = 0;
   Patient patient;
   bool isAppointed = false;
-  bool balancePay = false;
   ProgressTimeline progressTimeline;
   List<SingleState> states = [
     SingleState(stateTitle: 'Call Type'),
@@ -260,7 +259,6 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
                       ),
                       Expanded(
                         child: SlidingBookingPage(
-                            balancePay: balancePay,
                             patient: patient,
                             avAppList: widget.avAppList,
                             selectedHoursList: widget.selectedHoursList,
@@ -289,6 +287,7 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
                               setState(() {
                                 pageNumber++;
                               });
+                              print(pageNumber);
                             }),
                         flex: pageNumber == 0 ? 4 : 5,
                       ),
@@ -324,9 +323,6 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
                                                           .gotoPreviousStage();
                                                       setState(() {
                                                         pageNumber--;
-                                                      });
-                                                      setState(() {
-                                                        balancePay = false;
                                                       });
                                                     }
                                                   : null,

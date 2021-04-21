@@ -31,7 +31,7 @@ dependencies:
   expandable: ^5.0.1
   map_launcher: ^2.0.0
   flutter_zoom_drawer: ^2.0.1
-
+  flutter_html_textview: any
   # cloud_firestore: ^1.0.4
   shared_preferences: ^2.0.5
   cupertino_tabbar: ^1.1.1
@@ -120,6 +120,7 @@ flutter:
    - assets/Blogs.jpg
    - assets/appointment.png
    - assets/balance.jpg
+   - assets/bg.png
    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see

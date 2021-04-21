@@ -38,12 +38,10 @@ class SlidingBookingPage extends StatefulWidget {
   final List avAppList;
   final Patient patient;
   int pageNumber;
-  bool balancePay;
 
   SlidingBookingPage(
       {this.callback,
       this.patient,
-      this.balancePay,
       this.avAppList,
       this.callbackAppointed,
       this.pageNumber,
@@ -83,6 +81,7 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
   int notifyId;
   int randomReferenceNumber;
   bool awaitPaid = true;
+  bool balancePay = false;
 
   final SessionNotification _notifications = SessionNotification();
   FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
@@ -111,7 +110,12 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
     token = await CallService().generateToken(widget.doctorName);
 
     awaitPaid = false;
-    if (!widget.balancePay) {
+    addPatientAppoinment();
+    addDoctorAppoinment();
+    deleteAvailableAppointment();
+    prefs.setInt('notifyId', notifyId);
+
+    if (!balancePay) {
       setState(() {
         widget.pageNumber++;
       });
@@ -119,12 +123,8 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
       changeBalance();
     }
 
-    addPatientAppoinment();
-    addDoctorAppoinment();
-    deleteAvailableAppointment();
-    prefs.setInt('notifyId', notifyId);
-
     widget.callback();
+    print('welcome to ${widget.pageNumber}');
     context.read<AppProvider>().refresh();
   }
 
@@ -141,15 +141,10 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
     for (var i = 0; i < x.length; i++) {
       if (DateFormat('yyyy-MM-dd').parse(x[i].availableDay).day ==
           appointdate.day) {
-        for (var j = 0; j < x[i].availableHours.length; j++) {
-          print(appointdate.hour);
-          print(DateFormat.jm().parse(x[i].availableHours[j]).hour);
-        }
         x[i].availableHours.removeWhere(
             (e) => (DateFormat.jm().parse(e).hour == appointdate.hour));
       }
     }
-    print("suck from ${x[1].availableHours}");
     var avAppListMapped = x.map((e) => e.toJson()).toList();
     doctor.set(avAppListMapped).then((_) {
       print("Delete Transaction Committed");
@@ -490,7 +485,7 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
                                       child: InkWell(
                                         onTap: () {
                                           setState(() {
-                                            widget.balancePay = true;
+                                            balancePay = true;
                                           });
                                           paymentMethod = 'balance';
                                           status = 'Paid';
@@ -565,6 +560,9 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
                                         fawryCallback);
                                     paymentMethod = 'fawry';
                                     status = 'Pending Payment';
+                                    setState(() {
+                                      balancePay = false;
+                                    });
                                   },
                                   child: Center(
                                     child: ListTile(
@@ -599,7 +597,7 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
                           ],
                         ),
                       )
-                    : widget.balancePay
+                    : balancePay
                         ? Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 20.0),

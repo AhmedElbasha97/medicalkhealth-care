@@ -31,7 +31,9 @@ class _ButtonCardState extends State<ButtonCard> {
             provider.getUserType(id);
             if (widget.goDoctor) {
               Navigator.of(context).push(MaterialPageRoute(
-                builder: (context) => SpecialtyList(),
+                builder: (context) => SpecialtyList(
+                  navigateFromOtherScreen: true,
+                ),
               ));
             } else {
               Navigator.of(context).push(MaterialPageRoute(

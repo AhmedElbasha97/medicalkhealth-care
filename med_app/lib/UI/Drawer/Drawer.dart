@@ -1,8 +1,53 @@
 import 'dart:ui';
+import 'package:med_app/UI/Drawer/AboutUs.dart';
+import 'package:med_app/UI/Drawer/TermsAndCondition.dart';
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
+import 'package:med_app/provider/app_provider.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
+class DrawerSide extends StatefulWidget {
+  @override
+  _DrawerSideState createState() => _DrawerSideState();
+}
 
-class DrawerSide extends StatelessWidget {
+class _DrawerSideState extends State<DrawerSide> {
+  var email;
+  var name;
+  var imagePath;
+
+  getImgeUrl(imagepath) async {
+    String downloadURL = await firebase_storage.FirebaseStorage.instance
+        .ref(imagepath)
+        .getDownloadURL();
+    return downloadURL;
+  }
+
+  @override
+  void initState() {
+    super.initState();
+   var type = context.read<AppProvider>().type;
+    if(type =="patient"){
+      name = context.read<AppProvider>().patient.name;
+      imagePath = context.read<AppProvider>().patient.userAvatar;
+      email = context
+          .read<AppProvider>()
+          .patient.balance;
+    }else {
+      name = context
+          .read<AppProvider>()
+          .doctor
+          .name;
+      imagePath =  context
+          .read<AppProvider>()
+          .doctor
+          .userAvatar;
+      email = context
+          .read<AppProvider>()
+          .doctor
+          .email;
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return  Drawer(
@@ -54,10 +99,23 @@ class DrawerSide extends StatelessWidget {
                           ),
                           child: Padding(
                             padding: EdgeInsets.fromLTRB(0.0, 0.0, 10.0, 0.0),
-                            child: CircleAvatar(
-                              backgroundImage: NetworkImage("https://randomuser.me/api/portraits/men/46.jpg"),
-                              radius: 30.0,
-                            ),
+                            child:  FutureBuilder(
+                                future: getImgeUrl(imagePath),
+                                builder: (context, snapshot) {
+                                  if (snapshot.hasData) {
+                                    return Container(
+                                      width: MediaQuery.of(context).size.width * 0.19,
+                                      height: MediaQuery.of(context).size.width * 0.19,
+                                      decoration: BoxDecoration(
+                                        shape: BoxShape.circle,
+                                        image: DecorationImage(
+                                            image: NetworkImage(snapshot.data),
+                                            fit: BoxFit.fill),
+                                      ),
+                                    );
+                                  }
+                                  return Center(child: CircularProgressIndicator());
+                                }),
                           ),
                         ),
 
@@ -66,7 +124,7 @@ class DrawerSide extends StatelessWidget {
                           width: MediaQuery.of(context).size.width * 0.43,
                           child:ListTile(
                             title: Text(
-                              "Akram",
+                              "${name}",
                               style: TextStyle(
                                   color: Color(0xfff2f2f2),
                                   fontWeight: FontWeight.bold,
@@ -74,7 +132,7 @@ class DrawerSide extends StatelessWidget {
                                   fontSize: 20),
                             ),
                             subtitle:Text(
-                              "Patinent ta3ban",
+                              "Balance is: ${email} LE",
                               style: TextStyle(
                                   color: Color(0xfff2f2f2),
                                   fontFamily: 'Proxima',
@@ -117,12 +175,16 @@ class DrawerSide extends StatelessWidget {
                             ),
                           ),
                           child: ListTile(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    TermsAndCondition(),));
+                            },
                             leading: Icon(
-                              Icons.person,
+                              Icons.description,
                               color: ColorsCollection.mainColor,
                             ),
-                            title: Text("Profile Page",
+                            title: Text("Terms AND Condition",
                             style: TextStyle(
                             color: ColorsCollection.mainColor,
                             fontFamily: 'Proxima',
@@ -139,12 +201,16 @@ class DrawerSide extends StatelessWidget {
                             ),
                           ),
                           child: ListTile(
-                            onTap: () {},
+                            onTap: () {
+                              Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) =>
+                                    AboutUs(),));
+                            },
                             leading: Icon(
-                              Icons.settings,
+                              Icons.add_ic_call,
                               color: ColorsCollection.mainColor,
                             ),
-                            title: Text("Settings",
+                            title: Text("About US",
                             style: TextStyle(
                             color: ColorsCollection.mainColor,
                             fontFamily: 'Proxima',
@@ -185,6 +251,8 @@ class DrawerSide extends StatelessWidget {
     );
 
   }
+
+
 }
 
 

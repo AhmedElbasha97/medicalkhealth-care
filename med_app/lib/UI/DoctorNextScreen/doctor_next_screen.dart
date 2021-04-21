@@ -125,240 +125,243 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          shadowColor: Colors.black,
-          title: Text('Details'),
-          backgroundColor: ColorsCollection.mainColor,
-          elevation: 0.0,
-          leading: Padding(
-            padding: const EdgeInsets.only(left: 15.0, top: 3.0),
-            child: Icon(
-              Icons.account_circle,
-              size: 30.0,
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+          appBar: AppBar(
+            shadowColor: Colors.black,
+            title: Text('Details'),
+            backgroundColor: ColorsCollection.mainColor,
+            elevation: 0.0,
+            leading: Padding(
+              padding: const EdgeInsets.only(left: 15.0, top: 3.0),
+              child: Icon(
+                Icons.account_circle,
+                size: 30.0,
+              ),
             ),
           ),
-        ),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Expanded(
-              flex: 9,
-              child: Padding(
-                padding: const EdgeInsets.symmetric(
-                    horizontal: 20.0, vertical: 20.0),
-                child: ListView(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5),
-                      child: TextFieldComp(
-                        label: 'What is your name*',
-                        hint: "Enter your profile name",
-                        controller: name,
-                        callback: (val) {
-                          setState(() {
-                            _nameText = val;
-                          });
-                        },
-                        onChange: true,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 5, bottom: 5.0),
-                      child: TextFieldComp(
-                          label: 'What is your age*',
-                          hint: "Enter your age",
-                          controller: age,
+          body: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Expanded(
+                flex: 9,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 20.0, vertical: 20.0),
+                  child: ListView(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 5),
+                        child: TextFieldComp(
+                          label: 'What is your name*',
+                          hint: "Enter your profile name",
+                          controller: name,
                           callback: (val) {
                             setState(() {
-                              _ageText = val;
+                              _nameText = val;
                             });
                           },
                           onChange: true,
-                          keyboardTypeNumber: true),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsets.only(top: 10, left: 5.0, right: 5.0),
-                      child: Row(
-                        children: [
-                          Text(
-                            'What is your gender',
-                            style: TextStyle(
-                                color: Colors.black,
-                                fontFamily: 'Proxima',
-                                fontWeight: FontWeight.bold,
-                                fontSize: 17),
-                            textAlign: TextAlign.start,
-                          ),
-                        ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          bottom: 5.0, left: 5.0, right: 5.0),
-                      child: DropDown(
-                        showUnderline: true,
-                        hint: Text('choose gender'),
-                        items: ['Male', 'Female'],
-                        onChanged: (val) {
-                          setState(() {
-                            _selectedGender = val;
-                            print(_selectedGender);
-                          });
-                        },
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5, bottom: 5.0),
+                        child: TextFieldComp(
+                            label: 'What is your age*',
+                            hint: "Enter your age",
+                            controller: age,
+                            callback: (val) {
+                              setState(() {
+                                _ageText = val;
+                              });
+                            },
+                            onChange: true,
+                            keyboardTypeNumber: true),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5.0),
-                      child: Text(
-                        'Choose Your Profession:',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Proxima',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17),
+                      Padding(
+                        padding:
+                            const EdgeInsets.only(top: 10, left: 5.0, right: 5.0),
+                        child: Row(
+                          children: [
+                            Text(
+                              'What is your gender',
+                              style: TextStyle(
+                                  color: Colors.black,
+                                  fontFamily: 'Proxima',
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 17),
+                              textAlign: TextAlign.start,
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 5.0, right: 5.0),
-                      child: DropDown(
-                        hint: Text('choose Profession'),
-                        items: ['Doctor', 'Pharmacist', 'Nutritionist'],
-                        onChanged: (val) {
-                          setState(() {
-                            _selectedProfession = val;
-                            print(_selectedProfession);
-                          });
-                        },
-                      ),
-                    ),
-                    if (_selectedProfession == 'Doctor')
                       Padding(
                         padding: const EdgeInsets.only(
                             bottom: 5.0, left: 5.0, right: 5.0),
                         child: DropDown(
-                          hint: Text('choose Speciality'),
-                          items: specialities,
+                          showUnderline: true,
+                          hint: Text('choose gender'),
+                          items: ['Male', 'Female'],
                           onChanged: (val) {
                             setState(() {
-                              speciality = val;
+                              _selectedGender = val;
+                              print(_selectedGender);
                             });
                           },
                         ),
                       ),
-                    Padding(
-                      padding: const EdgeInsets.only(top: 5, bottom: 15.0),
-                      child: TextFieldComp(
-                          label: 'Years of experience in this field',
-                          hint: "Enter how many years of experience",
-                          controller: experience,
-                          keyboardTypeNumber: true),
-                    ),
-                    MultiSelectChipField(
-                      items: _items,
-                      initialValue: [_languages[0]],
-                      title: Text("Languages"),
-                      headerColor: ColorsCollection.mainColor.withOpacity(0.5),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                            color: ColorsCollection.mainColor, width: 1.8),
-                      ),
-                      selectedChipColor:
-                          ColorsCollection.mainColor.withOpacity(0.5),
-                      selectedTextStyle: TextStyle(color: Colors.black),
-                      onTap: (values) {
-                        _langListSelected = values.map((e) => e.lang).toList();
-                        print(_langListSelected);
-                      },
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          top: 20.0, right: 10.0, bottom: 15.0, left: 5.0),
-                      child: Text(
-                        'Upload Your Documents: (Required)',
-                        style: TextStyle(
-                            color: Colors.black,
-                            fontFamily: 'Proxima',
-                            fontWeight: FontWeight.bold,
-                            fontSize: 17),
-                      ),
-                    ),
-                    Column(
-                      children: [
-                        UploadCard(
-                            title: "Enter Your Certificate",
-                            asset: "assets/documents.jpg",
-                            certType: 'Certificate',
-                            callback: (val) =>
-                                setState(() => certificate = val)),
-                        UploadCard(
-                            title: "Enter Your ID",
-                            asset: "assets/ID.png",
-                            certType: 'ID',
-                            callback: (val) => setState(() => id = val)),
-                        UploadCard(
-                            title: "Enter Your Candidate Card",
-                            asset: "assets/Candidate.png",
-                            certType: 'Candidate',
-                            callback: (val) => setState(() => candidate = val))
-                      ],
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 1,
-              child: Align(
-                alignment: Alignment.bottomCenter,
-                child: Container(
-                  width: double.infinity,
-                  height: 60,
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                        primary: Color(0xFF00A1A7) // foreground
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0),
+                        child: Text(
+                          'Choose Your Profession:',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'Proxima',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 17),
                         ),
-                    onPressed: (name.text.isNotEmpty &&
-                            age.text.isNotEmpty &&
-                            _langListSelected != [] &&
-                            _selectedGender != null &&
-                            _selectedProfession != null &&
-                            certificate != null &&
-                            id != null &&
-                            candidate != null)
-                        ? () {
-                            addDoctor(
-                                _selectedProfession,
-                                speciality,
-                                certificate,
-                                id,
-                                candidate,
-                                _langListSelected,
-                                _nameText,
-                                _ageText,
-                                experience.text,
-                                _selectedGender);
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => Start()));
-                          }
-                        : null,
-                    child: Text(
-                      'Finish',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontFamily: 'Proxima',
-                          fontWeight: FontWeight.bold),
-                    ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 5.0, right: 5.0),
+                        child: DropDown(
+                          hint: Text('choose Profession'),
+                          items: ['Doctor', 'Pharmacist', 'Nutritionist'],
+                          onChanged: (val) {
+                            setState(() {
+                              _selectedProfession = val;
+                              print(_selectedProfession);
+                            });
+                          },
+                        ),
+                      ),
+                      if (_selectedProfession == 'Doctor')
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              bottom: 5.0, left: 5.0, right: 5.0),
+                          child: DropDown(
+                            hint: Text('choose Speciality'),
+                            items: specialities,
+                            onChanged: (val) {
+                              setState(() {
+                                speciality = val;
+                              });
+                            },
+                          ),
+                        ),
+                      Padding(
+                        padding: const EdgeInsets.only(top: 5, bottom: 15.0),
+                        child: TextFieldComp(
+                            label: 'Years of experience in this field',
+                            hint: "Enter how many years of experience",
+                            controller: experience,
+                            keyboardTypeNumber: true),
+                      ),
+                      MultiSelectChipField(
+                        items: _items,
+                        initialValue: [_languages[0]],
+                        title: Text("Languages"),
+                        headerColor: ColorsCollection.mainColor.withOpacity(0.5),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                              color: ColorsCollection.mainColor, width: 1.8),
+                        ),
+                        selectedChipColor:
+                            ColorsCollection.mainColor.withOpacity(0.5),
+                        selectedTextStyle: TextStyle(color: Colors.black),
+                        onTap: (values) {
+                          _langListSelected = values.map((e) => e.lang).toList();
+                          print(_langListSelected);
+                        },
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(
+                            top: 20.0, right: 10.0, bottom: 15.0, left: 5.0),
+                        child: Text(
+                          'Upload Your Documents: (Required)',
+                          style: TextStyle(
+                              color: Colors.black,
+                              fontFamily: 'Proxima',
+                              fontWeight: FontWeight.bold,
+                              fontSize: 17),
+                        ),
+                      ),
+                      Column(
+                        children: [
+                          UploadCard(
+                              title: "Enter Your Certificate",
+                              asset: "assets/documents.jpg",
+                              certType: 'Certificate',
+                              callback: (val) =>
+                                  setState(() => certificate = val)),
+                          UploadCard(
+                              title: "Enter Your ID",
+                              asset: "assets/ID.png",
+                              certType: 'ID',
+                              callback: (val) => setState(() => id = val)),
+                          UploadCard(
+                              title: "Enter Your Candidate Card",
+                              asset: "assets/Candidate.png",
+                              certType: 'Candidate',
+                              callback: (val) => setState(() => candidate = val))
+                        ],
+                      )
+                    ],
                   ),
                 ),
               ),
-            )
-          ],
-        ));
+              Expanded(
+                flex: 1,
+                child: Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    width: double.infinity,
+                    height: 60,
+                    child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                          primary: Color(0xFF00A1A7) // foreground
+                          ),
+                      onPressed: (name.text.isNotEmpty &&
+                              age.text.isNotEmpty &&
+                              _langListSelected != [] &&
+                              _selectedGender != null &&
+                              _selectedProfession != null &&
+                              certificate != null &&
+                              id != null &&
+                              candidate != null)
+                          ? () {
+                              addDoctor(
+                                  _selectedProfession,
+                                  speciality,
+                                  certificate,
+                                  id,
+                                  candidate,
+                                  _langListSelected,
+                                  _nameText,
+                                  _ageText,
+                                  experience.text,
+                                  _selectedGender);
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => Start()));
+                            }
+                          : null,
+                      child: Text(
+                        'Finish',
+                        style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 20,
+                            fontFamily: 'Proxima',
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                  ),
+                ),
+              )
+            ],
+          )),
+    );
   }
 }
 

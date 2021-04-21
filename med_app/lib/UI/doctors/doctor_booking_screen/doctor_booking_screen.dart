@@ -71,6 +71,9 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
             provider.getDoctorById(widget.userId);
             provider.getUserType(widget.patient.userId);
           }
+          if (back) {
+            bookingHourSelected = null;
+          }
           if (databaseProvider.doctor != null) {
             back = false;
             avAppList = databaseProvider.doctor.availableAppointment;

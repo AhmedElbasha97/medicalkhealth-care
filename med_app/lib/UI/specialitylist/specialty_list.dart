@@ -4,6 +4,9 @@ import 'package:med_app/Widgets/speciality_card.dart';
 import 'package:med_app/models/speciality.dart';
 
 class SpecialtyList extends StatefulWidget {
+  final bool navigateFromOtherScreen;
+
+  const SpecialtyList({Key key, this.navigateFromOtherScreen = false}) : super(key: key);
   @override
   _SpecialtyListState createState() => _SpecialtyListState();
 }
@@ -78,6 +81,7 @@ class _SpecialtyListState extends State<SpecialtyList> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: widget.navigateFromOtherScreen,
           title: Text(
             'Speciality',
             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),
