@@ -7,11 +7,11 @@ import 'package:med_app/Styles/colors.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:med_app/UI/DoctorProfile/doctor_info_screen.dart';
+import 'package:med_app/UI/DoctorProfile/doctor_profile_schedule.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile_cards.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:med_app/models/doctor.dart';
 import 'package:med_app/provider/app_provider.dart';
-
 import 'package:provider/provider.dart';
 
 import 'doctor_reviews_screen.dart';
@@ -20,7 +20,7 @@ import 'doctor_reviews_screen.dart';
 class DoctorProfileWidget extends StatefulWidget {
   final text;
   final profileInfo;
-
+  final navigateOtherScreen;
   final color;
   final userId;
   Doctor doctor;
@@ -31,6 +31,7 @@ class DoctorProfileWidget extends StatefulWidget {
     this.profileInfo,
     this.userId,
     this.doctor,
+    this.navigateOtherScreen,
   });
 
   @override
@@ -103,6 +104,7 @@ class _DoctorProfileWidgetState extends State<DoctorProfileWidget> {
       return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          automaticallyImplyLeading: widget.navigateOtherScreen,
           leading: IconButton(
             icon: Icon(Icons.chevron_left),
             color: ColorsCollection.splashTitleColor,
@@ -238,7 +240,7 @@ class _DoctorProfileWidgetState extends State<DoctorProfileWidget> {
                             Padding(
                               padding: const EdgeInsets.only(top: 8.0),
                               child: Text(
-                                "\$${widget.doctor.balance}",
+                                "${widget.doctor.balance} EGP",
                                 style: TextStyle(
                                     color: ColorsCollection.splashTitleColor,
                                     fontWeight: FontWeight.w900,
@@ -265,6 +267,9 @@ class _DoctorProfileWidgetState extends State<DoctorProfileWidget> {
               PatientCardWidget(
                 cardLabel: "My schedule",
                 icon: Icons.schedule,
+                buttonNavigation: DoctorSchedule(
+                  doctorId: widget.doctor.userId,
+                ),
               ),
               PatientCardWidget(
                 cardLabel: "Settings",

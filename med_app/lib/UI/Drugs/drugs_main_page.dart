@@ -8,11 +8,12 @@ import 'DrugsList.dart';
 
 class DrugsMainPageScreen extends StatelessWidget {
   final String id;
-  DrugsMainPageScreen({Key key, this.id}) : super(key: key);
+  DrugsMainPageScreen({Key key, this.id }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
+          automaticallyImplyLeading: false,
           title: Text('Drugs',
               style: TextStyle(
                 color: Colors.white,

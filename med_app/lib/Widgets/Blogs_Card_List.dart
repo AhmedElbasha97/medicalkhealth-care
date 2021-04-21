@@ -13,7 +13,7 @@ class BlogsCardList extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       width: MediaQuery.of(context).size.width * 0.8,
-      height: MediaQuery.of(context).size.height * 0.43,
+      height: MediaQuery.of(context).size.height* 0.47,
       child: Padding(
           padding: const EdgeInsets.all(5),
           child: Padding(
@@ -82,7 +82,7 @@ class BlogsCardList extends StatelessWidget {
                       ),
                       Padding(
                         padding: const EdgeInsets.only(
-                            left: 10, top: 10, right: 16, bottom: 10),
+                            left: 10, top: 10, right: 16, bottom: 0),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
@@ -95,7 +95,8 @@ class BlogsCardList extends StatelessWidget {
                                     fontSize: 12)),
                           ],
                         ),
-                      )
+                      ),
+                      SizedBox(height:MediaQuery.of(context).size.height* 0.01)
                     ],
                   )),
             ),

@@ -3,6 +3,7 @@ import 'package:med_app/models/doctor.dart';
 import 'package:med_app/models/patient.dart';
 import 'package:med_app/models/token.dart';
 import 'package:med_app/repository/database_repo.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class AppProvider extends ChangeNotifier {
   String userId;
@@ -45,6 +46,7 @@ class AppProvider extends ChangeNotifier {
     _databaseRepositories.fetchDoctor(id).then((doctor) {
       this.doctor = doctor;
       this.doctorAppointments = doctor.appointment;
+      this.userId = this.doctor.userId;
       notifyListeners();
     });
   }
@@ -53,6 +55,7 @@ class AppProvider extends ChangeNotifier {
     _databaseRepositories.fetchPatient(id).then((patient) {
       this.patient = patient;
       this.patientAppointments = this.patient.appointment;
+      this.userId = this.patient.userId;
       notifyListeners();
     });
   }
@@ -87,6 +90,10 @@ class AppProvider extends ChangeNotifier {
     this.doctor = null;
     this.type = null;
     this.logout = true;
+  }
+
+  void refresh() {
+    notifyListeners();
   }
 
 //  void getParent(id){

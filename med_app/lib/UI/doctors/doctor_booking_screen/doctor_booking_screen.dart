@@ -7,6 +7,7 @@ import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/UI/doctors/doctor_booking_next_screen/doctor_booking_next_screen.dart';
 import 'package:med_app/UI/doctors/doctor_booking_screen/hour_picker_widget.dart';
 import 'package:med_app/Widgets/doctor_reviews_widget.dart';
+import 'package:med_app/models/patient.dart';
 import 'package:med_app/provider/app_provider.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +15,8 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class DoctorBookingScreen extends StatefulWidget {
   final userId;
-  DoctorBookingScreen({this.userId});
+  final Patient patient;
+  DoctorBookingScreen({this.userId, this.patient});
   @override
   _DoctorBookingScreenState createState() => _DoctorBookingScreenState();
 }
@@ -24,11 +26,12 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
   DateTime selectedDay = DateTime.now();
   String bookingHourSelected;
   String doctorImage;
-
   List avAppList;
   List filteredAvDayList;
   List formattedAvDayList;
   List selectedHoursList;
+  bool back = false;
+  bool first = true;
 
   getImgeUrl(imagepath) async {
     String downloadURL = await firebase_storage.FirebaseStorage.instance
@@ -40,7 +43,8 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
   @override
   void initState() {
     AppProvider provider = Provider.of<AppProvider>(context, listen: false);
-    provider.getDoctorById('${widget.userId}');
+    provider.doctor = null;
+    provider.getDoctorById(widget.userId);
     super.initState();
   }
 
@@ -61,11 +65,20 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
       extendBodyBehindAppBar: true,
       body: Consumer<AppProvider>(
         builder: (context, databaseProvider, _) {
-          // databaseProvider.getDoctorById(widget.userId);
+          if (databaseProvider.doctor == null || back) {
+            AppProvider provider =
+                Provider.of<AppProvider>(context, listen: false);
+            provider.getDoctorById(widget.userId);
+            provider.getUserType(widget.patient.userId);
+          }
+          if (back) {
+            bookingHourSelected = null;
+          }
           if (databaseProvider.doctor != null) {
+            back = false;
             avAppList = databaseProvider.doctor.availableAppointment;
             filteredAvDayList = avAppList.map((element) {
-              var avDay = DateFormat('dd-MM-yyyy').parse(element.availableDay);
+              var avDay = DateFormat('yyyy-MM-dd').parse(element.availableDay);
               if (avDay.day >= DateTime.now().day &&
                   avDay.month >= DateTime.now().month) {
                 if (selectedHoursList == null) {
@@ -75,7 +88,10 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
               }
             }).toList();
             filteredAvDayList.removeWhere((element) => element == null);
-            formattedAvDayList = filteredAvDayList.map((e) => e.day).toList();
+            if (first) {
+              selectedDay = filteredAvDayList[0];
+              first = false;
+            }
           }
           return (databaseProvider.doctor != null)
               ? Stack(
@@ -148,14 +164,6 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                         ),
                                         Row(
                                           children: [
-                                            if (databaseProvider
-                                                .doctor.callMethods.chat)
-                                              Icon(
-                                                FontAwesomeIcons
-                                                    .solidCommentDots,
-                                                color:
-                                                    ColorsCollection.mainColor,
-                                              ),
                                             if (databaseProvider
                                                 .doctor.callMethods.voice)
                                               Icon(
@@ -361,22 +369,23 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                       ),
                                     ),
                                     DatePicker(
-                                      DateTime.now(),
+                                      filteredAvDayList[0],
                                       controller: _controller,
-                                      initialSelectedDate: DateTime.now(),
+                                      initialSelectedDate: filteredAvDayList[0],
                                       selectionColor:
                                           ColorsCollection.mainColor,
                                       selectedTextColor: Colors.white,
-                                      daysCount: formattedAvDayList[
-                                              formattedAvDayList.length - 1] -
-                                          formattedAvDayList[0] +
+                                      daysCount: filteredAvDayList[
+                                                  filteredAvDayList.length - 1]
+                                              .difference(filteredAvDayList[0])
+                                              .inDays +
                                           1,
                                       activeDates: avAppList
                                           .map(
                                             (e) => DateTime.now().add(
                                               Duration(
                                                   days: (DateFormat(
-                                                              'dd-MM-yyyy')
+                                                              'yyyy-MM-dd')
                                                           .parse(e.availableDay)
                                                           .day) -
                                                       DateTime.now().day),
@@ -389,7 +398,7 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                         });
                                         selectedHoursList = avAppList
                                             .firstWhere((element) =>
-                                                DateFormat('dd-MM-yyyy')
+                                                DateFormat('yyyy-MM-dd')
                                                     .parse(element.availableDay)
                                                     .day ==
                                                 selectedDay.day)
@@ -434,22 +443,34 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                                   fontFamily: 'Proxima',
                                                   fontWeight: FontWeight.bold),
                                             ),
-                                            onPressed: () {
-                                              Navigator.push(
-                                                context,
-                                                MaterialPageRoute(
-                                                    builder: (context) =>
-                                                        DoctorBookingNextScreen(
-                                                            userId:
-                                                                widget.userId,
-                                                            daySelected:
-                                                                selectedDay,
-                                                            hourSelected:
-                                                                bookingHourSelected,
-                                                            image:
-                                                                doctorImage)),
-                                              );
-                                            },
+                                            onPressed: bookingHourSelected !=
+                                                    null
+                                                ? () {
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                          builder: (context) => DoctorBookingNextScreen(
+                                                              avAppList:
+                                                                  avAppList,
+                                                              selectedHoursList:
+                                                                  selectedHoursList,
+                                                              userId:
+                                                                  widget.userId,
+                                                              daySelected:
+                                                                  selectedDay,
+                                                              hourSelected:
+                                                                  bookingHourSelected,
+                                                              image:
+                                                                  doctorImage)),
+                                                    ).then((_) {
+                                                      print('ana da5alt');
+                                                      back = true;
+                                                      context
+                                                          .read<AppProvider>()
+                                                          .refresh();
+                                                    });
+                                                  }
+                                                : null,
                                             style: ElevatedButton.styleFrom(
                                               primary:
                                                   ColorsCollection.mainColor,

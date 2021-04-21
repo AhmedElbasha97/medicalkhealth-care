@@ -24,6 +24,7 @@ class CallPage extends StatefulWidget {
 
   /// non-modifiable client role of the page
   final ClientRole role;
+  final callbackDelete;
 
   /// Creates a call page with given channel name.
   const CallPage(
@@ -31,6 +32,7 @@ class CallPage extends StatefulWidget {
       this.token,
       this.channelName,
       this.role,
+      this.callbackDelete,
       this.id,
       this.method = "video"})
       : super(key: key);
@@ -218,7 +220,9 @@ class _CallPageState extends State<CallPage> {
             padding: const EdgeInsets.all(12.0),
           ),
           RawMaterialButton(
-            onPressed: () => _onCallEnd(context),
+            onPressed: () => {
+              _onCallEnd(context),
+            },
             child: Icon(
               Icons.call_end,
               color: Colors.white,
@@ -310,15 +314,17 @@ class _CallPageState extends State<CallPage> {
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => MedicalNoteScreen(patient: patient)));
+              builder: (context) => MedicalNoteScreen(
+                  patient: patient, callbackDelete: widget.callbackDelete)));
     } else {
       provider.getDoctorById(widget.id);
       Doctor doctor = provider.doctor;
-
+      print('hish ${doctor.fees}');
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => ReviewScreen(doctor: doctor)));
+              builder: (context) => ReviewScreen(
+                  doctor: doctor, callbackDelete: widget.callbackDelete)));
     }
   }
 

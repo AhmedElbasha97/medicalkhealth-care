@@ -40,7 +40,7 @@ class _HourItemState extends State<HourItem> {
           child: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              widget.availableHour,
+              widget.availableHour ?? '',
               style: TextStyle(
                   color: widget.tc ? Colors.black : Colors.white,
                   fontSize: 16,

@@ -36,7 +36,6 @@ class MyApp extends StatelessWidget {
     return MultiProvider(providers: [
       ChangeNotifierProvider(
         create: (context) => AppProvider(),
-        // child: PatientInfoScreen(),
       ),
       Provider<AuthService>(
         create: (_) => AuthService(FirebaseAuth.instance),

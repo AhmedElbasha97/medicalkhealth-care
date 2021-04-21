@@ -8,10 +8,20 @@ import 'package:permission_handler/permission_handler.dart';
 import './call.dart';
 
 class IndexPage extends StatefulWidget {
-  IndexPage({this.channelName, this.method, this.token, this.id});
+  IndexPage(
+      {this.channelName,
+      this.method,
+      this.id,
+      this.status,
+      this.token,
+      this.appointmentDate,
+      this.callbackDelete});
+  final status;
   final method;
   final channelName;
   final token;
+  final DateTime appointmentDate;
+  final callbackDelete;
   final id;
 
   @override
@@ -41,14 +51,18 @@ class IndexState extends State<IndexPage> {
           "Join Session",
           style: TextStyle(fontSize: 16.0),
         ),
-        onPressed: onJoin,
+        // TO-DO payment add
+        onPressed:
+            (widget.appointmentDate.difference(DateTime.now()).inMinutes < 0 &&
+                    widget.status == "Paid")
+                ? onJoin
+                : null,
         style: ElevatedButton.styleFrom(
           elevation: 3.0,
           primary: Colors.white,
           onPrimary: ColorsCollection.mainColor,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(40.0),
-            side: BorderSide(color: ColorsCollection.mainColor, width: 1.0),
           ),
         ),
       ),
@@ -71,6 +85,7 @@ class IndexState extends State<IndexPage> {
         context,
         MaterialPageRoute(
           builder: (context) => CallPage(
+              callbackDelete: widget.callbackDelete,
               id: widget.id,
               channelName: widget.channelName,
               role: _role,

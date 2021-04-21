@@ -4,16 +4,17 @@ import 'package:provider/provider.dart';
 
 import 'doctor_profile_widget.dart';
 
-class DcotorProfile extends StatefulWidget {
+class DoctorProfile extends StatefulWidget {
   final String id;
   final String patientId;
-  DcotorProfile({Key key, this.id, this.patientId}) : super(key: key);
+  final navigateFromOtherScreen;
+  DoctorProfile({Key key, this.id, this.patientId, this.navigateFromOtherScreen, }) : super(key: key);
 
   @override
-  _DcotorProfileState createState() => _DcotorProfileState();
+  _DoctorProfileState createState() => _DoctorProfileState();
 }
 
-class _DcotorProfileState extends State<DcotorProfile> {
+class _DoctorProfileState extends State<DoctorProfile> {
   @override
   Widget build(BuildContext context) {
     print("doc profile");
@@ -22,7 +23,7 @@ class _DcotorProfileState extends State<DcotorProfile> {
       body: Consumer<AppProvider>(
         builder: (context, databaseProvider, _) {
           return (databaseProvider.doctor != null)
-              ? DoctorProfileWidget(doctor: databaseProvider.doctor)
+              ? DoctorProfileWidget(doctor: databaseProvider.doctor, navigateOtherScreen: widget.navigateFromOtherScreen, )
               : Center(
                   child: CircularProgressIndicator(),
                 );

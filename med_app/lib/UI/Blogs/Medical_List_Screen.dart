@@ -13,12 +13,13 @@ class _MedicalListScreenState extends State<MedicalListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
         body: Consumer<BlogProvider>(builder: (buildContext, blogProvider, _) {
-      return (blogProvider.Medical != null)
+      return (blogProvider.medical != null)
           ? ListView.builder(
-              itemCount: blogProvider.Medical.length,
+              itemCount: blogProvider.medical.length,
               itemBuilder: (ctx, index) {
-                final person = blogProvider.Medical[index];
+                final person = blogProvider.medical[index];
 
                 return GestureDetector(
                     child: BlogsCardList(
@@ -30,11 +31,11 @@ class _MedicalListScreenState extends State<MedicalListScreen> {
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => BlogsDetailedScreen(
                           title: person.title,
-                          SubTitle: person.body,
+                          subTitle: person.body,
                           imageURL: person.image,
                           URI: person.url,
-                          Index: index,
-                          Date: person.date,
+                          index: index,
+                          date: person.date,
                         ),
                       ));
                     });
@@ -42,5 +43,7 @@ class _MedicalListScreenState extends State<MedicalListScreen> {
             )
           : Center(child: CircularProgressIndicator());
     }));
+
+
   }
 }

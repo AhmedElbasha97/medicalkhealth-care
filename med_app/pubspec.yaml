@@ -29,6 +29,9 @@ dependencies:
   firebase_database: ^6.1.2
   firebase_storage: ^8.0.2
   expandable: ^5.0.1
+  map_launcher: ^2.0.0
+  flutter_zoom_drawer: ^2.0.1
+  flutter_html_textview: any
   # cloud_firestore: ^1.0.4
   shared_preferences: ^2.0.5
   cupertino_tabbar: ^1.1.1
@@ -65,7 +68,8 @@ dependencies:
   day_night_time_picker: ^1.0.1
   agora_rtc_engine: any
   permission_handler: any
-
+  date_range_picker: ^1.0.7
+  android_alarm_manager: ^2.0.0
   animated_onboarding:
     git:
       url: https://github.com/Eng-Mohamed-Osama/animated_onboarding
@@ -115,6 +119,8 @@ flutter:
    - assets/consultation.jpg
    - assets/Blogs.jpg
    - assets/appointment.png
+   - assets/balance.jpg
+   - assets/bg.png
    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see

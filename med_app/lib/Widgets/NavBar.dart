@@ -4,52 +4,48 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:med_app/UI/Blogs/Blogs_Main_Screen.dart';
 import 'package:med_app/UI/DoctorProfile/doctor_profile.dart';
 import 'package:med_app/UI/Drugs/drugs_main_page.dart';
+import 'package:med_app/UI/Home/HomeScreen.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile.dart';
-import 'package:med_app/UI/appointments/patient_appointment_list/appointment_list.dart';
 import 'package:med_app/UI/specialitylist/specialty_list.dart';
 import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
 
-// import 'UI/movie_list/movie_screen.dart';
-
 class Nav extends StatefulWidget {
   final String userId;
-  Nav({this.userId});
+  int selectedIndex;
+  Nav({this.userId, this.selectedIndex = 0});
   @override
   _NavbarState createState() => _NavbarState();
 }
 
 class _NavbarState extends State<Nav> {
-  int _selectedIndex = 0;
   List<Widget> _widgetotpions;
 
   void _itemSwitch(int index) {
     setState(() {
-      _selectedIndex = index;
+      widget.selectedIndex = index;
     });
   }
 
   @override
   void initState() {
+    print(widget.selectedIndex);
+    _widgetotpions = <Widget>[
+      BlogHomescreen(),
+      DrugsMainPageScreen(),
+      Home(),
+      SpecialtyList(),
+      if (context.read<AppProvider>().type != null)
+        (context.read<AppProvider>().type == "patient")
+            ? PatientProfile()
+            : DoctorProfile()
+    ];
+    _widgetotpions.elementAt(widget.selectedIndex);
     super.initState();
-
-    // getStringValuesSF().then((i){
-    //   id=i;
-    // });
   }
 
   @override
   Widget build(BuildContext context) {
-    _widgetotpions = <Widget>[
-      BlogHomescreen(),
-      DrugsMainPageScreen(),
-      SpecialtyList(),
-      AppointmentList(),
-      if (context.read<AppProvider>().type != null)
-        (context.read<AppProvider>().type == "patient")
-            ? PatientProfile()
-            : DcotorProfile()
-    ];
     return Consumer<AppProvider>(builder: (context, databaseProvider, _) {
       if (databaseProvider.type == null) {
         databaseProvider.getUserType(widget.userId);
@@ -89,7 +85,7 @@ class _NavbarState extends State<Nav> {
           buttonBackgroundColor: Colors.white,
           color: Colors.white,
         ),
-        body: _widgetotpions.elementAt(_selectedIndex),
+        body: _widgetotpions.elementAt(widget.selectedIndex),
       );
     });
   }

@@ -13,6 +13,7 @@ class _NutritionalListScreenState extends State<NutritionalListScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+
         body: Consumer<BlogProvider>(builder: (buildContext, blogProvider, _) {
       return (blogProvider.nuitrition != null)
           ? ListView.builder(
@@ -30,15 +31,16 @@ class _NutritionalListScreenState extends State<NutritionalListScreen> {
                       Navigator.of(context).push(MaterialPageRoute(
                         builder: (context) => BlogsDetailedScreen(
                           title: person.title,
-                          SubTitle: person.body,
+                          subTitle: person.body,
                           imageURL: person.image,
                           URI: person.url,
-                          Index: index,
-                          Date: person.date,
+                          index: index,
+                          date: person.date,
                         ),
                       ));
                     });
               },
+
             )
           : Center(child: CircularProgressIndicator());
     }));

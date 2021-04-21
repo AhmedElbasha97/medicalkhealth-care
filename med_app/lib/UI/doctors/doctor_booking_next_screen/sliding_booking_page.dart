@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/Widgets/show_alert_dialog_widget.dart';
 import 'package:med_app/Widgets/text_field.dart';
@@ -12,9 +13,12 @@ import 'package:med_app/models/token.dart';
 import 'package:med_app/provider/app_provider.dart';
 import 'dart:math';
 import 'package:provider/provider.dart';
-
 import 'package:med_app/services/callservice.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:med_app/UI/appointments/appointment_page/session_notification.dart';
+import 'package:timezone/data/latest.dart' as tz;
+import 'package:timezone/timezone.dart' as tz;
 
 // ignore: must_be_immutable
 class SlidingBookingPage extends StatefulWidget {
@@ -29,11 +33,19 @@ class SlidingBookingPage extends StatefulWidget {
   final fees;
   final doctorAvatar;
   final appointments;
+  final callbackAppointed;
+  final List selectedHoursList;
+  final List avAppList;
+  final Patient patient;
   int pageNumber;
 
   SlidingBookingPage(
       {this.callback,
+      this.patient,
+      this.avAppList,
+      this.callbackAppointed,
       this.pageNumber,
+      this.selectedHoursList,
       this.doctorSpeciality,
       this.fees,
       this.appointments,
@@ -56,31 +68,87 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
 
   var callMethod;
   var attachedFile;
+  var appointdate;
+  var appointdateFormed;
   var paymentMethod;
+  var status;
+
   final phoneNum = TextEditingController();
   final symptoms = TextEditingController();
   Token token;
   User user;
   String id;
-  Patient patient;
+  int notifyId;
+  int randomReferenceNumber;
+  bool awaitPaid = true;
+  bool balancePay = false;
+
+  final SessionNotification _notifications = SessionNotification();
+  FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin;
+
+  Future initNotifies() async => flutterLocalNotificationsPlugin =
+      await _notifications.initNotifies(context);
+
+  @override
+  void initState() {
+    var random = new Random.secure();
+    randomReferenceNumber = random.nextInt(10000000);
+    initNotifies();
+    print(DateFormat.jm().parse(widget.hourSelected).hour);
+    print(DateTime.now());
+    appointdate = DateFormat('yyyy-MM-dd').parse(widget.daySelected).add(
+        Duration(
+            hours: DateFormat.jm().parse(widget.hourSelected).hour,
+            minutes: DateFormat.jm().parse(widget.hourSelected).minute));
+    appointdateFormed = appointdate.difference(DateTime.now()).inMilliseconds;
+    super.initState();
+  }
+
   fawryCallback() async {
-    print(widget.pageNumber);
-    setState(() {
-      widget.pageNumber++;
-    });
     SharedPreferences prefs = await SharedPreferences.getInstance();
     id = prefs.getString('userid');
-    print("booking $id");
     token = await CallService().generateToken(widget.doctorName);
-    AppProvider provider = Provider.of<AppProvider>(context, listen: false);
 
-    provider.getPatientById(id);
-    patient = provider.patient;
-    print("booking: ${provider.patient.email}");
-    widget.callback();
-    addDoctorAppoinment();
+    awaitPaid = false;
     addPatientAppoinment();
-    print(widget.pageNumber);
+    addDoctorAppoinment();
+    deleteAvailableAppointment();
+    prefs.setInt('notifyId', notifyId);
+
+    if (!balancePay) {
+      setState(() {
+        widget.pageNumber++;
+      });
+    } else {
+      changeBalance();
+    }
+
+    widget.callback();
+    print('welcome to ${widget.pageNumber}');
+    context.read<AppProvider>().refresh();
+  }
+
+  changeBalance() {
+    var patientBalRef = userRef.child('users/${widget.patient.userId}/balance');
+    var balance =
+        (int.parse(widget.patient.balance) - int.parse(widget.fees)).toString();
+    patientBalRef.set(balance);
+  }
+
+  deleteAvailableAppointment() {
+    var doctor = userRef.child('users/${widget.doctorId}/availableAppointment');
+    List x = widget.avAppList;
+    for (var i = 0; i < x.length; i++) {
+      if (DateFormat('yyyy-MM-dd').parse(x[i].availableDay).day ==
+          appointdate.day) {
+        x[i].availableHours.removeWhere(
+            (e) => (DateFormat.jm().parse(e).hour == appointdate.hour));
+      }
+    }
+    var avAppListMapped = x.map((e) => e.toJson()).toList();
+    doctor.set(avAppListMapped).then((_) {
+      print("Delete Transaction Committed");
+    });
   }
 
   addDoctorAppoinment() async {
@@ -90,13 +158,15 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
     doctor.set(<String, dynamic>{
       "date": widget.daySelected,
       "hour": widget.hourSelected,
-      "patientAvatar": patient.userAvatar,
+      "patientAvatar": widget.patient.userAvatar,
       "patientId": id,
-      "patientName": patient.name,
+      "patientName": widget.patient.name,
       "callMethod": callMethod,
       "symptoms": symptoms.text,
       "patientPhoneNum": phoneNum.text,
+      "fees": widget.fees,
       "caseFile": attachedFile,
+      "status": status,
       "paymentMethod": paymentMethod,
       "token": token.token,
       "channelName": token.channelName
@@ -106,8 +176,9 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
   }
 
   addPatientAppoinment() async {
+    notifyId = Random().nextInt(10000000);
     var ref = userRef.child(
-        'users/$id/appointment/${(patient.appointment == null) ? 0 : patient.appointment.length}');
+        'users/$id/appointment/${(widget.patient.appointment == null) ? 0 : widget.patient.appointment.length}');
     ref.set(<String, dynamic>{
       "date": widget.daySelected,
       "hour": widget.hourSelected,
@@ -116,13 +187,21 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
       "doctorName": widget.doctorName,
       "doctorSpeciality": widget.doctorSpeciality,
       "callMethod": callMethod,
+      "status": status,
+      "fees": widget.fees,
       "symptoms": symptoms.text,
-      "patientPhoneNum": phoneNum.text,
-      "caseFile": attachedFile,
       "paymentMethod": paymentMethod,
       "token": token.token,
       "channelName": token.channelName
-    }).then((_) {
+    }).then((_) async {
+      tz.initializeTimeZones();
+      tz.setLocalLocation(tz.getLocation('Europe/Warsaw'));
+      await _notifications.showNotification(
+          widget.doctorName,
+          'You have an appointment',
+          appointdateFormed,
+          notifyId,
+          flutterLocalNotificationsPlugin);
       print('Transaction  committed.');
     });
   }
@@ -151,7 +230,6 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
 
   @override
   Widget build(BuildContext context) {
-    var random = new Random.secure();
     return widget.pageNumber == 0
         ? ListView(
             children: [
@@ -171,47 +249,10 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
                 padding:
                     const EdgeInsets.symmetric(vertical: 4.0, horizontal: 30.0),
                 child: Text(
-                  'You can choose whether to make a voice call or a video call or even a chat with the doctor to highest benefit from our service',
+                  'You can choose whether to make a voice call or a video call with the doctor to highest benefit from our service',
                   style: TextStyle(fontFamily: 'Proxima', fontSize: 16.0),
                 ),
               ),
-              if (widget.callMethods.chat)
-                Container(
-                  height: 100,
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(
-                        vertical: 2.0, horizontal: 20.0),
-                    child: Card(
-                      elevation: 3.0,
-                      child: InkWell(
-                        onTap: () {
-                          widget.callback();
-                          callMethod = 'chat';
-                        },
-                        child: Center(
-                          child: ListTile(
-                            leading: Icon(
-                              Icons.comment,
-                              color: ColorsCollection.mainColor,
-                              size: 28.0,
-                            ),
-                            title: Text(
-                              'Chat',
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 17),
-                            ),
-                            subtitle: Padding(
-                              padding: const EdgeInsets.only(top: 2.0),
-                              child: Text(
-                                'Using our voice chat to communicate through internet',
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
               if (widget.callMethods.voice)
                 Container(
                   height: 100,
@@ -435,6 +476,78 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
                                     fontFamily: 'Proxima', fontSize: 16.0),
                               ),
                             ),
+                            (int.parse(widget.patient.balance) >
+                                    int.parse(widget.fees))
+                                ? Container(
+                                    height: 100,
+                                    child: Card(
+                                      elevation: 3.0,
+                                      child: InkWell(
+                                        onTap: () {
+                                          setState(() {
+                                            balancePay = true;
+                                          });
+                                          paymentMethod = 'balance';
+                                          status = 'Paid';
+                                          setState(() {
+                                            widget.pageNumber++;
+                                          });
+                                        },
+                                        child: Center(
+                                          child: ListTile(
+                                            leading: Container(
+                                              height: 40,
+                                              width: 40,
+                                              decoration: BoxDecoration(
+                                                shape: BoxShape.circle,
+                                                image: new DecorationImage(
+                                                  fit: BoxFit.fill,
+                                                  image: AssetImage(
+                                                      "assets/balance.jpg"),
+                                                ),
+                                              ),
+                                            ),
+                                            title: Text(
+                                              'My Balance',
+                                              style: TextStyle(
+                                                  fontWeight: FontWeight.bold,
+                                                  fontSize: 17),
+                                            ),
+                                            subtitle: Padding(
+                                              padding: const EdgeInsets.only(
+                                                  top: 2.0),
+                                              child: Text(
+                                                  'Pay with Account Balance'),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  )
+                                : Container(
+                                    height: 100,
+                                    child: Card(
+                                      color: Colors.grey,
+                                      elevation: 5.0,
+                                      child: Center(
+                                        child: ListTile(
+                                          title: Text(
+                                            'Not Enough Balance to Pay With',
+                                            style: TextStyle(
+                                                fontWeight: FontWeight.bold,
+                                                fontSize: 17,
+                                                color: Colors.grey[100]),
+                                          ),
+                                          subtitle: Padding(
+                                            padding:
+                                                const EdgeInsets.only(top: 2.0),
+                                            child: Text(
+                                                'You can add balance via profile'),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ),
                             Container(
                               height: 100,
                               child: Card(
@@ -446,6 +559,10 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
                                         "Are you sure you will pay with Fawry?",
                                         fawryCallback);
                                     paymentMethod = 'fawry';
+                                    status = 'Pending Payment';
+                                    setState(() {
+                                      balancePay = false;
+                                    });
                                   },
                                   child: Center(
                                     child: ListTile(
@@ -477,131 +594,60 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
                                 ),
                               ),
                             ),
-                            Container(
-                              height: 100,
-                              child: Card(
-                                elevation: 3.0,
-                                child: InkWell(
-                                  onTap: () {
-                                    paymentMethod = 'credit';
-                                  },
-                                  child: Center(
-                                    child: ListTile(
-                                      leading: Container(
-                                        height: 40,
-                                        width: 40,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: new DecorationImage(
-                                            fit: BoxFit.fill,
-                                            image:
-                                                AssetImage("assets/credit.png"),
-                                          ),
-                                        ),
-                                      ),
-                                      title: Text(
-                                        'Credit Card',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 17),
-                                      ),
-                                      subtitle: Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 2.0),
-                                        child: Text('Visa or MasterCard'),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Container(
-                              height: 100,
-                              child: Card(
-                                elevation: 3.0,
-                                child: InkWell(
-                                  onTap: () {
-                                    paymentMethod = 'paypal';
-                                  },
-                                  child: Center(
-                                    child: ListTile(
-                                      leading: Container(
-                                        height: 40,
-                                        width: 40,
-                                        decoration: BoxDecoration(
-                                          shape: BoxShape.circle,
-                                          image: new DecorationImage(
-                                            fit: BoxFit.fill,
-                                            image:
-                                                AssetImage("assets/paypal.png"),
-                                          ),
-                                        ),
-                                      ),
-                                      title: Text(
-                                        'PayPal',
-                                        style: TextStyle(
-                                            fontWeight: FontWeight.bold,
-                                            fontSize: 17),
-                                      ),
-                                      subtitle: Padding(
-                                        padding:
-                                            const EdgeInsets.only(top: 2.0),
-                                        child: Text('Pay with PayPal Account'),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
                           ],
                         ),
                       )
-                    : Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                        child: ListView(
-                          children: [
-                            Icon(
-                              Icons.check_circle_outline,
-                              size: 80.0,
-                              color: ColorsCollection.mainColor,
-                            ),
-                            Text(
-                              'Your booking is pending payment',
-                              style: TextStyle(
-                                  fontSize: 20.0,
-                                  fontFamily: 'Proxima',
-                                  fontWeight: FontWeight.bold),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 4.0),
-                              child: Text(
-                                'Pay at your nearest fawry',
-                                style: TextStyle(
-                                    fontSize: 16.0,
-                                    fontFamily: 'Proxima',
-                                    fontWeight: FontWeight.bold),
-                              ),
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(top: 8.0),
-                              child: Center(
-                                child: Container(
-                                  height: 70,
-                                  width: 150,
-                                  decoration: BoxDecoration(
-                                      color: Colors.grey[300],
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
+                    : balancePay
+                        ? Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 20.0),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Balance: ',
+                                      style: TextStyle(
+                                          fontSize: 20.0,
+                                          fontFamily: 'Proxima',
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      '${widget.patient.balance}',
+                                      style: TextStyle(
+                                          fontSize: 20.0,
+                                          fontFamily: 'Proxima',
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      ' EGP',
+                                      style: TextStyle(
+                                          fontSize: 20.0,
+                                          fontFamily: 'Proxima',
+                                          fontWeight: FontWeight.bold),
+                                    )
+                                  ],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 15.0),
+                                  child: Row(
                                     children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 2.0),
-                                        child: Text('Reference Number'),
+                                      Text(
+                                        'Fees: ',
+                                        style: TextStyle(
+                                            fontSize: 20.0,
+                                            fontFamily: 'Proxima',
+                                            fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        "${random.nextInt(10000000)}",
+                                        '${widget.fees}',
+                                        style: TextStyle(
+                                            fontSize: 20.0,
+                                            fontFamily: 'Proxima',
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        ' EGP',
                                         style: TextStyle(
                                             fontSize: 20.0,
                                             fontFamily: 'Proxima',
@@ -610,51 +656,179 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
                                     ],
                                   ),
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 8.0),
-                              child: Center(
-                                child: Container(
-                                  height: 70,
-                                  width: 150,
-                                  decoration: BoxDecoration(
-                                      color: Colors.grey[300],
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding:
-                                            const EdgeInsets.only(bottom: 2.0),
-                                        child: Text('Time left'),
-                                      ),
-                                      Text(
-                                        '12 Hours',
+                                Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      vertical: 15.0),
+                                  child: Container(
+                                    height: 2,
+                                    width: double.infinity,
+                                    color: Colors.grey[300],
+                                  ),
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      'Balance after payment: ',
+                                      style: TextStyle(
+                                          fontSize: 20.0,
+                                          fontFamily: 'Proxima',
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      '${int.parse(widget.patient.balance) - int.parse(widget.fees)}',
+                                      style: TextStyle(
+                                          fontSize: 20.0,
+                                          fontFamily: 'Proxima',
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      ' EGP',
+                                      style: TextStyle(
+                                          fontSize: 20.0,
+                                          fontFamily: 'Proxima',
+                                          fontWeight: FontWeight.bold),
+                                    )
+                                  ],
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 15.0),
+                                  child: Container(
+                                    height: 50,
+                                    child: ElevatedButton(
+                                      child: Text(
+                                        "Confirm Payment",
                                         style: TextStyle(
                                             fontSize: 20.0,
                                             fontFamily: 'Proxima',
                                             fontWeight: FontWeight.bold),
-                                      )
-                                    ],
+                                      ),
+                                      onPressed: awaitPaid
+                                          ? () {
+                                              showAlertDialog(
+                                                  context,
+                                                  "Are you sure you will pay with balance?",
+                                                  fawryCallback);
+                                            }
+                                          : null,
+                                      style: ElevatedButton.styleFrom(
+                                        // elevation: 3.0,
+                                        primary: Colors.grey[100],
+                                        onPrimary: ColorsCollection.mainColor,
+                                        shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0),
+                                        ),
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
+                              ],
                             ),
-                            Padding(
-                              padding:
-                                  const EdgeInsets.symmetric(vertical: 8.0),
-                              child: Container(
-                                height: 1,
-                                width: double.infinity,
-                                color: Colors.grey[300],
-                              ),
+                          )
+                        : Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 20.0),
+                            child: ListView(
+                              children: [
+                                Icon(
+                                  Icons.check_circle_outline,
+                                  size: 80.0,
+                                  color: ColorsCollection.mainColor,
+                                ),
+                                Text(
+                                  'Your booking is pending payment',
+                                  style: TextStyle(
+                                      fontSize: 20.0,
+                                      fontFamily: 'Proxima',
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 4.0),
+                                  child: Text(
+                                    'Pay at your nearest fawry',
+                                    style: TextStyle(
+                                        fontSize: 16.0,
+                                        fontFamily: 'Proxima',
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 8.0),
+                                  child: Center(
+                                    child: Container(
+                                      height: 70,
+                                      width: 150,
+                                      decoration: BoxDecoration(
+                                          color: Colors.grey[300],
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                bottom: 2.0),
+                                            child: Text('Reference Number'),
+                                          ),
+                                          Text(
+                                            "$randomReferenceNumber",
+                                            style: TextStyle(
+                                                fontSize: 20.0,
+                                                fontFamily: 'Proxima',
+                                                fontWeight: FontWeight.bold),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 8.0),
+                                  child: Center(
+                                    child: Container(
+                                      height: 70,
+                                      width: 150,
+                                      decoration: BoxDecoration(
+                                          color: Colors.grey[300],
+                                          borderRadius:
+                                              BorderRadius.circular(10)),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.only(
+                                                bottom: 2.0),
+                                            child: Text('Time left'),
+                                          ),
+                                          Text(
+                                            '12 Hours',
+                                            style: TextStyle(
+                                                fontSize: 20.0,
+                                                fontFamily: 'Proxima',
+                                                fontWeight: FontWeight.bold),
+                                          )
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 8.0),
+                                  child: Container(
+                                    height: 1,
+                                    width: double.infinity,
+                                    color: Colors.grey[300],
+                                  ),
+                                ),
+                                Text(
+                                    'Booking will be confirmed once you pay with Fawry, otherwise it\'ll be cancelled'),
+                              ],
                             ),
-                            Text(
-                                'Booking will be confirmed once you pay with Fawry, otherwise it\'ll be cancelled'),
-                          ],
-                        ),
-                      );
+                          );
   }
 }
