@@ -24,6 +24,7 @@ class CallPage extends StatefulWidget {
 
   /// non-modifiable client role of the page
   final ClientRole role;
+  final callbackDelete;
 
   /// Creates a call page with given channel name.
   const CallPage(
@@ -31,6 +32,7 @@ class CallPage extends StatefulWidget {
       this.token,
       this.channelName,
       this.role,
+      this.callbackDelete,
       this.id,
       this.method = "video"})
       : super(key: key);
@@ -218,7 +220,10 @@ class _CallPageState extends State<CallPage> {
             padding: const EdgeInsets.all(12.0),
           ),
           RawMaterialButton(
-            onPressed: () => _onCallEnd(context),
+            onPressed: () => {
+              _onCallEnd(context),
+              widget.callbackDelete(),
+            },
             child: Icon(
               Icons.call_end,
               color: Colors.white,

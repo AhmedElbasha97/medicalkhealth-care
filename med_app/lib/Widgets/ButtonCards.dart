@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/UI/appointments/patient_appointment_list/appointment_list.dart';
@@ -23,24 +22,24 @@ class _ButtonCardState extends State<ButtonCard> {
       builder: (ctx, constraints) {
         return GestureDetector(
           onTap: () {
-          if(widget.goDoctor){
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) =>
-                  SpecialtyList(navigateFromOtherScreen: true,),));
-          }else{
-            Navigator.of(context).push(MaterialPageRoute(
-              builder: (context) =>
-                  AppointmentList(),));
-          }
+            if(widget.goDoctor){
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) =>
+                    SpecialtyList(navigateFromOtherScreen: true,),));
+            }else{
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) =>
+                    AppointmentList(),));
+            }
           },
           child: Container(
             decoration: BoxDecoration(
-                gradient: new LinearGradient(
+              gradient: new LinearGradient(
                 colors: [
-                const Color(0xFF00A1A7),
+                  const Color(0xFF00A1A7),
                   const Color(0xff00c5cc),
                 ],
-                ),
+              ),
               borderRadius: BorderRadius.circular(10),
               boxShadow: [
                 BoxShadow(
@@ -52,55 +51,55 @@ class _ButtonCardState extends State<ButtonCard> {
               ],
             ),
             height: 100,
-                child: Row(
-                  children: [
-                    Container(
-                decoration: BoxDecoration(
-                border: Border(
-                    right: BorderSide(width: 3.0,style: BorderStyle.solid, color:Color(0xfff2f2f2).withOpacity(0.5)),
+            child: Row(
+              children: [
+                Container(
+                  decoration: BoxDecoration(
+                    border: Border(
+                      right: BorderSide(width: 3.0,style: BorderStyle.solid, color:Color(0xfff2f2f2).withOpacity(0.5)),
 
-
-                     ),
-
-                       ),
-                      height: MediaQuery.of(context).size.height * 0.1,
-                      width: MediaQuery.of(context).size.width * 0.65,
-                      child: ListTile(
-
-                        title: Text(
-                          widget.title,
-                          style: TextStyle(
-
-                              color: Color(0xfff2f2f2),
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Proxima',
-                              fontSize: 18),
-                        ),
-                        subtitle:Text(
-                          widget.subtitle,
-                          style: TextStyle(
-
-                              color: Color(0xfff2f2f2),
-                              fontFamily: 'Proxima',
-                              fontSize: 14),
-                        ),
-                      ),
 
                     ),
 
-                    Padding(
-                      padding: EdgeInsets.fromLTRB(16.0, 0.0, 0.0,0.0),
-                      child: Text(
-                        "For \nMore \ndetails",
-                        style: TextStyle(
-                            color: Color(0xfff2f2f2),
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Proxima',
-                            fontSize: 18),
-                      ),
+                  ),
+                  height: MediaQuery.of(context).size.height * 0.1,
+                  width: MediaQuery.of(context).size.width * 0.65,
+                  child: ListTile(
+
+                    title: Text(
+                      widget.title,
+                      style: TextStyle(
+
+                          color: Color(0xfff2f2f2),
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Proxima',
+                          fontSize: 18),
                     ),
-                  ],
+                    subtitle:Text(
+                      widget.subtitle,
+                      style: TextStyle(
+
+                          color: Color(0xfff2f2f2),
+                          fontFamily: 'Proxima',
+                          fontSize: 14),
+                    ),
+                  ),
+
                 ),
+
+                Padding(
+                  padding: EdgeInsets.fromLTRB(16.0, 0.0, 0.0,0.0),
+                  child: Text(
+                    "For \nMore \ndetails",
+                    style: TextStyle(
+                        color: Color(0xfff2f2f2),
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Proxima',
+                        fontSize: 18),
+                  ),
+                ),
+              ],
+            ),
 
           ),
         );

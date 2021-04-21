@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:med_app/Styles/colors.dart';
+import 'package:med_app/UI/appointments/patient_appointment_list/appointment_list.dart';
 import 'package:med_app/UI/doctors/doctor_booking_next_screen/sliding_booking_page.dart';
 import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
@@ -13,9 +14,16 @@ class DoctorBookingNextScreen extends StatefulWidget {
   final daySelected;
   final hourSelected;
   final image;
+  final avAppList;
+  final List selectedHoursList;
 
   DoctorBookingNextScreen(
-      {this.userId, this.daySelected, this.hourSelected, this.image});
+      {this.userId,
+      this.daySelected,
+      this.avAppList,
+      this.hourSelected,
+      this.image,
+      this.selectedHoursList});
   @override
   _DoctorBookingNextScreenState createState() =>
       _DoctorBookingNextScreenState();
@@ -23,6 +31,7 @@ class DoctorBookingNextScreen extends StatefulWidget {
 
 class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
   var pageNumber = 0;
+  bool isAppointed = false;
   ProgressTimeline progressTimeline;
   List<SingleState> states = [
     SingleState(stateTitle: 'Call Type'),
@@ -52,8 +61,8 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
         color: Colors.grey,
       ),
     );
-    AppProvider provider = Provider.of<AppProvider>(context, listen: false);
-    provider.getDoctorById('${widget.userId}');
+    context.read<AppProvider>().getDoctorById(widget.userId);
+    print("appointment ${context.read<AppProvider>().doctor.name}");
   }
 
   @override
@@ -165,7 +174,7 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
                                         padding:
                                             const EdgeInsets.only(left: 3.0),
                                         child: Text(
-                                          DateFormat('dd-MM-yyyy')
+                                          DateFormat('yyyy-MM-dd')
                                               .format(widget.daySelected)
                                               .toString(),
                                           style: TextStyle(
@@ -236,6 +245,8 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
                       ),
                       Expanded(
                         child: SlidingBookingPage(
+                            avAppList: widget.avAppList,
+                            selectedHoursList: widget.selectedHoursList,
                             progressIndicator: progressTimeline,
                             pageNumber: pageNumber,
                             callMethods: databaseProvider.doctor.callMethods,
@@ -247,10 +258,15 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
                             fees: databaseProvider.doctor.fees,
                             appointments:
                                 databaseProvider.doctor.appointment.length,
-                            daySelected: DateFormat('dd-MM-yyyy')
+                            daySelected: DateFormat('yyyy-MM-dd')
                                 .format(widget.daySelected)
                                 .toString(),
                             hourSelected: widget.hourSelected.toString(),
+                            callbackAppointed: (val) {
+                              setState(() {
+                                isAppointed = val;
+                              });
+                            },
                             callback: () {
                               progressTimeline.gotoNextStage();
                               setState(() {
@@ -374,7 +390,19 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
                                             fontFamily: 'Proxima',
                                             fontWeight: FontWeight.bold),
                                       ),
-                                      onPressed: () {},
+                                      onPressed: () {
+                                        AppProvider provider =
+                                            Provider.of<AppProvider>(context,
+                                                listen: false);
+                                        provider.getUserType(widget.userId);
+
+                                        Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  AppointmentList()),
+                                        );
+                                      },
                                       style: ElevatedButton.styleFrom(
                                         // elevation: 3.0,
                                         primary: ColorsCollection.mainColor,

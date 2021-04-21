@@ -43,6 +43,7 @@ class AppProvider extends ChangeNotifier {
 
   void getDoctorById(id) {
     _databaseRepositories.fetchDoctor(id).then((doctor) {
+      print('hi ${doctor.appointment}');
       this.doctor = doctor;
       this.doctorAppointments = doctor.appointment;
       notifyListeners();
@@ -87,6 +88,10 @@ class AppProvider extends ChangeNotifier {
     this.doctor = null;
     this.type = null;
     this.logout = true;
+  }
+
+  void refresh() {
+    notifyListeners();
   }
 
 //  void getParent(id){

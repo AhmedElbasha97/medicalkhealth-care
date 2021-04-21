@@ -6,7 +6,6 @@ import 'package:med_app/UI/DoctorProfile/doctor_profile.dart';
 import 'package:med_app/UI/Drugs/drugs_main_page.dart';
 import 'package:med_app/UI/Home/HomeScreen.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile.dart';
-import 'package:med_app/UI/appointments/patient_appointment_list/appointment_list.dart';
 import 'package:med_app/UI/specialitylist/specialty_list.dart';
 import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
@@ -42,7 +41,7 @@ class _NavbarState extends State<Nav> {
       if (context.read<AppProvider>().type != null)
         (context.read<AppProvider>().type == "patient")
             ? PatientProfile()
-            : DcotorProfile()
+            : DoctorProfile()
     ];
     return Consumer<AppProvider>(builder: (context, databaseProvider, _) {
       if (databaseProvider.type == null) {

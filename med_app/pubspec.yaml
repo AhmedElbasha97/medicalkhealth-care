@@ -68,7 +68,8 @@ dependencies:
   day_night_time_picker: ^1.0.1
   agora_rtc_engine: any
   permission_handler: any
-
+  date_range_picker: ^1.0.7
+  android_alarm_manager: ^2.0.0
   animated_onboarding:
     git:
       url: https://github.com/Eng-Mohamed-Osama/animated_onboarding

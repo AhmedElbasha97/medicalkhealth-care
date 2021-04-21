@@ -2,42 +2,43 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:med_app/Styles/colors.dart';
-import 'file:///C:/Users/Kimo%20Store/Desktop/medicalkhealth-care/med_app/lib/provider/Blog_Provider.dart';
 import 'package:med_app/UI/Blogs/Blogs_Main_Screen.dart';
+import 'package:med_app/UI/DoctorProfile/doctor_profile.dart';
 import 'package:med_app/UI/Drawer/Drawer.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile.dart';
 import 'package:med_app/Widgets/BlogsCard.dart';
 import 'package:med_app/Widgets/ButtonCards.dart';
 import 'package:med_app/Widgets/Top_Header_custom.dart';
+import 'package:med_app/provider/Blog_Provider.dart';
 import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:med_app/UI/Blogs/BlogsDetailsScreen.dart';
-
-
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
-
 class _HomeState extends State<Home> {
-  // var name;
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //    var type = context.read<AppProvider>().type;
-  //   if(type =="patient"){
-  //     name = context.read<AppProvider>().patient.name;
-  //
-  //   }else {
-  //     name = context
-  //         .read<AppProvider>()
-  //         .doctor
-  //         .name;
-  //
-  //   }
-
+var name;
+var type;
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+     type = context
+        .read<AppProvider>()
+        .type;
+    if (type == "patient") {
+      name = context
+          .read<AppProvider>()
+          .patient
+          .name;
+    } else {
+      name = context
+          .read<AppProvider>()
+          .doctor
+          .name;
+    }
+  }
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
@@ -61,20 +62,25 @@ class _HomeState extends State<Home> {
                     onPressed: () => Scaffold.of(context).openDrawer(),
                   ),
                 ),
-              backgroundColor: Colors.transparent,
-              elevation: 0.0,
+                backgroundColor: Colors.transparent,
+                elevation: 0.0,
                 actions: <Widget>[
-                 IconButton(
-                        icon: const Icon(Icons.account_circle_sharp),
-                        color: Colors.white,
-                        iconSize: 30.0,
+                  IconButton(
+                    icon: const Icon(Icons.account_circle_sharp),
+                    color: Colors.white,
+                    iconSize: 30.0,
 
-                        onPressed: () {
-                          Navigator.of(context).push(MaterialPageRoute(
-                            builder: (context) =>
-                                PatientProfile(navigateFromOtherScreen: true,),));
-                        },
-                      ),
+                    onPressed: () {
+                      if (context.read<AppProvider>().type != null)
+                        (context.read<AppProvider>().type == "patient")
+                            ?Navigator.of(context).push(MaterialPageRoute(
+                                 builder: (context) =>
+                              PatientProfile(navigateFromOtherScreen: true,),))
+                            :Navigator.of(context).push(MaterialPageRoute(
+                                   builder: (context) =>
+                              DoctorProfile(navigateFromOtherScreen: true,),));
+                    },
+                  ),
 
                 ]
             ),
@@ -93,7 +99,7 @@ class _HomeState extends State<Home> {
                   child: Container(
                     height: MediaQuery.of(context).size.height*0.25 ,
                     child: TopHaderCustom(
-                        text: 'Welcome\n   ahmed\n         To TeleMed',image: "assets/Doctors-pana.png"),
+                        text: 'Welcome\n${name}\nTo TeleMed',image: "assets/Doctors-pana.png"),
                   ),
                 )),
             DraggableScrollableSheet(
