@@ -16,12 +16,13 @@ class SpecialityPage extends StatefulWidget {
 class _SpecialityPageState extends State<SpecialityPage> {
   String id;
   Patient patient;
-  Future<void> getCurrentUser() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    id = prefs.getString('userid');
+
+  @override
+  void initState() {
     AppProvider provider = Provider.of<AppProvider>(context, listen: false);
-    provider.getUserType(id);
+    provider.getUserType(provider.userId);
     patient = provider.patient;
+    super.initState();
   }
 
   @override
@@ -38,24 +39,19 @@ class _SpecialityPageState extends State<SpecialityPage> {
           child: Consumer<AppProvider>(
             builder: (context, databaseProvider, _) {
               return (databaseProvider.doctors != null)
-                  ? FutureBuilder(
-                      future: getCurrentUser(),
-                      builder: (ctx, snapshot) {
-                        return ListView.builder(
-                            itemCount: databaseProvider.doctors.length,
-                            itemBuilder: (ctx, index) {
-                              final doctor = databaseProvider.doctors[index];
-                              return DoctorCard(
-                                  doctor: doctor, patient: patient);
-                            });
-                      },
-                    )
+                  ? ListView.builder(
+                      itemCount: databaseProvider.doctors.length,
+                      itemBuilder: (ctx, index) {
+                        final doctor = databaseProvider.doctors[index];
+                        return DoctorCard(doctor: doctor, patient: patient);
+                      })
                   : Center(
                       child: Text(
-                      "Sorry There are no Doctors Right Now",
-                      style:
-                          TextStyle(fontWeight: FontWeight.w600, fontSize: 18),
-                    ));
+                        "Sorry There are no Doctors Right Now",
+                        style: TextStyle(
+                            fontWeight: FontWeight.w600, fontSize: 18),
+                      ),
+                    );
             },
           ),
         ));

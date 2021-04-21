@@ -28,8 +28,7 @@ class _NavbarState extends State<Nav> {
   }
 
   @override
-  void initState() {
-    print(widget.selectedIndex);
+  Widget build(BuildContext context) {
     _widgetotpions = <Widget>[
       BlogHomescreen(),
       DrugsMainPageScreen(),
@@ -40,12 +39,6 @@ class _NavbarState extends State<Nav> {
             ? PatientProfile()
             : DoctorProfile()
     ];
-    _widgetotpions.elementAt(widget.selectedIndex);
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return Consumer<AppProvider>(builder: (context, databaseProvider, _) {
       if (databaseProvider.type == null) {
         databaseProvider.getUserType(widget.userId);
