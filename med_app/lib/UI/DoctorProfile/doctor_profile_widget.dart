@@ -20,7 +20,7 @@ import 'doctor_reviews_screen.dart';
 class DoctorProfileWidget extends StatefulWidget {
   final text;
   final profileInfo;
-
+  final navigateOtherScreen;
   final color;
   final userId;
   Doctor doctor;
@@ -31,6 +31,7 @@ class DoctorProfileWidget extends StatefulWidget {
     this.profileInfo,
     this.userId,
     this.doctor,
+    this.navigateOtherScreen,
   });
 
   @override
@@ -103,6 +104,7 @@ class _DoctorProfileWidgetState extends State<DoctorProfileWidget> {
       return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
+          automaticallyImplyLeading: widget.navigateOtherScreen,
           leading: IconButton(
             icon: Icon(Icons.chevron_left),
             color: ColorsCollection.splashTitleColor,
