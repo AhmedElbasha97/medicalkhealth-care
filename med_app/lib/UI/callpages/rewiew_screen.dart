@@ -12,7 +12,8 @@ import 'package:smooth_star_rating/smooth_star_rating.dart';
 // ignore: must_be_immutable
 class ReviewScreen extends StatefulWidget {
   Doctor doctor;
-  ReviewScreen({Key key, this.doctor}) : super(key: key);
+  final callbackDelete;
+  ReviewScreen({Key key, this.doctor, this.callbackDelete}) : super(key: key);
 
   @override
   _ReviewScreenState createState() => _ReviewScreenState();
@@ -39,11 +40,13 @@ class _ReviewScreenState extends State<ReviewScreen> {
         var userId = await context.read<AuthService>().getCurrentUser();
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => Nav(userId: userId.uid)));
+        widget.callbackDelete();
       });
     } else {
       var userId = await context.read<AuthService>().getCurrentUser();
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => Nav(userId: userId.uid)));
+      widget.callbackDelete();
     }
   }
 

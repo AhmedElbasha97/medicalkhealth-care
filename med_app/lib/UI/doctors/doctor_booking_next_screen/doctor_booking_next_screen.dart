@@ -5,8 +5,11 @@ import 'package:intl/intl.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/UI/appointments/patient_appointment_list/appointment_list.dart';
 import 'package:med_app/UI/doctors/doctor_booking_next_screen/sliding_booking_page.dart';
+import 'package:med_app/Widgets/NavBar.dart';
+import 'package:med_app/models/patient.dart';
 import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'progress_timeline_widget.dart';
 
 class DoctorBookingNextScreen extends StatefulWidget {
@@ -31,6 +34,7 @@ class DoctorBookingNextScreen extends StatefulWidget {
 
 class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
   var pageNumber = 0;
+  Patient patient;
   bool isAppointed = false;
   ProgressTimeline progressTimeline;
   List<SingleState> states = [
@@ -61,8 +65,10 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
         color: Colors.grey,
       ),
     );
-    context.read<AppProvider>().getDoctorById(widget.userId);
-    print("appointment ${context.read<AppProvider>().doctor.name}");
+    AppProvider provider = Provider.of<AppProvider>(context, listen: false);
+    provider.getDoctorById(widget.userId);
+    provider.getPatientById(provider.doctor.userId);
+    patient = provider.patient;
   }
 
   @override
@@ -72,16 +78,15 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
         shadowColor: Colors.black,
         title: Text('Booking Confirmation'),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios_sharp),
+          icon: Icon(Icons.arrow_back),
           color: Colors.white,
-          onPressed: () => Navigator.pop(context),
+          onPressed: () => Navigator.of(context).pop(),
         ),
         backgroundColor: ColorsCollection.mainColor,
         elevation: 0.0,
       ),
       body: Consumer<AppProvider>(
         builder: (context, databaseProvider, _) {
-          // databaseProvider.getDoctorById(widget.userId);
           return (databaseProvider.doctor != null)
               ? Center(
                   child: Column(
@@ -103,6 +108,15 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
                                       borderRadius: BorderRadius.circular(60.0),
                                       child: CachedNetworkImage(
                                         imageUrl: widget.image,
+                                        placeholder: (
+                                          context,
+                                          url,
+                                        ) =>
+                                            Image.asset(
+                                                'assets/images/placeholder.png'),
+                                        errorWidget: (context, url, error) =>
+                                            Image.asset(
+                                                'assets/images/placeholder.png'),
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -245,6 +259,7 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
                       ),
                       Expanded(
                         child: SlidingBookingPage(
+                            patient: patient,
                             avAppList: widget.avAppList,
                             selectedHoursList: widget.selectedHoursList,
                             progressIndicator: progressTimeline,
@@ -272,6 +287,7 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
                               setState(() {
                                 pageNumber++;
                               });
+                              print(pageNumber);
                             }),
                         flex: pageNumber == 0 ? 4 : 5,
                       ),
@@ -384,23 +400,29 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
                                     height: 50,
                                     child: ElevatedButton(
                                       child: Text(
-                                        "My Appointments",
+                                        "Homepage",
                                         style: TextStyle(
                                             fontSize: 20.0,
                                             fontFamily: 'Proxima',
                                             fontWeight: FontWeight.bold),
                                       ),
-                                      onPressed: () {
+                                      onPressed: () async {
+                                        SharedPreferences prefs =
+                                            await SharedPreferences
+                                                .getInstance();
+                                        String id = prefs.getString('userid');
                                         AppProvider provider =
                                             Provider.of<AppProvider>(context,
                                                 listen: false);
-                                        provider.getUserType(widget.userId);
+                                        provider.getPatientById(id);
 
                                         Navigator.push(
                                           context,
                                           MaterialPageRoute(
-                                              builder: (context) =>
-                                                  AppointmentList()),
+                                              builder: (context) => Nav(
+                                                    selectedIndex: 2,
+                                                    userId: id,
+                                                  )),
                                         );
                                       },
                                       style: ElevatedButton.styleFrom(

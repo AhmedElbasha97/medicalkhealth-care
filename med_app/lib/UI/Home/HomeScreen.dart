@@ -13,32 +13,27 @@ import 'package:med_app/provider/Blog_Provider.dart';
 import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:med_app/UI/Blogs/BlogsDetailsScreen.dart';
+
 class Home extends StatefulWidget {
   @override
   _HomeState createState() => _HomeState();
 }
+
 class _HomeState extends State<Home> {
-var name;
-var type;
+  var name;
+  var type;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
-     type = context
-        .read<AppProvider>()
-        .type;
+    type = context.read<AppProvider>().type;
     if (type == "patient") {
-      name = context
-          .read<AppProvider>()
-          .patient
-          .name;
+      name = context.read<AppProvider>().patient.name;
     } else {
-      name = context
-          .read<AppProvider>()
-          .doctor
-          .name;
+      name = context.read<AppProvider>().doctor.name;
     }
   }
+
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
@@ -69,24 +64,23 @@ var type;
                     icon: const Icon(Icons.account_circle_sharp),
                     color: Colors.white,
                     iconSize: 30.0,
-
                     onPressed: () {
                       if (context.read<AppProvider>().type != null)
                         (context.read<AppProvider>().type == "patient")
-                            ?Navigator.of(context).push(MaterialPageRoute(
-                                 builder: (context) =>
-                              PatientProfile(navigateFromOtherScreen: true,),))
-                            :Navigator.of(context).push(MaterialPageRoute(
-                                   builder: (context) =>
-                              DoctorProfile(navigateFromOtherScreen: true,),));
+                            ? Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => PatientProfile(
+                                  navigateFromOtherScreen: true,
+                                ),
+                              ))
+                            : Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => DoctorProfile(
+                                  navigateFromOtherScreen: true,
+                                ),
+                              ));
                     },
                   ),
-
-                ]
-            ),
+                ]),
           ),
-
-
           drawer: new DrawerSide(),
           backgroundColor: Colors.transparent,
           body: Stack(children: [
@@ -97,9 +91,10 @@ var type;
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(10.0, 0.0, 0.0, 0.0),
                   child: Container(
-                    height: MediaQuery.of(context).size.height*0.25 ,
+                    height: MediaQuery.of(context).size.height * 0.25,
                     child: TopHaderCustom(
-                        text: 'Welcome\n${name}\nTo TeleMed',image: "assets/Doctors-pana.png"),
+                        text: 'Welcome\n${name}\nTo TeleMed',
+                        image: "assets/Doctors-pana.png"),
                   ),
                 )),
             DraggableScrollableSheet(
@@ -107,7 +102,6 @@ var type;
                 minChildSize: 0.75,
                 maxChildSize: 1,
                 builder: (context, scrollController) {
-
                   return Container(
                     width: double.infinity,
                     margin: EdgeInsets.only(top: 32),
@@ -127,12 +121,21 @@ var type;
                           SizedBox(height: 10),
                           Padding(
                               padding: EdgeInsets.all(10),
-                              child: ButtonCard(title: "Doctor Speciality",subtitle: "you can find doctors with it speciality there",goDoctor: true,)),
+                              child: ButtonCard(
+                                title: "Doctor Speciality",
+                                subtitle:
+                                    "you can find doctors with it speciality there",
+                                goDoctor: true,
+                              )),
                           SizedBox(height: 10),
                           Padding(
                               padding: EdgeInsets.all(10),
-                              child: ButtonCard(title: "Appointment", subtitle: 'you can follow yor appointments here',goDoctor: false,)),
-
+                              child: ButtonCard(
+                                title: "Appointment",
+                                subtitle:
+                                    'you can follow yor appointments here',
+                                goDoctor: false,
+                              )),
                           SizedBox(height: 20),
                           Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
@@ -140,73 +143,106 @@ var type;
                               Align(
                                 alignment: Alignment.topLeft,
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Container(
-                                      height: MediaQuery.of(context).size.height / 20,
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              20,
                                       padding: EdgeInsets.only(left: 1),
-                                      child: Text("Blogs",style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 20,
-                                        letterSpacing: 1,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Proxima',
-                                      )),
-                                    ),
-                                    GestureDetector(
-                                        onTap: () async{
-                                          Navigator.of(context).push(MaterialPageRoute(
-                                            builder: (context) =>
-                                                BlogHomescreen(navigateFromOtherScreen: true,),));},
-                                        child: Container(
-                                          height: MediaQuery.of(context).size.height / 20,
-                                          padding: EdgeInsets.only(left: 1),
-                                          child: Text("See All",style: TextStyle(
-                                            color: ColorsCollection.mainColor,
+                                      child: Text("Blogs",
+                                          style: TextStyle(
+                                            color: Colors.black,
                                             fontSize: 20,
                                             letterSpacing: 1,
                                             fontWeight: FontWeight.bold,
                                             fontFamily: 'Proxima',
-                                          )),)
+                                          )),
                                     ),
+                                    GestureDetector(
+                                        onTap: () async {
+                                          Navigator.of(context)
+                                              .push(MaterialPageRoute(
+                                            builder: (context) =>
+                                                BlogHomescreen(
+                                              navigateFromOtherScreen: true,
+                                            ),
+                                          ));
+                                        },
+                                        child: Container(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              20,
+                                          padding: EdgeInsets.only(left: 1),
+                                          child: Text("See All",
+                                              style: TextStyle(
+                                                color:
+                                                    ColorsCollection.mainColor,
+                                                fontSize: 20,
+                                                letterSpacing: 1,
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: 'Proxima',
+                                              )),
+                                        )),
                                   ],
                                 ),
                               ),
                               Padding(
                                 padding: EdgeInsets.all(1.0),
                                 child: Container(
-                                    width: MediaQuery.of(context).size.width*1,
-                                    height: MediaQuery.of(context).size.height * 0.27,
-
-
+                                    width:
+                                        MediaQuery.of(context).size.width * 1,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.27,
                                     child: ChangeNotifierProvider<BlogProvider>(
                                       create: (context) => BlogProvider(),
                                       child: Consumer<BlogProvider>(
-                                        builder: (buildContext, BlogProvider, _) {
+                                        builder:
+                                            (buildContext, BlogProvider, _) {
                                           return (BlogProvider.blogs != null)
                                               ? ListView.builder(
-                                              scrollDirection: Axis.horizontal,
-                                              itemCount: BlogProvider.blogs.length,
-                                              itemBuilder: (ctx, index) {
-                                                final person = BlogProvider.blogs[index];
-                                                return GestureDetector(
-                                                  child: BlogsCardWidget(title: person.title,subTtitle: person.body,bg: person.image,),
-                                                  onTap: () async{
-
-                                                    Navigator.of(context).push(MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          BlogsDetailedScreen(title: person.title,subTitle: person.body,imageURL: person.image,URI: person.url,index: index, date: person.date,),));
-
-                                                  },);
-                                              })
-                                              : Center(child: CircularProgressIndicator());
+                                                  scrollDirection:
+                                                      Axis.horizontal,
+                                                  itemCount:
+                                                      BlogProvider.blogs.length,
+                                                  itemBuilder: (ctx, index) {
+                                                    final person = BlogProvider
+                                                        .blogs[index];
+                                                    return GestureDetector(
+                                                      child: BlogsCardWidget(
+                                                        title: person.title,
+                                                        subTtitle: person.body,
+                                                        bg: person.image,
+                                                      ),
+                                                      onTap: () async {
+                                                        Navigator.of(context)
+                                                            .push(
+                                                                MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              BlogsDetailedScreen(
+                                                            title: person.title,
+                                                            subTitle:
+                                                                person.body,
+                                                            imageURL:
+                                                                person.image,
+                                                            URI: person.url,
+                                                            index: index,
+                                                            date: person.date,
+                                                          ),
+                                                        ));
+                                                      },
+                                                    );
+                                                  })
+                                              : Center(
+                                                  child:
+                                                      CircularProgressIndicator());
                                         },
                                       ),
-                                    )
-                                ),
+                                    )),
                               ),
                             ],
-
                           ),
                           SizedBox(height: 20),
                           Column(
@@ -215,73 +251,107 @@ var type;
                               Align(
                                 alignment: Alignment.topLeft,
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
                                   children: [
                                     Container(
-                                      height: MediaQuery.of(context).size.height / 20,
+                                      height:
+                                          MediaQuery.of(context).size.height /
+                                              20,
                                       padding: EdgeInsets.only(left: 1),
-                                      child: Text("News Feed",style: TextStyle(
-                                        color: Colors.black,
-                                        fontSize: 20,
-                                        letterSpacing: 1,
-                                        fontWeight: FontWeight.bold,
-                                        fontFamily: 'Proxima',
-                                      )),
-                                    ),
-                                    GestureDetector(
-                                        onTap: () async{
-                                          Navigator.of(context).push(MaterialPageRoute(
-                                            builder: (context) =>
-                                                BlogHomescreen(navigateFromOtherScreen: true,),));},
-                                        child: Container(
-                                          height: MediaQuery.of(context).size.height / 20,
-                                          padding: EdgeInsets.only(left: 1),
-                                          child: Text("See All",style: TextStyle(
-                                            color: ColorsCollection.mainColor,
+                                      child: Text("News Feed",
+                                          style: TextStyle(
+                                            color: Colors.black,
                                             fontSize: 20,
                                             letterSpacing: 1,
                                             fontWeight: FontWeight.bold,
                                             fontFamily: 'Proxima',
-                                          )),)
+                                          )),
                                     ),
+                                    GestureDetector(
+                                        onTap: () async {
+                                          Navigator.of(context)
+                                              .push(MaterialPageRoute(
+                                            builder: (context) =>
+                                                BlogHomescreen(
+                                              navigateFromOtherScreen: true,
+                                            ),
+                                          ));
+                                        },
+                                        child: Container(
+                                          height: MediaQuery.of(context)
+                                                  .size
+                                                  .height /
+                                              20,
+                                          padding: EdgeInsets.only(left: 1),
+                                          child: Text("See All",
+                                              style: TextStyle(
+                                                color:
+                                                    ColorsCollection.mainColor,
+                                                fontSize: 20,
+                                                letterSpacing: 1,
+                                                fontWeight: FontWeight.bold,
+                                                fontFamily: 'Proxima',
+                                              )),
+                                        )),
                                   ],
                                 ),
                               ),
                               Padding(
                                 padding: EdgeInsets.all(1.0),
                                 child: Container(
-                                    width: MediaQuery.of(context).size.width*1,
-                                    height: MediaQuery.of(context).size.height * 0.27,
+                                    width:
+                                        MediaQuery.of(context).size.width * 1,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.27,
                                     child: ChangeNotifierProvider<BlogProvider>(
                                       create: (context) => BlogProvider(),
                                       child: Consumer<BlogProvider>(
-                                        builder: (buildContext, BlogProvider, _) {
+                                        builder:
+                                            (buildContext, BlogProvider, _) {
                                           return (BlogProvider.newsFeed != null)
                                               ? ListView.builder(
-                                              scrollDirection: Axis.horizontal,
-                                              itemCount: BlogProvider.newsFeed.length,
-                                              itemBuilder: (ctx, index) {
-                                                final person = BlogProvider.newsFeed[index];
+                                                  scrollDirection:
+                                                      Axis.horizontal,
+                                                  itemCount: BlogProvider
+                                                      .newsFeed.length,
+                                                  itemBuilder: (ctx, index) {
+                                                    final person = BlogProvider
+                                                        .newsFeed[index];
 
-
-                                                return GestureDetector(
-                                                  child: BlogsCardWidget(title: person.title,subTtitle: person.body,bg: person.image,),
-                                                  onTap: () async{
-
-                                                    Navigator.of(context).push(MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          BlogsDetailedScreen(title: person.title,subTitle: person.body,imageURL: person.image,URI: person.url,index: index, date: person.date,),));
-
-                                                  },);
-                                              })
-                                              : Center(child: CircularProgressIndicator());
+                                                    return GestureDetector(
+                                                      child: BlogsCardWidget(
+                                                        title: person.title,
+                                                        subTtitle: person.body,
+                                                        bg: person.image,
+                                                      ),
+                                                      onTap: () async {
+                                                        Navigator.of(context)
+                                                            .push(
+                                                                MaterialPageRoute(
+                                                          builder: (context) =>
+                                                              BlogsDetailedScreen(
+                                                            title: person.title,
+                                                            subTitle:
+                                                                person.body,
+                                                            imageURL:
+                                                                person.image,
+                                                            URI: person.url,
+                                                            index: index,
+                                                            date: person.date,
+                                                          ),
+                                                        ));
+                                                      },
+                                                    );
+                                                  })
+                                              : Center(
+                                                  child:
+                                                      CircularProgressIndicator());
                                         },
                                       ),
-                                    )
-                                ),
+                                    )),
                               ),
                             ],
-
                           ),
                           SizedBox(height: 20),
                         ],

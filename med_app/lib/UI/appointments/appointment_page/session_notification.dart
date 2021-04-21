@@ -29,7 +29,7 @@ class SessionNotification {
         id.toInt(),
         title,
         description,
-        DateTime.now().add(Duration(milliseconds: time)),
+        tz.TZDateTime.now(tz.local).add(Duration(milliseconds: time)),
         const NotificationDetails(
             android: AndroidNotificationDetails(
                 'doctorName', 'hour', 'medicines_notification_channel',
@@ -41,5 +41,14 @@ class SessionNotification {
 
   Future showSessionNotification(String payload) async {
     print('payload');
+  }
+
+  Future removeNotify(int notifyId,
+      FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin) async {
+    try {
+      return await flutterLocalNotificationsPlugin.cancel(notifyId);
+    } catch (e) {
+      return null;
+    }
   }
 }

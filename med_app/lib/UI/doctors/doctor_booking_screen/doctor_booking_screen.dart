@@ -7,6 +7,7 @@ import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/UI/doctors/doctor_booking_next_screen/doctor_booking_next_screen.dart';
 import 'package:med_app/UI/doctors/doctor_booking_screen/hour_picker_widget.dart';
 import 'package:med_app/Widgets/doctor_reviews_widget.dart';
+import 'package:med_app/models/patient.dart';
 import 'package:med_app/provider/app_provider.dart';
 import 'package:smooth_star_rating/smooth_star_rating.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +15,8 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class DoctorBookingScreen extends StatefulWidget {
   final userId;
-  DoctorBookingScreen({this.userId});
+  final Patient patient;
+  DoctorBookingScreen({this.userId, this.patient});
   @override
   _DoctorBookingScreenState createState() => _DoctorBookingScreenState();
 }
@@ -28,6 +30,8 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
   List filteredAvDayList;
   List formattedAvDayList;
   List selectedHoursList;
+  bool back = false;
+  bool first = true;
 
   getImgeUrl(imagepath) async {
     String downloadURL = await firebase_storage.FirebaseStorage.instance
@@ -38,7 +42,9 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
 
   @override
   void initState() {
-    context.read<AppProvider>().getDoctorById(widget.userId);
+    AppProvider provider = Provider.of<AppProvider>(context, listen: false);
+    provider.doctor = null;
+    provider.getDoctorById(widget.userId);
     super.initState();
   }
 
@@ -59,10 +65,17 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
       extendBodyBehindAppBar: true,
       body: Consumer<AppProvider>(
         builder: (context, databaseProvider, _) {
-          if (databaseProvider.doctor == null) {
-            context.read<AppProvider>().getDoctorById(widget.userId);
+          if (databaseProvider.doctor == null || back) {
+            AppProvider provider =
+                Provider.of<AppProvider>(context, listen: false);
+            provider.getDoctorById(widget.userId);
+            provider.getUserType(widget.patient.userId);
+          }
+          if (back) {
+            bookingHourSelected = null;
           }
           if (databaseProvider.doctor != null) {
+            back = false;
             avAppList = databaseProvider.doctor.availableAppointment;
             filteredAvDayList = avAppList.map((element) {
               var avDay = DateFormat('yyyy-MM-dd').parse(element.availableDay);
@@ -75,6 +88,10 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
               }
             }).toList();
             filteredAvDayList.removeWhere((element) => element == null);
+            if (first) {
+              selectedDay = filteredAvDayList[0];
+              first = false;
+            }
           }
           return (databaseProvider.doctor != null)
               ? Stack(
@@ -147,14 +164,6 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                         ),
                                         Row(
                                           children: [
-                                            if (databaseProvider
-                                                .doctor.callMethods.chat)
-                                              Icon(
-                                                FontAwesomeIcons
-                                                    .solidCommentDots,
-                                                color:
-                                                    ColorsCollection.mainColor,
-                                              ),
                                             if (databaseProvider
                                                 .doctor.callMethods.voice)
                                               Icon(
@@ -360,7 +369,7 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                       ),
                                     ),
                                     DatePicker(
-                                      DateTime.now(),
+                                      filteredAvDayList[0],
                                       controller: _controller,
                                       initialSelectedDate: filteredAvDayList[0],
                                       selectionColor:
@@ -368,9 +377,9 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                       selectedTextColor: Colors.white,
                                       daysCount: filteredAvDayList[
                                                   filteredAvDayList.length - 1]
-                                              .difference(DateTime.now())
+                                              .difference(filteredAvDayList[0])
                                               .inDays +
-                                          2,
+                                          1,
                                       activeDates: avAppList
                                           .map(
                                             (e) => DateTime.now().add(
@@ -455,6 +464,7 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                                                   doctorImage)),
                                                     ).then((_) {
                                                       print('ana da5alt');
+                                                      back = true;
                                                       context
                                                           .read<AppProvider>()
                                                           .refresh();

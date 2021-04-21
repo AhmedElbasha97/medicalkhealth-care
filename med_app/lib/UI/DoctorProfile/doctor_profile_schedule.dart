@@ -23,6 +23,7 @@ class _DoctorScheduleState extends State<DoctorSchedule> {
   List<dynamic> _selectedHours = [];
   final fees = TextEditingController();
   var test;
+  bool isButtonDisabled = false;
 
   addAvailableDate(stringDates) async {
     var doctor = userRef.child('users/${widget.doctorId}');
@@ -72,6 +73,7 @@ class _DoctorScheduleState extends State<DoctorSchedule> {
                         AvailableDatePicker(callback: (val) {
                           setState(() {
                             _selectedDays = val;
+                            isButtonDisabled = true;
                           });
                           print(_selectedDays);
                         }),
@@ -127,6 +129,7 @@ class _DoctorScheduleState extends State<DoctorSchedule> {
                       hint: 'The value is in EGP',
                       keyboardTypeNumber: true,
                       controller: fees,
+                      onChange: true,
                       callback: (val) {
                         setState(() {
                           test = val;
@@ -144,7 +147,8 @@ class _DoctorScheduleState extends State<DoctorSchedule> {
                 height: 50,
                 child: ElevatedButton(
                     onPressed: (_selectedDates.length != 0 &&
-                            _selectedHours.length != 0)
+                            _selectedHours.length != 0 &&
+                            isButtonDisabled)
                         ? () {
                             var stringDates = _selectedDates
                                 .map<Map<String, dynamic>>((e) => {
@@ -153,6 +157,10 @@ class _DoctorScheduleState extends State<DoctorSchedule> {
                                     })
                                 .toList();
                             addAvailableDate(stringDates);
+                            FocusScope.of(context).unfocus();
+                            setState(() {
+                              isButtonDisabled = false;
+                            });
                           }
                         : null,
                     child: Text(

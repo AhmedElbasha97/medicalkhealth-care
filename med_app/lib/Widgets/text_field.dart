@@ -39,7 +39,6 @@ class _TextFieldCompState extends State<TextFieldComp> {
               child: TextFormField(
                 onChanged: (value) {
                   if (widget.onChange) {
-                    print(value);
                     widget.callback(value);
                   }
                 },

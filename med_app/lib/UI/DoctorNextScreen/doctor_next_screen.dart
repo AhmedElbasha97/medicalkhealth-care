@@ -104,7 +104,7 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
           "id": id,
           "candidate": candidate
         },
-        "callMethods": {"chat": true, "voice": true, "video": false},
+        "callMethods": {"voice": true, "video": true},
         "email": widget.email,
         "profession": profession,
         "speciality": speciality,

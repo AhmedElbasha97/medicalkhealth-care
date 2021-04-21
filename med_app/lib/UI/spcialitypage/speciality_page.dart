@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:med_app/Widgets/doctor_card.dart';
+import 'package:med_app/models/patient.dart';
 import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 class SpecialityPage extends StatefulWidget {
   SpecialityPage({Key key, this.speciality}) : super(key: key);
 
@@ -11,6 +14,16 @@ class SpecialityPage extends StatefulWidget {
 }
 
 class _SpecialityPageState extends State<SpecialityPage> {
+  String id;
+  Patient patient;
+  Future<void> getCurrentUser() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    id = prefs.getString('userid');
+    AppProvider provider = Provider.of<AppProvider>(context, listen: false);
+    provider.getUserType(id);
+    patient = provider.patient;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,12 +38,18 @@ class _SpecialityPageState extends State<SpecialityPage> {
           child: Consumer<AppProvider>(
             builder: (context, databaseProvider, _) {
               return (databaseProvider.doctors != null)
-                  ? ListView.builder(
-                      itemCount: databaseProvider.doctors.length,
-                      itemBuilder: (ctx, index) {
-                        final doctor = databaseProvider.doctors[index];
-                        return DoctorCard(doctor: doctor);
-                      })
+                  ? FutureBuilder(
+                      future: getCurrentUser(),
+                      builder: (ctx, snapshot) {
+                        return ListView.builder(
+                            itemCount: databaseProvider.doctors.length,
+                            itemBuilder: (ctx, index) {
+                              final doctor = databaseProvider.doctors[index];
+                              return DoctorCard(
+                                  doctor: doctor, patient: patient);
+                            });
+                      },
+                    )
                   : Center(
                       child: Text(
                       "Sorry There are no Doctors Right Now",

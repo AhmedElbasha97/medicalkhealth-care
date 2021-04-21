@@ -9,7 +9,9 @@ import 'package:provider/provider.dart';
 
 class MedicalNoteScreen extends StatefulWidget {
   Patient patient;
-  MedicalNoteScreen({Key key, this.patient}) : super(key: key);
+  final callbackDelete;
+  MedicalNoteScreen({Key key, this.patient, this.callbackDelete})
+      : super(key: key);
 
   @override
   _MedicalNoteScreenState createState() => _MedicalNoteScreenState();
@@ -31,11 +33,13 @@ class _MedicalNoteScreenState extends State<MedicalNoteScreen> {
         var userId = await context.read<AuthService>().getCurrentUser();
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => Nav(userId: userId.uid)));
+        widget.callbackDelete();
       });
     } else {
       var userId = await context.read<AuthService>().getCurrentUser();
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => Nav(userId: userId.uid)));
+      widget.callbackDelete();
     }
   }
 
