@@ -11,13 +11,7 @@ class AppointmentList extends StatelessWidget {
       appBar: AppBar(
         shadowColor: Colors.black,
         title: Text('Appointments'),
-        leading: Padding(
-          padding: const EdgeInsets.only(left: 10.0),
-          child: IconButton(
-              icon: Icon(Icons.event_note),
-              color: Colors.white,
-              onPressed: () => null),
-        ),
+
         backgroundColor: ColorsCollection.mainColor,
         elevation: 0.0,
       ),

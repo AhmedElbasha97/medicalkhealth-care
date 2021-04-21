@@ -10,7 +10,7 @@ class ResetScreen extends StatefulWidget {
 }
 
 class _ResetScreenState extends State<ResetScreen> {
-  final _email = TextEditingController();
+  String email ;
   final auth = FirebaseAuth.instance;
 
 
@@ -67,7 +67,12 @@ class _ResetScreenState extends State<ResetScreen> {
                   height: MediaQuery.of(context).size.height * 0.1,
                   width: MediaQuery.of(context).size.width * 0.9,
                   child: TextFieldComp(
-                      controller: _email,
+                      callback: (val){
+                        setState(() {
+                          email = val;
+                        });
+                      },
+                      onChange: true,
                       label: "Email-Address",
                       hint: "Example@gmail.com"))),
           SizedBox(
@@ -87,7 +92,7 @@ class _ResetScreenState extends State<ResetScreen> {
                   onPressed: () {
                     context
                         .read<AuthService>()
-                        .resetPassword(context: context, email: _email.text);
+                        .resetPassword(context: context, email: email);
                   },
                   child: Text(
                     "Reset Your Password",

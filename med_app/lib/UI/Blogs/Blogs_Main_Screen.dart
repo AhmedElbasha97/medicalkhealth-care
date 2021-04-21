@@ -8,7 +8,8 @@ import 'Nutrition_List_View.dart';
 
 class BlogHomescreen extends StatefulWidget {
   final int neturationNavigation;
-  BlogHomescreen({Key key, this.neturationNavigation});
+  final bool navigateFromOtherScreen;
+  BlogHomescreen({Key key, this.neturationNavigation, this.navigateFromOtherScreen=false});
   @override
   _BlogHomescreenState createState() => _BlogHomescreenState();
 }
@@ -31,31 +32,32 @@ class _BlogHomescreenState extends State<BlogHomescreen> {
    return ChangeNotifierProvider<BlogProvider>(
         create: (context) => BlogProvider(),
         child: Consumer<BlogProvider>(builder: (context, blogprovider, _) {
-          //  var medblogs= blogprovider.Medical;
-          //  var nutiblogs=blogprovider.nuitrition;
           return DefaultTabController(
               length: 2,
-              child: Scaffold(
-                  appBar: AppBar(
-                    automaticallyImplyLeading: false,
-                    title: Text("Blogs"),
-                    backgroundColor: ColorsCollection.mainColor,
-                    bottom: TabBar(
-                      tabs: <Widget>[
-                        Tab(
-                          text: 'Medical',
-                        ),
-                        Tab(
-                          text: 'Nuitrition',
-                        ),
-                      ],
-                      onTap: (index) {
-                        //  blogs= (index==0)? medblogs:nutiblogs;
-                        _itemSwitch(index);
-                      },
+              child: WillPopScope(
+                onWillPop: () async => false,
+                child: Scaffold(
+                    appBar: AppBar(
+                      automaticallyImplyLeading: widget.navigateFromOtherScreen,
+                      title: Text("Blogs"),
+                      backgroundColor: ColorsCollection.mainColor,
+                      bottom: TabBar(
+                        tabs: <Widget>[
+                          Tab(
+                            text: 'Medical',
+                          ),
+                          Tab(
+                            text: 'Nuitrition',
+                          ),
+                        ],
+                        onTap: (index) {
+                          //  blogs= (index==0)? medblogs:nutiblogs;
+                          _itemSwitch(index);
+                        },
+                      ),
                     ),
-                  ),
-                  body: _widgetotpions.elementAt(_selectedIndex)));
+                    body: _widgetotpions.elementAt(_selectedIndex)),
+              ));
         }));
   }
 }

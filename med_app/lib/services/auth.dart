@@ -24,17 +24,6 @@ class AuthService {
       }
     });
   }
-// getStringValuesSF() async {
-
-// SharedPreferences prefs = await SharedPreferences.getInstance();
-
-// //Return String
-
-// String stringValue = prefs.getString('stringValue');
-
-// return stringValue;
-
-// }
   addStringToSF(id) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('userid', id);
@@ -44,12 +33,12 @@ class AuthService {
     Pattern pattern =
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     RegExp regex = new RegExp(pattern);
-    return (!regex.hasMatch(value)) ? false : true;
+    return regex.hasMatch(value);
   }
 
   bool validatePassword(String value) {
     String pattern =
-        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,10}$';
+        r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$';
     RegExp regExp = new RegExp(pattern);
     return regExp.hasMatch(value);
   }
@@ -80,10 +69,8 @@ class AuthService {
       },
     );
   }
-
-  //signin email
-  // ignore: missing_return
   Future<String> signInEmail(context, email, password) async {
+    print(email);
     if (validateEmail(email)) {
       if (validatePassword(password)) {
         try {
@@ -108,7 +95,7 @@ class AuthService {
         }
       } else {
         showAlert(context, "Your Password is Weak",
-            "strong Password Must Contain this Criteria Minimum 8 and Maximum 10 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character");
+            "strong Password Must Contain this Criteria Minimum 8 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character");
       }
     } else {
       showAlert(context, "The E-mail You entered isn't valid",
@@ -162,7 +149,7 @@ class AuthService {
       }
     } else {
       showAlert(context, "The user name isn't valid",
-          "Please re-enter valid username");
+          "Please re-enter valid username valid user name must be from 8 to 20 character doesn't start with _ or . and doesn't end with _ or . and doesn't contain __ or _. or ._ or .. ");
     }
   }
 

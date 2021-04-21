@@ -14,11 +14,7 @@ class _DrugsListState extends State<DrugsList> {
     return Scaffold(
         appBar: AppBar(
           shadowColor: Colors.white,
-          leading: IconButton(
-            icon: Icon(Icons.menu),
-            color: Colors.white,
-            onPressed: () => Navigator.pop(context),
-          ),
+
           title: Text(
             'Drugs',
             textAlign: TextAlign.center,
