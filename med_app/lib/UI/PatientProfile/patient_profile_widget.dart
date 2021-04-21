@@ -18,7 +18,7 @@ import 'package:provider/provider.dart';
 class PatientProfileWidget extends StatefulWidget {
   final text;
   final profileInfo;
-
+  final navigateFromAnotherScreen;
   final color;
   final userId;
   Patient patient;
@@ -29,6 +29,7 @@ class PatientProfileWidget extends StatefulWidget {
     this.profileInfo,
     this.userId,
     this.patient,
+    this.navigateFromAnotherScreen = false,
   });
 
   @override
@@ -102,16 +103,11 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
       return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
-          // leading: IconButton(
-          //   icon: Icon(Icons.chevron_left),
-          //   color: ColorsCollection.splashTitleColor,
-          //   onPressed: () => {
-          //     Navigator.of(context).pop(),
-          //   },
-          // ),
+          automaticallyImplyLeading: widget.navigateFromAnotherScreen,
           title: Center(
             child: Text(
               'Profile',
+              textAlign: TextAlign.left,
               style: TextStyle(
                   color: ColorsCollection.splashTitleColor,
                   fontWeight: FontWeight.w900,
@@ -174,7 +170,7 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
               ),
               Padding(
                   padding: const EdgeInsets.only(top: 10),
-                  child: Text(widget.patient.username,
+                  child: Text(widget.patient.name,
                       style: TextStyle(
                           color: ColorsCollection.splashTitleColor,
                           fontWeight: FontWeight.w900,

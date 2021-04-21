@@ -11,7 +11,6 @@ import 'package:med_app/UI/PatientProfile/patient_profile_cards.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:med_app/models/doctor.dart';
 import 'package:med_app/provider/app_provider.dart';
-
 import 'package:provider/provider.dart';
 
 import 'doctor_reviews_screen.dart';

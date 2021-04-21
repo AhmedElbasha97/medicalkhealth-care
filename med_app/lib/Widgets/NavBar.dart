@@ -10,9 +10,6 @@ import 'package:med_app/UI/appointments/patient_appointment_list/appointment_lis
 import 'package:med_app/UI/specialitylist/specialty_list.dart';
 import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
-
-// import 'UI/movie_list/movie_screen.dart';
-
 class Nav extends StatefulWidget {
   final String userId;
   Nav({this.userId});
@@ -33,10 +30,6 @@ class _NavbarState extends State<Nav> {
   @override
   void initState() {
     super.initState();
-
-    // getStringValuesSF().then((i){
-    //   id=i;
-    // });
   }
 
   @override
@@ -45,7 +38,7 @@ class _NavbarState extends State<Nav> {
       BlogHomescreen(),
       DrugsMainPageScreen(),
       Home(),
-      AppointmentList(),
+      SpecialtyList(),
       if (context.read<AppProvider>().type != null)
         (context.read<AppProvider>().type == "patient")
             ? PatientProfile()
