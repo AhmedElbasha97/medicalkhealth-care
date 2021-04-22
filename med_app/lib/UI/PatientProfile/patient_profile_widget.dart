@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -63,6 +64,7 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
         res.ref.getDownloadURL();
       });
     }).then((value) => addDoctor());
+
   }
 
   addDoctor() async {
@@ -78,8 +80,12 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
         print('Transaction  committed.');
       }).then((_) {
         print('Transaction  committed.');
-        AppProvider provider = Provider.of<AppProvider>(context, listen: false);
-        provider.getPatientById('${widget.patient.userId}');
+        Timer(Duration(seconds:5), () {
+  AppProvider provider = Provider.of<AppProvider>(context, listen: false);
+        provider.getUserType('${widget.patient.userId}');
+});
+         
+        
       });
     } else {
       print('Transaction not committed.');
@@ -104,16 +110,25 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           automaticallyImplyLeading: widget.navigateFromAnotherScreen,
-          title: Center(
-            child: Text(
-              'Profile',
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                  color: ColorsCollection.splashTitleColor,
-                  fontWeight: FontWeight.w900,
-                  fontSize: 22),
-            ),
-          ),
+  iconTheme: IconThemeData(
+    color: Colors.black, //change your color here
+  ),
+
+          
+          title:  Container(
+            width: MediaQuery.of(context).size.width*0.9,
+            child: Row(
+              mainAxisAlignment:(widget.navigateFromAnotherScreen) ?MainAxisAlignment.start :MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Profile',
+                  style: TextStyle(
+                      color: ColorsCollection.splashTitleColor,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 22),
+                ),
+              ],
+            ),),
           backgroundColor: Colors.white,
           shadowColor: Colors.transparent,
         ),

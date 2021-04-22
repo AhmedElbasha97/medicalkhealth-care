@@ -83,11 +83,11 @@ class _PatientInfoWidgetState extends State<PatientInfoWidget> {
               children: [
                 UserProfileInfoWidget(
                     icon: Icons.person,
-                    infoTitle: 'username : ',
-                    infoValue: widget.patient.username),
+                    infoTitle: 'Name : ',
+                    infoValue: widget.patient.name),
                 UserProfileInfoWidget(
                     icon: FontAwesomeIcons.heartbeat,
-                    infoTitle: 'Blood-Sugar  : ',
+                    infoTitle: 'Blood Sugar  : ',
                     infoValue: widget.patient.bloodSugar),
                 UserProfileInfoWidget(
                     icon: FontAwesomeIcons.heartbeat,

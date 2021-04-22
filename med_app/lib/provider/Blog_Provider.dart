@@ -11,36 +11,31 @@ class BlogProvider extends ChangeNotifier{
 
   BlogProvider(){
     getBlogAtFrist();
-    getNewsForList();
     getMedicalForList();
-    getNutritionForList();
 
   }
 
   void getBlogAtFrist() async {
     _blogRepo.fetchBlogs().then((newBlogs) {
       blogs = newBlogs.results;
-      notifyListeners();
+     
+       _blogRepo.fetchNewsFeed().then((newFeeds) {
+        newsFeed = newFeeds.results;
+         notifyListeners();
+      });
+
     });
 
 
   }
-  void getNewsForList() async {
-      _blogRepo.fetchNewsFeed().then((newFeeds) {
-        newsFeed = newFeeds.results;
-        notifyListeners();
-      });
-  }
+
   void getMedicalForList() async {
     _blogRepo.fetchMedical().then((newFeeds) {
       medical = newFeeds.results;
-      notifyListeners();
-    });
-  }
-  void getNutritionForList() async {
-    _blogRepo.fetchNiteration().then((newFeeds) {
+     _blogRepo.fetchNiteration().then((newFeeds) {
       nuitrition = newFeeds.results;
       notifyListeners();
+    });
     });
   }
 }

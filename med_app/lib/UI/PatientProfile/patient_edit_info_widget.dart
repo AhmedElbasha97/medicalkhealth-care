@@ -41,7 +41,7 @@ class _PatientInfoWidgetState extends State<PatientEditInfoWidget> {
       height,
       wieght,
       age,
-      username;
+      name;
   void updateUser() async {
     var user = userRef.child('users/${widget.patient.userId}');
 
@@ -63,9 +63,9 @@ class _PatientInfoWidgetState extends State<PatientEditInfoWidget> {
       'weight': (wieght != null && wieght.length > 0)
           ? wieght
           : widget.patient.weight,
-      'username': (username != null && username.length > 0)
-          ? username
-          : widget.patient.username,
+      'name': (name != null && name.length > 0)
+          ? name
+          : widget.patient.name,
       'age': (age != null && age.length > 0) ? age : widget.patient.age,
     }).then((_) {
       print('Transaction  committed.');
@@ -106,9 +106,9 @@ class _PatientInfoWidgetState extends State<PatientEditInfoWidget> {
             children: [
               UserProfileInfoEditWidget(
                   keyboardTypeNumber: false,
-                  callback: (val) => setState(() => username = val),
-                  infoTitle: 'username  ',
-                  infoValue: widget.patient.username),
+                  callback: (val) => setState(() => name = val),
+                  infoTitle: 'name  ',
+                  infoValue: widget.patient.name),
               UserProfileInfoEditWidget(
                   keyboardTypeNumber: true,
                   callback: (val) => setState(() => bloodSugar = val),

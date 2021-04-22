@@ -73,7 +73,10 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return 
+    WillPopScope(
+  onWillPop: () async => false,
+ child: Scaffold(
       appBar: AppBar(
         shadowColor: Colors.black,
         title: Text('Booking Confirmation'),
@@ -444,6 +447,6 @@ class _DoctorBookingNextScreenState extends State<DoctorBookingNextScreen> {
               : Center(child: CircularProgressIndicator());
         },
       ),
-    );
+    ));
   }
 }

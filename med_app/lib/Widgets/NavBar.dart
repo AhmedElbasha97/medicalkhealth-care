@@ -5,7 +5,10 @@ import 'package:med_app/UI/Blogs/Blogs_Main_Screen.dart';
 import 'package:med_app/UI/DoctorProfile/doctor_profile.dart';
 import 'package:med_app/UI/Drugs/drugs_main_page.dart';
 import 'package:med_app/UI/Home/HomeScreen.dart';
+import 'package:med_app/UI/Nutrition/nutrition_main_page.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile.dart';
+import 'package:med_app/UI/appointments/patient_appointment_list/appointment_list.dart';
+import 'package:med_app/UI/medical/medical_screen.dart';
 import 'package:med_app/UI/specialitylist/specialty_list.dart';
 import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
@@ -13,14 +16,13 @@ import 'package:provider/provider.dart';
 class Nav extends StatefulWidget {
   final String userId;
   int selectedIndex;
-  Nav({this.userId, this.selectedIndex = 0});
+  Nav({this.userId, this.selectedIndex=0 });
   @override
   _NavbarState createState() => _NavbarState();
 }
 
 class _NavbarState extends State<Nav> {
   List<Widget> _widgetotpions;
-
   void _itemSwitch(int index) {
     setState(() {
       widget.selectedIndex = index;
@@ -29,23 +31,40 @@ class _NavbarState extends State<Nav> {
 
   @override
   void initState() {
-    print(widget.selectedIndex);
-    _widgetotpions = <Widget>[
-      BlogHomescreen(),
-      DrugsMainPageScreen(),
-      Home(),
-      SpecialtyList(),
-      if (context.read<AppProvider>().type != null)
-        (context.read<AppProvider>().type == "patient")
-            ? PatientProfile()
-            : DoctorProfile()
-    ];
-    _widgetotpions.elementAt(widget.selectedIndex);
+//     print(widget.selectedIndex);
+//     _widgetotpions = <Widget>[
+//       BlogHomescreen(),
+//       DrugsMainPageScreen(),
+//       Home(),
+//  if (context.read<AppProvider>().type != null)
+//         (context.read<AppProvider>().type == "patient")
+//             ? MedicalScreen()
+//             : AppointmentList(),
+//       if (context.read<AppProvider>().type != null)
+//         (context.read<AppProvider>().type == "patient")
+//             ? PatientProfile()
+//             : DoctorProfile()
+//     ];
+//     _widgetotpions.elementAt(widget.selectedIndex);
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
+_widgetotpions = <Widget>[
+      NutritionScreen(),
+      DrugsMainPageScreen(),
+      Home(),
+      if (context.read<AppProvider>().type != null)
+        (context.read<AppProvider>().type == "patient")
+            ? MedicalScreen()
+            : AppointmentList(),
+      if (context.read<AppProvider>().type != null)
+        (context.read<AppProvider>().type == "patient")
+            ? PatientProfile()
+            : DoctorProfile(),
+    ];
+
     return Consumer<AppProvider>(builder: (context, databaseProvider, _) {
       if (databaseProvider.type == null) {
         databaseProvider.getUserType(widget.userId);

@@ -61,7 +61,7 @@ class _AppointmentCardState extends State<AppointmentCard> {
   deleteAppointment() async {
     widget.appointments.removeAt(widget.index);
     var newApps = widget.appointments.map((e) => e.toJson()).toList();
-
+SharedPreferences prefs = await SharedPreferences.getInstance();
     _notifications.removeNotify(
         prefs.getInt('notifyId'), flutterLocalNotificationsPlugin);
 
@@ -110,14 +110,9 @@ class _AppointmentCardState extends State<AppointmentCard> {
     }
   }
 
-  getShared() async {
-    prefs = await SharedPreferences.getInstance();
-    print('done');
-  }
 
   @override
   void initState() {
-    getShared();
     isPatient = (widget.userType == 'patient');
     app = userRef.child('users/${widget.userId}');
     appDoctor = userRef.child(
