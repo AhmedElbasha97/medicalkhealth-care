@@ -51,3 +51,37 @@ This project has adopted the [Contributor Covenant](https://www.contributor-cove
 
 Going to hospitals and clinics to get medical treatment may lead to be infected by diseases from other patients in the hospital, specially nowadays, where COVID-19 could spread and infect a lot of people. In our applications, we want to make it easy for users to have online medical consultations to limit the spread of diseases and to save the effort and money to go to hospitals as in many cases some patients don't have the ability to go to hospitals and for people who must have a 24/7 follow-up with the doctor and also to have a medical consultation about drug interactions from pharmacists and advices for healthy life from nutritionists.
 
+### b. Purpose:
+
+This application shall provide:
+- Online communication from home to help people get to their medical consultation as soon as possible with less effort.
+- Drug index to see the presciption of medicines and their prices in market befor buying them.
+- Medical and nutritional blogs that inform users with best medical and nutritional practices.
+- Keep the users up with the new diseases and vaccines through news feed.
+
+### c. Competitors Analysis:
+
+#### 1. Vezeeta Application
+
+Vezeeta is an Egyptian telemedicine app that allows patients to find specialized doctors and book convenient appointments online or through vezeeta's hotline. It also collaborates with hospitals, clinics to provide the patients the easy way to get to their locations and contact the doctors in these hospitals.
+
+#### 2. Se7etak Application
+
+Se7etak is an Egyptian telehealth platform whose primary aim is to virtually connect patients and doctors, giving you acces to consultations via video call. It aims to lessen the traffic in waiting rooms and provide the finest doctors in the region.
+
+### d. Scope:
+
+This app aims at giving the customers the easiest way to communicate with doctors, pharmacists and nutritionists. Also, provide a better service than other telemedicine apps by creating a medical community at home from which you can access medical news, blogs, durg index and contact professional doctors in order to give a hand to limit the spread of diseases and make people's life easier.
+
+### e. Stakeholders/Beneficiaries:
+- Patients.
+- Doctors, Pharmacists.
+- Nutritionists.
+- Sponsors.
+- Medicine Companies.
+- Hospitals, Clinics.
+- Medical Blog Writers.
+
+### f. Future Work:
+
+We will start marketing to the app through social media networks and in the future, we want to add chat to the app, provide nearby hospitals and pharmacis locations, contact other patients and enhance our drug index with more medicines and information.
