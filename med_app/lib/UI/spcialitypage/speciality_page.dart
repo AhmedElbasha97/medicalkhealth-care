@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/Widgets/doctor_card.dart';
 import 'package:med_app/models/patient.dart';
 import 'package:med_app/provider/app_provider.dart';
@@ -30,8 +31,7 @@ class _SpecialityPageState extends State<SpecialityPage> {
     return Scaffold(
         backgroundColor: Color(0xFFFFFFFF),
         appBar: AppBar(
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
+          backgroundColor: ColorsCollection.mainColor,
           title: Text(widget.speciality),
         ),
         body: ChangeNotifierProvider<AppProvider>(

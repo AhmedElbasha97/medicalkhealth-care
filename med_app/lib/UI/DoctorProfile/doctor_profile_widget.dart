@@ -8,6 +8,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:med_app/UI/DoctorProfile/doctor_info_screen.dart';
 import 'package:med_app/UI/DoctorProfile/doctor_profile_schedule.dart';
+import 'package:med_app/UI/DoctorProfile/doctor_profile_settings/doctor_profile_settings.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile_cards.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:med_app/models/doctor.dart';
@@ -274,6 +275,7 @@ class _DoctorProfileWidgetState extends State<DoctorProfileWidget> {
               PatientCardWidget(
                 cardLabel: "Settings",
                 icon: Icons.settings,
+                buttonNavigation: DoctorSettings(),
               ),
               PatientCardWidget(
                 cardLabel: "Logout",

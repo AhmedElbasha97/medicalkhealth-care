@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:med_app/UI/DoctorProfile/doctor_profile_settings/doctor_profile_settings.dart';
 import 'package:med_app/UI/PatientProfile/patient_info_screen.dart';
 import 'package:med_app/UI/PatientProfile/patient_medicalNotes_screen.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile_cards.dart';
@@ -244,6 +245,7 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
               PatientCardWidget(
                 cardLabel: "Settings",
                 icon: Icons.settings,
+                buttonNavigation: DoctorSettings(),
               ),
               PatientCardWidget(
                 cardLabel: "Logout",
