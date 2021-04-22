@@ -33,3 +33,15 @@ We are a team of ITI calibers who made this medical app as their graduation proj
 - Ahmed El-Basha.
 
 and we are under the supervision of Eng. Marwa Abdelhamid.
+
+## Credits
+
+We'd like to thank ITI for giving us this opportunity, specially Eng. Marwa Abdelhamid who had our backs the whole duration of the ITI scholarship and through all the stages of this project. We also want to thank all our comrades who helped us in the scholarship and we made a very great team together. Last but not least, we want to thank anyone who supported us through this journey and we promise we will meet your expectations with this project and our incoming projects.
+
+## Data Privacy
+
+In this project we are strictly observing the principles of the General Data Protection Regulation (GDPR) to protect the users’ privacy. We are processing necessary data only - exclusively for the purpose to let users know if they have come into close contact with other infected users, without revealing each other's identity. The compliance with these regulations is safeguarded by several procedures, e.g. by implementing technical and organizational measures adhering diligently to the high standards of the GDPR. Of course, the app will provide users with a comprehensive privacy statement to be as transparent and clear as possible. As we are developing the app as an open source project, the community can review it. We appreciate your feedback!
+
+## Code of Conduct
+
+This project has adopted the [Contributor Covenant](https://www.contributor-covenant.org/) in version 2.0 as our code of conduct. Please see the details in our [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md). All contributors must abide by the code of conduct.
