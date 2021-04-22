@@ -190,17 +190,17 @@ In our application, we will serve users with the following:
 ### Tools and Technologies:
 
 <p float="left">
-<img src="https://i.imgur.com/XPEazqh.png" width="300">
-<img src="https://i.imgur.com/hAnRmut.png" width="310">
-<img src="https://i.imgur.com/QUpSqUE.png" width="300">
+<img src="https://i.imgur.com/XPEazqh.png" width="250">
+<img src="https://i.imgur.com/hAnRmut.png" width="250">
+<img src="https://i.imgur.com/QUpSqUE.png" width="250">
  </p>
  
 ## 6. User Interface Screens:
 
 <p float="left">
-<img src="https://i.imgur.com/xhSIJUK.jpg" width="200">
-<img src="https://i.imgur.com/zZEVZFx.jpg" width="200">
-<img src="https://i.imgur.com/Am0Yhdw.jpg" width="200">
+<img src="https://i.imgur.com/xhSIJUK.jpg" width="250">
+<img src="https://i.imgur.com/zZEVZFx.jpg" width="250">
+<img src="https://i.imgur.com/Am0Yhdw.jpg" width="250">
  </p>
  
 ## 7. Future Work:
