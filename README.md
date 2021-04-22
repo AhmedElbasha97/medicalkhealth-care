@@ -101,7 +101,7 @@ This app aims at giving the customers the easiest way to communicate with doctor
 - The ability to cancel an appointment.
 
 #### 3. Informative App:
-- View the lastest and best medical and nutritional blogs.
+- View the latest and best medical and nutritional blogs.
 - View the latest medical news in Egypt and worldwide.
 
 #### 4. Interactive Community:
