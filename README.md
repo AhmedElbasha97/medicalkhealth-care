@@ -8,10 +8,7 @@
     <a href="#credits">Credits</a> •
     <a href="#data-privacy">Data Privacy</a> •
     <a href="#code-of-conduct">Code of Conduct</a> •
-    <a href="#working-language">Working Language</a> •
     <a href="#our-documentation">Our Documentation</a> •
-    <a href="#licensing">Licensing</a> •
-    <a href="#how-to-contribute">How to Contribute</a> •
     <a href="https://www.coronawarn.app/en/">Web Site</a>
 </p>
 <hr />
