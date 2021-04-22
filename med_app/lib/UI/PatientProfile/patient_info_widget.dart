@@ -32,7 +32,7 @@ class _PatientInfoWidgetState extends State<PatientInfoWidget> {
   bool changePassword = false;
   String _newPassword;
   String pattern =
-      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,10}$';
+      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$';
 
   @override
   Widget build(BuildContext context) {
@@ -84,7 +84,7 @@ class _PatientInfoWidgetState extends State<PatientInfoWidget> {
                 UserProfileInfoWidget(
                     icon: Icons.person,
                     infoTitle: 'username : ',
-                    infoValue: widget.patient.username),
+                    infoValue: widget.patient.name),
                 UserProfileInfoWidget(
                     icon: FontAwesomeIcons.heartbeat,
                     infoTitle: 'Blood-Sugar  : ',

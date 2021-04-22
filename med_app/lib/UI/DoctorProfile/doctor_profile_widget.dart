@@ -80,7 +80,7 @@ class _DoctorProfileWidgetState extends State<DoctorProfileWidget> {
       }).then((_) {
         print('Transaction  committed.');
         AppProvider provider = Provider.of<AppProvider>(context, listen: false);
-        provider.getDoctorById('${widget.doctor.userId}');
+        provider.getUserType(provider.userId);
       });
     } else {
       print('Transaction not committed.');

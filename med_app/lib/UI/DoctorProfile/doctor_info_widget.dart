@@ -32,7 +32,7 @@ class _DoctorInfoWidgetState extends State<DoctorInfoWidget> {
   bool changePassword = false;
   String _newPassword;
   String pattern =
-      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,10}$';
+      r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$';
 
   @override
   Widget build(BuildContext context) {

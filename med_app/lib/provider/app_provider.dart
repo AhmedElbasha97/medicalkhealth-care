@@ -3,7 +3,6 @@ import 'package:med_app/models/doctor.dart';
 import 'package:med_app/models/patient.dart';
 import 'package:med_app/models/token.dart';
 import 'package:med_app/repository/database_repo.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class AppProvider extends ChangeNotifier {
   String userId;

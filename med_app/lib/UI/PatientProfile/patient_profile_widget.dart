@@ -78,8 +78,9 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
         print('Transaction  committed.');
       }).then((_) {
         print('Transaction  committed.');
+
         AppProvider provider = Provider.of<AppProvider>(context, listen: false);
-        provider.getPatientById('${widget.patient.userId}');
+        provider.getUserType(provider.userId);
       });
     } else {
       print('Transaction not committed.');
