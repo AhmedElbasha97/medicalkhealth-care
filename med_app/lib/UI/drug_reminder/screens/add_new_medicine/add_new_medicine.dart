@@ -85,14 +85,13 @@ class _AddNewMedicineState extends State<AddNewMedicine> {
       ),
       body: Padding(
         padding: const EdgeInsets.only(left: 20.0, right: 20.0, bottom: 30.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        child: ListView(
           children: [
             SizedBox(
               height: deviceHeight * 0.03,
             ),
             Container(
-              height: deviceHeight * 0.35,
+              height: deviceHeight * 0.4,
               child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 10.0),
                   child: FormFields(
@@ -116,19 +115,15 @@ class _AddNewMedicineState extends State<AddNewMedicine> {
             SizedBox(
               height: deviceHeight * 0.02,
             ),
-            Container(
-              height: deviceHeight * 0.035,
-              child: Padding(
-                padding: const EdgeInsets.only(left: 16.0),
-                child: FittedBox(
-                  child: Text(
-                    "Medicine form",
-                    style: TextStyle(
-                        color: Colors.grey[800],
-                        fontSize: 18.0,
-                        fontWeight: FontWeight.w600),
-                  ),
-                ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: Text(
+                "Medicine form",
+                textAlign: TextAlign.start,
+                style: TextStyle(
+                    color: Colors.grey[800],
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w600),
               ),
             ),
             SizedBox(
@@ -166,7 +161,6 @@ class _AddNewMedicineState extends State<AddNewMedicine> {
                         buttonChild: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SizedBox(width: 10),
                             Text(
                               DateFormat.Hm().format(this.setDate),
                               style: TextStyle(
@@ -174,7 +168,6 @@ class _AddNewMedicineState extends State<AddNewMedicine> {
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500),
                             ),
-                            SizedBox(width: 5),
                             Icon(
                               Icons.access_time,
                               size: 30,
@@ -198,7 +191,6 @@ class _AddNewMedicineState extends State<AddNewMedicine> {
                         buttonChild: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            SizedBox(width: 10),
                             Text(
                               DateFormat("dd.MM").format(this.setDate),
                               style: TextStyle(
@@ -206,7 +198,6 @@ class _AddNewMedicineState extends State<AddNewMedicine> {
                                   color: Colors.black,
                                   fontWeight: FontWeight.w500),
                             ),
-                            SizedBox(width: 10),
                             Icon(
                               Icons.event,
                               size: 30,

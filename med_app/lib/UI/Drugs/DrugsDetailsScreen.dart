@@ -125,7 +125,7 @@ class DrugsDetailedScreen extends StatelessWidget {
                             )),
                       ),
                       Container(
-                        height: MediaQuery.of(context).size.height * 0.03,
+                        height: MediaQuery.of(context).size.height * 0.04,
                         width: MediaQuery.of(context).size.width,
                         child: Padding(
                           padding: EdgeInsets.fromLTRB(3.0, 0.0, 0.0, 0.0),
@@ -175,25 +175,24 @@ class DrugsDetailedScreen extends StatelessWidget {
                                     child: Container(
                                       height:
                                           MediaQuery.of(context).size.height *
-                                              0.03,
-                                      width: MediaQuery.of(context).size.width,
-                                      child: Padding(
-                                        padding: EdgeInsets.fromLTRB(
-                                            3.0, 0.0, 0.0, 0.0),
-                                        child: Row(children: [
-                                          Icon(
-                                            FontAwesomeIcons.flask,
-                                            color: ColorsCollection.mainColor,
-                                          ),
-                                          Text(
+                                              0.04,
+                                      child: Row(children: [
+                                        Icon(
+                                          FontAwesomeIcons.flask,
+                                          color: ColorsCollection.mainColor,
+                                        ),
+                                        Padding(
+                                          padding:
+                                              const EdgeInsets.only(left: 5.0),
+                                          child: Text(
                                             "Ingredients of medicine:",
                                             textAlign: TextAlign.left,
                                             style: TextStyle(
-                                                fontSize: 20,
+                                                fontSize: 18,
                                                 fontWeight: FontWeight.bold),
                                           ),
-                                        ]),
-                                      ),
+                                        ),
+                                      ]),
                                     ),
                                   ),
                                   expanded: ListView.builder(

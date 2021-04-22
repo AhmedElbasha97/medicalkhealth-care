@@ -28,14 +28,22 @@ class _HomeState extends State<Home> {
     super.initState();
     type = context.read<AppProvider>().type;
     if (type == "patient") {
-      name = context.read<AppProvider>().patient.name;
+      var userName = context.read<AppProvider>().patient.name;
+      var arr = userName.split(' ');
+      name = arr[0];
     } else {
-      name = context.read<AppProvider>().doctor.name;
+      var userName = context.read<AppProvider>().doctor.name;
+      var arr = userName.split(' ');
+      name = arr[0];
     }
   }
 
   Widget build(BuildContext context) {
-    return Container(
+    return ChangeNotifierProvider<BlogProvider>(
+          create: (context) => BlogProvider(),
+          child: Consumer<BlogProvider>(
+            builder: (context, BlogProvider, _) {
+              return Container(
       decoration: BoxDecoration(
         gradient: new LinearGradient(
           colors: [
@@ -196,12 +204,8 @@ class _HomeState extends State<Home> {
                                         MediaQuery.of(context).size.width * 1,
                                     height: MediaQuery.of(context).size.height *
                                         0.27,
-                                    child: ChangeNotifierProvider<BlogProvider>(
-                                      create: (context) => BlogProvider(),
-                                      child: Consumer<BlogProvider>(
-                                        builder:
-                                            (buildContext, BlogProvider, _) {
-                                          return (BlogProvider.blogs != null)
+                                    child:
+                                           (BlogProvider.blogs != null)
                                               ? ListView.builder(
                                                   scrollDirection:
                                                       Axis.horizontal,
@@ -237,11 +241,11 @@ class _HomeState extends State<Home> {
                                                   })
                                               : Center(
                                                   child:
-                                                      CircularProgressIndicator());
-                                        },
+                                                      CircularProgressIndicator())
+                                        
                                       ),
-                                    )),
-                              ),
+                                    ),
+                         
                             ],
                           ),
                           SizedBox(height: 20),
@@ -304,12 +308,7 @@ class _HomeState extends State<Home> {
                                         MediaQuery.of(context).size.width * 1,
                                     height: MediaQuery.of(context).size.height *
                                         0.27,
-                                    child: ChangeNotifierProvider<BlogProvider>(
-                                      create: (context) => BlogProvider(),
-                                      child: Consumer<BlogProvider>(
-                                        builder:
-                                            (buildContext, BlogProvider, _) {
-                                          return (BlogProvider.newsFeed != null)
+                                    child: (BlogProvider.newsFeed != null)
                                               ? ListView.builder(
                                                   scrollDirection:
                                                       Axis.horizontal,
@@ -346,11 +345,11 @@ class _HomeState extends State<Home> {
                                                   })
                                               : Center(
                                                   child:
-                                                      CircularProgressIndicator());
-                                        },
+                                                      CircularProgressIndicator())
+                                        
                                       ),
-                                    )),
-                              ),
+                                    ),
+                           
                             ],
                           ),
                           SizedBox(height: 20),
@@ -364,4 +363,7 @@ class _HomeState extends State<Home> {
       ),
     );
   }
+    ));}
+
+
 }

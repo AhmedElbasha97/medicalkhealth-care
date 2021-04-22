@@ -503,7 +503,7 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
                                                 image: new DecorationImage(
                                                   fit: BoxFit.fill,
                                                   image: AssetImage(
-                                                      "assets/balance.jpg"),
+                                                      "assets/cash.png"),
                                                 ),
                                               ),
                                             ),
@@ -601,46 +601,21 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
                         ? Padding(
                             padding:
                                 const EdgeInsets.symmetric(horizontal: 20.0),
-                            child: Column(
-                              children: [
-                                Row(
-                                  children: [
-                                    Text(
-                                      'Balance: ',
-                                      style: TextStyle(
-                                          fontSize: 20.0,
-                                          fontFamily: 'Proxima',
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      '${widget.patient.balance}',
-                                      style: TextStyle(
-                                          fontSize: 20.0,
-                                          fontFamily: 'Proxima',
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      ' EGP',
-                                      style: TextStyle(
-                                          fontSize: 20.0,
-                                          fontFamily: 'Proxima',
-                                          fontWeight: FontWeight.bold),
-                                    )
-                                  ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 15.0),
-                                  child: Row(
+                            child: Padding(
+                              padding: const EdgeInsets.only(top: 20.0),
+                              child: Column(
+                                children: [
+                                  Row(
                                     children: [
                                       Text(
-                                        'Fees: ',
+                                        'Balance: ',
                                         style: TextStyle(
                                             fontSize: 20.0,
                                             fontFamily: 'Proxima',
                                             fontWeight: FontWeight.bold),
                                       ),
                                       Text(
-                                        '${widget.fees}',
+                                        '${widget.patient.balance}',
                                         style: TextStyle(
                                             fontSize: 20.0,
                                             fontFamily: 'Proxima',
@@ -655,74 +630,102 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
                                       )
                                     ],
                                   ),
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      vertical: 15.0),
-                                  child: Container(
-                                    height: 2,
-                                    width: double.infinity,
-                                    color: Colors.grey[300],
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 15.0),
+                                    child: Row(
+                                      children: [
+                                        Text(
+                                          'Fees: ',
+                                          style: TextStyle(
+                                              fontSize: 20.0,
+                                              fontFamily: 'Proxima',
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          '${widget.fees}',
+                                          style: TextStyle(
+                                              fontSize: 20.0,
+                                              fontFamily: 'Proxima',
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          ' EGP',
+                                          style: TextStyle(
+                                              fontSize: 20.0,
+                                              fontFamily: 'Proxima',
+                                              fontWeight: FontWeight.bold),
+                                        )
+                                      ],
+                                    ),
                                   ),
-                                ),
-                                Row(
-                                  children: [
-                                    Text(
-                                      'Balance after payment: ',
-                                      style: TextStyle(
-                                          fontSize: 20.0,
-                                          fontFamily: 'Proxima',
-                                          fontWeight: FontWeight.bold),
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 15.0),
+                                    child: Container(
+                                      height: 2,
+                                      width: double.infinity,
+                                      color: Colors.grey[300],
                                     ),
-                                    Text(
-                                      '${int.parse(widget.patient.balance) - int.parse(widget.fees)}',
-                                      style: TextStyle(
-                                          fontSize: 20.0,
-                                          fontFamily: 'Proxima',
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      ' EGP',
-                                      style: TextStyle(
-                                          fontSize: 20.0,
-                                          fontFamily: 'Proxima',
-                                          fontWeight: FontWeight.bold),
-                                    )
-                                  ],
-                                ),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 15.0),
-                                  child: Container(
-                                    height: 50,
-                                    child: ElevatedButton(
-                                      child: Text(
-                                        "Confirm Payment",
+                                  ),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        'Balance after payment: ',
                                         style: TextStyle(
                                             fontSize: 20.0,
                                             fontFamily: 'Proxima',
                                             fontWeight: FontWeight.bold),
                                       ),
-                                      onPressed: awaitPaid
-                                          ? () {
-                                              showAlertDialog(
-                                                  context,
-                                                  "Are you sure you will pay with balance?",
-                                                  fawryCallback);
-                                            }
-                                          : null,
-                                      style: ElevatedButton.styleFrom(
-                                        // elevation: 3.0,
-                                        primary: Colors.grey[100],
-                                        onPrimary: ColorsCollection.mainColor,
-                                        shape: RoundedRectangleBorder(
-                                          borderRadius:
-                                              BorderRadius.circular(10.0),
+                                      Text(
+                                        '${int.parse(widget.patient.balance) - int.parse(widget.fees)}',
+                                        style: TextStyle(
+                                            fontSize: 20.0,
+                                            fontFamily: 'Proxima',
+                                            fontWeight: FontWeight.bold),
+                                      ),
+                                      Text(
+                                        ' EGP',
+                                        style: TextStyle(
+                                            fontSize: 20.0,
+                                            fontFamily: 'Proxima',
+                                            fontWeight: FontWeight.bold),
+                                      )
+                                    ],
+                                  ),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 15.0),
+                                    child: Container(
+                                      height: 50,
+                                      child: ElevatedButton(
+                                        child: Text(
+                                          "Confirm Payment",
+                                          style: TextStyle(
+                                              fontSize: 20.0,
+                                              fontFamily: 'Proxima',
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        onPressed: awaitPaid
+                                            ? () {
+                                                showAlertDialog(
+                                                    context,
+                                                    "Are you sure you will pay with balance?",
+                                                    fawryCallback);
+                                              }
+                                            : null,
+                                        style: ElevatedButton.styleFrom(
+                                          // elevation: 3.0,
+                                          primary: Colors.grey[100],
+                                          onPrimary: ColorsCollection.mainColor,
+                                          shape: RoundedRectangleBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10.0),
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           )
                         : Padding(

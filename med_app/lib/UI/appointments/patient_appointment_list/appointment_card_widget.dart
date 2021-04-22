@@ -46,7 +46,6 @@ class _AppointmentCardState extends State<AppointmentCard> {
   var appDoc;
   var availDates;
   var dateAppointment;
-  SharedPreferences prefs;
 
   String downloadURL;
   bool isPatient;
@@ -61,6 +60,8 @@ class _AppointmentCardState extends State<AppointmentCard> {
   deleteAppointment() async {
     widget.appointments.removeAt(widget.index);
     var newApps = widget.appointments.map((e) => e.toJson()).toList();
+
+    SharedPreferences prefs = await SharedPreferences.getInstance();
 
     _notifications.removeNotify(
         prefs.getInt('notifyId'), flutterLocalNotificationsPlugin);
@@ -110,14 +111,8 @@ class _AppointmentCardState extends State<AppointmentCard> {
     }
   }
 
-  getShared() async {
-    prefs = await SharedPreferences.getInstance();
-    print('done');
-  }
-
   @override
   void initState() {
-    getShared();
     isPatient = (widget.userType == 'patient');
     app = userRef.child('users/${widget.userId}');
     appDoctor = userRef.child(
@@ -129,6 +124,8 @@ class _AppointmentCardState extends State<AppointmentCard> {
         .add(Duration(
             hours: (DateFormat.jm().parse(widget.appointment.hour).hour),
             minutes: (DateFormat.jm().parse(widget.appointment.hour).minute)));
+    print('diff: ${dateAppointment.difference(DateTime.now()).inMinutes}');
+    print(dateAppointment);
     if (dateAppointment.difference(DateTime.now()).inMinutes < -30) {
       deleteAppointment();
     }

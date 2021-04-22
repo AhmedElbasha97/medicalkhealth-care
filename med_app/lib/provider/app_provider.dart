@@ -45,7 +45,6 @@ class AppProvider extends ChangeNotifier {
     _databaseRepositories.fetchDoctor(id).then((doctor) {
       this.doctor = doctor;
       this.doctorAppointments = doctor.appointment;
-      this.userId = this.doctor.userId;
       notifyListeners();
     });
   }
@@ -54,7 +53,6 @@ class AppProvider extends ChangeNotifier {
     _databaseRepositories.fetchPatient(id).then((patient) {
       this.patient = patient;
       this.patientAppointments = this.patient.appointment;
-      this.userId = this.patient.userId;
       notifyListeners();
     });
   }
@@ -71,11 +69,12 @@ class AppProvider extends ChangeNotifier {
   // }
   void getUserType(userId) {
     this.logout = false;
-
+    this.userId = userId;
     _databaseRepositories.getUserType(userId).then((value) {
       this.type = value;
       print("prov $userId");
       print("prov type: ${this.type}");
+      this.userId = userId;
       if (type == "patient") {
         getPatientById(userId);
       } else {

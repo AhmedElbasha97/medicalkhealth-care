@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -6,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:med_app/UI/DoctorProfile/doctor_profile_settings/doctor_profile_settings.dart';
 import 'package:med_app/UI/PatientProfile/patient_info_screen.dart';
 import 'package:med_app/UI/PatientProfile/patient_medicalNotes_screen.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile_cards.dart';
@@ -78,9 +80,11 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
         print('Transaction  committed.');
       }).then((_) {
         print('Transaction  committed.');
-
-        AppProvider provider = Provider.of<AppProvider>(context, listen: false);
-        provider.getUserType(provider.userId);
+        Timer(Duration(seconds: 5), () {
+          AppProvider provider =
+              Provider.of<AppProvider>(context, listen: false);
+          provider.getUserType('${widget.patient.userId}');
+        });
       });
     } else {
       print('Transaction not committed.');
@@ -105,14 +109,24 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           automaticallyImplyLeading: widget.navigateFromAnotherScreen,
-          title: Center(
-            child: Text(
-              'Profile',
-              textAlign: TextAlign.left,
-              style: TextStyle(
-                  color: ColorsCollection.splashTitleColor,
-                  fontWeight: FontWeight.w900,
-                  fontSize: 22),
+          iconTheme: IconThemeData(
+            color: Colors.black, //change your color here
+          ),
+          title: Container(
+            width: MediaQuery.of(context).size.width * 0.9,
+            child: Row(
+              mainAxisAlignment: (widget.navigateFromAnotherScreen)
+                  ? MainAxisAlignment.start
+                  : MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Profile',
+                  style: TextStyle(
+                      color: ColorsCollection.splashTitleColor,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 22),
+                ),
+              ],
             ),
           ),
           backgroundColor: Colors.white,
@@ -245,6 +259,7 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
               PatientCardWidget(
                 cardLabel: "Settings",
                 icon: Icons.settings,
+                buttonNavigation: DoctorSettings(),
               ),
               PatientCardWidget(
                 cardLabel: "Logout",

@@ -34,30 +34,27 @@ class _BlogHomescreenState extends State<BlogHomescreen> {
         child: Consumer<BlogProvider>(builder: (context, blogprovider, _) {
           return DefaultTabController(
               length: 2,
-              child: WillPopScope(
-                onWillPop: () async => false,
-                child: Scaffold(
-                    appBar: AppBar(
-                      automaticallyImplyLeading: widget.navigateFromOtherScreen,
-                      title: Text("Blogs"),
-                      backgroundColor: ColorsCollection.mainColor,
-                      bottom: TabBar(
-                        tabs: <Widget>[
-                          Tab(
-                            text: 'Medical',
-                          ),
-                          Tab(
-                            text: 'Nuitrition',
-                          ),
-                        ],
-                        onTap: (index) {
-                          //  blogs= (index==0)? medblogs:nutiblogs;
-                          _itemSwitch(index);
-                        },
-                      ),
+              child: Scaffold(
+                  appBar: AppBar(
+                    automaticallyImplyLeading: widget.navigateFromOtherScreen,
+                    title: Text("Blogs"),
+                    backgroundColor: ColorsCollection.mainColor,
+                    bottom: TabBar(
+                      tabs: <Widget>[
+                        Tab(
+                          text: 'Medical',
+                        ),
+                        Tab(
+                          text: 'Nuitrition',
+                        ),
+                      ],
+                      onTap: (index) {
+                        //  blogs= (index==0)? medblogs:nutiblogs;
+                        _itemSwitch(index);
+                      },
                     ),
-                    body: _widgetotpions.elementAt(_selectedIndex)),
-              ));
+                  ),
+                  body: _widgetotpions.elementAt(_selectedIndex)));
         }));
   }
 }

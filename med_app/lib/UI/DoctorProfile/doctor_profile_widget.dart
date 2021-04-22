@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:firebase_database/firebase_database.dart';
@@ -8,6 +9,7 @@ import 'package:dotted_border/dotted_border.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:med_app/UI/DoctorProfile/doctor_info_screen.dart';
 import 'package:med_app/UI/DoctorProfile/doctor_profile_schedule.dart';
+import 'package:med_app/UI/DoctorProfile/doctor_profile_settings/doctor_profile_settings.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile_cards.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 import 'package:med_app/models/doctor.dart';
@@ -31,7 +33,7 @@ class DoctorProfileWidget extends StatefulWidget {
     this.profileInfo,
     this.userId,
     this.doctor,
-    this.navigateOtherScreen,
+    this.navigateOtherScreen = false,
   });
 
   @override
@@ -79,8 +81,12 @@ class _DoctorProfileWidgetState extends State<DoctorProfileWidget> {
         print('Transaction  committed.');
       }).then((_) {
         print('Transaction  committed.');
-        AppProvider provider = Provider.of<AppProvider>(context, listen: false);
-        provider.getUserType(provider.userId);
+        print('Transaction  committed.');
+        Timer(Duration(seconds: 5), () {
+          AppProvider provider =
+              Provider.of<AppProvider>(context, listen: false);
+          provider.getUserType('${widget.doctor.userId}');
+        });
       });
     } else {
       print('Transaction not committed.');
@@ -105,21 +111,24 @@ class _DoctorProfileWidgetState extends State<DoctorProfileWidget> {
         backgroundColor: Colors.white,
         appBar: AppBar(
           automaticallyImplyLeading: widget.navigateOtherScreen,
-          leading: IconButton(
-            icon: Icon(Icons.chevron_left),
-            color: ColorsCollection.splashTitleColor,
-            onPressed: () => {
-              Navigator.of(context).pop(),
-            },
+          iconTheme: IconThemeData(
+            color: Colors.black, //change your color here
           ),
-          title: Padding(
-            padding: const EdgeInsets.only(left: 80),
-            child: Text(
-              'Profile',
-              style: TextStyle(
-                  color: ColorsCollection.splashTitleColor,
-                  fontWeight: FontWeight.w900,
-                  fontSize: 22),
+          title: Container(
+            width: MediaQuery.of(context).size.width * 0.9,
+            child: Row(
+              mainAxisAlignment: (widget.navigateOtherScreen)
+                  ? MainAxisAlignment.start
+                  : MainAxisAlignment.center,
+              children: [
+                Text(
+                  'Profile',
+                  style: TextStyle(
+                      color: ColorsCollection.splashTitleColor,
+                      fontWeight: FontWeight.w900,
+                      fontSize: 22),
+                ),
+              ],
             ),
           ),
           backgroundColor: Colors.white,
@@ -274,6 +283,7 @@ class _DoctorProfileWidgetState extends State<DoctorProfileWidget> {
               PatientCardWidget(
                 cardLabel: "Settings",
                 icon: Icons.settings,
+                buttonNavigation: DoctorSettings(),
               ),
               PatientCardWidget(
                 cardLabel: "Logout",

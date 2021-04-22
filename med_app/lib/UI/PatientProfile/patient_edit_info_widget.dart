@@ -105,8 +105,8 @@ class _PatientInfoWidgetState extends State<PatientEditInfoWidget> {
               UserProfileInfoEditWidget(
                   keyboardTypeNumber: false,
                   callback: (val) => setState(() => name = val),
-                  infoTitle: 'username  ',
-                  infoValue: widget.patient.username),
+                  infoTitle: 'name  ',
+                  infoValue: widget.patient.name),
               UserProfileInfoEditWidget(
                   keyboardTypeNumber: true,
                   callback: (val) => setState(() => bloodSugar = val),

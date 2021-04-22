@@ -73,19 +73,16 @@ class DoctorCard extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.start,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Padding(
-                            padding: const EdgeInsets.only(right: 15.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text("Dr.${doctor.name}",
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w600,
-                                        fontSize: 18)),
-                                SizedBox(
-                                  width: 10,
-                                ),
-                                Row(
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text("Dr.${doctor.name}",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 18)),
+                              Padding(
+                                padding: const EdgeInsets.only(right: 8.0),
+                                child: Row(
                                   children: [
                                     if (doctor.callMethods.voice)
                                       Icon(
@@ -102,9 +99,9 @@ class DoctorCard extends StatelessWidget {
                                             size: 20),
                                       ),
                                   ],
-                                )
-                              ],
-                            ),
+                                ),
+                              )
+                            ],
                           ),
                           SizedBox(
                             height: 3,
