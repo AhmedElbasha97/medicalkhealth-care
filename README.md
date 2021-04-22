@@ -131,6 +131,7 @@ We will start marketing to the app through social media networks and in the futu
 ### b. List of Use Cases:
 
 The users are either patients or doctors and they can:
+
 - Sign up (for first time users).
 - Sign in (can stay logged in).
 - Edit Profile Information.
@@ -148,6 +149,4 @@ The users are either patients or doctors and they can:
 - Add Available Dates. (Doctor)
 - Search for Specific Doctors, Blogs and Drugs.
 
-<p align="right">
-<img src="https://i.imgur.com/kEdPEXS.png" width="500">
-</p>
+<img style="float: right;" src="https://i.imgur.com/kEdPEXS.png" width="500">
