@@ -44,7 +44,7 @@ class AuthService {
   }
 
   bool validateUsername(String value) {
-    String pattern = r'^[A-Za-z0-9]+(?:[ _-][A-Za-z0-9]+)*$';
+    String pattern = r"^([a-zA-Z]{2,8}\s[a-zA-Z]{1,}'?-?[a-zA-Z]{2,}\s?([a-zA-Z]{1,})?)";
     RegExp regExp = new RegExp(pattern);
     return regExp.hasMatch(value);
   }
@@ -149,7 +149,7 @@ class AuthService {
       }
     } else {
       showAlert(context, "The user name isn't valid",
-          "Please re-enter valid username valid user name must be from 8 to 20 character doesn't start with _ or . and doesn't end with _ or . and doesn't contain __ or _. or ._ or .. ");
+          "Please re-enter valid username valid user name must for frist name from 2 to 8 letters and sur name and last name at minimum required 2 letters ");
     }
   }
 

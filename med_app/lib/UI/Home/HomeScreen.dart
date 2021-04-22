@@ -28,15 +28,19 @@ var type;
         .read<AppProvider>()
         .type;
     if (type == "patient") {
-      name = context
+      var userName = context
           .read<AppProvider>()
           .patient
           .name;
+      var arr = userName.split(' ');
+      name = arr[0];
     } else {
-      name = context
+      var userName = context
           .read<AppProvider>()
           .doctor
           .name;
+       var arr = userName.split(' ');
+      name = arr[0];
     }
   }
   Widget build(BuildContext context) {

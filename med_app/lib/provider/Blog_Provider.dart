@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:med_app/Models/ModelBlog.dart';
 import 'package:med_app/repository/Blog_Repo.dart';
 class BlogProvider extends ChangeNotifier{
+
   List<Result> blogs;
   List<Result> newsFeed;
   List<Result> nuitrition;

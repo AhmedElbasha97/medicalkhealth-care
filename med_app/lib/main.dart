@@ -37,6 +37,7 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider(
         create: (context) => AppProvider(),
       ),
+      
       Provider<AuthService>(
         create: (_) => AuthService(FirebaseAuth.instance),
       ),
