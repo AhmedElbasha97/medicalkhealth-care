@@ -199,7 +199,7 @@ In our application, we will serve users with the following:
 
 <p float="left">
 <img src="https://i.imgur.com/xhSIJUK.jpg" width="250">
-<img src="https://i.imgur.com/zZEVZFx.jpg" width="250">
+<img src="https://i.imgur.com/zZEVZFx.jpg" width="260">
 <img src="https://i.imgur.com/Am0Yhdw.jpg" width="250">
  </p>
  
