@@ -152,3 +152,39 @@ The users are either patients or doctors and they can:
 <p align="right">
 <img src="https://i.imgur.com/kEdPEXS.png" width="500">
  </p>
+<hr />
+
+## 3. Objectives/ List of Services (Measurable)
+
+In our application, we will serve users with the following:
+
+1- Make a voice/video call with their preferred doctors, pharamcists and nutritionists.
+
+2- Book an appointment with the range of available dates that doctors provide.
+
+3- Read the newest medical and nutritonal blogs.
+
+4- Get the news of the medical state arount the world.
+
+5- Have a drug index with the drugs information and prices in the market.
+
+6- Be notified with the appointment and the medications times.
+
+7- View the appointments and cancel them anytime.
+
+8- Give reviews as a patient and medical notes as a doctor.
+<hr />
+
+## 4. Design Overflow
+
+#### a. System Architecture:
+
+<p align="center">
+<img src="https://i.imgur.com/2AeB7gJ.png" width="500">
+ </p>
+ 
+#### b. Firebase Database Design:
+
+<p align="center">
+<img src="https://i.imgur.com/roVx3il.png" width="1080">
+ </p>
