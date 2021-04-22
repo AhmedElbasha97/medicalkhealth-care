@@ -4,8 +4,10 @@ import 'package:med_app/UI/DoctorProfile/doctor_profile_settings/settings_about.
 import 'package:med_app/UI/DoctorProfile/doctor_profile_settings/settings_policy.dart';
 import 'package:med_app/UI/DoctorProfile/doctor_profile_settings/settings_report.dart';
 import 'package:med_app/UI/DoctorProfile/doctor_profile_settings/settings_terms.dart';
+import 'package:med_app/UI/Drawer/AboutUs.dart';
+import 'package:med_app/UI/Drawer/TermsAndCondition.dart';
 
-class DoctorSettings extends StatelessWidget {
+class PatientSettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,12 +29,12 @@ class DoctorSettings extends StatelessWidget {
           DocotorCardWidget(
             cardLabel: 'Terms of Use',
             icon: Icons.app_settings_alt,
-            buttonNavigation: SettingsTerms(),
+            buttonNavigation: TermsAndCondition(),
           ),
           DocotorCardWidget(
             cardLabel: 'About',
             icon: Icons.app_settings_alt,
-            buttonNavigation: SettingsAbout(),
+            buttonNavigation: AboutUs(),
           )
         ],
       ),

@@ -113,15 +113,15 @@ flutter:
    - assets/credit.png
    - assets/paypal.png
    - assets/fawry.jpg
-   - assets/Dermatology.png
    - assets/drugs.png
    - assets/reminders.jpg
    - assets/consultation.jpg
    - assets/Blogs.jpg
    - assets/appointment.png
-   - assets/balance.jpg
+   - assets/cash.png
    - assets/bg.png
    - assets/images/
+   - assets/specialty/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

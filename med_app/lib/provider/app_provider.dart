@@ -75,6 +75,7 @@ class AppProvider extends ChangeNotifier {
       this.type = value;
       print("prov $userId");
       print("prov type: ${this.type}");
+      this.userId = userId;
       if (type == "patient") {
         getPatientById(userId);
       } else {

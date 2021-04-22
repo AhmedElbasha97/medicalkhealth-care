@@ -4,57 +4,42 @@ import 'package:med_app/Widgets/speciality_card.dart';
 import 'package:med_app/models/speciality.dart';
 
 class SpecialtyList extends StatefulWidget {
-  final bool navigateFromOtherScreen;
-
-  const SpecialtyList({Key key, this.navigateFromOtherScreen = false}) : super(key: key);
   @override
   _SpecialtyListState createState() => _SpecialtyListState();
 }
 
 class _SpecialtyListState extends State<SpecialtyList> {
   List items = [
-    {"speciality": 'Dermatology', "image": "assets/Dermatology.png"},
-    {"speciality": 'Dentistry', "image": "assets/Dermatology.png"},
-    {"speciality": 'Psychiatry', "image": "assets/Dermatology.png"},
-    {"speciality": 'Pediatrics', "image": "assets/Dermatology.png"},
-    {"speciality": 'Neurology', "image": "assets/Dermatology.png"},
-    {"speciality": 'Orthopedics', "image": "assets/Dermatology.png"},
+    {"speciality": 'Dermatology', "image": "assets/specialty/Dermatology.png"},
+    {"speciality": 'Dentistry', "image": "assets/specialty/dentistry.png"},
+    {"speciality": 'Psychiatry', "image": "assets/specialty/psychiatry.png"},
+    {"speciality": 'Pediatrics', "image": "assets/specialty/Pediatrics-kids.png"},
+    {"speciality": 'Neurology', "image": "assets/specialty/neuorosergury.png"},
+    {"speciality": 'Orthopedics', "image": "assets/specialty/orthopedics.png"},
     {
       "speciality": 'Gynaecology and Infertility',
-      "image": "assets/Dermatology.png"
+      "image": "assets/specialty/gynaecology--and-infertility.png"
     },
-    {"speciality": 'otolaryngologist', "image": "assets/Dermatology.png"},
-    {
-      "speciality": 'Cardiology and Vascular',
-      "image": "assets/Dermatology.png"
-    },
-    {"speciality": 'Allergy and Immunology', "image": "assets/Dermatology.png"},
+    {"speciality": 'otolaryngologist', "image": "assets/specialty/Otolaryngology.png"},
+    {"speciality": 'Cardiology and Vascular', "image": "assets/specialty/cardiology.png"},
     {
       "speciality": 'Andrology and Male Infertility',
-      "image": "assets/Dermatology.png"
+      "image": "assets/specialty/male-infertility.png"
     },
-    {"speciality": 'Audiology', "image": "assets/Dermatology.png"},
-    {
-      "speciality": 'Cardiology and Thoracic',
-      "image": "assets/Dermatology.png"
-    },
-    {"speciality": 'Chest and Respiratory', "image": "assets/Dermatology.png"},
+    {"speciality": 'Cardiology and Thoracic', "image": "assets/specialty/cardiology.png"},
+    {"speciality": 'Chest and Respiratory', "image": "assets/specialty/respiratory.png"},
     {
       "speciality": 'Diabetes and Endocrinology',
-      "image": "assets/Dermatology.png"
+      "image": "assets/specialty/diabetes.png"
     },
-    {"speciality": 'Diagnostic Radiology', "image": "assets/Dermatology.png"},
-    {
-      "speciality": 'Dietitian and Nutrition',
-      "image": "assets/Dermatology.png"
-    },
-    {"speciality": 'Family Medicine', "image": "assets/Dermatology.png"},
-    {"speciality": 'Oncology', "image": "assets/Dermatology.png"},
+    {"speciality": 'Diagnostic Radiology', "image": "assets/specialty/radiology.png"},
+    {"speciality": 'Dietitian and Nutrition', "image": "assets/specialty/nutrition.png"},
+    {"speciality": 'Getiatrics', "image": "assets/specialty/getiatrics.png"},
     {
       "speciality": 'Gastroenterology and Endoscopy',
-      "image": "assets/Dermatology.png"
+      "image": "assets/specialty/gastro.png"
     },
-    {"speciality": 'General Practice', "image": "assets/Dermatology.png"},
+    {"speciality": 'General Practice', "image": "assets/specialty/general-practice.png"},
   ];
   List<Speciality> specialtiesList = [];
   List<Speciality> filterdList = [];
@@ -62,7 +47,7 @@ class _SpecialtyListState extends State<SpecialtyList> {
   // ignore: unused_field
   bool _isSearching;
   final TextEditingController _controller = new TextEditingController();
-
+ 
   @override
   void initState() {
     super.initState();
@@ -81,7 +66,6 @@ class _SpecialtyListState extends State<SpecialtyList> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          automaticallyImplyLeading: widget.navigateFromOtherScreen,
           title: Text(
             'Speciality',
             style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white),

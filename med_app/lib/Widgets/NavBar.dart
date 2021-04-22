@@ -5,7 +5,10 @@ import 'package:med_app/UI/Blogs/Blogs_Main_Screen.dart';
 import 'package:med_app/UI/DoctorProfile/doctor_profile.dart';
 import 'package:med_app/UI/Drugs/drugs_main_page.dart';
 import 'package:med_app/UI/Home/HomeScreen.dart';
+import 'package:med_app/UI/Nutrition/nutrition_main_page.dart';
 import 'package:med_app/UI/PatientProfile/patient_profile.dart';
+import 'package:med_app/UI/appointments/patient_appointment_list/appointment_list.dart';
+import 'package:med_app/UI/medical/medical_screen.dart';
 import 'package:med_app/UI/specialitylist/specialty_list.dart';
 import 'package:med_app/provider/app_provider.dart';
 import 'package:provider/provider.dart';
@@ -20,7 +23,6 @@ class Nav extends StatefulWidget {
 
 class _NavbarState extends State<Nav> {
   List<Widget> _widgetotpions;
-
   void _itemSwitch(int index) {
     setState(() {
       widget.selectedIndex = index;
@@ -30,15 +32,19 @@ class _NavbarState extends State<Nav> {
   @override
   Widget build(BuildContext context) {
     _widgetotpions = <Widget>[
-      BlogHomescreen(),
+      NutritionScreen(),
       DrugsMainPageScreen(),
       Home(),
-      SpecialtyList(),
+      if (context.read<AppProvider>().type != null)
+        (context.read<AppProvider>().type == "patient")
+            ? MedicalScreen()
+            : AppointmentList(),
       if (context.read<AppProvider>().type != null)
         (context.read<AppProvider>().type == "patient")
             ? PatientProfile()
-            : DoctorProfile()
+            : DoctorProfile(),
     ];
+
     return Consumer<AppProvider>(builder: (context, databaseProvider, _) {
       if (databaseProvider.type == null) {
         databaseProvider.getUserType(widget.userId);

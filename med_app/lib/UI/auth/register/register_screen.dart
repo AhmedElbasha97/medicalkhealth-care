@@ -22,7 +22,7 @@ class ResgisterScreen extends StatelessWidget {
               Image(
                   image: AssetImage('assets/Logo.png'),
                   height: MediaQuery.of(context).size.height * 0.5,
-                  width: MediaQuery.of(context).size.width * 0.9),
+                  width: MediaQuery.of(context).size.width * 0.8),
               Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [

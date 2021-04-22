@@ -503,7 +503,7 @@ class _SlidingBookingPageState extends State<SlidingBookingPage> {
                                                 image: new DecorationImage(
                                                   fit: BoxFit.fill,
                                                   image: AssetImage(
-                                                      "assets/balance.jpg"),
+                                                      "assets/cash.png"),
                                                 ),
                                               ),
                                             ),
