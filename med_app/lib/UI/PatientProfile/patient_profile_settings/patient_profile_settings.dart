@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/UI/DoctorProfile/doctor_profile_cards.dart';
 import 'package:med_app/UI/DoctorProfile/doctor_profile_settings/settings_about.dart';
 import 'package:med_app/UI/DoctorProfile/doctor_profile_settings/settings_policy.dart';
@@ -8,13 +7,12 @@ import 'package:med_app/UI/DoctorProfile/doctor_profile_settings/settings_terms.
 import 'package:med_app/UI/Drawer/AboutUs.dart';
 import 'package:med_app/UI/Drawer/TermsAndCondition.dart';
 
-class DoctorSettings extends StatelessWidget {
+class PatientSettings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: Text('Settings'),
-        backgroundColor: ColorsCollection.mainColor,
       ),
       body: Column(
         children: [

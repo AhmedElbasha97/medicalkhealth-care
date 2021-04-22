@@ -16,7 +16,7 @@ import 'package:provider/provider.dart';
 class Nav extends StatefulWidget {
   final String userId;
   int selectedIndex;
-  Nav({this.userId, this.selectedIndex=0 });
+  Nav({this.userId, this.selectedIndex = 0});
   @override
   _NavbarState createState() => _NavbarState();
 }
@@ -30,28 +30,8 @@ class _NavbarState extends State<Nav> {
   }
 
   @override
-  void initState() {
-//     print(widget.selectedIndex);
-//     _widgetotpions = <Widget>[
-//       BlogHomescreen(),
-//       DrugsMainPageScreen(),
-//       Home(),
-//  if (context.read<AppProvider>().type != null)
-//         (context.read<AppProvider>().type == "patient")
-//             ? MedicalScreen()
-//             : AppointmentList(),
-//       if (context.read<AppProvider>().type != null)
-//         (context.read<AppProvider>().type == "patient")
-//             ? PatientProfile()
-//             : DoctorProfile()
-//     ];
-//     _widgetotpions.elementAt(widget.selectedIndex);
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
-_widgetotpions = <Widget>[
+    _widgetotpions = <Widget>[
       NutritionScreen(),
       DrugsMainPageScreen(),
       Home(),

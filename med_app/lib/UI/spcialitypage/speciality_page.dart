@@ -17,33 +17,30 @@ class SpecialityPage extends StatefulWidget {
 class _SpecialityPageState extends State<SpecialityPage> {
   List<Doctor> filterddoctors = [];
   List<Doctor> doctorslist = [];
-Patient patient;
+  Patient patient;
   bool _isSearching;
   final TextEditingController _controller = new TextEditingController();
   void values(data) {
-      doctorslist = data;
-    
+    doctorslist = data;
   }
 
   @override
   void initState() {
     _isSearching = false;
-        AppProvider provider = Provider.of<AppProvider>(context, listen: false);
+    AppProvider provider = Provider.of<AppProvider>(context, listen: false);
 
-provider.getPatientById(provider.userId);
- setState(() {
-   patient=provider.patient;
- });
+    provider.getPatientById(provider.userId);
+    setState(() {
+      patient = provider.patient;
+    });
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor:ColorsCollection.mainColor,
         appBar: AppBar(
-          // Here we take the value from the MyHomePage object that was created by
-          // the App.build method, and use it to set our appbar title.
+          backgroundColor: ColorsCollection.mainColor,
           title: Text(widget.speciality),
         ),
         body: ChangeNotifierProvider<AppProvider>(
@@ -63,7 +60,8 @@ provider.getPatientById(provider.userId);
                               itemCount: databaseProvider.doctors.length,
                               itemBuilder: (ctx, index) {
                                 final doctor = databaseProvider.doctors[index];
-                                return DoctorCard(doctor: doctor,patient:patient );
+                                return DoctorCard(
+                                    doctor: doctor, patient: patient);
                               }),
                         )
                       : Padding(

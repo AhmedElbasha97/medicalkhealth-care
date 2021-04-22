@@ -70,7 +70,7 @@ class AppProvider extends ChangeNotifier {
   // }
   void getUserType(userId) {
     this.logout = false;
-
+    this.userId = userId;
     _databaseRepositories.getUserType(userId).then((value) {
       this.type = value;
       print("prov $userId");

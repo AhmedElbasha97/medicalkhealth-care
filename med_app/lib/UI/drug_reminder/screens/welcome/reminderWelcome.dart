@@ -31,7 +31,7 @@ class _ReminderWelcomeState extends State<ReminderWelcome> {
             ),
             TitleAndMessage(deviceHeight),
             SizedBox(
-              height: deviceHeight * 0.03,
+              height: deviceHeight * 0.01,
             ),
             Container(
               height: deviceHeight * 0.09,
@@ -41,14 +41,9 @@ class _ReminderWelcomeState extends State<ReminderWelcome> {
                   child: PlatformFlatButton(
                     handler: goToHomeScreen,
                     color: Theme.of(context).primaryColor,
-                    buttonChild: FittedBox(
-                      child: Text(
-                        "Get started now",
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline3
-                            .copyWith(color: Colors.white),
-                      ),
+                    buttonChild: Text(
+                      "Get started now",
+                      style: TextStyle(color: Colors.white, fontSize: 36.0),
                     ),
                   )),
             ),

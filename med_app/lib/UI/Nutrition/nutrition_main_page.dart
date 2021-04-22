@@ -10,12 +10,10 @@ class NutritionScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
-  onWillPop: () async => false,
-
-          child: Scaffold(
+      onWillPop: () async => false,
+      child: Scaffold(
           appBar: AppBar(
-                      automaticallyImplyLeading: false,
-
+            automaticallyImplyLeading: false,
             title: Text('Nutrition',
                 style: TextStyle(
                   color: Colors.white,
@@ -51,11 +49,14 @@ class NutritionScreen extends StatelessWidget {
                 )),
             Column(mainAxisAlignment: MainAxisAlignment.end, children: [
               DrugsMainPageWidget(
-                  buttonNavigation: BlogHomescreen(neturationNavigation: 1,navigateFromOtherScreen: true,),
+                  buttonNavigation: BlogHomescreen(
+                    neturationNavigation: 1,
+                    navigateFromOtherScreen: true,
+                  ),
                   bg: 'assets/Blogs.jpg',
-                  title: 'Nutruitonal Blogs',
+                  title: 'Nutritional Blogs',
                   subTtitle:
-                      'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s'),
+                      'Read the latest nutritional blogs and keep up with the trendy nutritional regimes where you can find practical solutions to achieve a healthy body.'),
               Padding(
                 padding: const EdgeInsets.only(bottom: 55.0),
                 child: DrugsMainPageWidget(
@@ -63,9 +64,9 @@ class NutritionScreen extends StatelessWidget {
                       speciality: 'Nutrition',
                     ),
                     bg: 'assets/consultation.jpg',
-                    title: 'Nutruitonal Consultation',
+                    title: 'Nutritional Consultation',
                     subTtitle:
-                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s'),
+                        'Online nutritional consultation involves building a detailed picture of your lifestyle, eating habits, medical history and any concerns you have about your health and wellbeing.'),
               ),
             ]),
           ])),
