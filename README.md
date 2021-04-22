@@ -1,5 +1,5 @@
 <p align="center">
- <a href="https://www.coronawarn.app/en/"><img src="https://i.imgur.com/kJ0OlWL.png" width="1080"></a>
+ <a href=""><img src="https://i.imgur.com/kJ0OlWL.png" width="1080"></a>
 </p>
 <hr />
 <p align="center">
@@ -9,7 +9,7 @@
     <a href="#data-privacy">Data Privacy</a> •
     <a href="#code-of-conduct">Code of Conduct</a> •
     <a href="#our-documentation">Our Documentation</a> •
-    <a href="https://www.coronawarn.app/en/">Web Site</a>
+    <a href="">Website</a>
 </p>
 <hr />
 
