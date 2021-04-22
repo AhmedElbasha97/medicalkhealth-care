@@ -149,4 +149,6 @@ The users are either patients or doctors and they can:
 - Add Available Dates. (Doctor)
 - Search for Specific Doctors, Blogs and Drugs.
 
-<img style="float: right;" src="https://i.imgur.com/kEdPEXS.png" width="500">
+<p align="center">
+<img src="https://i.imgur.com/kEdPEXS.png" width="500">
+ </p>
