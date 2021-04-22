@@ -198,9 +198,9 @@ In our application, we will serve users with the following:
 ## 6. User Interface Screens:
 
 <p float="left">
-<img src="https://i.imgur.com/xhSIJUK.jpg" width="300">
-<img src="https://i.imgur.com/zZEVZFx.jpg" width="300">
-<img src="https://i.imgur.com/Am0Yhdw.jpg" width="300">
+<img src="https://i.imgur.com/xhSIJUK.jpg" width="200">
+<img src="https://i.imgur.com/zZEVZFx.jpg" width="200">
+<img src="https://i.imgur.com/Am0Yhdw.jpg" width="200">
  </p>
  
 ## 7. Future Work:
