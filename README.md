@@ -82,10 +82,6 @@ This app aims at giving the customers the easiest way to communicate with doctor
 - Hospitals, Clinics.
 - Medical Blog Writers.
 
-### f. Future Work:
-
-We will start marketing to the app through social media networks and in the future, we want to add chat to the app, provide nearby hospitals and pharmacis locations, contact other patients, posting, commenting and enhance our drug index with more medicines and information.
-
 <hr />
 
 ## 2. Requirements
@@ -188,3 +184,22 @@ In our application, we will serve users with the following:
 <p align="center">
 <img src="https://i.imgur.com/roVx3il.png" width="1080">
  </p>
+
+## 5. Implementation
+
+### Tools and Technologies:
+
+<p float="left">
+<img src="https://i.imgur.com/XPEazqh.png" width="300">
+<img src="https://i.imgur.com/hAnRmut.png" width="310">
+<img src="https://i.imgur.com/QUpSqUE.png" width="300">
+ </p>
+ 
+ ## 6. Future Work:
+ 
+ - Add chating to the app.
+ - Make a network community through posting and commenting to improve user 
+ - Allow patients to contact each other.
+ - Provide nearby hospitals and pharmacis locations.
+ - Enhance our drug medicine with more medicines and information.
+ - Market for the app through social media networks.
