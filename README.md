@@ -195,7 +195,15 @@ In our application, we will serve users with the following:
 <img src="https://i.imgur.com/QUpSqUE.png" width="300">
  </p>
  
- ## 6. Future Work:
+## 6. User Interface Screens:
+
+<p float="left">
+<img src="https://i.imgur.com/xhSIJUK.jpg" width="300">
+<img src="https://i.imgur.com/zZEVZFx.jpg" width="300">
+<img src="https://i.imgur.com/Am0Yhdw.jpg" width="300">
+ </p>
+ 
+## 7. Future Work:
  
  - Add chating to the app.
  - Make a network community through posting and commenting to improve user 
