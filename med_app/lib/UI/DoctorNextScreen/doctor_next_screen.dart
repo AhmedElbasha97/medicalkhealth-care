@@ -77,6 +77,11 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
 
   addDoctor(profession, speciality, certificate, id, candidate, languages, name,
       age, experience, gender) async {
+    if(name != null){
+      if(age != null){
+        if(experience != null){
+          if(validateUsername(name)){
+            if(int.parse(age)>int.parse(experience)){
     var user = userRef.child('users/${widget.userId}');
     final TransactionResult transactionResult =
         await counterRef.runTransaction((MutableData mutableData) async {
@@ -114,12 +119,35 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
         "userType": prof
       }).then((_) {
         print('Transaction  committed.');
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => Start()));
       });
     } else {
       print('Transaction not committed.');
       if (transactionResult.error != null) {
-        print(transactionResult.error.message);
+        showAlert(context, "oop's something goes wrong", "${transactionResult.error.message}");
       }
+    }      }else{
+              showAlert(context, "years of experience is not valid", "how your age is less than your year's of experience");
+
+            }
+          }else{
+            showAlert(context, "name is not valid", "please enter valid name");
+
+          }
+        }else{
+          showAlert(context, "years Of Experience is empty", "please enter your experience period");
+
+        }
+      }else{
+        showAlert(context, "age is empty", "please enter your age");
+
+      }
+    }else{
+      showAlert(context, "name is empty", "please enter your name");
+
     }
   }
 
@@ -162,7 +190,7 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
                               _nameText = val;
                             });
                           },
-                          onChange: true,
+                          onChange: true,maxCharacter: 50,
                         ),
                       ),
                       Padding(
@@ -177,7 +205,7 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
                               });
                             },
                             onChange: true,
-                            keyboardTypeNumber: true),
+                            keyboardTypeNumber: true,maxCharacter: 2,),
                       ),
                       Padding(
                         padding:
@@ -255,7 +283,7 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
                             label: 'Years of experience in this field',
                             hint: "Enter how many years of experience",
                             controller: experience,
-                            keyboardTypeNumber: true),
+                            keyboardTypeNumber: true,maxCharacter: 2,),
                       ),
                       MultiSelectChipField(
                         items: _items,
@@ -321,8 +349,7 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
                       style: ElevatedButton.styleFrom(
                           primary: Color(0xFF00A1A7) // foreground
                           ),
-                      onPressed: (name.text.isNotEmpty &&
-                              age.text.isNotEmpty &&
+                      onPressed: (
                               _langListSelected != [] &&
                               _selectedGender != null &&
                               _selectedProfession != null &&
@@ -341,10 +368,7 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
                                   _ageText,
                                   experience.text,
                                   _selectedGender);
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => Start()));
+
                             }
                           : null,
                       child: Text(
@@ -361,6 +385,32 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
               )
             ],
           )),
+    );
+  }
+  bool validateUsername(String value) {
+    String pattern = r"^(\w|( \w)){0,10}$";
+    RegExp regExp = new RegExp(pattern);
+    return regExp.hasMatch(value);
+  }
+
+  void showAlert(context, lable, message) {
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: Text(lable),
+          content: Text(message),
+          actions: <Widget>[
+            // ignore: deprecated_member_use
+            FlatButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

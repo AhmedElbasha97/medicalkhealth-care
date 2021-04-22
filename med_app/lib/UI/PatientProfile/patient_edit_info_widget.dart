@@ -43,8 +43,8 @@ class _PatientInfoWidgetState extends State<PatientEditInfoWidget> {
       age,
       name;
   void updateUser() async {
+    if (validateUsername(name)){
     var user = userRef.child('users/${widget.patient.userId}');
-
     await user.update({
       'bloodSugar': (bloodSugar != null && bloodSugar.length > 0)
           ? bloodSugar
@@ -73,7 +73,9 @@ class _PatientInfoWidgetState extends State<PatientEditInfoWidget> {
       provider.getPatientById(widget.patient.userId);
       print("edite: ${provider.patient.name}");
       Navigator.of(context).pop();
-    });
+    });}else{
+      showAlert(context, "name is not valid", "please enter valid name");
+    }
   }
 
   @override
@@ -108,37 +110,37 @@ class _PatientInfoWidgetState extends State<PatientEditInfoWidget> {
                   keyboardTypeNumber: false,
                   callback: (val) => setState(() => name = val),
                   infoTitle: 'name  ',
-                  infoValue: widget.patient.name),
+                  infoValue: widget.patient.name,maxchar: 50,maxlines: 1,),
               UserProfileInfoEditWidget(
                   keyboardTypeNumber: true,
                   callback: (val) => setState(() => bloodSugar = val),
                   infoTitle: 'Blood-Sugar   ',
-                  infoValue: widget.patient.bloodSugar),
+                  infoValue: widget.patient.bloodSugar,maxchar: 3,maxlines: 1,),
               UserProfileInfoEditWidget(
                   keyboardTypeNumber: true,
                   callback: (val) => setState(() => bloodPreassureHigh = val),
                   infoTitle: 'BloodPreassureHigh  ',
-                  infoValue: widget.patient.bloodHighPressure),
+                  infoValue: widget.patient.bloodHighPressure,maxchar: 3,maxlines: 1,),
               UserProfileInfoEditWidget(
                   keyboardTypeNumber: true,
                   callback: (val) => setState(() => bloodPreassureLow = val),
                   infoTitle: 'BloodPreassureLow   ',
-                  infoValue: widget.patient.bloodLowPressure),
+                  infoValue: widget.patient.bloodLowPressure,maxchar: 3,maxlines: 1,),
               UserProfileInfoEditWidget(
                   keyboardTypeNumber: true,
                   callback: (val) => setState(() => height = val),
                   infoTitle: 'Height  ',
-                  infoValue: widget.patient.height),
+                  infoValue: widget.patient.height,maxchar: 3,maxlines: 1,),
               UserProfileInfoEditWidget(
                   keyboardTypeNumber: true,
                   callback: (val) => setState(() => wieght = val),
                   infoTitle: 'Weight  ',
-                  infoValue: widget.patient.weight),
+                  infoValue: widget.patient.weight,maxchar: 3,maxlines: 1,),
               UserProfileInfoEditWidget(
                   keyboardTypeNumber: true,
                   callback: (val) => setState(() => age = val),
                   infoTitle: 'age  ',
-                  infoValue: widget.patient.age),
+                  infoValue: widget.patient.age,maxchar: 2,maxlines: 1,),
               Column(
                 children: [
                   Padding(
@@ -186,6 +188,32 @@ class _PatientInfoWidgetState extends State<PatientEditInfoWidget> {
           ),
         ),
       ),
+    );
+  }
+  bool validateUsername(String value) {
+    String pattern = r"^(\w|( \w)){0,10}$";
+    RegExp regExp = new RegExp(pattern);
+    return regExp.hasMatch(value);
+  }
+
+  void showAlert(context, lable, message) {
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: Text(lable),
+          content: Text(message),
+          actions: <Widget>[
+            // ignore: deprecated_member_use
+            FlatButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

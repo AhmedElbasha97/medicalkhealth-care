@@ -69,7 +69,7 @@ String userName;
                             },
                             onChange: true,
                             label: "UserName",
-                            hint: "enter Your UserName"),
+                            hint: "enter Your UserName",maxCharacter: 100,),
                         SizedBox(height: 12),
                         TextFieldComp(
                             callback: (val){
@@ -79,7 +79,7 @@ String userName;
                             },
                             onChange: true,
                             label: "Email",
-                            hint: "example@email.com"),
+                            hint: "example@email.com",maxCharacter: 100,),
                         SizedBox(height: 12),
                         TextFieldComp(
                             callback: (val){
@@ -89,7 +89,7 @@ String userName;
                             },
                             onChange: true,
                             label: "Password",
-                            hint: "enter Your Password"),
+                            hint: "enter Your Password",textSafePassword: true,maxCharacter: 100,),
                         SizedBox(height: 12),
                         TextFieldComp(
                             callback: (val){
@@ -99,7 +99,7 @@ String userName;
                             },
                             onChange: true,
                             label: "Confirm Password",
-                            hint: "re-enter Your Password"),
+                            hint: "re-enter Your Password",textSafePassword: true,maxCharacter: 100,),
                         SizedBox(height: 12),
                         RoundedSmallButton(
                             text: "Signup as a Doctor",

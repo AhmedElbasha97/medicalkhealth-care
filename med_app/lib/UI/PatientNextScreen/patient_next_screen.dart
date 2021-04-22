@@ -34,6 +34,7 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
   String _nameText;
   String _ageText;
   addPatient(height, weight, highBlood, lowBlood, sugar) async {
+    if(validateUsername(_nameText)){
     // inputData();
     var user = userRef.child('users/${widget.userId}');
     final TransactionResult transactionResult =
@@ -63,12 +64,16 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
         "userType": type
       }).then((_) {
         print('Transaction  committed.');
+        Navigator.of(context).push(
+            MaterialPageRoute(builder: (context) => Start()));
       });
     } else {
       print('Transaction not committed.');
       if (transactionResult.error != null) {
-        print(transactionResult.error.message);
+        showAlert(context, "oop's something goes wrong", "${transactionResult.error.message}");
       }
+    }}else{
+      showAlert(context, "name is not valid", "please enter valid name");
     }
   }
 
@@ -104,6 +109,7 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5),
                         child: TextFieldComp(
+                          maxCharacter:50,
                           label: 'What is your name*',
                           hint: "Enter your profile name",
                           controller: name,
@@ -118,6 +124,7 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
                       Padding(
                         padding: const EdgeInsets.only(top: 5, bottom: 5.0),
                         child: TextFieldComp(
+                          maxCharacter: 2,
                             label: 'What is your age*',
                             hint: "Enter your age",
                             controller: age,
@@ -168,7 +175,7 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
                             label: "What is your weight",
                             hint: "Enter your weight in kg",
                             controller: weight,
-                            keyboardTypeNumber: true),
+                            keyboardTypeNumber: true,maxCharacter: 3,),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5),
@@ -176,7 +183,7 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
                             label: "What is your height",
                             hint: "Enter your height in cm",
                             controller: height,
-                            keyboardTypeNumber: true),
+                            keyboardTypeNumber: true,maxCharacter: 3),
                       ),
                       Padding(
                         padding: const EdgeInsets.symmetric(vertical: 5),
@@ -184,7 +191,7 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
                             label: 'What is your blood sugar',
                             hint: "Enter your blood sugar",
                             controller: sugar,
-                            keyboardTypeNumber: true),
+                            keyboardTypeNumber: true,maxCharacter: 3),
                       ),
                       Padding(
                           padding: const EdgeInsets.symmetric(vertical: 5),
@@ -210,6 +217,7 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
                                     child: Padding(
                                       padding: const EdgeInsets.only(right: 8.0),
                                       child: TextFormField(
+                                        maxLength: 3,
                                         controller: lowBlood,
                                         keyboardType: TextInputType.number,
                                         decoration: InputDecoration(
@@ -244,6 +252,7 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
                                     child: Padding(
                                       padding: const EdgeInsets.only(left: 8.0),
                                       child: TextFormField(
+                                        maxLength: 3,
                                         controller: highBlood,
                                         keyboardType: TextInputType.number,
                                         decoration: InputDecoration(
@@ -288,8 +297,7 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
                             addPatient(height.text, weight.text, highBlood.text,
                                 lowBlood.text, sugar.text);
                             print(_nameText);
-                            Navigator.of(context).push(
-                                MaterialPageRoute(builder: (context) => Start()));
+
                           }
                         : null,
                     child: Text(
@@ -307,6 +315,32 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
           ),
         ),
       ),
+    );
+  }
+  bool validateUsername(String value) {
+    String pattern = r"^(\w|( \w)){0,10}$";
+    RegExp regExp = new RegExp(pattern);
+    return regExp.hasMatch(value);
+  }
+
+  void showAlert(context, lable, message) {
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: Text(lable),
+          content: Text(message),
+          actions: <Widget>[
+            // ignore: deprecated_member_use
+            FlatButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

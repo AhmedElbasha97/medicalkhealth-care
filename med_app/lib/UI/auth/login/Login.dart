@@ -62,14 +62,14 @@ class _LoginState extends State<Login> {
                           setState(() {
                             email = val;
                           });
-                        },),
+                        },maxCharacter: 100,),
                         SizedBox(height: 16),
                         TextFieldComp(onChange: true,
                             label: "Password", hint: "enter Your Password",callback: (val){
                           setState(() {
                             password = val;
                           });
-                          },),
+                          },textSafePassword: true,maxCharacter: 100,),
                         SizedBox(height: 12),
                         Align(
                           alignment: Alignment.centerRight,

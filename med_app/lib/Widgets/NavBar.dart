@@ -54,12 +54,12 @@ class _NavbarState extends State<Nav> {
           backgroundColor: Color(0xFF00A1A7),
           items: <Widget>[
             Icon(
-              FontAwesomeIcons.blog,
+              FontAwesomeIcons.seedling,
               size: 25,
               color: Color(0xFF00A1A7),
             ),
             Icon(
-              FontAwesomeIcons.tablets,
+              FontAwesomeIcons.capsules,
               size: 25,
               color: Color(0xFF00A1A7),
             ),
@@ -69,12 +69,12 @@ class _NavbarState extends State<Nav> {
               color: Color(0xFF00A1A7),
             ),
             Icon(
-              Icons.search,
+              FontAwesomeIcons.stethoscope,
               size: 25,
               color: Color(0xFF00A1A7),
             ),
             Icon(
-              Icons.people,
+              FontAwesomeIcons.solidUserCircle,
               size: 25,
               color: Color(0xFF00A1A7),
             ),

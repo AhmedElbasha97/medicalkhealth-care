@@ -101,6 +101,15 @@ class _ReminderHomeState extends State<ReminderHome> {
     );
 
     return Scaffold(
+      appBar: AppBar(
+        elevation: 0.0,
+        backgroundColor: Colors.transparent,
+        iconTheme: IconThemeData(
+          color: ColorsCollection.mainColor, //change your color here
+        ),
+
+      ),
+
       floatingActionButton: addButton,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       backgroundColor: Color.fromRGBO(248, 248, 248, 1),

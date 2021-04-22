@@ -74,7 +74,7 @@ class _ResetScreenState extends State<ResetScreen> {
                       },
                       onChange: true,
                       label: "Email-Address",
-                      hint: "Example@gmail.com"))),
+                      hint: "Example@gmail.com",maxCharacter: 100,))),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.9,
             height: MediaQuery.of(context).size.height * 0.05,

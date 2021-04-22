@@ -44,7 +44,8 @@ class _DoctorEditInfoWidgetState extends State<DoctorEditInfoWidget> {
       name;
   void updateUser() async {
     var user = userRef.child('users/${widget.doctor.userId}');
-
+    if(validateUsername(name)){
+      if(int.parse(age)>int.parse(experience)){
     await user.update({
       'bio': (bio != null && bio.length > 0 && bio.length < 120)
           ? bio
@@ -60,6 +61,12 @@ class _DoctorEditInfoWidgetState extends State<DoctorEditInfoWidget> {
       provider.getDoctorById('${widget.doctor.userId}');
       Navigator.of(context).pop();
     });
+  }else{
+  showAlert(context, "years of experience is not valid", "how your age is less than your year's of experience");
+  }
+}else{
+showAlert(context, "name is not valid", "please enter valid name");
+}
   }
 
   @override
@@ -95,25 +102,25 @@ class _DoctorEditInfoWidgetState extends State<DoctorEditInfoWidget> {
                   keyboardTypeNumber: false,
                   callback: (val) => setState(() => name = val),
                   infoTitle: 'name  ',
-                  infoValue: widget.doctor.name),
+                  infoValue: widget.doctor.name,maxchar: 50,maxlines: 1,),
               UserProfileInfoEditWidget(
                   isBio: false,
                   keyboardTypeNumber: true,
                   callback: (val) => setState(() => experience = val),
                   infoTitle: 'experience  ',
-                  infoValue: widget.doctor.experience),
+                  infoValue: widget.doctor.experience,maxchar: 2,maxlines: 1,),
               UserProfileInfoEditWidget(
                   isBio: false,
                   keyboardTypeNumber: true,
                   callback: (val) => setState(() => age = val),
                   infoTitle: 'age  ',
-                  infoValue: widget.doctor.age),
+                  infoValue: widget.doctor.age,maxchar: 2,maxlines: 1,),
               UserProfileInfoEditWidget(
                   keyboardTypeNumber: false,
                   isBio: true,
                   callback: (val) => setState(() => bio = val),
                   infoTitle: 'bio   ',
-                  infoValue: widget.doctor.bio),
+                  infoValue: widget.doctor.bio,maxchar: 120,maxlines: 3,),
               Column(
                 children: [
                   Padding(
@@ -163,4 +170,30 @@ class _DoctorEditInfoWidgetState extends State<DoctorEditInfoWidget> {
       ),
     );
   }
+bool validateUsername(String value) {
+  String pattern = r"(^(\w|( \w)){0,10}$";
+  RegExp regExp = new RegExp(pattern);
+  return regExp.hasMatch(value);
+}
+
+void showAlert(context, lable, message) {
+  showDialog<void>(
+    context: context,
+    builder: (BuildContext dialogContext) {
+      return AlertDialog(
+        title: Text(lable),
+        content: Text(message),
+        actions: <Widget>[
+          // ignore: deprecated_member_use
+          FlatButton(
+            child: Text('OK'),
+            onPressed: () {
+              Navigator.of(dialogContext).pop();
+            },
+          ),
+        ],
+      );
+    },
+  );
+}
 }
