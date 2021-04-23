@@ -23,7 +23,7 @@ We are developing a telemedicine app that helps people of different ages to reac
 
 ## Who We Are
 
-We are a team of ITI calibers who made this medical app as their graduation project of ITI 2021 and to make medical consultation easier for people. and here we are:
+We are a team of ITI calibres who made this medical app as their graduation project of ITI 2021 and to make medical consultation easier for people. and here we are:
 - Akram Mohamed Ahmed.
 - Abdelrhman Adel.
 - Mohamed Osama.
