@@ -19,21 +19,21 @@ This app is made as a graduation project under the supervision of Information Te
 
 ## Abstract
 
-We are developing a telemedicine app that helps people of different ages to reach the medical advice anywhere from home. Due to the spread of COVID-19, we've came to that telemedicine is the future of medical consultation in the world. By this app we could get the people the doctor at home using online consultation. This app is different from other telemedicin apps that it gathers the doctors, pharmacists and nutritionist in the same area to help people to overcome diseases, know the right medications ans solutions for their problems and have a healthy body with healthy regimes. This app is made upon international and local standards to be cope with the new governmental and medical constraints and to be precise about what we give to people.
+We are developing a telemedicine app that helps people of different ages to reach the medical advice anywhere from home. Due to the spread of COVID-19, we've came to that telemedicine is the future of medical consultation in the world. By this app we could get the people the doctor at home using online consultation. This app is different from other telemedicin apps that it gathers the doctors, pharmacists and nutritionist in the same area to help people to overcome diseases, know the right medications and solutions for their problems and have a healthy body with healthy regimes. This app is made upon international and local standards to be cope with the new governmental and medical constraints and to be precise about what we give to people.
 
 ## Who We Are
 
 We are a team of ITI calibres who made this medical app as their graduation project of ITI 2021 and to make medical consultation easier for people. and here we are:
 - Akram Mohamed Ahmed.
-- Abdelrhman Adel.
-- Mohamed Osama.
-- Ahmed El-Basha.
+- Abdelrhman Adel El-Sayied.
+- Mohamed Osama Hassan.
+- Ahmed Mahmoud El-Basha.
 
 and we are under the supervision of Eng. Marwa Abdelhamid.
 
 ## Acknowledgement
 
-We'd like to thank ITI for giving us this opportunity, specially Eng. Marwa Abdelhamid who had our backs the whole duration of the ITI scholarship and through all the stages of this project. We also want to thank all our comrades who helped us in the scholarship and we made a very great team together. Last but not least, we want to thank anyone who supported us through this journey and we promise we will meet your expectations with this project and our incoming projects.
+We'd like to thank ITI for giving us this opportunity, especially Eng. Marwa Abdelhamid who had our backs the whole duration of the ITI scholarship and through all the stages of this project. We also want to thank all our comrades who helped us in the scholarship and we made a very great team together. Last but not least, we want to thank anyone who supported us through this journey and we promise we will meet your expectations with this project and our incoming projects.
 
 ## Data Privacy
 
