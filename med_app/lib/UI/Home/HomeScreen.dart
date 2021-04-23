@@ -20,21 +20,29 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  var name;
+  var name=" ";
   var type;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     type = context.read<AppProvider>().type;
-    if (type == "patient") {
-      var userName = context.read<AppProvider>().patient.name;
-      var arr = userName.split(' ');
-      name = arr[0];
-    } else {
-      var userName = context.read<AppProvider>().doctor.name;
-      var arr = userName.split(' ');
-      name = arr[0];
+    if (context.read<AppProvider>().type != null) {
+      if (type == "patient") {
+        var userName = context
+            .read<AppProvider>()
+            .patient
+            .name;
+        var arr = userName.split(' ');
+        name = arr[0];
+      } else {
+        var userName = context
+            .read<AppProvider>()
+            .doctor
+            .name;
+        var arr = userName.split(' ');
+        name = arr[0];
+      }
     }
   }
 

@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
 
@@ -33,11 +34,30 @@ class BlogsCardList extends StatelessWidget {
                       Stack(
                         alignment: Alignment.bottomLeft,
                         children: <Widget>[
-                          Image.network(
+                          CachedNetworkImage(
+                            fit: BoxFit.cover,
+                            imageUrl:
                             image(),
-                            height: MediaQuery.of(context).size.height * 0.25,
-                            width: MediaQuery.of(context).size.width,
-                            fit: BoxFit.fitWidth,
+                            imageBuilder: (context, imageProvider) => Container(
+                              height: MediaQuery.of(context).size.height * 0.25,
+                              width: MediaQuery.of(context).size.width,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                  image: imageProvider,
+                                  fit: BoxFit.fitWidth,
+                                ),
+                              ),
+                            ),
+                            placeholder: (context, url) =>
+                                Image.asset('assets/Blogs.jpg',
+                                  height: MediaQuery.of(context).size.height * 0.25,
+                                  width: MediaQuery.of(context).size.width,
+                                  fit: BoxFit.fitWidth,),
+                            errorWidget: (context, url, error) =>
+                                Image.asset('assets/Blogs.jpg',
+                                  height: MediaQuery.of(context).size.height * 0.25,
+                                  width: MediaQuery.of(context).size.width,
+                                  fit: BoxFit.fitWidth,),
                           ),
                           Container(
                               width: MediaQuery.of(context).size.width,
