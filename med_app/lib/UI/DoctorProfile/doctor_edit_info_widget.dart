@@ -44,10 +44,10 @@ class _DoctorEditInfoWidgetState extends State<DoctorEditInfoWidget> {
       name;
   void updateUser() async {
     var user = userRef.child('users/${widget.doctor.userId}');
-    if(validateUsername(name)){
-      if(int.parse(age)>=25) {
-        if (int.parse(experience) >= 0) {
-          if(int.parse(age)>int.parse(experience)){
+    if(validateUsername((name != null && name.length > 0) ? name : widget.doctor.name)){
+      if(int.parse((age != null && age.length > 0) ? age : widget.doctor.age,)>=25) {
+        if (int.parse((experience != null && experience.length > 0) ? experience : widget.doctor.experience,) >= 0) {
+          if(int.parse((age != null && age.length > 0) ? age : widget.doctor.age,)>int.parse((experience != null && experience.length > 0) ? experience : widget.doctor.experience,)){
             await user.update({
               'bio': (bio != null && bio.length > 0 && bio.length < 120)
                   ? bio

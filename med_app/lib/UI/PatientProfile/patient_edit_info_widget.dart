@@ -42,14 +42,14 @@ class _PatientInfoWidgetState extends State<PatientEditInfoWidget> {
       wieght,
       age,
       name;
-  void updateUser() async {
-    if(validateUsername(name)) {
-      if (int.parse(age)>=0){
-        if ((int.parse(wieght) >= 0) && (int.parse(wieght) <= 500)) {
-          if ((int.parse(height) >= 30) && (int.parse(height) <= 250)) {
-            if ((int.parse(bloodSugar)>=100)&&(int.parse(bloodSugar)<=700)) {
-              if((int.parse(bloodPreassureLow) >= 60) && (int.parse(bloodPreassureLow) <= 100)){
-                if ((int.parse(bloodPreassureHigh) >= 100) && (int.parse(bloodPreassureHigh) <= 180)) {
+   updateUser() async {
+    if(validateUsername((name != null && name.length > 0) ? name : widget.patient.name)) {
+      if (int.parse((age != null && age.length > 0) ? age : widget.patient.age)>=0){
+        if ((int.parse((wieght != null && wieght.length > 0) ? wieght : widget.patient.weight) >= 0) && (int.parse((wieght != null && wieght.length > 0) ? wieght : widget.patient.weight) <= 500)) {
+          if ((int.parse((height != null && height.length > 0) ? height : widget.patient.height) >= 30) && (int.parse((height != null && height.length > 0) ? height : widget.patient.height) <= 250)) {
+            if ((int.parse((bloodSugar != null && bloodSugar.length > 0) ? bloodSugar : widget.patient.bloodSugar)>=100)&&(int.parse((bloodSugar != null && bloodSugar.length > 0) ? bloodSugar : widget.patient.bloodSugar)<=700)) {
+              if((int.parse((bloodPreassureLow != null && bloodPreassureLow.length > 0) ? bloodPreassureLow : widget.patient.bloodLowPressure) >= 60) && (int.parse((bloodPreassureLow != null && bloodPreassureLow.length > 0) ? bloodPreassureLow : widget.patient.bloodLowPressure) <= 100)){
+                if ((int.parse((bloodPreassureHigh != null && bloodPreassureHigh.length > 0) ? bloodPreassureHigh : widget.patient.bloodHighPressure) >= 100) && (int.parse((bloodPreassureHigh != null && bloodPreassureHigh.length > 0) ? bloodPreassureHigh : widget.patient.bloodHighPressure) <= 180)) {
                   var user = userRef.child('users/${widget.patient.userId}');
                   await user.update({
                     'bloodSugar': (bloodSugar != null && bloodSugar.length > 0)
