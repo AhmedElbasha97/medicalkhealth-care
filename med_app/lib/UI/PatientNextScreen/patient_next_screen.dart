@@ -34,7 +34,13 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
   String _nameText;
   String _ageText;
   addPatient(height, weight, highBlood, lowBlood, sugar) async {
-    if(validateUsername(_nameText)){
+    if(validateUsername(_nameText)) {
+      if (int.parse(_ageText)>=0){
+        if ((int.parse(weight) >= 0) && (int.parse(weight) <= 500)) {
+          if ((int.parse(height) >= 30) && (int.parse(height) <= 250)) {
+            if ((int.parse(sugar)>=100)&&(int.parse(sugar)<=700)) {
+              if((int.parse(lowBlood) >= 60) && (int.parse(lowBlood) <= 100)){
+                if ((int.parse(highBlood) >= 100) && (int.parse(highBlood) <= 180)) {
     // inputData();
     var user = userRef.child('users/${widget.userId}');
     final TransactionResult transactionResult =
@@ -73,7 +79,33 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
         showAlert(context, "oop's something goes wrong", "${transactionResult.error.message}");
       }
     }}else{
-      showAlert(context, "name is not valid", "please enter valid name");
+                  showAlert(context, "blood pressures high is not valid",
+                      "please enter valid high pressure");
+                }
+              } else {
+                showAlert(context, "blood pressure low is not valid",
+                    "please enter valid low pressure");
+              }
+            } else {
+              showAlert(context, "blood sugar is not valid",
+                  "please enter valid blood sugar");
+            }
+          } else {
+            showAlert(
+                context, "your height isn't valid",
+                "please Enter Valid height");
+          }
+        } else {
+          showAlert(
+              context, "your weight isn't valid", "pleas Enter Valid weight");
+        }
+      } else {
+        showAlert(
+            context, "age is not valid", "please enter valid age");
+      }
+    }else{
+      showAlert(
+          context, "name is not valid", "please enter valid name");
     }
   }
 
@@ -318,7 +350,7 @@ class _PatientNextScreenState extends State<PatientNextScreen> {
     );
   }
   bool validateUsername(String value) {
-    String pattern = r"^(\w|( \w)){0,10}$";
+    String pattern = r"^(\w|( \w)){0,20}$";
     RegExp regExp = new RegExp(pattern);
     return regExp.hasMatch(value);
   }

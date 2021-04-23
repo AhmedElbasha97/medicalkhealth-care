@@ -26,6 +26,7 @@ class _NavbarState extends State<Nav> {
   void _itemSwitch(int index) {
     setState(() {
       widget.selectedIndex = index;
+
     });
   }
 
@@ -80,6 +81,7 @@ class _NavbarState extends State<Nav> {
             ),
           ],
           onTap: _itemSwitch,
+         index: widget.selectedIndex,
           height: 50,
           buttonBackgroundColor: Colors.white,
           color: Colors.white,
@@ -88,4 +90,5 @@ class _NavbarState extends State<Nav> {
       );
     });
   }
+
 }

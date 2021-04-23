@@ -30,7 +30,7 @@ class _DrugsListState extends State<DrugsList> {
             child: Stack(children: [
               Padding(
                 padding: EdgeInsets.fromLTRB(
-                    0.0, MediaQuery.of(context).size.height * 0.09, 0.0, 0.0),
+                    0.0, 0.0, 0.0, 0.0),
                 child: ChangeNotifierProvider<DrugsProvider>(
                     create: (context) => DrugsProvider(),
                     child: Consumer<DrugsProvider>(
@@ -137,20 +137,7 @@ class _DrugsListState extends State<DrugsList> {
                           : Center(child: CircularProgressIndicator());
                     })),
               ),
-              Positioned(
-                top: 0,
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 70,
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 8.0, left: 8),
-                    child: TextFormField(
-                        decoration:
-                            InputDecoration(labelText: "Search By Drugs")),
-                  ),
-                ),
-              ),
+
             ])));
   }
 }

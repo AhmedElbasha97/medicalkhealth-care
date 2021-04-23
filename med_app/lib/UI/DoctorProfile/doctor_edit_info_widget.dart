@@ -45,28 +45,44 @@ class _DoctorEditInfoWidgetState extends State<DoctorEditInfoWidget> {
   void updateUser() async {
     var user = userRef.child('users/${widget.doctor.userId}');
     if(validateUsername(name)){
-      if(int.parse(age)>int.parse(experience)){
-    await user.update({
-      'bio': (bio != null && bio.length > 0 && bio.length < 120)
-          ? bio
-          : widget.doctor.bio,
-      'experience': (experience != null && experience.length > 0)
-          ? experience
-          : widget.doctor.experience,
-      'name': (name != null && name.length > 0) ? name : widget.doctor.name,
-      'age': (age != null && age.length > 0) ? age : widget.doctor.age,
-    }).then((_) {
-      print('Transaction  committed.');
-      AppProvider provider = Provider.of<AppProvider>(context, listen: false);
-      provider.getDoctorById('${widget.doctor.userId}');
-      Navigator.of(context).pop();
-    });
+      if(int.parse(age)>=25) {
+        if (int.parse(experience) >= 0) {
+          if(int.parse(age)>int.parse(experience)){
+            await user.update({
+              'bio': (bio != null && bio.length > 0 && bio.length < 120)
+                  ? bio
+                  : widget.doctor.bio,
+              'experience': (experience != null && experience.length > 0)
+                  ? experience
+                  : widget.doctor.experience,
+              'name': (name != null && name.length > 0) ? name : widget.doctor
+                  .name,
+              'age': (age != null && age.length > 0) ? age : widget.doctor.age,
+            }).then((_) {
+              print('Transaction  committed.');
+              AppProvider provider = Provider.of<AppProvider>(
+                  context, listen: false);
+              provider.getDoctorById('${widget.doctor.userId}');
+              Navigator.of(context).pop();
+            });
+          }else{
+          showAlert(context, "years of experience is not valid", "how your age is less than your year's of experience");
+          }
+        }else{
+          showAlert(context, "years of experience is not valid", "enter valid range years of experience");
+        }
   }else{
-  showAlert(context, "years of experience is not valid", "how your age is less than your year's of experience");
+        showAlert(context, "age is not valid", "enter valid age");
   }
 }else{
 showAlert(context, "name is not valid", "please enter valid name");
 }
+
+  @override
+  Widget build(BuildContext context) {
+    // TODO: implement build
+    throw UnimplementedError();
+  }
   }
 
   @override
@@ -171,7 +187,7 @@ showAlert(context, "name is not valid", "please enter valid name");
     );
   }
 bool validateUsername(String value) {
-  String pattern = r"(^(\w|( \w)){0,10}$";
+  String pattern = r"(^(\w|( \w)){0,20}$";
   RegExp regExp = new RegExp(pattern);
   return regExp.hasMatch(value);
 }

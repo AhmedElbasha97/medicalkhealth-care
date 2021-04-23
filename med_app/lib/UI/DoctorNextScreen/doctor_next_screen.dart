@@ -82,6 +82,8 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
         if(experience != null){
           if(validateUsername(name)){
             if(int.parse(age)>int.parse(experience)){
+              if(int.parse(age)>=25){
+                if(int.parse(experience)>=0){
     var user = userRef.child('users/${widget.userId}');
     final TransactionResult transactionResult =
         await counterRef.runTransaction((MutableData mutableData) async {
@@ -130,6 +132,12 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
         showAlert(context, "oop's something goes wrong", "${transactionResult.error.message}");
       }
     }      }else{
+                  showAlert(context, "experience years is not valid", "enter valid period of experience");
+                }
+                }else{
+                showAlert(context, "age is not valid", "enter valid age");
+              }
+              }else{
               showAlert(context, "years of experience is not valid", "how your age is less than your year's of experience");
 
             }
@@ -388,7 +396,7 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
     );
   }
   bool validateUsername(String value) {
-    String pattern = r"^(\w|( \w)){0,10}$";
+    String pattern = r"^(\w|( \w)){0,20}$";
     RegExp regExp = new RegExp(pattern);
     return regExp.hasMatch(value);
   }

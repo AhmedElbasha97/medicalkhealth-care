@@ -43,38 +43,75 @@ class _PatientInfoWidgetState extends State<PatientEditInfoWidget> {
       age,
       name;
   void updateUser() async {
-    if (validateUsername(name)){
-    var user = userRef.child('users/${widget.patient.userId}');
-    await user.update({
-      'bloodSugar': (bloodSugar != null && bloodSugar.length > 0)
-          ? bloodSugar
-          : widget.patient.bloodSugar,
-      'bloodHighPressure':
-          (bloodPreassureHigh != null && bloodPreassureHigh.length > 0)
-              ? bloodPreassureHigh
-              : widget.patient.bloodHighPressure,
-      'bloodLowPressure':
-          (bloodPreassureLow != null && bloodPreassureLow.length > 0)
-              ? bloodPreassureLow
-              : widget.patient.bloodLowPressure,
-      'height': (height != null && height.length > 0)
-          ? height
-          : widget.patient.height,
-      'weight': (wieght != null && wieght.length > 0)
-          ? wieght
-          : widget.patient.weight,
-      'name': (name != null && name.length > 0)
-          ? name
-          : widget.patient.name,
-      'age': (age != null && age.length > 0) ? age : widget.patient.age,
-    }).then((_) {
-      print('Transaction  committed.');
-      AppProvider provider = Provider.of<AppProvider>(context, listen: false);
-      provider.getPatientById(widget.patient.userId);
-      print("edite: ${provider.patient.name}");
-      Navigator.of(context).pop();
-    });}else{
-      showAlert(context, "name is not valid", "please enter valid name");
+    if(validateUsername(name)) {
+      if (int.parse(age)>=0){
+        if ((int.parse(wieght) >= 0) && (int.parse(wieght) <= 500)) {
+          if ((int.parse(height) >= 30) && (int.parse(height) <= 250)) {
+            if ((int.parse(bloodSugar)>=100)&&(int.parse(bloodSugar)<=700)) {
+              if((int.parse(bloodPreassureLow) >= 60) && (int.parse(bloodPreassureLow) <= 100)){
+                if ((int.parse(bloodPreassureHigh) >= 100) && (int.parse(bloodPreassureHigh) <= 180)) {
+                  var user = userRef.child('users/${widget.patient.userId}');
+                  await user.update({
+                    'bloodSugar': (bloodSugar != null && bloodSugar.length > 0)
+                        ? bloodSugar
+                        : widget.patient.bloodSugar,
+                    'bloodHighPressure':
+                    (bloodPreassureHigh != null &&
+                        bloodPreassureHigh.length > 0)
+                        ? bloodPreassureHigh
+                        : widget.patient.bloodHighPressure,
+                    'bloodLowPressure':
+                    (bloodPreassureLow != null && bloodPreassureLow.length > 0)
+                        ? bloodPreassureLow
+                        : widget.patient.bloodLowPressure,
+                    'height': (height != null && height.length > 0)
+                        ? height
+                        : widget.patient.height,
+                    'weight': (wieght != null && wieght.length > 0)
+                        ? wieght
+                        : widget.patient.weight,
+                    'name': (name != null && name.length > 0)
+                        ? name
+                        : widget.patient.name,
+                    'age': (age != null && age.length > 0) ? age : widget
+                        .patient
+                        .age,
+                  }).then((_) {
+                    print('Transaction  committed.');
+                    AppProvider provider = Provider.of<AppProvider>(
+                        context, listen: false);
+                    provider.getPatientById(widget.patient.userId);
+                    print("edite: ${provider.patient.name}");
+                    Navigator.of(context).pop();
+                  });
+                }else{
+                  showAlert(context, "blood pressures high is not valid",
+                      "please enter valid high pressure");
+                }
+                } else {
+                showAlert(context, "blood pressure low is not valid",
+                    "please enter valid low pressure");
+              }
+            } else {
+              showAlert(context, "blood sugar is not valid",
+                  "please enter valid blood sugar");
+            }
+          } else {
+            showAlert(
+                context, "your height isn't valid",
+                "please Enter Valid height");
+          }
+        } else {
+          showAlert(
+              context, "your weight isn't valid", "pleas Enter Valid weight");
+        }
+      } else {
+        showAlert(
+            context, "age is not valid", "please enter valid age");
+      }
+    }else{
+      showAlert(
+          context, "name is not valid", "please enter valid name");
     }
   }
 
@@ -191,7 +228,7 @@ class _PatientInfoWidgetState extends State<PatientEditInfoWidget> {
     );
   }
   bool validateUsername(String value) {
-    String pattern = r"^(\w|( \w)){0,10}$";
+    String pattern = r"^(\w|( \w)){0,20}$";
     RegExp regExp = new RegExp(pattern);
     return regExp.hasMatch(value);
   }

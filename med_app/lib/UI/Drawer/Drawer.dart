@@ -145,20 +145,7 @@ class _DrawerSideState extends State<DrawerSide> {
                 Expanded(
                   child: ListView(
                     children: [
-                      ListTile(
-                        onTap: () {},
-                        leading: Icon(
-                          Icons.home,
-                          color: ColorsCollection.mainColor,
-                        ),
-                        title: Text(
-                          "Home Page",
-                          style: TextStyle(
-                              color: ColorsCollection.mainColor,
-                              fontFamily: 'Proxima',
-                              fontSize: 16),
-                        ),
-                      ),
+
                       ListTile(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(
