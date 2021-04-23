@@ -118,6 +118,15 @@ class _DoctorBookingScreenState extends State<DoctorBookingScreen> {
                                 width: double.infinity,
                                 child: CachedNetworkImage(
                                   imageUrl: snapshot.data,
+                                  placeholder: (
+                                    context,
+                                    url,
+                                  ) =>
+                                      Image.asset(
+                                          'assets/images/placeholder.jpg'),
+                                  errorWidget: (context, url, error) =>
+                                      Image.asset(
+                                          'assets/images/placeholder.jpg'),
                                   fit: BoxFit.cover,
                                 ),
                               );

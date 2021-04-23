@@ -216,8 +216,8 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
                             keyboardTypeNumber: true,maxCharacter: 2,),
                       ),
                       Padding(
-                        padding:
-                            const EdgeInsets.only(top: 10, left: 5.0, right: 5.0),
+                        padding: const EdgeInsets.only(
+                            top: 10, left: 5.0, right: 5.0),
                         child: Row(
                           children: [
                             Text(
@@ -267,6 +267,12 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
                             setState(() {
                               _selectedProfession = val;
                               print(_selectedProfession);
+                              if (_selectedProfession == 'Pharmacist') {
+                                speciality = 'Pharmacist';
+                              } else if (_selectedProfession ==
+                                  'Nutritionist') {
+                                speciality = 'Nutritionist';
+                              }
                             });
                           },
                         ),
@@ -297,7 +303,8 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
                         items: _items,
                         initialValue: [_languages[0]],
                         title: Text("Languages"),
-                        headerColor: ColorsCollection.mainColor.withOpacity(0.5),
+                        headerColor:
+                            ColorsCollection.mainColor.withOpacity(0.5),
                         decoration: BoxDecoration(
                           border: Border.all(
                               color: ColorsCollection.mainColor, width: 1.8),
@@ -306,7 +313,8 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
                             ColorsCollection.mainColor.withOpacity(0.5),
                         selectedTextStyle: TextStyle(color: Colors.black),
                         onTap: (values) {
-                          _langListSelected = values.map((e) => e.lang).toList();
+                          _langListSelected =
+                              values.map((e) => e.lang).toList();
                           print(_langListSelected);
                         },
                       ),
@@ -339,7 +347,8 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
                               title: "Enter Your Candidate Card",
                               asset: "assets/Candidate.png",
                               certType: 'Candidate',
-                              callback: (val) => setState(() => candidate = val))
+                              callback: (val) =>
+                                  setState(() => candidate = val))
                         ],
                       )
                     ],

@@ -40,13 +40,11 @@ class _ReviewScreenState extends State<ReviewScreen> {
         var userId = await context.read<AuthService>().getCurrentUser();
         Navigator.push(context,
             MaterialPageRoute(builder: (context) => Nav(userId: userId.uid)));
-        widget.callbackDelete();
       });
     } else {
       var userId = await context.read<AuthService>().getCurrentUser();
       Navigator.push(context,
           MaterialPageRoute(builder: (context) => Nav(userId: userId.uid)));
-      widget.callbackDelete();
     }
   }
 

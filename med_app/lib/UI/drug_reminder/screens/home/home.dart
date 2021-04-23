@@ -113,6 +113,10 @@ class _ReminderHomeState extends State<ReminderHome> {
       floatingActionButton: addButton,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       backgroundColor: Color.fromRGBO(248, 248, 248, 1),
+      appBar: AppBar(
+        title: Text('Drug Reminder'),
+        backgroundColor: ColorsCollection.mainColor,
+      ),
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
@@ -121,47 +125,13 @@ class _ReminderHomeState extends State<ReminderHome> {
             child: Column(
               children: [
                 SizedBox(
-                  height: deviceHeight * 0.04,
-                ),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5.0),
-                  child: Container(
-                    alignment: Alignment.topCenter,
-                    height: deviceHeight * 0.1,
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Drug Reminder",
-                          style: TextStyle(
-                              fontSize: 26.0, fontWeight: FontWeight.bold),
-                        ),
-                        // ShakeAnimatedWidget(
-                        //   enabled: true,
-                        //   duration: Duration(milliseconds: 2000),
-                        //   curve: Curves.linear,
-                        //   shakeAngle: Rotation.deg(z: 30),
-                        //   child: Icon(
-                        //     Icons.notifications_none,
-                        //     size: 42.0,
-                        //   ),
-                        // )
-                        Icon(
-                          Icons.calendar_today,
-                          size: 30.0,
-                        )
-                      ],
-                    ),
-                  ),
-                ),
-                SizedBox(
                   height: deviceHeight * 0.01,
                 ),
                 Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 5.0),
+                  padding: EdgeInsets.only(top: 10.0, left: 5.0, right: 5.0),
                   child: Calendar(chooseDay, _daysList),
                 ),
-                SizedBox(height: deviceHeight * 0.03),
+                SizedBox(height: deviceHeight * 0.01),
                 dailyPills.isEmpty
                     ? SizedBox(
                         width: double.infinity,
