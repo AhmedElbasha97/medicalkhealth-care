@@ -49,13 +49,13 @@ This project has adopted the [Contributor Covenant](https://www.contributor-cove
 
 ### a. Background (Problem):
 
-Going to hospitals and clinics to get medical treatment may lead to be infected by diseases from other patients in the hospital, specially nowadays, where COVID-19 could spread and infect a lot of people. In our applications, we want to make it easy for users to have online medical consultations to limit the spread of diseases and to save the effort and money to go to hospitals as in many cases some patients don't have the ability to go to hospitals and for people who must have a 24/7 follow-up with the doctor and also to have a medical consultation about drug interactions from pharmacists and advices for healthy life from nutritionists.
+Going to hospitals and clinics to get medical treatment may lead to be infected by diseases from other patients in the hospital, especially  nowadays, where COVID-19 could spread and infect a lot of people. In our applications, we want to make it easy for users to have online medical consultations to limit the spread of diseases and to save the effort and money to go to hospitals as in many cases some patients don't have the ability to go to hospitals and for people who must have a 24/7 follow-up with the doctor and also to have a medical consultation about drug interactions from pharmacists and advices for a healthy life from nutritionists.
 
 ### b. Purpose:
 
 This application shall provide:
 - Online communication from home to help people get to their medical consultation as soon as possible with less effort.
-- Drug index to see the presciption of medicines and their prices in market befor buying them.
+- Drug index to see the prescription  of medicines and their prices in the market before  buying them.
 - Medical and nutritional blogs that inform users with best medical and nutritional practices.
 - Keep the users up with the new diseases and vaccines through news feed.
 
@@ -63,15 +63,15 @@ This application shall provide:
 
 #### 1. Vezeeta Application
 
-Vezeeta is an Egyptian telemedicine app that allows patients to find specialized doctors and book convenient appointments online or through vezeeta's hotline. It also collaborates with hospitals, clinics to provide the patients the easy way to get to their locations and contact the doctors in these hospitals.
+Vezeeta is an Egyptian telemedicine app that allows patients to find specialized doctors and book convenient appointments online or through vezeeta's hotline. It also collaborates with hospitals, clinics to provide the patients an easy way to get to their locations and contact the doctors in these hospitals.
 
 #### 2. Se7etak Application
 
-Se7etak is an Egyptian telehealth platform whose primary aim is to virtually connect patients and doctors, giving you acces to consultations via video call. It aims to lessen the traffic in waiting rooms and provide the finest doctors in the region.
+Se7etak is an Egyptian telehealth platform whose primary aim is to virtually connect patients and doctors, giving you access  to consultations via video call. It aims to lessen the traffic in waiting rooms and provide the finest doctors in the region.
 
 ### d. Scope:
 
-This app aims at giving the customers the easiest way to communicate with doctors, pharmacists and nutritionists. Also, provide a better service than other telemedicine apps by creating a medical community at home from which you can access medical news, blogs, durg index and contact professional doctors in order to give a hand to limit the spread of diseases and make people's life easier.
+This app aims at giving the customers the easiest way to communicate with doctors, pharmacists and nutritionists. Also, provide a better service than other telemedicine apps by creating a medical community at home from which you can access medical news, blogs, drug index and contact professional doctors in order to give a hand to limit the spread of diseases and make people's life easier.
 
 ### e. Stakeholders/Beneficiaries:
 - Patients.
@@ -89,7 +89,7 @@ This app aims at giving the customers the easiest way to communicate with doctor
 ### a. Functional Requirements: (Features)
 
 #### 1. Communication System:
-- Voice and video call between patients and doctors.
+- Voice and video calls between patients and doctors.
 - Phone contacting in case of no network.
 
 #### 2. Booking System:
@@ -114,12 +114,12 @@ This app aims at giving the customers the easiest way to communicate with doctor
 - View an appointment list for patients and doctors to remind them.
 
 #### 6. Recommendation System:
-- Recommend the highest rated and reviewed doctors.
+- Recommend the highest-rated  and reviewed doctors.
 - View the best and newest blogs to read.
 - View the most used medications.
 
 #### 7. General Features:
-- Sign in and stay logged in/ Sign up for first time users.
+- Sign in and stay logged in/ Sign up for first-time  users.
 - Edit profile information.
 - Provide payment methods to charge the balance.
 - Search in any section of the app.
@@ -128,7 +128,7 @@ This app aims at giving the customers the easiest way to communicate with doctor
 
 The users are either patients or doctors and they can:
 
-- Sign up (for first time users).
+- Sign up (for first-time  users).
 - Sign in (can stay logged in).
 - Edit Profile Information.
 - View Appointment List.
@@ -154,17 +154,17 @@ The users are either patients or doctors and they can:
 
 In our application, we will serve users with the following:
 
-1- Make a voice/video call with their preferred doctors, pharamcists and nutritionists.
+1- Make a voice/video call with their preferred doctors, pharmacists  and nutritionists.
 
 2- Book an appointment with the range of available dates that doctors provide.
 
-3- Read the newest medical and nutritonal blogs.
+3- Read the newest medical and nutritional  blogs.
 
-4- Get the news of the medical state arount the world.
+4- Get the news of the medical state around  the world.
 
-5- Have a drug index with the drugs information and prices in the market.
+5- Have a drug index with the drug  information and prices in the market.
 
-6- Be notified with the appointment and the medications times.
+6- Be notified of the appointment and the medication  times.
 
 7- View the appointments and cancel them anytime.
 
