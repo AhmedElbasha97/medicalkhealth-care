@@ -129,12 +129,13 @@ class _HomeState extends State<Home> {
                           SizedBox(height: 10),
                           Padding(
                               padding: EdgeInsets.all(10),
-                              child: ButtonCard(
+                              child:  ((context.read<AppProvider>().type != null)&&
+                                       (context.read<AppProvider>().type == "patient"))? ButtonCard(
                                 title: "Doctor Speciality",
                                 subtitle:
                                     "you can find doctors with it speciality there",
                                 goDoctor: true,
-                              )),
+                              ):Container(color: Colors.white,)),
                           SizedBox(height: 10),
                           Padding(
                               padding: EdgeInsets.all(10),

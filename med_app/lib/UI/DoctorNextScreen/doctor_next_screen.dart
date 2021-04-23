@@ -390,7 +390,7 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
                     ),
                   ),
                 ),
-              )
+               )
             ],
           )),
     );
