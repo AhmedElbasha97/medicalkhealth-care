@@ -201,7 +201,7 @@ class _DrawerSideState extends State<DrawerSide> {
                           context.read<AuthService>().signOut();
                           SharedPreferences prefs =
                               await SharedPreferences.getInstance();
-                          await prefs.setString('userid', '');
+                          await prefs.remove("userid");
                           Navigator.of(context).push(MaterialPageRoute(
                             builder: (context) => ResgisterScreen(),
                           ));

@@ -5,6 +5,7 @@ import 'package:agora_rtc_engine/rtc_local_view.dart' as RtcLocalView;
 import 'package:agora_rtc_engine/rtc_remote_view.dart' as RtcRemoteView;
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/UI/callpages/rewiew_screen.dart';
 import 'package:med_app/models/doctor.dart';
 import 'package:med_app/models/patient.dart';
@@ -316,6 +317,7 @@ class _CallPageState extends State<CallPage> {
           MaterialPageRoute(
               builder: (context) => MedicalNoteScreen(
                   patient: patient, callbackDelete: widget.callbackDelete)));
+      dispose();
     } else {
       provider.getDoctorById(widget.id);
       Doctor doctor = provider.doctor;
@@ -323,8 +325,8 @@ class _CallPageState extends State<CallPage> {
       Navigator.push(
           context,
           MaterialPageRoute(
-              builder: (context) => ReviewScreen(
-                  doctor: doctor, callbackDelete: widget.callbackDelete)));
+              builder: (context) => ReviewScreen(doctor: doctor)));
+      dispose();
     }
   }
 
@@ -341,18 +343,23 @@ class _CallPageState extends State<CallPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Agora Flutter QuickStart'),
-      ),
-      backgroundColor: Colors.black,
-      body: Center(
-        child: Stack(
-          children: <Widget>[
-            _viewRows(),
-            _panel(),
-            _toolbar(),
-          ],
+    return WillPopScope(
+      onWillPop: () async => false,
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text('Agora Flutter QuickStart'),
+          automaticallyImplyLeading: false,
+          backgroundColor: ColorsCollection.mainColor,
+        ),
+        backgroundColor: Colors.black,
+        body: Center(
+          child: Stack(
+            children: <Widget>[
+              _viewRows(),
+              _panel(),
+              _toolbar(),
+            ],
+          ),
         ),
       ),
     );

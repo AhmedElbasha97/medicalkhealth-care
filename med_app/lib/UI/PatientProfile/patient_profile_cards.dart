@@ -74,13 +74,13 @@ class PatientCardWidget extends StatelessWidget {
         ),
         onTap: () async {
           if (logout == true) {
-                 context.read<AppProvider>().clear();
+            context.read<AppProvider>().clear();
             context.read<AuthService>().signOut();
-              SharedPreferences prefs = await SharedPreferences.getInstance();
-              await prefs.setString('userid','');
-                 Navigator.of(context).push(MaterialPageRoute(
-                   builder: (context) =>
-                       ResgisterScreen(),));
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            await prefs.remove("userid");
+            Navigator.of(context).push(MaterialPageRoute(
+              builder: (context) => ResgisterScreen(),
+            ));
           }
           if (buttonNavigation != null) {
             await Navigator.of(context).push(
