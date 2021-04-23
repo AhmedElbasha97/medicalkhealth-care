@@ -9,7 +9,7 @@
     <a href="#data-privacy">Data Privacy</a> •
     <a href="#code-of-conduct">Code of Conduct</a> •
     <a href="#our-documentation">Our Documentation</a> •
-    <a href="#">Website</a>
+    <a href="https://brave-bell-03ffa5.netlify.app/">Website</a>
 </p>
 <hr />
 
