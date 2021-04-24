@@ -40,10 +40,6 @@ class _HomeState extends State<Home> {
     }
   }
 
-  // ChangeNotifierProvider<BlogProvider>(
-  // create: (context) => BlogProvider(),
-  // child:
-
   Widget build(BuildContext context) {
     return Consumer<BlogProvider>(builder: (context, BlogProvider, _) {
       return Container(
@@ -132,12 +128,19 @@ class _HomeState extends State<Home> {
                             SizedBox(height: 10),
                             Padding(
                                 padding: EdgeInsets.all(10),
-                                child: ButtonCard(
-                                  title: "Doctor Speciality",
-                                  subtitle:
-                                      "you can find doctors with it speciality there",
-                                  goDoctor: true,
-                                )),
+                                child: ((context.read<AppProvider>().type !=
+                                            null) &&
+                                        (context.read<AppProvider>().type ==
+                                            "patient"))
+                                    ? ButtonCard(
+                                        title: "Doctor Speciality",
+                                        subtitle:
+                                            "you can find doctors with it speciality there",
+                                        goDoctor: true,
+                                      )
+                                    : Container(
+                                        color: Colors.white,
+                                      )),
                             SizedBox(height: 10),
                             Padding(
                                 padding: EdgeInsets.all(10),
