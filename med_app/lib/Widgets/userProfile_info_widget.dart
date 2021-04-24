@@ -31,8 +31,8 @@ class UserProfileInfoWidget extends StatelessWidget {
                     size: 18,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 5),
-                    child: Text('${infoTitle}',
+                    padding: const EdgeInsets.only(left: 10),
+                    child: Text('$infoTitle',
                         style: TextStyle(
                           color: ColorsCollection.mainColor,
                           fontWeight: FontWeight.bold,
@@ -41,16 +41,18 @@ class UserProfileInfoWidget extends StatelessWidget {
                   ),
                 ],
               )),
-          Padding(
-            padding: const EdgeInsets.only(
-              left: 0,
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.only(
+                left: 3,
+              ),
+              child: Text('${infoValue}',
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 16,
+                  )),
             ),
-            child: Text('${infoValue}',
-                style: TextStyle(
-                  color: Colors.black,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16,
-                )),
           ),
         ],
       ),

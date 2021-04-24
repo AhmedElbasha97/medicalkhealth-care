@@ -6,15 +6,16 @@ import 'package:show_dialog/show_dialog.dart' as dialog;
 
 class ReviewsSlider extends StatelessWidget {
   final List<Review> reviews;
-  ReviewsSlider({this.reviews});
+  final bool isProfileView;
+  ReviewsSlider({this.reviews, this.isProfileView = false});
   @override
   Widget build(BuildContext context) {
     print(reviews);
     return Container(
-      height: 100,
+      height: (isProfileView) ? double.infinity : 100,
       child: ListView.builder(
         itemCount: reviews.length,
-        scrollDirection: Axis.horizontal,
+        scrollDirection: (isProfileView) ? Axis.vertical : Axis.horizontal,
         itemBuilder: (context, index) {
           return GestureDetector(
             onTap: () async {

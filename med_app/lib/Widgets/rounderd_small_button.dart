@@ -7,7 +7,7 @@ class RoundedSmallButton extends StatelessWidget {
   final String text;
   final password;
   final email;
-  final String confirm_password;
+  final String confirmPassword;
   final String username;
   final type;
   RoundedSmallButton(
@@ -15,7 +15,7 @@ class RoundedSmallButton extends StatelessWidget {
       this.password,
       this.email,
       this.username,
-      this.confirm_password,
+      this.confirmPassword,
       this.type});
   @override
   Widget build(BuildContext context) {
@@ -41,7 +41,7 @@ class RoundedSmallButton extends StatelessWidget {
                       context: context,
                       email: email,
                       password: password,
-                      confirmpassword: confirm_password,
+                      confirmpassword: confirmPassword,
                       username: username,
                       type: type);
                   break;
@@ -50,7 +50,7 @@ class RoundedSmallButton extends StatelessWidget {
                       context: context,
                       email: email,
                       password: password,
-                      confirmpassword: confirm_password,
+                      confirmpassword: confirmPassword,
                       username: username,
                       type: type);
                   break;

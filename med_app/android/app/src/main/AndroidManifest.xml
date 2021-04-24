@@ -1,10 +1,39 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.med_app">
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
+    <!-- The Agora SDK requires Bluetooth permissions in case users are using Bluetooth devices.-->
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
+
        android:requestLegacyExternalStorage="true"
-        android:label="med_app"
+        android:label="TeleMed"
         android:icon="@mipmap/ic_launcher">
-        <activity
+       <service
+           android:name="io.flutter.plugins.androidalarmmanager.AlarmService"
+           android:permission="android.permission.BIND_JOB_SERVICE"
+           android:exported="false"/>
+       <receiver
+           android:name="io.flutter.plugins.androidalarmmanager.AlarmBroadcastReceiver"
+           android:exported="false"/>
+       <receiver
+           android:name="io.flutter.plugins.androidalarmmanager.RebootBroadcastReceiver"
+           android:enabled="false">
+           <intent-filter>
+               <action android:name="android.intent.action.BOOT_COMPLETED"/>
+           </intent-filter>
+       </receiver>
+
+       <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"
             android:theme="@style/LaunchTheme"

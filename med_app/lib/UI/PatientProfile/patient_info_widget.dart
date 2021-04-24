@@ -2,10 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:med_app/UI/PatientProfile/patient_edit_info_widget.dart';
-import 'package:med_app/models/Patient.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:med_app/Styles/colors.dart';
 import 'package:med_app/Widgets/userProfile_info_widget.dart';
+import 'package:med_app/models/patient.dart';
+import 'package:med_app/services/auth.dart';
+import 'package:provider/provider.dart';
 
 // ignore: must_be_immutable
 class PatientInfoWidget extends StatefulWidget {
@@ -31,9 +33,24 @@ class PatientInfoWidget extends StatefulWidget {
 class _PatientInfoWidgetState extends State<PatientInfoWidget> {
   bool changePassword = false;
   String _newPassword;
+  String pattern =
+      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,10}$';
+
+  void _changePassword() async {
+    User currentUser = await context.read<AuthService>().getCurrentUser();
+    if (_newPassword.length > 8) {
+      currentUser.updatePassword(_newPassword).then((_) {
+        showAlert(context, "Password Change", "Successfully");
+      }).catchError((err) {
+        showAlert(context, "Password Change", "Failed");
+      });
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    RegExp regExp = new RegExp(pattern);
+
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -79,11 +96,11 @@ class _PatientInfoWidgetState extends State<PatientInfoWidget> {
               children: [
                 UserProfileInfoWidget(
                     icon: Icons.person,
-                    infoTitle: 'username : ',
-                    infoValue: widget.patient.username),
+                    infoTitle: 'Name : ',
+                    infoValue: widget.patient.name),
                 UserProfileInfoWidget(
                     icon: FontAwesomeIcons.heartbeat,
-                    infoTitle: 'Blood-Sugar  : ',
+                    infoTitle: 'Blood Sugar  : ',
                     infoValue: widget.patient.bloodSugar),
                 UserProfileInfoWidget(
                     icon: FontAwesomeIcons.heartbeat,
@@ -146,7 +163,7 @@ class _PatientInfoWidgetState extends State<PatientInfoWidget> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 (_newPassword != null &&
-                                        _newPassword.length > 8)
+                                        regExp.hasMatch(_newPassword))
                                     ? Padding(
                                         padding:
                                             const EdgeInsets.only(right: 8.0),
@@ -169,26 +186,7 @@ class _PatientInfoWidgetState extends State<PatientInfoWidget> {
                                               setState(() {
                                                 changePassword = false;
                                               });
-                                              void _changePassword() async {
-                                                final FirebaseAuth
-                                                    firebaseAuth =
-                                                    FirebaseAuth.instance;
-                                                User currentUser =
-                                                    firebaseAuth.currentUser;
-                                                if (_newPassword.length > 8) {
-                                                  currentUser
-                                                      .updatePassword(
-                                                          _newPassword)
-                                                      .then((_) {
-                                                    print(
-                                                        "Successfully changed password");
-                                                  }).catchError((err) {
-                                                    print(
-                                                        "Password can't be changed" +
-                                                            err.toString());
-                                                  });
-                                                }
-                                              }
+                                              _changePassword();
                                             },
                                             child: Padding(
                                                 padding: const EdgeInsets.only(
@@ -260,5 +258,26 @@ class _PatientInfoWidgetState extends State<PatientInfoWidget> {
             ),
           ),
         ));
+  }
+
+  void showAlert(context, lable, message) {
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: Text(lable),
+          content: Text(message),
+          actions: <Widget>[
+            // ignore: deprecated_member_use
+            FlatButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
   }
 }

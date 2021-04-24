@@ -1,7 +1,5 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:med_app/UI/spcialitypage/speciality_page.dart';
-import 'package:med_app/models/doctor.dart';
 import 'package:med_app/models/speciality.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;

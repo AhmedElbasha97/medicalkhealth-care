@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:med_app/UI/DoctorNextScreen/doctor_next_screen.dart';
 import 'package:med_app/UI/PatientNextScreen/patient_next_screen.dart';
+import 'package:med_app/Widgets/start.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthService {
@@ -10,17 +11,19 @@ class AuthService {
   AuthService(this._auth);
   //
   Stream<User> get authStateChanges => _auth.authStateChanges();
-// getStringValuesSF() async {
 
-// SharedPreferences prefs = await SharedPreferences.getInstance();
-
-// //Return String
-
-// String stringValue = prefs.getString('stringValue');
-
-// return stringValue;
-
-// }
+  // ignore: missing_return
+  Future<String> getUserId() async {
+    _auth.userChanges().listen((User user) {
+      if (user == null) {
+        print('User is currently signed out!');
+        return null;
+      } else {
+        print('User is signed in id ${user.uid}!');
+        return user.uid;
+      }
+    });
+  }
   addStringToSF(id) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setString('userid', id);
@@ -30,12 +33,12 @@ class AuthService {
     Pattern pattern =
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
     RegExp regex = new RegExp(pattern);
-    return (!regex.hasMatch(value)) ? false : true;
+    return regex.hasMatch(value);
   }
 
   bool validatePassword(String value) {
     String pattern =
-        r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,10}$';
+        r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$';
     RegExp regExp = new RegExp(pattern);
     return regExp.hasMatch(value);
   }
@@ -54,6 +57,7 @@ class AuthService {
           title: Text(lable),
           content: Text(message),
           actions: <Widget>[
+            // ignore: deprecated_member_use
             FlatButton(
               child: Text('OK'),
               onPressed: () {
@@ -65,9 +69,8 @@ class AuthService {
       },
     );
   }
-
-  //signin email
   Future<String> signInEmail(context, email, password) async {
+    print(email);
     if (validateEmail(email)) {
       if (validatePassword(password)) {
         try {
@@ -75,8 +78,8 @@ class AuthService {
               .signInWithEmailAndPassword(email: email, password: password);
           final userid = userCredential.user.uid;
           addStringToSF(userid);
-          // Navigator.of(context)
-          //     .push(MaterialPageRoute(builder: (context) => Home()));
+          Navigator.of(context)
+              .push(MaterialPageRoute(builder: (context) => Start()));
           return "Signd in";
         } on FirebaseAuthException catch (e) {
           if (e.code == 'user-not-found') {
@@ -92,7 +95,7 @@ class AuthService {
         }
       } else {
         showAlert(context, "Your Password is Weak",
-            "strong Password Must Contain this Criteria Minimum 8 and Maximum 10 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character");
+            "strong Password Must Contain this Criteria Minimum 8 characters at least 1 Uppercase Alphabet, 1 Lowercase Alphabet, 1 Number and 1 Special Character");
       }
     } else {
       showAlert(context, "The E-mail You entered isn't valid",
@@ -101,6 +104,7 @@ class AuthService {
   }
 
   //register email & password
+  // ignore: missing_return
   Future<String> signUpEmail(
       {context, email, username, confirmpassword, password, type}) async {
     if (validateUsername(username)) {
@@ -145,11 +149,12 @@ class AuthService {
       }
     } else {
       showAlert(context, "The user name isn't valid",
-          "Please re-enter valid username");
+          "Please re-enter valid username valid user name must be from 8 to 20 character doesn't start with _ or . and doesn't end with _ or . and doesn't contain __ or _. or ._ or .. ");
     }
   }
 
 //resetpassword
+  // ignore: missing_return
   Future<String> resetPassword({email, context}) {
     if (validateEmail(email)) {
       _auth.sendPasswordResetEmail(email: email);
@@ -163,7 +168,8 @@ class AuthService {
 
 //Get current User
 
-  Future getCurrentUser() async {
+  Future<User> getCurrentUser() async {
+    // ignore: await_only_futures
     return await _auth.currentUser;
   }
 

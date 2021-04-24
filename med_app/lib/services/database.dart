@@ -8,10 +8,9 @@ class DoctorService {
 
   Future<List<Doctor>> fetchDoctorsBySpecialty(speciality) async {
     Map<dynamic, dynamic> values;
-    List<Map<dynamic, dynamic>> retrievedName = [];
     List<Doctor> doctors = [];
     await ref
-        .child('users/doctors')
+        .child('users/')
         .orderByChild("speciality")
         .equalTo(speciality)
         .once()
@@ -31,12 +30,28 @@ class DoctorService {
   Future<Doctor> fetchDoctor(id) async {
     Map<dynamic, dynamic> values;
     Doctor doctor;
-    await ref.child('users/doctors/$id').once().then((DataSnapshot data) {
+    await ref.child('users/$id').once().then((DataSnapshot data) {
       values = data.value;
     });
     if (values != null) {
       doctor = Doctor.fromJson(values);
       return doctor;
+    } else {
+      return null;
+    }
+  }
+
+  Future<String> getUserType(id) async {
+    var user;
+    await ref
+        .child('users/$id')
+        .child("userType")
+        .once()
+        .then((DataSnapshot data) {
+      user = data.value;
+    });
+    if (user != null) {
+      return user;
     } else {
       return null;
     }
