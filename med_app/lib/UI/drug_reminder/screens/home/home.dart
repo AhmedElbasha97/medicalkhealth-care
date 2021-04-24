@@ -113,10 +113,7 @@ class _ReminderHomeState extends State<ReminderHome> {
       floatingActionButton: addButton,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       backgroundColor: Color.fromRGBO(248, 248, 248, 1),
-      appBar: AppBar(
-        title: Text('Drug Reminder'),
-        backgroundColor: ColorsCollection.mainColor,
-      ),
+
       body: SingleChildScrollView(
         child: SafeArea(
           child: Padding(
@@ -136,17 +133,7 @@ class _ReminderHomeState extends State<ReminderHome> {
                     ? SizedBox(
                         width: double.infinity,
                         height: 100,
-                        child:
-                            // WavyAnimatedTextKit(
-                            //   textStyle: TextStyle(
-                            //       fontSize: 32.0,
-                            //       fontWeight: FontWeight.bold,
-                            //       color: Colors.black),
-                            //   text: ["Loading..."],
-                            //   isRepeatingAnimation: true,
-                            //   speed: Duration(milliseconds: 150),
-                            // ),
-                            Center(child: Text('No reminders found!')))
+                        child: Center(child: Text('No reminders found!')))
                     : MedicinesList(dailyPills, setData,
                         flutterLocalNotificationsPlugin, deleteAllRecords)
               ],
