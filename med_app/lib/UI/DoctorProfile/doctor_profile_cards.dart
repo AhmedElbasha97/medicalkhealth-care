@@ -71,12 +71,10 @@ class DocotorCardWidget extends StatelessWidget {
         ),
         onTap: () async {
           if (logout == true) {
-               context.read<AppProvider>().clear();
-            
-
+            context.read<AppProvider>().clear();
             context.read<AuthService>().signOut();
-              SharedPreferences prefs = await SharedPreferences.getInstance();
-              await prefs.setString('userid','');
+            SharedPreferences prefs = await SharedPreferences.getInstance();
+            await prefs.remove("userid");
             Navigator.of(context).pop();
           }
           if (buttonNavigation != null) {

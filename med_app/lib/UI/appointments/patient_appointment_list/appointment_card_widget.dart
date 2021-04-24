@@ -223,24 +223,21 @@ class _AppointmentCardState extends State<AppointmentCard> {
                                 )
                               ],
                             ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 8.0),
-                              child: Row(
-                                children: [
-                                  Icon(
-                                    Icons.schedule,
-                                    size: 25.0,
+                            Row(
+                              children: [
+                                Icon(
+                                  Icons.schedule,
+                                  size: 25.0,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 3.0),
+                                  child: Text(
+                                    widget.appointment.hour.toString() ?? '',
+                                    style:
+                                        TextStyle(fontWeight: FontWeight.bold),
                                   ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(left: 3.0),
-                                    child: Text(
-                                      widget.appointment.hour.toString() ?? '',
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                  )
-                                ],
-                              ),
+                                )
+                              ],
                             ),
                           ],
                         ),

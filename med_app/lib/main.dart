@@ -4,7 +4,9 @@ import 'package:flutter/services.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:med_app/UI/splash/splash_screen.dart';
+import 'package:med_app/Widgets/intro.dart';
 import 'package:med_app/Widgets/start.dart';
+import 'package:med_app/provider/Blog_Provider.dart';
 import 'package:med_app/provider/app_provider.dart';
 import 'package:med_app/services/auth.dart';
 import 'package:provider/provider.dart';
@@ -34,12 +36,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([
-        DeviceOrientation.portraitUp,
-        DeviceOrientation.portraitDown,
-      ]);
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ]);
     return MultiProvider(providers: [
       ChangeNotifierProvider(
         create: (context) => AppProvider(),
+      ),
+      ChangeNotifierProvider(
+        create: (context) => BlogProvider(),
       ),
       Provider<AuthService>(
         create: (_) => AuthService(FirebaseAuth.instance),
@@ -47,7 +52,7 @@ class MyApp extends StatelessWidget {
       StreamProvider(
         create: (context) => context.read<AuthService>().authStateChanges,
       )
-    ], child: MaterialApp(home: Splash()));
+    ], child: MaterialApp(home: Intro()));
   }
 
   signedin() async {
