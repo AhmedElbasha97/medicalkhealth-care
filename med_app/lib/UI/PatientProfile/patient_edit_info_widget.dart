@@ -42,38 +42,77 @@ class _PatientInfoWidgetState extends State<PatientEditInfoWidget> {
       wieght,
       age,
       name;
-  void updateUser() async {
-    var user = userRef.child('users/${widget.patient.userId}');
-
-    await user.update({
-      'bloodSugar': (bloodSugar != null && bloodSugar.length > 0)
-          ? bloodSugar
-          : widget.patient.bloodSugar,
-      'bloodHighPressure':
-          (bloodPreassureHigh != null && bloodPreassureHigh.length > 0)
-              ? bloodPreassureHigh
-              : widget.patient.bloodHighPressure,
-      'bloodLowPressure':
-          (bloodPreassureLow != null && bloodPreassureLow.length > 0)
-              ? bloodPreassureLow
-              : widget.patient.bloodLowPressure,
-      'height': (height != null && height.length > 0)
-          ? height
-          : widget.patient.height,
-      'weight': (wieght != null && wieght.length > 0)
-          ? wieght
-          : widget.patient.weight,
-      'name': (name != null && name.length > 0)
-          ? name
-          : widget.patient.name,
-      'age': (age != null && age.length > 0) ? age : widget.patient.age,
-    }).then((_) {
-      print('Transaction  committed.');
-      AppProvider provider = Provider.of<AppProvider>(context, listen: false);
-      provider.getPatientById(widget.patient.userId);
-      print("edite: ${provider.patient.name}");
-      Navigator.of(context).pop();
-    });
+   updateUser() async {
+    if(validateUsername((name != null && name.length > 0) ? name : widget.patient.name)) {
+      if (int.parse((age != null && age.length > 0) ? age : widget.patient.age)>=0){
+        if ((int.parse((wieght != null && wieght.length > 0) ? wieght : widget.patient.weight) >= 0) && (int.parse((wieght != null && wieght.length > 0) ? wieght : widget.patient.weight) <= 500)) {
+          if ((int.parse((height != null && height.length > 0) ? height : widget.patient.height) >= 30) && (int.parse((height != null && height.length > 0) ? height : widget.patient.height) <= 250)) {
+            if ((int.parse((bloodSugar != null && bloodSugar.length > 0) ? bloodSugar : widget.patient.bloodSugar)>=100)&&(int.parse((bloodSugar != null && bloodSugar.length > 0) ? bloodSugar : widget.patient.bloodSugar)<=700)) {
+              if((int.parse((bloodPreassureLow != null && bloodPreassureLow.length > 0) ? bloodPreassureLow : widget.patient.bloodLowPressure) >= 60) && (int.parse((bloodPreassureLow != null && bloodPreassureLow.length > 0) ? bloodPreassureLow : widget.patient.bloodLowPressure) <= 100)){
+                if ((int.parse((bloodPreassureHigh != null && bloodPreassureHigh.length > 0) ? bloodPreassureHigh : widget.patient.bloodHighPressure) >= 100) && (int.parse((bloodPreassureHigh != null && bloodPreassureHigh.length > 0) ? bloodPreassureHigh : widget.patient.bloodHighPressure) <= 180)) {
+                  var user = userRef.child('users/${widget.patient.userId}');
+                  await user.update({
+                    'bloodSugar': (bloodSugar != null && bloodSugar.length > 0)
+                        ? bloodSugar
+                        : widget.patient.bloodSugar,
+                    'bloodHighPressure':
+                    (bloodPreassureHigh != null &&
+                        bloodPreassureHigh.length > 0)
+                        ? bloodPreassureHigh
+                        : widget.patient.bloodHighPressure,
+                    'bloodLowPressure':
+                    (bloodPreassureLow != null && bloodPreassureLow.length > 0)
+                        ? bloodPreassureLow
+                        : widget.patient.bloodLowPressure,
+                    'height': (height != null && height.length > 0)
+                        ? height
+                        : widget.patient.height,
+                    'weight': (wieght != null && wieght.length > 0)
+                        ? wieght
+                        : widget.patient.weight,
+                    'name': (name != null && name.length > 0)
+                        ? name
+                        : widget.patient.name,
+                    'age': (age != null && age.length > 0) ? age : widget
+                        .patient
+                        .age,
+                  }).then((_) {
+                    print('Transaction  committed.');
+                    AppProvider provider = Provider.of<AppProvider>(
+                        context, listen: false);
+                    provider.getPatientById(widget.patient.userId);
+                    print("edite: ${provider.patient.name}");
+                    Navigator.of(context).pop();
+                  });
+                }else{
+                  showAlert(context, "blood pressures high is not valid",
+                      "please enter valid high pressure");
+                }
+                } else {
+                showAlert(context, "blood pressure low is not valid",
+                    "please enter valid low pressure");
+              }
+            } else {
+              showAlert(context, "blood sugar is not valid",
+                  "please enter valid blood sugar");
+            }
+          } else {
+            showAlert(
+                context, "your height isn't valid",
+                "please Enter Valid height");
+          }
+        } else {
+          showAlert(
+              context, "your weight isn't valid", "pleas Enter Valid weight");
+        }
+      } else {
+        showAlert(
+            context, "age is not valid", "please enter valid age");
+      }
+    }else{
+      showAlert(
+          context, "name is not valid", "please enter valid name");
+    }
   }
 
   @override
@@ -108,37 +147,37 @@ class _PatientInfoWidgetState extends State<PatientEditInfoWidget> {
                   keyboardTypeNumber: false,
                   callback: (val) => setState(() => name = val),
                   infoTitle: 'name  ',
-                  infoValue: widget.patient.name),
+                  infoValue: widget.patient.name,maxchar: 50,maxlines: 1,),
               UserProfileInfoEditWidget(
                   keyboardTypeNumber: true,
                   callback: (val) => setState(() => bloodSugar = val),
                   infoTitle: 'Blood-Sugar   ',
-                  infoValue: widget.patient.bloodSugar),
+                  infoValue: widget.patient.bloodSugar,maxchar: 3,maxlines: 1,),
               UserProfileInfoEditWidget(
                   keyboardTypeNumber: true,
                   callback: (val) => setState(() => bloodPreassureHigh = val),
                   infoTitle: 'BloodPreassureHigh  ',
-                  infoValue: widget.patient.bloodHighPressure),
+                  infoValue: widget.patient.bloodHighPressure,maxchar: 3,maxlines: 1,),
               UserProfileInfoEditWidget(
                   keyboardTypeNumber: true,
                   callback: (val) => setState(() => bloodPreassureLow = val),
                   infoTitle: 'BloodPreassureLow   ',
-                  infoValue: widget.patient.bloodLowPressure),
+                  infoValue: widget.patient.bloodLowPressure,maxchar: 3,maxlines: 1,),
               UserProfileInfoEditWidget(
                   keyboardTypeNumber: true,
                   callback: (val) => setState(() => height = val),
                   infoTitle: 'Height  ',
-                  infoValue: widget.patient.height),
+                  infoValue: widget.patient.height,maxchar: 3,maxlines: 1,),
               UserProfileInfoEditWidget(
                   keyboardTypeNumber: true,
                   callback: (val) => setState(() => wieght = val),
                   infoTitle: 'Weight  ',
-                  infoValue: widget.patient.weight),
+                  infoValue: widget.patient.weight,maxchar: 3,maxlines: 1,),
               UserProfileInfoEditWidget(
                   keyboardTypeNumber: true,
                   callback: (val) => setState(() => age = val),
                   infoTitle: 'age  ',
-                  infoValue: widget.patient.age),
+                  infoValue: widget.patient.age,maxchar: 2,maxlines: 1,),
               Column(
                 children: [
                   Padding(
@@ -186,6 +225,32 @@ class _PatientInfoWidgetState extends State<PatientEditInfoWidget> {
           ),
         ),
       ),
+    );
+  }
+  bool validateUsername(String value) {
+    String pattern = r"^(\w|( \w)){0,20}$";
+    RegExp regExp = new RegExp(pattern);
+    return regExp.hasMatch(value);
+  }
+
+  void showAlert(context, lable, message) {
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: Text(lable),
+          content: Text(message),
+          actions: <Widget>[
+            // ignore: deprecated_member_use
+            FlatButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

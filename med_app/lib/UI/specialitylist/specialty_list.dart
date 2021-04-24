@@ -13,33 +13,57 @@ class _SpecialtyListState extends State<SpecialtyList> {
     {"speciality": 'Dermatology', "image": "assets/specialty/Dermatology.png"},
     {"speciality": 'Dentistry', "image": "assets/specialty/dentistry.png"},
     {"speciality": 'Psychiatry', "image": "assets/specialty/psychiatry.png"},
-    {"speciality": 'Pediatrics', "image": "assets/specialty/Pediatrics-kids.png"},
+    {
+      "speciality": 'Pediatrics',
+      "image": "assets/specialty/Pediatrics-kids.png"
+    },
     {"speciality": 'Neurology', "image": "assets/specialty/neuorosergury.png"},
     {"speciality": 'Orthopedics', "image": "assets/specialty/orthopedics.png"},
     {
       "speciality": 'Gynaecology and Infertility',
       "image": "assets/specialty/gynaecology--and-infertility.png"
     },
-    {"speciality": 'otolaryngologist', "image": "assets/specialty/Otolaryngology.png"},
-    {"speciality": 'Cardiology and Vascular', "image": "assets/specialty/cardiology.png"},
+    {
+      "speciality": 'otolaryngologist',
+      "image": "assets/specialty/Otolaryngology.png"
+    },
+    {
+      "speciality": 'Cardiology and Vascular',
+      "image": "assets/specialty/cardiology.png"
+    },
     {
       "speciality": 'Andrology and Male Infertility',
       "image": "assets/specialty/male-infertility.png"
     },
-    {"speciality": 'Cardiology and Thoracic', "image": "assets/specialty/cardiology.png"},
-    {"speciality": 'Chest and Respiratory', "image": "assets/specialty/respiratory.png"},
+    {
+      "speciality": 'Cardiology and Thoracic',
+      "image": "assets/specialty/cardiology.png"
+    },
+    {
+      "speciality": 'Chest and Respiratory',
+      "image": "assets/specialty/respiratory.png"
+    },
     {
       "speciality": 'Diabetes and Endocrinology',
       "image": "assets/specialty/diabetes.png"
     },
-    {"speciality": 'Diagnostic Radiology', "image": "assets/specialty/radiology.png"},
-    {"speciality": 'Dietitian and Nutrition', "image": "assets/specialty/nutrition.png"},
+    {
+      "speciality": 'Diagnostic Radiology',
+      "image": "assets/specialty/radiology.png"
+    },
+    {
+      "speciality": 'Dietitian and Nutrition',
+      "image": "assets/specialty/nutrition.png"
+    },
     {"speciality": 'Getiatrics', "image": "assets/specialty/getiatrics.png"},
     {
       "speciality": 'Gastroenterology and Endoscopy',
       "image": "assets/specialty/gastro.png"
     },
-    {"speciality": 'General Practice', "image": "assets/specialty/general-practice.png"},
+    {
+      "speciality": 'General Practice',
+      "image": "assets/specialty/general-practice.png"
+    },
   ];
   List<Speciality> specialtiesList = [];
   List<Speciality> filterdList = [];
@@ -47,7 +71,7 @@ class _SpecialtyListState extends State<SpecialtyList> {
   // ignore: unused_field
   bool _isSearching;
   final TextEditingController _controller = new TextEditingController();
- 
+
   @override
   void initState() {
     super.initState();
@@ -132,7 +156,9 @@ class _SpecialtyListState extends State<SpecialtyList> {
   }
 
   void searchOperation(String searchText) {
-    filterdList.clear();
+    setState(() {
+      filterdList = [];
+    });
     if (searchText != null) {
       for (int i = 0; i < specialties.length; i++) {
         String data = specialties[i];

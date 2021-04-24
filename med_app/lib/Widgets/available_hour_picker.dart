@@ -5,7 +5,8 @@ import 'package:multi_select_flutter/multi_select_flutter.dart';
 
 class AvailableHourPicker extends StatefulWidget {
   final callback;
-  AvailableHourPicker({this.callback});
+  final initialValue;
+  AvailableHourPicker({this.callback, this.initialValue});
   @override
   _AvailableHourPickerState createState() => _AvailableHourPickerState();
 }
@@ -56,7 +57,7 @@ class _AvailableHourPickerState extends State<AvailableHourPicker> {
   Widget build(BuildContext context) {
     return MultiSelectChipField(
       items: _items,
-      initialValue: [_AvailableHours[0]],
+      initialValue: widget.initialValue,
       title: Text("Add Available Hours"),
       headerColor: ColorsCollection.mainColor.withOpacity(0.5),
       decoration: BoxDecoration(

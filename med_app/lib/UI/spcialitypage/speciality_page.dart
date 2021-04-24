@@ -47,9 +47,8 @@ class _SpecialityPageState extends State<SpecialityPage> {
           create: (context) => AppProvider(speciality: widget.speciality),
           child: Consumer<AppProvider>(
             builder: (context, databaseProvider, _) {
-              if (doctorslist == null) {
-                values(databaseProvider.doctors);
-              }
+              values(databaseProvider.doctors);
+              print('elbasha');
 
               return Stack(children: [
                 if (databaseProvider.doctors != null)
@@ -102,15 +101,18 @@ class _SpecialityPageState extends State<SpecialityPage> {
   }
 
   void searchOperation(String searchText) {
-    filterddoctors.clear();
+    setState(() {
+      filterddoctors = [];
+    });
     if (searchText != null) {
+      print('hello abdo');
       for (int i = 0; i < doctorslist.length; i++) {
+        print('hello akram');
         String data = doctorslist[i].name;
         if (data.toLowerCase().contains(searchText.toLowerCase())) {
+          print(data);
           List<Doctor> filter = [];
-          doctorslist.forEach((element) {
-            if (element.name == data) filter.add(element);
-          });
+          filter.add(doctorslist[i]);
           setState(() {
             filterddoctors.addAll(filter);
           });

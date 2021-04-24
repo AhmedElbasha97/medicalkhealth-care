@@ -69,7 +69,7 @@ String userName;
                             },
                             onChange: true,
                             label: "UserName",
-                            hint: "enter Your UserName"),
+                            hint: "enter Your UserName",maxCharacter: 100,),
                         SizedBox(height: 12),
                         TextFieldComp(
                             callback: (val){
@@ -79,7 +79,7 @@ String userName;
                             },
                             onChange: true,
                             label: "Email",
-                            hint: "example@email.com"),
+                            hint: "example@email.com",maxCharacter: 100,),
                         SizedBox(height: 12),
                         TextFieldComp(
                             callback: (val){
@@ -89,7 +89,7 @@ String userName;
                             },
                             onChange: true,
                             label: "Password",
-                            hint: "enter Your Password"),
+                            hint: "enter Your Password",textSafePassword: true,maxCharacter: 100,),
                         SizedBox(height: 12),
                         TextFieldComp(
                             callback: (val){
@@ -99,7 +99,7 @@ String userName;
                             },
                             onChange: true,
                             label: "Confirm Password",
-                            hint: "re-enter Your Password"),
+                            hint: "re-enter Your Password",textSafePassword: true,maxCharacter: 100,),
                         SizedBox(height: 12),
                         RoundedSmallButton(
                             text: "Signup as a Doctor",
@@ -116,30 +116,30 @@ String userName;
                             password: password,
                             confirmPassword: rePassword,
                             type: "user"),
-                        SizedBox(height: 12),
-                        Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            'OR',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.black54,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 18),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            SocialMediaButton(icon: FontAwesomeIcons.facebookF),
-                            SizedBox(width: 16),
-                            SocialMediaButton(icon: FontAwesomeIcons.google),
-                            SizedBox(width: 16),
-                            SocialMediaButton(icon: FontAwesomeIcons.twitter),
-                          ],
-                        ),
+                        // SizedBox(height: 12),
+                        // Align(
+                        //   alignment: Alignment.center,
+                        //   child: Text(
+                        //     'OR',
+                        //     style: TextStyle(
+                        //       fontSize: 16,
+                        //       fontWeight: FontWeight.w700,
+                        //       color: Colors.black54,
+                        //     ),
+                        //   ),
+                        // ),
+                        // SizedBox(height: 18),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.center,
+                        //   crossAxisAlignment: CrossAxisAlignment.center,
+                        //   children: <Widget>[
+                        //     SocialMediaButton(icon: FontAwesomeIcons.facebookF),
+                        //     SizedBox(width: 16),
+                        //     SocialMediaButton(icon: FontAwesomeIcons.google),
+                        //     SizedBox(width: 16),
+                        //     SocialMediaButton(icon: FontAwesomeIcons.twitter),
+                        //   ],
+                        // ),
                         SizedBox(height: 18),
                         DirectedLink(
                           text: 'Already have account ? Login Now',

@@ -26,6 +26,7 @@ class _NavbarState extends State<Nav> {
   void _itemSwitch(int index) {
     setState(() {
       widget.selectedIndex = index;
+
     });
   }
 
@@ -54,12 +55,12 @@ class _NavbarState extends State<Nav> {
           backgroundColor: Color(0xFF00A1A7),
           items: <Widget>[
             Icon(
-              FontAwesomeIcons.blog,
+              FontAwesomeIcons.seedling,
               size: 25,
               color: Color(0xFF00A1A7),
             ),
             Icon(
-              FontAwesomeIcons.tablets,
+              FontAwesomeIcons.capsules,
               size: 25,
               color: Color(0xFF00A1A7),
             ),
@@ -69,17 +70,18 @@ class _NavbarState extends State<Nav> {
               color: Color(0xFF00A1A7),
             ),
             Icon(
-              Icons.search,
+              FontAwesomeIcons.stethoscope,
               size: 25,
               color: Color(0xFF00A1A7),
             ),
             Icon(
-              Icons.people,
+              FontAwesomeIcons.solidUserCircle,
               size: 25,
               color: Color(0xFF00A1A7),
             ),
           ],
           onTap: _itemSwitch,
+         index: widget.selectedIndex,
           height: 50,
           buttonBackgroundColor: Colors.white,
           color: Colors.white,
@@ -88,4 +90,5 @@ class _NavbarState extends State<Nav> {
       );
     });
   }
+
 }

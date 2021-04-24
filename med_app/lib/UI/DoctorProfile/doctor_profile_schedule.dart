@@ -24,12 +24,14 @@ class _DoctorScheduleState extends State<DoctorSchedule> {
   final fees = TextEditingController();
   var test;
   bool isButtonDisabled = false;
+  bool resetted = false;
 
   addAvailableDate(stringDates) async {
     var doctor = userRef.child('users/${widget.doctorId}');
     var doctorFees = userRef.child('users/${widget.doctorId}/fees');
     await doctor.update({"availableAppointment": stringDates}).then((_) {
       print('Transaction  committed.');
+      showAlert(context, "My Schedule", "Changed Successfully");
     });
     await doctorFees.set(fees.text).then((_) {
       print('Transaction  committed.');
@@ -86,6 +88,7 @@ class _DoctorScheduleState extends State<DoctorSchedule> {
                                   setState(() {
                                     _selectedDays = [];
                                     _selectedDates = [];
+                                    resetted = true;
                                   });
                                 },
                                 child: Text('Reset Schedule'),
@@ -146,9 +149,10 @@ class _DoctorScheduleState extends State<DoctorSchedule> {
                 width: double.infinity,
                 height: 50,
                 child: ElevatedButton(
-                    onPressed: (_selectedDates.length != 0 &&
-                            _selectedHours.length != 0 &&
-                            isButtonDisabled)
+                    onPressed: ((_selectedDates.length != 0 &&
+                                _selectedHours.length != 0 &&
+                                isButtonDisabled) ||
+                            resetted == true)
                         ? () {
                             var stringDates = _selectedDates
                                 .map<Map<String, dynamic>>((e) => {
@@ -180,6 +184,27 @@ class _DoctorScheduleState extends State<DoctorSchedule> {
           ],
         ),
       ),
+    );
+  }
+
+  void showAlert(context, lable, message) {
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: Text(lable),
+          content: Text(message),
+          actions: <Widget>[
+            // ignore: deprecated_member_use
+            FlatButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 }

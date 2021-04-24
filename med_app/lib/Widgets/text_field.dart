@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:med_app/Styles/colors.dart';
 
 class TextFieldComp extends StatefulWidget {
@@ -7,14 +8,18 @@ class TextFieldComp extends StatefulWidget {
   final controller;
   final callback;
   final onChange;
+  final maxCharacter;
   final keyboardTypeNumber;
+  bool textSafePassword;
   TextFieldComp(
       {this.label,
       this.hint,
       this.controller,
       this.callback,
       this.onChange = false,
-      this.keyboardTypeNumber = false});
+      this.keyboardTypeNumber = false,
+        this.textSafePassword = false,
+        this.maxCharacter});
 
   @override
   _TextFieldCompState createState() => _TextFieldCompState();
@@ -22,7 +27,12 @@ class TextFieldComp extends StatefulWidget {
 
 class _TextFieldCompState extends State<TextFieldComp> {
   var focused = false;
-
+  var encription = true;
+  void _toggle() {
+    setState(() {
+      encription = ! encription;
+    });
+  }
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -43,6 +53,8 @@ class _TextFieldCompState extends State<TextFieldComp> {
                   }
                 },
                 controller: widget.controller,
+                maxLength: widget.maxCharacter ,
+                obscureText: widget.textSafePassword?encription:false,
                 keyboardType: widget.keyboardTypeNumber
                     ? TextInputType.number
                     : TextInputType.text,
@@ -70,6 +82,12 @@ class _TextFieldCompState extends State<TextFieldComp> {
                     hintStyle: TextStyle(
                       fontFamily: 'Proxima',
                     ),
+                    suffixIcon: widget.textSafePassword? IconButton(
+                      onPressed: _toggle,
+                      icon:encription? Icon(FontAwesomeIcons.eyeSlash,color:  Colors.grey,): Icon(FontAwesomeIcons.eye,color:  ColorsCollection.mainColor,),
+
+                    ): Icon(Icons.add,
+                      color: Colors.white,),
                     floatingLabelBehavior: FloatingLabelBehavior.auto),
               ),
             ),

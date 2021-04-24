@@ -8,14 +8,15 @@ class UserProfileInfoEditWidget extends StatelessWidget {
   final callback;
   final keyboardTypeNumber;
   final bool isBio;
-
+  final int maxchar;
+  final int maxlines;
   const UserProfileInfoEditWidget(
       {Key key,
       @required this.infoTitle,
       @required this.infoValue,
       @required this.keyboardTypeNumber,
       this.isBio = false,
-      this.callback})
+      this.callback, this.maxchar, this.maxlines})
       : super(key: key);
 
   @override
@@ -31,8 +32,8 @@ class UserProfileInfoEditWidget extends StatelessWidget {
               padding: const EdgeInsets.only(bottom: 0, left: 20, right: 20),
               child: TextFormField(
                 initialValue: '$infoValue',
-                maxLength: (isBio) ? 120 : 20,
-                maxLines: (isBio) ? 3 : 1,
+                maxLength: maxchar,
+                maxLines:  maxlines,
                 keyboardType: keyboardTypeNumber
                     ? TextInputType.number
                     : TextInputType.text,

@@ -321,7 +321,6 @@ class _CallPageState extends State<CallPage> {
     } else {
       provider.getDoctorById(widget.id);
       Doctor doctor = provider.doctor;
-      print('hish ${doctor.fees}');
       Navigator.push(
           context,
           MaterialPageRoute(
@@ -347,7 +346,7 @@ class _CallPageState extends State<CallPage> {
       onWillPop: () async => false,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Agora Flutter QuickStart'),
+          title: Text('Consultation Session'),
           automaticallyImplyLeading: false,
           backgroundColor: ColorsCollection.mainColor,
         ),

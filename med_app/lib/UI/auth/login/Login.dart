@@ -62,14 +62,14 @@ class _LoginState extends State<Login> {
                           setState(() {
                             email = val;
                           });
-                        },),
+                        },maxCharacter: 100,),
                         SizedBox(height: 16),
                         TextFieldComp(onChange: true,
                             label: "Password", hint: "enter Your Password",callback: (val){
                           setState(() {
                             password = val;
                           });
-                          },),
+                          },textSafePassword: true,maxCharacter: 100,),
                         SizedBox(height: 12),
                         Align(
                           alignment: Alignment.centerRight,
@@ -88,30 +88,30 @@ class _LoginState extends State<Login> {
                         ),
                         SizedBox(height: 20),
                         RoundedSmallButton(text: "Login",email: email ,password: password,type: 'login'),
-                        SizedBox(height: 12),
-                        Align(
-                          alignment: Alignment.center,
-                          child: Text(
-                            'OR',
-                            style: TextStyle(
-                              fontSize: 16,
-                              fontWeight: FontWeight.w700,
-                              color: Colors.black54,
-                            ),
-                          ),
-                        ),
-                        SizedBox(height: 18),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: <Widget>[
-                            SocialMediaButton(icon: FontAwesomeIcons.facebookF),
-                            SizedBox(width: 16),
-                            SocialMediaButton(icon: FontAwesomeIcons.google),
-                            SizedBox(width: 16),
-                            SocialMediaButton(icon: FontAwesomeIcons.twitter),
-                          ],
-                        ),
+                        // SizedBox(height: 12),
+                        // Align(
+                        //   alignment: Alignment.center,
+                        //   child: Text(
+                        //     'OR',
+                        //     style: TextStyle(
+                        //       fontSize: 16,
+                        //       fontWeight: FontWeight.w700,
+                        //       color: Colors.black54,
+                        //     ),
+                        //   ),
+                        // ),
+                        // SizedBox(height: 18),
+                        // Row(
+                        //   mainAxisAlignment: MainAxisAlignment.center,
+                        //   crossAxisAlignment: CrossAxisAlignment.center,
+                        //   children: <Widget>[
+                        //     SocialMediaButton(icon: FontAwesomeIcons.facebookF),
+                        //     SizedBox(width: 16),
+                        //     SocialMediaButton(icon: FontAwesomeIcons.google),
+                        //     SizedBox(width: 16),
+                        //     SocialMediaButton(icon: FontAwesomeIcons.twitter),
+                        //   ],
+                        // ),
                         SizedBox(height: 18),
                         DirectedLink(
                           text: 'Don\'t have account ? Sign Up Now',

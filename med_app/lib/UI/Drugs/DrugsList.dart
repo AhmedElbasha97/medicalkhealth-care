@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:med_app/Styles/colors.dart';
@@ -30,13 +31,11 @@ class _DrugsListState extends State<DrugsList> {
             child: Stack(children: [
               Padding(
                 padding: EdgeInsets.fromLTRB(
-                    0.0, MediaQuery.of(context).size.height * 0.09, 0.0, 0.0),
+                    0.0, 0.0, 0.0, 0.0),
                 child: ChangeNotifierProvider<DrugsProvider>(
                     create: (context) => DrugsProvider(),
                     child: Consumer<DrugsProvider>(
                         builder: (buildContext, DrugsProvider, _) {
-                      print('hi4');
-
                       return (DrugsProvider.drugs != null)
                           ? Container(
                               child: SingleChildScrollView(
@@ -96,20 +95,62 @@ class _DrugsListState extends State<DrugsList> {
                                         padding: const EdgeInsets.all(3.6),
                                         child: Column(
                                           children: [
-                                            Container(
-                                              child: Image.network(
-                                                drug.image,
-                                                fit: BoxFit.contain,
+                                            CachedNetworkImage(
+                                              fit: BoxFit.cover,
+                                              imageUrl:
+                                              drug.image,
+                                              imageBuilder: (context, imageProvider) => Container(
+                                                width: MediaQuery.of(context)
+                                                    .size
+                                                    .width /
+                                                    4,
+                                                height: MediaQuery.of(context)
+                                                    .size
+                                                    .width /5.2,
+                                                decoration: BoxDecoration(
+                                                  image: DecorationImage(
+                                                    image: imageProvider,
+                                                    fit: BoxFit.contain,
+                                                  ),
+                                                ),
                                               ),
-                                              width: MediaQuery.of(context)
-                                                      .size
-                                                      .width /
-                                                  4,
-                                              height: MediaQuery.of(context)
-                                                      .size
-                                                      .width /
-                                                  5.2,
+                                              placeholder: (context, url) =>
+                                                  Image.asset('assets/images/capsule.png',
+                                                      fit: BoxFit.contain,
+                                                      width: MediaQuery.of(context)
+                                                          .size
+                                                          .width /
+                                                          4,
+                                                      height: MediaQuery.of(context)
+                                                          .size
+                                                          .width /5.2
+                                                  ),
+                                              errorWidget: (context, url, error) =>
+                                                  Image.asset('assets/images/capsule.png',
+                                                      fit: BoxFit.contain,
+                                                      width: MediaQuery.of(context)
+                                                              .size
+                                                              .width /
+                                                          4,
+                                                      height: MediaQuery.of(context)
+                                                              .size
+                                                              .width /5.2
+                                                    ),
                                             ),
+                                            // Container(
+                                            //   child: Image.network(
+                                            //     drug.image,
+                                            //     fit: BoxFit.contain,
+                                            //   ),
+                                            //   width: MediaQuery.of(context)
+                                            //           .size
+                                            //           .width /
+                                            //       4,
+                                            //   height: MediaQuery.of(context)
+                                            //           .size
+                                            //           .width /
+                                            //       5.2,
+                                            // ),
                                             Center(
                                               child: Text(
                                                 drug.name,
@@ -137,20 +178,7 @@ class _DrugsListState extends State<DrugsList> {
                           : Center(child: CircularProgressIndicator());
                     })),
               ),
-              Positioned(
-                top: 0,
-                child: Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: 70,
-                  color: Colors.white,
-                  child: Padding(
-                    padding: const EdgeInsets.only(right: 8.0, left: 8),
-                    child: TextFormField(
-                        decoration:
-                            InputDecoration(labelText: "Search By Drugs")),
-                  ),
-                ),
-              ),
+
             ])));
   }
 }

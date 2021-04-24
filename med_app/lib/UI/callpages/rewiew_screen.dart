@@ -12,8 +12,7 @@ import 'package:smooth_star_rating/smooth_star_rating.dart';
 // ignore: must_be_immutable
 class ReviewScreen extends StatefulWidget {
   Doctor doctor;
-  final callbackDelete;
-  ReviewScreen({Key key, this.doctor, this.callbackDelete}) : super(key: key);
+  ReviewScreen({Key key, this.doctor}) : super(key: key);
 
   @override
   _ReviewScreenState createState() => _ReviewScreenState();

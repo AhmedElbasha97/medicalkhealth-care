@@ -181,7 +181,7 @@ class _AppointmentCardState extends State<AppointmentCard> {
                     children: [
                       Row(
                         children: [
-                          if (!isPatient)
+                          if (isPatient)
                             Text(
                               'Dr. ',
                               style: TextStyle(

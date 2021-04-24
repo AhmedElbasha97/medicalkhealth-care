@@ -16,9 +16,9 @@ class DrawerSide extends StatefulWidget {
 }
 
 class _DrawerSideState extends State<DrawerSide> {
-  var email;
-  var name;
-  var imagePath;
+  var email="";
+  var name="";
+  var imagePath="https://www.pngfind.com/pngs/m/610-6104451_image-placeholder-png-user-profile-placeholder-image-png.png";
 
   getImgeUrl(imagepath) async {
     String downloadURL = await firebase_storage.FirebaseStorage.instance
@@ -31,14 +31,34 @@ class _DrawerSideState extends State<DrawerSide> {
   void initState() {
     super.initState();
     var type = context.read<AppProvider>().type;
-    if (type == "patient") {
-      name = context.read<AppProvider>().patient.name;
-      imagePath = context.read<AppProvider>().patient.userAvatar;
-      email = context.read<AppProvider>().patient.balance;
-    } else {
-      name = context.read<AppProvider>().doctor.name;
-      imagePath = context.read<AppProvider>().doctor.userAvatar;
-      email = context.read<AppProvider>().doctor.email;
+    if (context.read<AppProvider>().type != null) {
+      if (type == "patient") {
+        name = context
+            .read<AppProvider>()
+            .patient
+            .name;
+        imagePath = context
+            .read<AppProvider>()
+            .patient
+            .userAvatar;
+        email = context
+            .read<AppProvider>()
+            .patient
+            .balance;
+      } else {
+        name = context
+            .read<AppProvider>()
+            .doctor
+            .name;
+        imagePath = context
+            .read<AppProvider>()
+            .doctor
+            .userAvatar;
+        email = context
+            .read<AppProvider>()
+            .doctor
+            .email;
+      }
     }
   }
 
@@ -113,8 +133,18 @@ class _DrawerSideState extends State<DrawerSide> {
                                     ),
                                   );
                                 }
-                                return Center(
-                                    child: CircularProgressIndicator());
+                                return Container(
+                                  width: MediaQuery.of(context).size.width *
+                                      0.19,
+                                  height: MediaQuery.of(context).size.width *
+                                      0.19,
+                                  decoration: BoxDecoration(
+                                    shape: BoxShape.circle,
+                                    image: DecorationImage(
+                                        image: AssetImage('assets/userAvatar.jpg'),
+                                        fit: BoxFit.fill),
+                                  ),
+                                );
                               }),
                         ),
                       ),
@@ -145,20 +175,7 @@ class _DrawerSideState extends State<DrawerSide> {
                 Expanded(
                   child: ListView(
                     children: [
-                      ListTile(
-                        onTap: () {},
-                        leading: Icon(
-                          Icons.home,
-                          color: ColorsCollection.mainColor,
-                        ),
-                        title: Text(
-                          "Home Page",
-                          style: TextStyle(
-                              color: ColorsCollection.mainColor,
-                              fontFamily: 'Proxima',
-                              fontSize: 16),
-                        ),
-                      ),
+
                       ListTile(
                         onTap: () {
                           Navigator.of(context).push(MaterialPageRoute(

@@ -7,8 +7,9 @@ class TextWithDropComp extends StatefulWidget {
   final String hint;
   final val1;
   final val2;
+  final maxChar;
 
-  TextWithDropComp({this.label, this.hint, this.val1, this.val2});
+  TextWithDropComp({this.label, this.hint, this.val1, this.val2, this.maxChar});
 
   @override
   _TextWithDropCompState createState() => _TextWithDropCompState();
@@ -28,6 +29,7 @@ class _TextWithDropCompState extends State<TextWithDropComp> {
                   label: widget.label,
                   hint: widget.hint,
                   keyboardTypeNumber: true,
+                  maxCharacter: widget.maxChar,
                 ),
               ),
               Positioned(
