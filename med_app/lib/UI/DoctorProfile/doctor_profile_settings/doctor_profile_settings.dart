@@ -1,0 +1,45 @@
+import 'package:flutter/material.dart';
+import 'package:med_app/Styles/colors.dart';
+import 'package:med_app/UI/DoctorProfile/doctor_profile_cards.dart';
+import 'package:med_app/UI/DoctorProfile/doctor_profile_settings/settings_about.dart';
+import 'package:med_app/UI/DoctorProfile/doctor_profile_settings/settings_policy.dart';
+import 'package:med_app/UI/DoctorProfile/doctor_profile_settings/settings_report.dart';
+import 'package:med_app/UI/DoctorProfile/doctor_profile_settings/settings_terms.dart';
+import 'package:med_app/UI/Drawer/AboutUs.dart';
+import 'package:med_app/UI/Drawer/TermsAndCondition.dart';
+
+class DoctorSettings extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Settings'),
+        backgroundColor: ColorsCollection.mainColor,
+      ),
+      body: Column(
+        children: [
+          DocotorCardWidget(
+            cardLabel: 'Report an Issue',
+            icon: Icons.app_settings_alt,
+            buttonNavigation: SettingsReport(),
+          ),
+          DocotorCardWidget(
+            cardLabel: 'Privacy Policy',
+            icon: Icons.app_settings_alt,
+            buttonNavigation: SettingsPolicy(),
+          ),
+          DocotorCardWidget(
+            cardLabel: 'Terms of Use',
+            icon: Icons.app_settings_alt,
+            buttonNavigation: TermsAndCondition(),
+          ),
+          DocotorCardWidget(
+            cardLabel: 'About',
+            icon: Icons.app_settings_alt,
+            buttonNavigation: AboutUs(),
+          )
+        ],
+      ),
+    );
+  }
+}

@@ -1,0 +1,38 @@
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:flutter/material.dart';
+
+class TitleAndMessage extends StatelessWidget {
+  final double deviceHeight;
+  TitleAndMessage(this.deviceHeight);
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Container(
+          height: deviceHeight * 0.15,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 40.0, right: 40.0),
+            child: AutoSizeText(
+              "Be in control of your meds",
+              style: TextStyle(color: Colors.black, fontSize: 36.0),
+              textAlign: TextAlign.center,
+              maxLines: 2,
+            ),
+          ),
+        ),
+        Container(
+          height: deviceHeight * 0.15,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 40.0, right: 40.0),
+            child: AutoSizeText(
+              "An easy-to-use and reliable app that helps you remember to take your meds at the right time",
+              style: TextStyle(color: Colors.grey[600], fontSize: 20.0),
+              textAlign: TextAlign.center,
+              maxLines: 3,
+            ),
+          ),
+        ),
+      ],
+    );
+  }
+}
