@@ -34,7 +34,7 @@ class _PatientInfoWidgetState extends State<PatientInfoWidget> {
   bool changePassword = false;
   String _newPassword;
   String pattern =
-      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,10}$';
+      r'^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[!@#\$&*~]).{8,}$';
 
   void _changePassword() async {
     User currentUser = await context.read<AuthService>().getCurrentUser();
