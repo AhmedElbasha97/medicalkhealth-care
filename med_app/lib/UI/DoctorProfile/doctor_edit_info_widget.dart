@@ -44,10 +44,27 @@ class _DoctorEditInfoWidgetState extends State<DoctorEditInfoWidget> {
       name;
   void updateUser() async {
     var user = userRef.child('users/${widget.doctor.userId}');
-    if(validateUsername((name != null && name.length > 0) ? name : widget.doctor.name)){
-      if(int.parse((age != null && age.length > 0) ? age : widget.doctor.age,)>=25) {
-        if (int.parse((experience != null && experience.length > 0) ? experience : widget.doctor.experience,) >= 0) {
-          if(int.parse((age != null && age.length > 0) ? age : widget.doctor.age,)>int.parse((experience != null && experience.length > 0) ? experience : widget.doctor.experience,)){
+    if (validateUsername(
+        (name != null && name.length > 0) ? name : widget.doctor.name)) {
+      if (int.parse(
+            (age != null && age.length > 0) ? age : widget.doctor.age,
+          ) >=
+          25) {
+        if (int.parse(
+              (experience != null && experience.length > 0)
+                  ? experience
+                  : widget.doctor.experience,
+            ) >=
+            0) {
+          if (int.parse(
+                    (age != null && age.length > 0) ? age : widget.doctor.age,
+                  ) -
+                  24 >
+              int.parse(
+                (experience != null && experience.length > 0)
+                    ? experience
+                    : widget.doctor.experience,
+              )) {
             await user.update({
               'bio': (bio != null && bio.length > 0 && bio.length < 120)
                   ? bio
@@ -55,34 +72,36 @@ class _DoctorEditInfoWidgetState extends State<DoctorEditInfoWidget> {
               'experience': (experience != null && experience.length > 0)
                   ? experience
                   : widget.doctor.experience,
-              'name': (name != null && name.length > 0) ? name : widget.doctor
-                  .name,
+              'name':
+                  (name != null && name.length > 0) ? name : widget.doctor.name,
               'age': (age != null && age.length > 0) ? age : widget.doctor.age,
             }).then((_) {
               print('Transaction  committed.');
-              AppProvider provider = Provider.of<AppProvider>(
-                  context, listen: false);
+              AppProvider provider =
+                  Provider.of<AppProvider>(context, listen: false);
               provider.getDoctorById('${widget.doctor.userId}');
               Navigator.of(context).pop();
             });
-          }else{
-          showAlert(context, "years of experience is not valid", "how your age is less than your year's of experience");
+          } else {
+            showAlert(context, "years of experience is not valid",
+                "how your age is less than your year's of experience");
           }
-        }else{
-          showAlert(context, "years of experience is not valid", "enter valid range years of experience");
+        } else {
+          showAlert(context, "years of experience is not valid",
+              "enter valid range years of experience");
         }
-  }else{
+      } else {
         showAlert(context, "age is not valid", "enter valid age");
-  }
-}else{
-showAlert(context, "name is not valid", "please enter valid name");
-}
+      }
+    } else {
+      showAlert(context, "name is not valid", "please enter valid name");
+    }
 
-  @override
-  Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
-  }
+    @override
+    Widget build(BuildContext context) {
+      // TODO: implement build
+      throw UnimplementedError();
+    }
   }
 
   @override
@@ -114,29 +133,41 @@ showAlert(context, "name is not valid", "please enter valid name");
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               UserProfileInfoEditWidget(
-                  isBio: false,
-                  keyboardTypeNumber: false,
-                  callback: (val) => setState(() => name = val),
-                  infoTitle: 'name  ',
-                  infoValue: widget.doctor.name,maxchar: 50,maxlines: 1,),
+                isBio: false,
+                keyboardTypeNumber: false,
+                callback: (val) => setState(() => name = val),
+                infoTitle: 'name  ',
+                infoValue: widget.doctor.name,
+                maxchar: 50,
+                maxlines: 1,
+              ),
               UserProfileInfoEditWidget(
-                  isBio: false,
-                  keyboardTypeNumber: true,
-                  callback: (val) => setState(() => experience = val),
-                  infoTitle: 'experience  ',
-                  infoValue: widget.doctor.experience,maxchar: 2,maxlines: 1,),
+                isBio: false,
+                keyboardTypeNumber: true,
+                callback: (val) => setState(() => experience = val),
+                infoTitle: 'experience  ',
+                infoValue: widget.doctor.experience,
+                maxchar: 2,
+                maxlines: 1,
+              ),
               UserProfileInfoEditWidget(
-                  isBio: false,
-                  keyboardTypeNumber: true,
-                  callback: (val) => setState(() => age = val),
-                  infoTitle: 'age  ',
-                  infoValue: widget.doctor.age,maxchar: 2,maxlines: 1,),
+                isBio: false,
+                keyboardTypeNumber: true,
+                callback: (val) => setState(() => age = val),
+                infoTitle: 'age  ',
+                infoValue: widget.doctor.age,
+                maxchar: 2,
+                maxlines: 1,
+              ),
               UserProfileInfoEditWidget(
-                  keyboardTypeNumber: false,
-                  isBio: true,
-                  callback: (val) => setState(() => bio = val),
-                  infoTitle: 'bio   ',
-                  infoValue: widget.doctor.bio,maxchar: 120,maxlines: 3,),
+                keyboardTypeNumber: false,
+                isBio: true,
+                callback: (val) => setState(() => bio = val),
+                infoTitle: 'bio   ',
+                infoValue: widget.doctor.bio,
+                maxchar: 120,
+                maxlines: 3,
+              ),
               Column(
                 children: [
                   Padding(
@@ -186,30 +217,31 @@ showAlert(context, "name is not valid", "please enter valid name");
       ),
     );
   }
-bool validateUsername(String value) {
-  String pattern = r"(^(\w|( \w)){0,20}$";
-  RegExp regExp = new RegExp(pattern);
-  return regExp.hasMatch(value);
-}
 
-void showAlert(context, lable, message) {
-  showDialog<void>(
-    context: context,
-    builder: (BuildContext dialogContext) {
-      return AlertDialog(
-        title: Text(lable),
-        content: Text(message),
-        actions: <Widget>[
-          // ignore: deprecated_member_use
-          FlatButton(
-            child: Text('OK'),
-            onPressed: () {
-              Navigator.of(dialogContext).pop();
-            },
-          ),
-        ],
-      );
-    },
-  );
-}
+  bool validateUsername(String value) {
+    String pattern = r"^(\w|( \w)){0,20}$";
+    RegExp regExp = new RegExp(pattern);
+    return regExp.hasMatch(value);
+  }
+
+  void showAlert(context, lable, message) {
+    showDialog<void>(
+      context: context,
+      builder: (BuildContext dialogContext) {
+        return AlertDialog(
+          title: Text(lable),
+          content: Text(message),
+          actions: <Widget>[
+            // ignore: deprecated_member_use
+            FlatButton(
+              child: Text('OK'),
+              onPressed: () {
+                Navigator.of(dialogContext).pop();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 }

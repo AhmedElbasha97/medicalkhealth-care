@@ -20,27 +20,25 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  var name;
+  var name = " ";
   var type;
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     type = context.read<AppProvider>().type;
-    if (type == "patient") {
-      var userName = context.read<AppProvider>().patient.name;
-      var arr = userName.split(' ');
-      name = arr[0];
-    } else {
-      var userName = context.read<AppProvider>().doctor.name;
-      var arr = userName.split(' ');
-      name = arr[0];
+    if (context.read<AppProvider>().type != null) {
+      if (type == "patient") {
+        var userName = context.read<AppProvider>().patient.name;
+        var arr = userName.split(' ');
+        name = arr[0];
+      } else {
+        var userName = context.read<AppProvider>().doctor.name;
+        var arr = userName.split(' ');
+        name = arr[0];
+      }
     }
   }
-
-  // ChangeNotifierProvider<BlogProvider>(
-  // create: (context) => BlogProvider(),
-  // child:
 
   Widget build(BuildContext context) {
     return Consumer<BlogProvider>(builder: (context, BlogProvider, _) {
@@ -130,12 +128,19 @@ class _HomeState extends State<Home> {
                             SizedBox(height: 10),
                             Padding(
                                 padding: EdgeInsets.all(10),
-                                child: ButtonCard(
-                                  title: "Doctor Speciality",
-                                  subtitle:
-                                      "you can find doctors with it speciality there",
-                                  goDoctor: true,
-                                )),
+                                child: ((context.read<AppProvider>().type !=
+                                            null) &&
+                                        (context.read<AppProvider>().type ==
+                                            "patient"))
+                                    ? ButtonCard(
+                                        title: "Doctor Speciality",
+                                        subtitle:
+                                            "you can find doctors with it speciality there",
+                                        goDoctor: true,
+                                      )
+                                    : Container(
+                                        color: Colors.white,
+                                      )),
                             SizedBox(height: 10),
                             Padding(
                                 padding: EdgeInsets.all(10),
