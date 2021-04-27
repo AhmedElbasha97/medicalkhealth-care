@@ -172,8 +172,14 @@ class _PatientProfileWidgetState extends State<PatientProfileWidget> {
                                       ),
                                     );
                                   }
-                                  return Center(
-                                      child: CircularProgressIndicator());
+                                  return Container(
+                                    decoration: BoxDecoration(
+                                      shape: BoxShape.circle,
+                                      image: DecorationImage(
+                                          image: AssetImage('assets/userAvatar.jpg'),
+                                          fit: BoxFit.fill),
+                                    ),
+                                  );
                                 }),
                           ),
                         ),

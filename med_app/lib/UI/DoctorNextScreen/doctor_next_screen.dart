@@ -81,7 +81,8 @@ class _DoctorNextScreenState extends State<DoctorNextScreen> {
       if(age != null){
         if(experience != null){
           if(validateUsername(name)){
-            if(int.parse(age)>int.parse(experience)){
+            if(int.parse(age)-
+                24>int.parse(experience)){
               if(int.parse(age)>=25){
                 if(int.parse(experience)>=0){
     var user = userRef.child('users/${widget.userId}');
